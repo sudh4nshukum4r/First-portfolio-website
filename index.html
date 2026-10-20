@@ -1,144 +1,242 @@
+
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0b1020">
-<meta name="description" content="Sudhanshu Kumar — AI builder, developer and student. Explore projects, skills and ideas.">
-<title>Sudhanshu Kumar — AI Builder & Developer</title>
-<style>
-:root{color-scheme:dark;--bg:#090d19;--surface:#10172a;--surface2:#151e34;--text:#f4f6ff;--muted:#a6b0c8;--line:rgba(190,202,255,.13);--accent:#a78bfa;--accent2:#67e8f9;--shadow:0 24px 70px rgba(0,0,0,.32);--brightness:1;--radius:22px}
-html[data-theme="light"]{color-scheme:light;--bg:#f5f7fc;--surface:#fff;--surface2:#edf1fa;--text:#172033;--muted:#5e6880;--line:rgba(25,40,75,.13);--shadow:0 24px 70px rgba(30,50,90,.12)}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;filter:brightness(var(--brightness));transition:background .25s,color .25s;overflow-x:hidden}a{color:inherit;text-decoration:none}button,input,textarea,select{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--accent2);outline-offset:3px}.wrap{width:min(1120px,calc(100% - 40px));margin:auto}.ambient{position:fixed;inset:0;pointer-events:none;z-index:-1;overflow:hidden}.orb{position:absolute;width:42vw;height:42vw;min-width:280px;min-height:280px;border-radius:50%;filter:blur(100px);opacity:.15}.orb.one{top:-18vw;left:-12vw;background:#7c3aed}.orb.two{right:-18vw;top:32vh;background:#0891b2;opacity:.10}.nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}.navinner{height:76px;display:flex;align-items:center;justify-content:space-between;gap:22px}.brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:-.04em}.brandmark{width:37px;height:37px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,#8b5cf6,#22d3ee);color:#07101f;font-weight:900}.navlinks{display:flex;align-items:center;gap:25px;color:var(--muted);font-size:14px}.navlinks a:hover{color:var(--text)}.navactions{display:flex;align-items:center;gap:8px}.iconbtn,.btn{border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--text);padding:10px 13px}.iconbtn{width:42px;height:42px;display:grid;place-items:center}.btn.primary{background:linear-gradient(135deg,#8b5cf6,#6366f1);color:white;border-color:transparent;box-shadow:0 8px 24px #7c3aed35}.btn.secondary{background:transparent}.btn:hover,.iconbtn:hover{transform:translateY(-1px);border-color:color-mix(in srgb,var(--accent) 55%,var(--line))}.mobilemenu{display:none}.hero{padding:94px 0 78px;display:grid;grid-template-columns:1.25fr .75fr;align-items:center;gap:60px;min-height:600px}.eyebrow{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 12px;color:var(--muted);font-size:12px;letter-spacing:.09em;text-transform:uppercase}.dot{width:7px;height:7px;border-radius:50%;background:#34d399;box-shadow:0 0 0 5px #34d39918}.hero h1{font-size:clamp(44px,6.5vw,78px);line-height:1.03;letter-spacing:-.065em;margin:24px 0 20px;max-width:760px}.gradient{background:linear-gradient(110deg,#c4b5fd 5%,#a78bfa 45%,#67e8f9 95%);-webkit-background-clip:text;background-clip:text;color:transparent}.hero p{font-size:18px;color:var(--muted);max-width:600px}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}.micro{font-size:12px;color:var(--muted);margin-top:20px}.hero-card{position:relative;border:1px solid var(--line);border-radius:30px;padding:24px;background:linear-gradient(145deg,color-mix(in srgb,var(--surface) 94%,#8b5cf6),var(--surface));box-shadow:var(--shadow);overflow:hidden}.hero-card:before{content:"";position:absolute;inset:-1px;background:radial-gradient(circle at 75% 10%,#8b5cf630,transparent 45%);pointer-events:none}.avatar{width:104px;height:104px;border-radius:28px;background:linear-gradient(135deg,#8b5cf6,#22d3ee);display:grid;place-items:center;font-size:34px;font-weight:850;color:#08101e;border:4px solid color-mix(in srgb,var(--surface) 75%,transparent);box-shadow:0 12px 30px #7c3aed35}.profiletop{display:flex;align-items:center;gap:17px;position:relative}.profiletop h2{font-size:20px;line-height:1.2;margin:0 0 6px}.profiletop p{font-size:13px;margin:0}.status{font-size:12px;color:#34d399;margin-top:6px}.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:28px;position:relative}.stat{background:var(--surface2);border:1px solid var(--line);padding:14px 12px;border-radius:16px}.stat strong{display:block;font-size:20px}.stat span{font-size:11px;color:var(--muted)}.cardnote{margin-top:17px;border-top:1px solid var(--line);padding-top:17px;color:var(--muted);font-size:13px;position:relative}.section{padding:76px 0}.sectionhead{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:28px}.kicker{color:var(--accent);font-size:12px;font-weight:750;letter-spacing:.15em;text-transform:uppercase}.section h2{font-size:clamp(30px,4vw,44px);letter-spacing:-.05em;line-height:1.1;margin:8px 0}.sectionhead p{max-width:500px;color:var(--muted);margin:0}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}.panel{border:1px solid var(--line);background:var(--surface);border-radius:var(--radius);padding:25px}.panel h3{margin:0 0 10px;font-size:20px;letter-spacing:-.025em}.panel p{color:var(--muted);margin:0}.pillrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}.pill{padding:7px 10px;border:1px solid var(--line);background:var(--surface2);border-radius:9px;font-size:12px;color:var(--muted)}.skills{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.skill{padding:19px;border:1px solid var(--line);background:var(--surface);border-radius:16px}.skill .symbol{font-size:21px;color:var(--accent);margin-bottom:10px}.skill strong{display:block;font-size:14px}.skill span{font-size:12px;color:var(--muted)}.projects{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.project{border:1px solid var(--line);background:var(--surface);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;min-height:255px}.projectvisual{height:105px;padding:18px;background:linear-gradient(135deg,#7c3aed2b,#22d3ee12);border-bottom:1px solid var(--line);display:flex;align-items:end;justify-content:space-between}.projectvisual span{font-size:12px;color:var(--muted)}.projectbody{padding:20px;display:flex;flex-direction:column;gap:10px;flex:1}.projectbody p{font-size:13px;color:var(--muted);margin:0}.projectbody a{font-size:13px;color:var(--accent);margin-top:auto}.thoughtbox{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center}.thought{font-size:clamp(20px,3vw,28px);letter-spacing:-.035em;line-height:1.3;margin:0}.thoughtmeta{font-size:12px;color:var(--muted);margin-top:12px}.guestform{display:grid;gap:12px;margin-top:18px}.field{width:100%;padding:12px 14px;border:1px solid var(--line);background:var(--bg);color:var(--text);border-radius:12px}.guestlist{display:grid;gap:10px;margin-top:18px}.guestitem{border:1px solid var(--line);background:var(--surface2);border-radius:14px;padding:14px}.guestitem strong{font-size:13px}.guestitem p{font-size:13px;margin:5px 0 0;color:var(--muted);white-space:pre-wrap;overflow-wrap:anywhere}.contactrow{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}.footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:12px}.footerinner{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}.modalback{position:fixed;inset:0;background:#050816bb;backdrop-filter:blur(9px);z-index:60;display:none;align-items:center;justify-content:center;padding:20px}.modalback.open{display:flex}.modal{width:min(460px,100%);border:1px solid var(--line);background:var(--surface);border-radius:24px;padding:26px;box-shadow:var(--shadow);max-height:90vh;overflow:auto}.modalhead{display:flex;justify-content:space-between;align-items:center;gap:15px}.modal h2{margin:0;font-size:25px;letter-spacing:-.04em}.modal p{color:var(--muted);font-size:14px}.modalform{display:grid;gap:12px;margin-top:18px}.notice{font-size:12px!important;border:1px solid var(--line);padding:11px;border-radius:12px;background:var(--surface2)}.settingsrow{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:14px 0;border-bottom:1px solid var(--line)}.settingsrow:last-child{border-bottom:0}.settingsrow label{font-size:14px}.settingsrow small{display:block;color:var(--muted);font-size:12px}.settingsrow input[type=range]{width:135px}.settingsrow select{max-width:150px}.robot{position:fixed;right:22px;bottom:22px;z-index:30;width:58px;height:58px;border-radius:19px;border:1px solid #c4b5fd66;background:linear-gradient(135deg,#8b5cf6,#22d3ee);color:#07101f;font-size:25px;box-shadow:0 12px 35px #7c3aed44}.chatpanel{display:none;position:fixed;right:22px;bottom:92px;width:min(350px,calc(100vw - 32px));z-index:30;border:1px solid var(--line);border-radius:22px;background:var(--surface);box-shadow:var(--shadow);overflow:hidden}.chatpanel.open{display:block}.chathead{padding:16px;background:var(--surface2);display:flex;justify-content:space-between;align-items:center}.chathead strong{font-size:14px}.chatbody{padding:16px;display:grid;gap:12px}.chatreply{background:var(--surface2);border:1px solid var(--line);border-radius:13px;padding:12px;color:var(--muted);font-size:13px}.chatquick{display:flex;flex-wrap:wrap;gap:7px}.chatquick button{font-size:12px;padding:7px 9px;border:1px solid var(--line);border-radius:9px;background:transparent;color:var(--text)}.welcome{position:fixed;inset:0;background:radial-gradient(ellipse at 50% 0%,#4c1d9580,transparent 52%),var(--bg);z-index:80;display:flex;align-items:center;justify-content:center;padding:24px;transition:opacity .35s,visibility .35s}.welcome.hidden{opacity:0;visibility:hidden;pointer-events:none}.welcomecard{width:min(620px,100%);text-align:center}.welcomelogo{width:64px;height:64px;margin:0 auto 22px;border-radius:20px;display:grid;place-items:center;background:linear-gradient(135deg,#8b5cf6,#22d3ee);color:#08101e;font-size:23px;font-weight:900}.welcomecard h1{font-size:clamp(35px,7vw,58px);line-height:1.04;letter-spacing:-.06em;margin:0}.welcomecard p{max-width:480px;color:var(--muted);margin:18px auto 25px}.welcomebtns{display:flex;justify-content:center;flex-wrap:wrap;gap:10px}.welcomefoot{font-size:12px;color:var(--muted);margin-top:25px}.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;z-index:100;padding:11px 16px;border:1px solid var(--line);border-radius:12px;background:var(--surface2);box-shadow:var(--shadow);font-size:13px;transition:.25s}.toast.show{opacity:1;transform:translate(-50%,0)}.ownerlabel{display:inline-flex;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);border:1px solid var(--line);padding:4px 7px;border-radius:7px;margin-left:7px}
-@media(max-width:850px){.navlinks{display:none}.mobilemenu{display:grid}.hero{grid-template-columns:1fr;gap:35px;padding-top:65px;min-height:unset}.hero-card{max-width:550px}.skills{grid-template-columns:repeat(2,1fr)}.projects{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:560px){.wrap{width:min(100% - 28px,1120px)}.navinner{height:66px}.navactions .signin{display:none}.hero{padding:55px 0 40px}.hero h1{font-size:clamp(40px,13vw,58px)}.hero p{font-size:16px}.section{padding:55px 0}.sectionhead{display:block}.sectionhead p{margin-top:12px}.grid2,.projects{grid-template-columns:1fr}.skills{gap:9px}.skill{padding:14px}.panel{padding:20px}.thoughtbox{grid-template-columns:1fr}.thoughtbox .btn{justify-self:start}.statgrid{gap:7px}.stat{padding:11px 9px}.robot{right:14px;bottom:14px}.chatpanel{right:14px;bottom:82px}.settingsrow input[type=range]{width:100px}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0c14">
+  <meta name="description" content="Sudhanshu Kumar — AI student, developer and builder.">
+  <title>Sudhanshu Kumar | AI Builder</title>
+  <style>
+    :root {
+      --bg: #0a0c14;
+      --panel: #121625;
+      --text: #f4f5fb;
+      --muted: #a6adc2;
+      --line: #ffffff19;
+      --purple: #a78bfa;
+      --cyan: #67e8f9;
+      --max: 1100px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 85px; }
+    body {
+      margin: 0;
+      background: radial-gradient(ellipse at 80% 0%, #35236538, transparent 38%), var(--bg);
+      color: var(--text);
+      font: 16px/1.65 system-ui, Arial, sans-serif;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; }
+    .wrap { width: min(var(--max), calc(100% - 36px)); margin: auto; }
+    .nav {
+      position: sticky; top: 0; z-index: 10;
+      background: #0a0c14ed; backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+    }
+    .navinner {
+      min-height: 70px; display: flex; align-items: center;
+      justify-content: space-between; gap: 18px;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; }
+    .mark {
+      display: grid; place-items: center; width: 38px; height: 38px;
+      border-radius: 12px; background: linear-gradient(135deg, var(--purple), var(--cyan));
+      color: #101221;
+    }
+    .links { display: flex; gap: 22px; align-items: center; color: var(--muted); font-size: 14px; }
+    .links a:hover { color: var(--cyan); }
+    .btn {
+      display: inline-flex; justify-content: center; align-items: center;
+      padding: 11px 16px; border-radius: 12px;
+      border: 1px solid var(--line); background: var(--panel); color: var(--text);
+      font-weight: 650;
+    }
+    .primary { background: linear-gradient(120deg, #8b5cf6, #6366f1); border-color: transparent; color: white; }
+    .menu { display: none; }
+    .hero {
+      min-height: 82vh; display: grid; grid-template-columns: 1.2fr .8fr;
+      align-items: center; gap: 44px; padding: 65px 0;
+    }
+    .eyebrow {
+      display: inline-block; padding: 7px 12px; border: 1px solid var(--line);
+      border-radius: 99px; color: var(--cyan); font-size: 12px; letter-spacing: .08em;
+    }
+    h1 { font-size: clamp(42px, 6vw, 72px); line-height: 1.06; letter-spacing: -.055em; margin: 22px 0 18px; }
+    .gradient {
+      background: linear-gradient(110deg, #c4b5fd, var(--purple), var(--cyan));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .lead { color: var(--muted); font-size: 18px; max-width: 610px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 25px; }
+    .profile {
+      border: 1px solid var(--line); border-radius: 25px; padding: 25px;
+      background: linear-gradient(145deg, #191a2b, var(--panel));
+      box-shadow: 0 25px 70px #0004;
+    }
+    .avatar {
+      width: 82px; height: 82px; border-radius: 23px;
+      display: grid; place-items: center; font-size: 28px; font-weight: 900;
+      background: linear-gradient(135deg, var(--purple), var(--cyan)); color: #101221;
+    }
+    .profiletop { display: flex; align-items: center; gap: 16px; }
+    .profile h2 { margin: 0 0 4px; font-size: 21px; }
+    .profile p { margin: 0; color: var(--muted); font-size: 13px; }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; margin-top: 24px; }
+    .stat { padding: 12px 9px; background: #ffffff07; border: 1px solid var(--line); border-radius: 13px; }
+    .stat strong, .stat span { display: block; }
+    .stat strong { font-size: 18px; }
+    .stat span { color: var(--muted); font-size: 11px; }
+    .profilefoot { border-top: 1px solid var(--line); margin-top: 17px; padding-top: 15px; color: var(--muted); font-size: 13px; }
+    .section { padding: 65px 0; scroll-margin-top: 70px; }
+    .kicker { color: var(--purple); font-size: 12px; font-weight: 800; letter-spacing: .15em; }
+    h2.title { font-size: clamp(29px, 4vw, 42px); line-height: 1.15; letter-spacing: -.04em; margin: 8px 0 12px; }
+    .intro { color: var(--muted); max-width: 680px; margin-bottom: 25px; }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .panel { padding: 23px; background: var(--panel); border: 1px solid var(--line); border-radius: 18px; }
+    .panel h3 { margin: 0 0 8px; }
+    .panel p { color: var(--muted); margin: 0; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .tag { font-size: 12px; padding: 6px 9px; border: 1px solid var(--line); border-radius: 9px; color: #d7d9e7; }
+    .skills { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .skill { padding: 18px; background: var(--panel); border: 1px solid var(--line); border-radius: 15px; }
+    .skill b, .skill span { display: block; }
+    .skill b { font-size: 14px; }
+    .skill span { color: var(--muted); font-size: 12px; margin-top: 5px; }
+    .symbol { color: var(--cyan); font-size: 22px; margin-bottom: 8px; }
+    .projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .project { padding: 21px; background: var(--panel); border: 1px solid var(--line); border-radius: 18px; }
+    .project .label { color: var(--cyan); font-size: 11px; font-weight: 800; letter-spacing: .08em; }
+    .project h3 { margin: 12px 0 8px; }
+    .project p { color: var(--muted); font-size: 14px; }
+    .project a { color: #c4b5fd; font-size: 13px; font-weight: 700; }
+    .contact {
+      display: flex; align-items: center; justify-content: space-between; gap: 20px;
+      padding: 27px; border: 1px solid var(--line); border-radius: 20px;
+      background: linear-gradient(120deg, #8b5cf620, #22d3ee0b);
+    }
+    .contact p { color: var(--muted); margin: 0; }
+    footer { padding: 23px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+    .footerinner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    @media (max-width: 800px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; gap: 25px; }
+      .skills { grid-template-columns: repeat(2, 1fr); }
+      .projects { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .links { display: none; position: absolute; top: 70px; left: 0; right: 0; padding: 18px; background: var(--bg); border-bottom: 1px solid var(--line); }
+      .links.open { display: flex; flex-direction: column; align-items: flex-start; }
+      .menu { display: inline-flex; }
+      .hero { padding: 48px 0; }
+      .grid2, .projects { grid-template-columns: 1fr; }
+      .contact { align-items: flex-start; flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
 </head>
 <body>
-<div class="ambient" aria-hidden="true"><div class="orb one"></div><div class="orb two"></div></div>
-<header class="nav">
-  <div class="wrap navinner">
-    <a class="brand" href="#home" aria-label="Home"><span class="brandmark">SK</span><span>Sudhanshu<span class="gradient">.</span></span></a>
-    <nav class="navlinks" aria-label="Main navigation"><a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#thought">Ideas</a><a href="#contact">Contact</a></nav>
-    <div class="navactions">
-      <button class="iconbtn" id="themeQuick" aria-label="Toggle theme" title="Toggle theme">☼</button>
-      <button class="btn secondary signin" data-modal="auth">Sign in</button>
-      <button class="iconbtn" id="settingsOpen" aria-label="Open settings" title="Settings">⚙</button>
-      <button class="iconbtn mobilemenu" id="mobileNav" aria-label="Open navigation">☰</button>
+  <header class="nav">
+    <div class="wrap navinner">
+      <a class="brand" href="#home"><span class="mark">SK</span> Sudhanshu Kumar<span class="gradient">.</span></a>
+      <nav class="links" id="siteNav" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="btn menu" id="menuBtn" type="button" aria-expanded="false">Menu ☰</button>
     </div>
-  </div>
-</header>
-<main>
-<section class="wrap hero" id="home">
-  <div>
-    <span class="eyebrow"><span class="dot"></span> Building, learning, shipping</span>
-    <h1>Curious mind.<br><span class="gradient">Builder's mindset.</span></h1>
-    <p>I'm Sudhanshu Kumar — an AI student exploring software, product thinking and ideas that can make a real difference. This is my space to learn in public and build with purpose.</p>
-    <div class="actions"><a class="btn primary" href="#projects">Explore my work ↗</a><a class="btn secondary" href="#contact">Let's connect</a></div>
-    <div class="micro">AI & software · Product exploration · Learning by building</div>
-  </div>
-  <aside class="hero-card" aria-label="Profile summary">
-    <div class="profiletop"><div class="avatar" id="avatarInitials">SK</div><div><h2>Sudhanshu Kumar</h2><p>AI Student · Aspiring Builder</p><div class="status">● Open to learning & collaboration</div></div></div>
-    <div class="statgrid"><div class="stat"><strong>AI</strong><span>Learning focus</span></div><div class="stat"><strong>Build</strong><span>Project mindset</span></div><div class="stat"><strong>Grow</strong><span>Daily practice</span></div></div>
-    <div class="cardnote">“Make it useful. Make it clear. Keep improving.”<br><span style="font-size:11px">A principle I try to follow.</span></div>
-  </aside>
-</section>
-<section class="section" id="about"><div class="wrap">
-  <div class="sectionhead"><div><div class="kicker">01 / About</div><h2>Focused on learning that ships.</h2></div><p>I’m building my foundations in AI, programming and product development — one clear step at a time.</p></div>
-  <div class="grid2"><article class="panel"><h3>What I'm working toward</h3><p>Developing practical technical skills, understanding real user problems, and turning ideas into useful digital products. I value consistency, curiosity and honest progress.</p><div class="pillrow"><span class="pill">Artificial Intelligence</span><span class="pill">Software</span><span class="pill">Product thinking</span></div></article>
-  <article class="panel"><h3>How I like to work</h3><p>Start with the problem. Keep the interface simple. Test the basics. Learn from feedback. Improve what matters instead of adding features just for the sake of it.</p><div class="pillrow"><span class="pill">Clear systems</span><span class="pill">Continuous learning</span><span class="pill">User-first</span></div></article></div>
-</div></section>
-<section class="section" id="skills"><div class="wrap">
-  <div class="sectionhead"><div><div class="kicker">02 / Skills</div><h2>Foundations in progress.</h2></div><p>This section is intentionally honest and can be updated as skills grow.</p></div>
-  <div class="skills"><div class="skill"><div class="symbol">⌘</div><strong>Python</strong><span>Programming foundations</span></div><div class="skill"><div class="symbol">⌁</div><strong>HTML & CSS</strong><span>Web fundamentals</span></div><div class="skill"><div class="symbol">∑</div><strong>Math for AI</strong><span>Building core concepts</span></div><div class="skill"><div class="symbol">✳</div><strong>Product thinking</strong><span>Problems & user needs</span></div></div>
-</div></section>
-<section class="section" id="projects"><div class="wrap">
-  <div class="sectionhead"><div><div class="kicker">03 / Selected work</div><h2>Ideas worth building.</h2></div><p>Early-stage concepts and learning projects. Replace demo descriptions and links with verified project details as they become ready.</p></div>
-  <div class="projects">
-    <article class="project"><div class="projectvisual"><strong>01 / Web</strong><span>Portfolio</span></div><div class="projectbody"><h3>Personal Portfolio</h3><p>A clean home for projects, skills, learning notes and future work.</p><a href="#contact">Discuss this project ↗</a></div></article>
-    <article class="project"><div class="projectvisual"><strong>02 / AI</strong><span>Exploration</span></div><div class="projectbody"><h3>AI Playground</h3><p>An evolving concept for exploring practical AI experiences and interactive demos.</p><a href="#contact">Discuss this concept ↗</a></div></article>
-    <article class="project"><div class="projectvisual"><strong>03 / Product</strong><span>Concept</span></div><div class="projectbody"><h3>Product Experiments</h3><p>Testing ideas, understanding users and learning how useful products take shape.</p><a href="#contact">Share feedback ↗</a></div></article>
-  </div>
-</div></section>
-<section class="section" id="thought"><div class="wrap">
-  <div class="sectionhead"><div><div class="kicker">04 / Daily perspective</div><h2>A thought to move forward.</h2></div><p>Short reminders for learning, building and staying consistent.</p></div>
-  <div class="panel thoughtbox"><div><p class="thought" id="thoughtText">“Consistency turns small steps into meaningful progress.”</p><div class="thoughtmeta" id="thoughtMeta">Thought 1 · Keep going</div></div><div style="display:flex;gap:9px;flex-wrap:wrap"><button class="btn secondary" id="saveThought">♡ Save</button><button class="btn primary" id="newThought">New thought ↗</button></div></div>
-</div></section>
-<section class="section" id="guestbook"><div class="wrap">
-  <div class="sectionhead"><div><div class="kicker">05 / Guestbook</div><h2>Leave a thoughtful note.</h2></div><p>Share feedback or say hello. This starter version saves messages only in this browser.</p></div>
-  <div class="grid2"><div class="panel"><h3>Write a message</h3><p>Be kind, constructive and respectful.</p><form class="guestform" id="guestForm"><input class="field" id="guestName" maxlength="40" placeholder="Your name" required><textarea class="field" id="guestMessage" rows="4" maxlength="500" placeholder="Your message (max 500 characters)" required></textarea><button class="btn primary" type="submit">Post message</button></form><p class="notice">Demo storage only: messages are not shared across devices until a database is configured.</p></div><div class="panel"><h3>Recent notes</h3><div id="guestList" class="guestlist"><p>No messages yet. You can leave the first note.</p></div></div></div>
-</div></section>
-<section class="section" id="contact"><div class="wrap">
-  <div class="sectionhead"><div><div class="kicker">06 / Contact</div><h2>Good ideas start with a conversation.</h2></div><p>For collaboration, project feedback or learning together, reach out through a channel you choose to publish.</p></div>
-  <div class="panel"><h3>Let's build something useful.</h3><p>Public contact links can be added here when you are ready. Avoid publishing personal phone numbers or private information.</p><div class="contactrow"><a class="btn primary" href="mailto:hello@example.com" id="emailLink">Email me ↗</a><a class="btn secondary" href="https://github.com/sudh4nshukum4r" target="_blank" rel="noopener noreferrer">GitHub profile ↗</a><button class="btn secondary" data-modal="auth">Visitor sign in</button></div><p class="notice" style="margin-top:17px">Replace <code>hello@example.com</code> with a professional email address before publishing.</p></div>
-</div></section>
-</main>
-<footer class="footer"><div class="wrap footerinner"><span>© <span id="year"></span> Sudhanshu Kumar. Built with intention.</span><span>Designed for clarity · Improved continuously</span><button class="btn secondary" id="ownerInfo" style="padding:5px 9px;font-size:11px">Owner tools</button></div></footer>
+  </header>
 
-<div class="welcome" id="welcome" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle"><div class="welcomecard"><div class="welcomelogo">SK</div><div class="kicker">A personal portfolio</div><h1 id="welcomeTitle">Welcome to my<br><span class="gradient">corner of the internet.</span></h1><p>Explore what I'm learning, the ideas I'm shaping, and the projects I'm building along the way.</p><div class="welcomebtns"><button class="btn primary" id="enterSite">Explore portfolio ↗</button><button class="btn secondary" data-modal="auth">Sign in / Sign up</button></div><div class="welcomefoot">Thoughtful work. Clear design. Continuous progress.</div></div></div>
+  <main>
+    <div class="wrap hero" id="home">
+      <div>
+        <span class="eyebrow">AI STUDENT · LEARNING BY BUILDING</span>
+        <h1>Hi, I'm Sudhanshu.<br><span class="gradient">I build. I learn. I improve.</span></h1>
+        <p class="lead">I'm a B.Tech AI student exploring programming, web development, artificial intelligence and product ideas. This is where I share my learning journey and projects.</p>
+        <div class="actions">
+          <a class="btn primary" href="#projects">Explore projects ↓</a>
+          <a class="btn" href="https://github.com/sudh4nshukum4r" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        </div>
+      </div>
+      <aside class="profile">
+        <div class="profiletop">
+          <div class="avatar">SK</div>
+          <div><h2>Sudhanshu Kumar</h2><p>AI student & aspiring builder</p></div>
+        </div>
+        <div class="stats">
+          <div class="stat"><strong>AI</strong><span>Focus</span></div>
+          <div class="stat"><strong>Build</strong><span>Practice</span></div>
+          <div class="stat"><strong>Learn</strong><span>Every day</span></div>
+        </div>
+        <div class="profilefoot">Currently strengthening Python, web development, maths and product thinking—one step at a time.</div>
+      </aside>
+    </div>
 
-<div class="modalback" id="settingsModal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle"><div class="modal"><div class="modalhead"><h2 id="settingsTitle">Appearance & settings</h2><button class="iconbtn" data-close="settingsModal" aria-label="Close settings">×</button></div><p>Make the site comfortable for you.</p><div class="settingsrow"><div><label for="themeSelect">Theme</label><small>Dark, light or follow device</small></div><select class="field" id="themeSelect"><option value="dark">Dark</option><option value="light">Light</option><option value="system">System</option></select></div><div class="settingsrow"><div><label for="brightness">Brightness</label><small>Adjust page brightness</small></div><input id="brightness" type="range" min=".75" max="1.15" step=".05" value="1"></div><div class="settingsrow"><div><label for="accentSelect">Accent colour</label><small>Choose a subtle highlight</small></div><select class="field" id="accentSelect"><option value="violet">Electric violet</option><option value="cyan">Cool cyan</option><option value="rose">Soft rose</option></select></div><div class="settingsrow"><div><label for="languageSelect">Language</label><small>Interface language</small></div><select class="field" id="languageSelect"><option value="en">English</option><option value="hi">Hindi (basic labels)</option><option value="hinglish">Hinglish (basic labels)</option></select></div><div class="settingsrow"><div><label for="motionSelect">Motion</label><small>Respect reduced-motion preference</small></div><select class="field" id="motionSelect"><option value="normal">Normal</option><option value="reduced">Reduced</option></select></div><p class="notice">Settings are saved in this browser only. Language changes common navigation labels; not every paragraph is translated yet.</p></div></div>
+    <section class="section" id="about">
+      <div class="wrap">
+        <div class="kicker">01 / ABOUT</div>
+        <h2 class="title">Learning today. Building for tomorrow.</h2>
+        <p class="intro">I'm at the beginning of my technology journey, learning fundamentals and turning them into small projects.</p>
+        <div class="grid2">
+          <article class="panel"><h3>What I'm exploring</h3><p>AI, programming, web experiences and how useful products solve real problems.</p><div class="tags"><span class="tag">Artificial Intelligence</span><span class="tag">Development</span><span class="tag">Product Thinking</span></div></article>
+          <article class="panel"><h3>How I work</h3><p>Learn the basics, build a small version, test it, listen to feedback and improve it.</p><div class="tags"><span class="tag">Practice</span><span class="tag">Problem solving</span><span class="tag">Consistency</span></div></article>
+        </div>
+      </div>
+    </section>
 
-<div class="modalback" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authTitle"><div class="modal"><div class="modalhead"><h2 id="authTitle">Welcome back</h2><button class="iconbtn" data-close="authModal" aria-label="Close sign in">×</button></div><p id="authIntro">Sign in or create an account to personalise your experience.</p><div class="actions"><button class="btn primary" id="signinTab">Sign in</button><button class="btn secondary" id="signupTab">Create account</button></div><form class="modalform" id="authForm"><input class="field" type="email" id="authEmail" placeholder="Email address" autocomplete="email" required><input class="field" type="password" id="authPassword" placeholder="Password (demo only)" autocomplete="current-password" minlength="8" required><button class="btn primary" type="submit" id="authSubmit">Continue</button></form><p class="notice">Important: this is a front-end demo only. It does not create real accounts or authenticate users. Add a trusted authentication provider and server-side permissions before using real accounts or owner tools.</p></div></div>
+    <section class="section" id="skills">
+      <div class="wrap">
+        <div class="kicker">02 / SKILLS</div>
+        <h2 class="title">Foundations I'm growing.</h2>
+        <p class="intro">A snapshot of what I'm learning—not a claim of mastery.</p>
+        <div class="skills">
+          <div class="skill"><div class="symbol">⌘</div><b>HTML & CSS</b><span>Web structure and styling</span></div>
+          <div class="skill"><div class="symbol">Py</div><b>Python</b><span>Programming fundamentals</span></div>
+          <div class="skill"><div class="symbol">∑</div><b>Maths for AI</b><span>Core concepts</span></div>
+          <div class="skill"><div class="symbol">✦</div><b>AI & Products</b><span>Ideas and use cases</span></div>
+        </div>
+      </div>
+    </section>
 
-<div class="modalback" id="ownerModal" role="dialog" aria-modal="true" aria-labelledby="ownerTitle"><div class="modal"><div class="modalhead"><h2 id="ownerTitle">Owner tools</h2><button class="iconbtn" data-close="ownerModal" aria-label="Close owner tools">×</button></div><p>This starter website has no private owner login yet.</p><p class="notice">Do not put passwords, API secrets or private data in this HTML file. To add protected project editing and a real owner dashboard, configure authentication and verify permissions on the backend.</p><button class="btn primary" data-close="ownerModal">Got it</button></div></div>
+    <section class="section" id="projects">
+      <div class="wrap">
+        <div class="kicker">03 / PROJECTS</div>
+        <h2 class="title">Small steps, real practice.</h2>
+        <p class="intro">Learning projects and repositories. I'll add live demos as they become ready.</p>
+        <div class="projects">
+          <article class="project"><div class="label">WEB DEVELOPMENT</div><h3>Personal Portfolio</h3><p>A responsive website to share my skills, projects and learning journey.</p><a href="https://github.com/sudh4nshukum4r/First-portfolio-website" target="_blank" rel="noopener noreferrer">View repository ↗</a></article>
+          <article class="project"><div class="label">HTML & CSS</div><h3>Web Practice</h3><p>Practice files for HTML structure, forms, links, tables and web page basics.</p><a href="https://github.com/sudh4nshukum4r/BASIC-TO-ADV-PROJECT-OF-HTML" target="_blank" rel="noopener noreferrer">View repository ↗</a></article>
+          <article class="project"><div class="label">FRONT-END LEARNING</div><h3>SIGMA FSD</h3><p>A repository for coursework and full-stack development practice.</p><a href="https://github.com/sudh4nshukum4r/SIGMA-FSD" target="_blank" rel="noopener noreferrer">View repository ↗</a></article>
+        </div>
+      </div>
+    </section>
 
-<div class="chatpanel" id="chatPanel" aria-label="Portfolio assistant"><div class="chathead"><strong>✦ Portfolio guide</strong><button class="iconbtn" id="chatClose" aria-label="Close assistant">×</button></div><div class="chatbody"><div class="chatreply" id="chatReply">Hi! I'm the portfolio guide. I can help you find sections on this site. Choose a topic below.</div><div class="chatquick"><button data-chat="projects">Projects</button><button data-chat="skills">Skills</button><button data-chat="contact">Contact</button><button data-chat="settings">Settings</button></div><p class="notice">This is a local demo assistant, not a connected AI service.</p></div></div><button class="robot" id="robotBtn" aria-label="Open portfolio assistant" title="Portfolio assistant">✦</button>
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>
-(() => {
-  const $ = (s, root=document) => root.querySelector(s);
-  const $$ = (s, root=document) => [...root.querySelectorAll(s)];
-  const toast = (message) => { const el=$("#toast"); el.textContent=message; el.classList.add("show"); clearTimeout(window.__toastTimer); window.__toastTimer=setTimeout(()=>el.classList.remove("show"),2600); };
-  $("#year").textContent = new Date().getFullYear();
-  const welcome=$("#welcome");
-  $("#enterSite").addEventListener("click",()=>{welcome.classList.add("hidden");});
-  // Welcome can be dismissed for this visit. No sensitive data is stored.
-  function openModal(id){$("#"+id).classList.add("open");}
-  function closeModal(id){$("#"+id).classList.remove("open");}
-  $$("[data-modal='auth']").forEach(b=>b.addEventListener("click",()=>openModal("authModal")));
-  $$("[data-close]").forEach(b=>b.addEventListener("click",()=>closeModal(b.dataset.close)));
-  $$(".modalback").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)m.classList.remove("open");}));
-  document.addEventListener("keydown",e=>{if(e.key==="Escape"){$$(".modalback.open").forEach(m=>m.classList.remove("open"));$("#chatPanel").classList.remove("open");}});
-  $("#settingsOpen").addEventListener("click",()=>openModal("settingsModal"));
-  $("#ownerInfo").addEventListener("click",()=>openModal("ownerModal"));
-  let authMode="signin";
-  function setAuthMode(mode){authMode=mode;$("#authTitle").textContent=mode==="signin"?"Welcome back":"Create your account";$("#authIntro").textContent=mode==="signin"?"Sign in to personalise your experience.":"Choose your details to get started.";$("#authSubmit").textContent=mode==="signin"?"Continue":"Create account";$("#authPassword").autocomplete=mode==="signin"?"current-password":"new-password";}
-  $("#signinTab").addEventListener("click",()=>setAuthMode("signin"));
-  $("#signupTab").addEventListener("click",()=>setAuthMode("signup"));
-  $("#authForm").addEventListener("submit",e=>{e.preventDefault();toast("Demo only — real authentication is not configured.");});
-  const root=document.documentElement;
-  function applyTheme(value){let theme=value;if(value==="system")theme=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";root.dataset.theme=theme;$("#themeSelect").value=value;try{localStorage.setItem("portfolio-theme",value)}catch{}}
-  function applyAccent(value){const colors={violet:["#a78bfa","#67e8f9"],cyan:["#67e8f9","#a78bfa"],rose:["#f9a8d4","#c4b5fd"]};const c=colors[value]||colors.violet;root.style.setProperty("--accent",c[0]);root.style.setProperty("--accent2",c[1]);try{localStorage.setItem("portfolio-accent",value)}catch{}}
-  try{applyTheme(localStorage.getItem("portfolio-theme")||"dark");$("#brightness").value=localStorage.getItem("portfolio-brightness")||"1";root.style.setProperty("--brightness",$("#brightness").value);const a=localStorage.getItem("portfolio-accent")||"violet";$("#accentSelect").value=a;applyAccent(a);}catch{applyTheme("dark")}
-  $("#themeSelect").addEventListener("change",e=>applyTheme(e.target.value));
-  $("#themeQuick").addEventListener("click",()=>applyTheme(root.dataset.theme==="dark"?"light":"dark"));
-  $("#brightness").addEventListener("input",e=>{root.style.setProperty("--brightness",e.target.value);try{localStorage.setItem("portfolio-brightness",e.target.value)}catch{}});
-  $("#accentSelect").addEventListener("change",e=>applyAccent(e.target.value));
-  $("#motionSelect").addEventListener("change",e=>{root.style.scrollBehavior=e.target.value==="reduced"?"auto":"smooth";toast(e.target.value==="reduced"?"Reduced motion selected":"Normal motion selected");});
-  const translations={en:{about:"About",skills:"Skills",projects:"Projects",ideas:"Ideas",contact:"Contact"},hi:{about:"परिचय",skills:"कौशल",projects:"प्रोजेक्ट",ideas:"विचार",contact:"संपर्क"},hinglish:{about:"Mere baare mein",skills:"Skills",projects:"Projects",ideas:"Ideas",contact:"Contact"}};
-  $("#languageSelect").addEventListener("change",e=>{const t=translations[e.target.value]||translations.en;const links=$$(".navlinks a");[t.about,t.skills,t.projects,t.ideas,t.contact].forEach((v,i)=>links[i].textContent=v);toast("Common navigation labels updated.");try{localStorage.setItem("portfolio-language",e.target.value)}catch{}});
-  try{const l=localStorage.getItem("portfolio-language");if(l){$("#languageSelect").value=l;$("#languageSelect").dispatchEvent(new Event("change"));}}catch{}
-  const thoughts=[
-    "Consistency turns small steps into meaningful progress.","Clarity is a competitive advantage.","Build to solve a problem, not to collect features.","Curiosity starts the journey; practice moves it forward.","Make the next step small enough to begin today.","Good design makes useful things easier to understand.","Progress is built through feedback, not guesswork.","Learn the principle, then practise the skill.","A useful prototype teaches more than a perfect plan.","Focus is choosing what deserves your attention.","Keep your work simple enough to explain clearly.","Small improvements compound when you keep showing up.","Ask better questions before rushing toward answers.","Your first version is a starting point, not your identity.","Make things that help real people do real work.","Discipline makes creativity repeatable.","Measure progress by what you can now do, not only what you know.","Reliable basics make ambitious ideas possible.","Listen carefully; build thoughtfully; test honestly.","Every bug is a chance to understand the system better.","Choose useful over flashy, then make useful beautiful.","A clear plan gives effort a direction.","Learn in public, stay humble, keep improving.","Great products respect the user's time.","Turn feedback into a specific next action."
-  ];
-  let thoughtIndex=0;const savedThoughts=new Set();
-  function renderThought(){const t=thoughts[thoughtIndex];$("#thoughtText").textContent="“"+t+"”";$("#thoughtMeta").textContent=`Thought ${thoughtIndex+1} · Keep going`;$("#saveThought").textContent=savedThoughts.has(t)?"♥ Saved":"♡ Save";}
-  $("#newThought").addEventListener("click",()=>{thoughtIndex=(thoughtIndex+1+Math.floor(Math.random()*(thoughts.length-1)))%thoughts.length;renderThought();});
-  $("#saveThought").addEventListener("click",()=>{const t=thoughts[thoughtIndex];if(savedThoughts.has(t)){savedThoughts.delete(t);toast("Removed from favourites.");}else{savedThoughts.add(t);toast("Saved in this session.");}renderThought();});
-  const guestKey="portfolio-guestbook-demo-v1";
-  function getGuests(){try{return JSON.parse(localStorage.getItem(guestKey)||"[]")}catch{return[]}}
-  function renderGuests(){const list=$("#guestList");const items=getGuests();list.replaceChildren();if(!items.length){const p=document.createElement("p");p.textContent="No messages yet. You can leave the first note.";list.append(p);return;}items.slice(-6).reverse().forEach(item=>{const box=document.createElement("div");box.className="guestitem";const name=document.createElement("strong");name.textContent=item.name+" · "+item.date;const msg=document.createElement("p");msg.textContent=item.message;box.append(name,msg);list.append(box);});}
-  $("#guestForm").addEventListener("submit",e=>{e.preventDefault();const name=$("#guestName").value.trim().replace(/\s+/g," ");const message=$("#guestMessage").value.trim().replace(/\s+/g," ");if(name.length<2||message.length<3){toast("Please add a name and a little more detail.");return;}const items=getGuests();const norm=message.toLowerCase().replace(/[^\p{L}\p{N}]+/gu," ").trim();if(items.some(x=>x.message.toLowerCase().replace(/[^\p{L}\p{N}]+/gu," ").trim()===norm)){toast("A similar message already exists in this browser.");return;}items.push({name,message,date:new Date().toLocaleDateString()});try{localStorage.setItem(guestKey,JSON.stringify(items.slice(-30)));}catch{toast("Browser storage unavailable.");return;}$("#guestMessage").value="";renderGuests();toast("Message saved in this browser.");});
-  renderGuests();
-  const panel=$("#chatPanel");
-  $("#robotBtn").addEventListener("click",()=>panel.classList.toggle("open"));
-  $("#chatClose").addEventListener("click",()=>panel.classList.remove("open"));
-  const chatText={projects:"The Projects section contains portfolio, AI playground and product-experiment concepts. Replace these with live project links as they are ready.",skills:"The Skills section shows learning foundations: Python, HTML/CSS, math for AI and product thinking. Keep it honest and update it as you progress.",contact:"Use the Contact section to add a professional email and verified public profiles. Avoid publishing private personal information.",settings:"Use the gear icon in the top navigation to change theme, brightness, accent colour, language labels and motion preference."};
-  $$("[data-chat]").forEach(b=>b.addEventListener("click",()=>{const key=b.dataset.chat;$("#chatReply").textContent=chatText[key];if(["projects","skills","contact"].includes(key)){panel.classList.remove("open");document.getElementById(key).scrollIntoView({behavior:"smooth"});}else openModal("settingsModal");}));
-  $("#mobileNav").addEventListener("click",()=>{const nav=$(".navlinks");const shown=nav.style.display==="flex";nav.style.display=shown?"none":"flex";nav.style.flexDirection="column";nav.style.position=shown?"":"absolute";nav.style.top=shown?"":"66px";nav.style.left=shown?"":"0";nav.style.right=shown?"":"0";nav.style.padding=shown?"":"18px 24px";nav.style.background=shown?"":"var(--surface)";nav.style.borderBottom=shown?"":"1px solid var(--line)";});
-})();
-</script>
+    <section class="section" id="contact">
+      <div class="wrap">
+        <div class="contact">
+          <div><div class="kicker">04 / CONTACT</div><h2 class="title">Let's connect and learn.</h2><p>Have an idea, suggestion or useful feedback? Find me on GitHub.</p></div>
+          <a class="btn primary" href="https://github.com/sudh4nshukum4r" target="_blank" rel="noopener noreferrer">Connect on GitHub ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap footerinner"><span>© <span id="year"></span> Sudhanshu Kumar</span><a href="#home">Back to top ↑</a></div></footer>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    const menuBtn = document.getElementById("menuBtn");
+    const siteNav = document.getElementById("siteNav");
+    menuBtn.addEventListener("click", () => {
+      const open = siteNav.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", String(open));
+      menuBtn.textContent = open ? "Close ✕" : "Menu ☰";
+    });
+    siteNav.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
+      siteNav.classList.remove("open");
+      menuBtn.setAttribute("aria-expanded", "false");
+      menuBtn.textContent = "Menu ☰";
+    }));
+  </script>
 </body>
 </html>
