@@ -201,13 +201,28 @@
       margin-top: 25px;
     }
 
-    .portrait-area {
-      position: relative;
-      display: grid;
-      place-items: center;
-      min-height: 420px;
-      isolation: isolate;
-    }
+    
+.portrait-area {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 420px;
+}
+
+.portrait-frame {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  padding: 5px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: linear-gradient(135deg, #73f3e4, #8a8cff, #d0a5ff);
+  box-shadow:
+    0 0 25px rgba(115, 243, 228, 0.25),
+    0 0 65px rgba(138, 140, 255, 0.18);
+  animation: float 5s ease-in-out infinite;
+}
+
 
     .orbit {
       position: absolute;
