@@ -4,26 +4,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#100d11">
-  <meta name="description" content="Sudhanshu Kumar — AI student, developer in progress, and builder exploring Python, web development and AI.">
-  <title>Sudhanshu Kumar — AI Builder & Developer</title>
+  <meta name="theme-color" content="#171319">
+  <meta name="description" content="Sudhanshu Kumar — AI student, developer and future builder. Explore my skills, projects and learning journey.">
+  <title>Sudhanshu Kumar | AI Builder Portfolio</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 
   <style>
     :root {
-      --bg: #100d11;
-      --panel: #1b171d;
-      --panel2: #262027;
-      --text: #fff7f4;
-      --muted: #bdb0ba;
-      --accent: #e4a0b5;
-      --accent2: #bb718e;
-      --line: rgba(228,160,181,.2);
+      --bg: #171319;
+      --surface: #211b23;
+      --surface2: #2b222d;
+      --text: #fff6f4;
+      --muted: #c4b3c1;
+      --pink: #eca5bf;
+      --pink2: #f5c6d7;
+      --border: #ffffff19;
       --brightness: 1;
-      --radius: 22px;
+      --max: 1120px;
     }
 
     * { box-sizing: border-box; }
@@ -31,654 +31,990 @@
 
     body {
       margin: 0;
-      font-family: Manrope, sans-serif;
-      color: var(--text);
       background: var(--bg);
+      color: var(--text);
+      font-family: "DM Sans", sans-serif;
       line-height: 1.7;
       filter: brightness(var(--brightness));
-      transition: background .3s, color .3s;
+      transition: background .25s, color .25s;
     }
 
     body.light {
-      --bg: #f8f1f3;
-      --panel: #fff;
-      --panel2: #f0e4e9;
-      --text: #241820;
-      --muted: #6e5b66;
-      --accent: #a84f71;
-      --accent2: #823b59;
-      --line: rgba(130,59,89,.2);
+      --bg: #fff7f8;
+      --surface: #ffffff;
+      --surface2: #f7e8ef;
+      --text: #271b25;
+      --muted: #675663;
+      --pink: #a73d69;
+      --pink2: #7c244d;
+      --border: #59223c22;
     }
 
     a { color: inherit; text-decoration: none; }
-    button, input { font: inherit; }
+    button, input, textarea, select { font: inherit; }
     button { cursor: pointer; }
-    button:focus-visible, a:focus-visible, input:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 4px;
+    img { max-width: 100%; }
+    section { padding: 76px 22px; }
+    .container { width: min(100%, var(--max)); margin: auto; }
+
+    h1, h2, h3 {
+      font-family: "Space Grotesk", sans-serif;
+      line-height: 1.2;
+      margin-top: 0;
     }
 
-    .wrap { width: min(1120px, 90%); margin: auto; }
-    .mono { font: 12px "DM Mono", monospace; letter-spacing: 2px; color: var(--accent); text-transform: uppercase; }
-    .muted { color: var(--muted); }
-    .section { padding: 92px 0; }
-    .section-head { max-width: 680px; margin-bottom: 34px; }
-    h1,h2,h3,p { margin-top: 0; }
-    h1 { font-size: clamp(3rem, 8vw, 6.7rem); line-height: .99; letter-spacing: -.075em; margin: 18px 0 24px; }
-    h2 { font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1; letter-spacing: -.055em; margin: 10px 0 16px; }
-    h3 { line-height: 1.3; }
+    h1 { font-size: clamp(2.6rem, 7vw, 5.3rem); letter-spacing: -3px; }
+    h2 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -1px; }
     p { color: var(--muted); }
-
-    .topbar {
-      position: sticky; top: 0; z-index: 20;
-      background: color-mix(in srgb, var(--bg) 88%, transparent);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid var(--line);
+    .pink { color: var(--pink); }
+    .eyebrow {
+      color: var(--pink);
+      text-transform: uppercase;
+      letter-spacing: 2.4px;
+      font-size: .75rem;
+      font-weight: 700;
     }
-    .topbar-inner { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 14px; }
-    .brand { font-weight: 800; letter-spacing: -.04em; }
-    .brand span { color: var(--accent); }
-    .top-actions { display: flex; align-items: center; gap: 8px; }
 
-    .btn, .icon-btn {
-      border: 1px solid var(--line); color: var(--text); background: var(--panel);
-      border-radius: 999px; padding: 11px 17px; display: inline-flex;
-      align-items: center; justify-content: center; gap: 8px;
-      transition: transform .2s, border-color .2s, background .2s;
+    .section-head { max-width: 680px; margin-bottom: 32px; }
+    .section-head p { max-width: 600px; }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 19px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--pink);
+      color: #241720;
+      font-weight: 700;
+      transition: transform .2s, opacity .2s;
     }
-    .btn:hover, .icon-btn:hover { transform: translateY(-2px); border-color: var(--accent); }
-    .btn.primary { background: var(--accent); color: #21141a; border-color: transparent; font-weight: 800; }
-    .icon-btn { width: 44px; height: 44px; padding: 0; font-size: 19px; }
 
-    .drawer {
-      position: fixed; inset: 0; z-index: 40; visibility: hidden;
-      background: rgba(0,0,0,.58); opacity: 0; transition: .25s;
+    .btn:hover { transform: translateY(-2px); }
+    .btn.secondary { background: transparent; color: var(--text); }
+    .btn.small { padding: 8px 12px; font-size: .86rem; }
+    .muted { color: var(--muted); }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: color-mix(in srgb, var(--bg) 92%, transparent);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
     }
-    .drawer.open { visibility: visible; opacity: 1; }
-    .drawer-panel {
-      height: 100%; width: min(340px, 86vw); padding: 28px;
-      background: var(--panel); border-right: 1px solid var(--line);
-      transform: translateX(-100%); transition: transform .3s;
+
+    .nav-inner {
+      max-width: var(--max);
+      margin: auto;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
     }
-    .drawer.open .drawer-panel { transform: translateX(0); }
-    .drawer-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 26px; }
-    .drawer nav { display: grid; gap: 8px; }
-    .drawer nav a { padding: 12px 14px; border-radius: 12px; color: var(--muted); }
-    .drawer nav a:hover { color: var(--text); background: var(--panel2); }
-    .settings { border-top: 1px solid var(--line); margin-top: 25px; padding-top: 20px; }
-    .settings label { display: block; font-size: 13px; margin: 12px 0 6px; }
-    .settings input { width: 100%; accent-color: var(--accent); }
 
-    .hero { padding: 84px 0 70px; min-height: 76vh; display: grid; align-items: center; }
-    .hero-grid { display: grid; grid-template-columns: 1.35fr .65fr; gap: 50px; align-items: center; }
-    .hero h1 .accent { color: var(--accent); }
-    .hero-copy { max-width: 620px; font-size: 17px; }
-    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
-    .hero-meta { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 34px; color: var(--muted); font: 12px "DM Mono", monospace; }
-    .hero-meta span::before { content: "●"; color: var(--accent); margin-right: 8px; }
-    .portrait-box { position: relative; max-width: 340px; margin: auto; }
-    .portrait-ring { padding: 10px; border: 1px solid var(--line); border-radius: 50%; box-shadow: 0 0 80px rgba(228,160,181,.09); }
-    .portrait { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 50%; background: var(--panel2); }
-    .portrait-note { position: absolute; bottom: 8px; left: -28px; background: var(--panel); border: 1px solid var(--line); border-radius: 15px; padding: 12px 16px; font-size: 12px; }
-    .portrait-note strong { display: block; color: var(--accent); }
+    .brand { font-family: "Space Grotesk", sans-serif; font-weight: 700; }
+    .brand span { color: var(--pink); }
 
-    .grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 18px; }
-    .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
-    .card { padding: 25px; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); }
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 14px;
+      align-items: center;
+    }
+
+    .nav-links a { font-size: .8rem; color: var(--muted); }
+    .nav-links a:hover { color: var(--pink); }
+
+    .nav-actions { display: flex; gap: 7px; }
+    .icon-btn {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 10px;
+      background: var(--surface);
+      color: var(--text);
+    }
+
+    .hero { padding-top: 52px; padding-bottom: 42px; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 38px;
+      align-items: center;
+    }
+
+    .hero h1 { margin: 14px 0 20px; }
+    .hero-copy { max-width: 650px; font-size: 1.08rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 25px; }
+
+    .hero-photo-wrap { position: relative; max-width: 340px; margin: auto; }
+    .hero-photo-wrap::before {
+      content: "";
+      position: absolute;
+      inset: 8% -7% -5% 7%;
+      border: 1px solid var(--pink);
+      border-radius: 35px;
+      transform: rotate(5deg);
+      opacity: .6;
+    }
+
+    .hero-photo {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 28px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 25px; }
+    .tag {
+      display: inline-block;
+      padding: 7px 11px;
+      border-radius: 99px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      background: var(--surface);
+      font-size: .8rem;
+    }
+
+    .quote-wrap { padding: 20px 22px 32px; }
+    .quote-card {
+      position: relative;
+      overflow: hidden;
+      padding: 24px;
+      border: 1px solid #eca5bf70;
+      border-radius: 22px;
+      background: linear-gradient(120deg, var(--surface), var(--surface2));
+    }
+
+    .quote-card::after {
+      content: "“";
+      position: absolute;
+      right: 16px;
+      top: -35px;
+      font-size: 150px;
+      line-height: 1;
+      color: var(--pink);
+      opacity: .12;
+      pointer-events: none;
+    }
+
+    .quote-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .quote-label { color: var(--pink); font-size: .72rem; font-weight: 700; letter-spacing: 2px; }
+    .quote-text {
+      position: relative;
+      z-index: 1;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(1.1rem, 2.6vw, 1.65rem);
+      line-height: 1.5;
+      color: var(--text);
+      margin: 16px 0 10px;
+    }
+
+    .quote-author { font-size: .86rem; color: var(--muted); }
+    .quote-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 17px; }
+    .quote-progress { height: 3px; margin-top: 17px; background: var(--border); border-radius: 10px; overflow: hidden; }
+    .quote-progress span { display: block; height: 100%; width: 0; background: var(--pink); }
+
+    .grid { display: grid; gap: 16px; }
+    .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .card {
+      padding: 23px;
+      border-radius: 19px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      min-width: 0;
+    }
+
+    .card h3 { margin-bottom: 10px; }
     .card p:last-child { margin-bottom: 0; }
-    .card:hover { border-color: var(--accent); }
-    .tag { display: inline-block; border: 1px solid var(--line); border-radius: 999px; padding: 5px 10px; margin: 3px 4px 3px 0; font-size: 12px; color: var(--muted); }
 
-    .skill-toolbar { display: flex; flex-wrap: wrap; gap: 9px; margin: 24px 0; }
-    .filter-btn { border: 1px solid var(--line); border-radius: 999px; background: var(--panel); color: var(--muted); padding: 9px 14px; }
-    .filter-btn.active, .filter-btn:hover { background: var(--accent); color: #21141a; }
-    .skill-card { display: flex; flex-direction: column; gap: 12px; min-height: 220px; }
-    .skill-icon { font: 12px "DM Mono", monospace; color: var(--accent); }
-    .skill-card h3 { margin-bottom: 0; }
-    .skill-card p { font-size: 14px; }
-    .skill-card .btn { margin-top: auto; align-self: flex-start; padding: 8px 13px; font-size: 13px; }
-    .level { font: 11px "DM Mono", monospace; color: var(--accent); }
-
-    .timeline { border-left: 1px solid var(--line); margin-left: 8px; padding-left: 25px; display: grid; gap: 20px; }
-    .timeline-item { position: relative; }
-    .timeline-item::before { content: ""; position: absolute; left: -31px; top: 8px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
-    .project-card { display: flex; flex-direction: column; min-height: 245px; }
-    .project-card .btn { margin-top: auto; align-self: flex-start; }
-
-    .callout { border: 1px solid var(--line); background: linear-gradient(130deg, var(--panel), var(--panel2)); border-radius: 28px; padding: clamp(24px, 5vw, 48px); }
-    .footer { border-top: 1px solid var(--line); padding: 28px 0; font-size: 13px; }
-    .footer-inner { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-
-    .modal {
-      display: none; position: fixed; inset: 0; z-index: 60;
-      background: rgba(0,0,0,.72); padding: 20px; overflow-y: auto;
-      align-items: center; justify-content: center;
+    .skill-card { transition: transform .2s, border-color .2s; }
+    .skill-card:hover { transform: translateY(-4px); border-color: var(--pink); }
+    .skill-logo {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      font-size: 42px;
+      color: var(--pink);
+      margin-bottom: 14px;
     }
-    .modal.open { display: flex; }
-    .modal-card { width: min(650px, 100%); max-height: 90vh; overflow-y: auto; background: var(--panel); border: 1px solid var(--line); border-radius: 24px; padding: 26px; }
-    .modal-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
-    .modal h2 { font-size: 2rem; }
-    .modal h3 { margin: 24px 0 6px; color: var(--accent); font-size: 14px; }
-    .modal ul { padding-left: 20px; color: var(--muted); }
-    .modal li { margin: 7px 0; }
 
-    .reveal { animation: enter .7s both; }
-    @keyframes enter { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-    .hidden { display: none !important; }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    .skill-level {
+      height: 5px;
+      background: var(--border);
+      border-radius: 20px;
+      margin-top: 14px;
+      overflow: hidden;
     }
-    @media (max-width: 760px) {
-      .section { padding: 65px 0; }
-      .hero { padding-top: 55px; }
-      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
-      .hero-copy { font-size: 15px; }
-      .portrait-box { width: min(270px, 75%); }
-      .grid-3 { grid-template-columns: repeat(2,minmax(0,1fr)); }
-      .grid-2 { grid-template-columns: 1fr; }
-      .portrait-note { left: -15px; }
-      .top-actions .theme-label { display: none; }
+
+    .skill-level span { display: block; height: 100%; background: var(--pink); border-radius: 20px; }
+    .skill-card .tag { margin-top: 12px; }
+
+    .project-links { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 15px; }
+    .project-links a { color: var(--pink); font-size: .86rem; }
+    .project-icon { font-size: 1.8rem; margin-bottom: 12px; }
+
+    .roadmap { border-left: 2px solid var(--pink); padding-left: 24px; }
+    .roadmap-item { position: relative; padding: 0 0 24px; }
+    .roadmap-item::before {
+      content: "";
+      position: absolute;
+      left: -31px;
+      top: 5px;
+      width: 12px;
+      height: 12px;
+      background: var(--pink);
+      border-radius: 50%;
     }
-    @media (max-width: 480px) {
-      .grid-3 { grid-template-columns: 1fr; }
-      .topbar-inner { min-height: 64px; }
-      .brand { font-size: 14px; }
-      .btn { padding: 10px 13px; font-size: 13px; }
-      h1 { font-size: clamp(2.8rem, 14vw, 4rem); }
-      .card { padding: 20px; }
+
+    .progress-list { display: grid; gap: 12px; }
+    .progress-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 13px;
+      border-radius: 12px;
+      background: var(--surface2);
+    }
+
+    .progress-item input { margin-top: 7px; accent-color: var(--pink); }
+    .progress-item span { flex: 1; }
+    .progress-item input:checked + span { text-decoration: line-through; opacity: .65; }
+    .progress-total { margin-bottom: 16px; color: var(--pink); font-weight: 700; }
+
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .field { display: grid; gap: 6px; }
+    .field.full { grid-column: 1 / -1; }
+    .field label { font-size: .86rem; color: var(--muted); }
+
+    .field input, .field select, .field textarea {
+      width: 100%;
+      padding: 12px 13px;
+      border-radius: 11px;
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: var(--surface);
+    }
+
+    .field textarea { min-height: 130px; resize: vertical; }
+    .field input:focus, .field select:focus, .field textarea:focus { outline: 2px solid var(--pink); }
+
+    .settings-row { display: flex; justify-content: space-between; gap: 20px; align-items: center; margin: 15px 0; }
+    .settings-row input[type="range"] { width: 45%; accent-color: var(--pink); }
+
+    .notice {
+      padding: 14px;
+      border-radius: 12px;
+      background: var(--surface2);
+      color: var(--muted);
+      font-size: .88rem;
+    }
+
+    footer { border-top: 1px solid var(--border); padding: 30px 22px; text-align: center; }
+    .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; }
+    .footer-links a { color: var(--pink); font-size: .86rem; }
+
+    .welcome {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: rgba(23,19,25,.97);
+      transition: opacity .35s, visibility .35s;
+    }
+
+    .welcome.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .welcome-inner { max-width: 620px; text-align: center; }
+    .welcome-inner h1 { color: #f0aec6; }
+    .welcome-inner p { max-width: 490px; margin: 0 auto 25px; }
+
+    .toast {
+      position: fixed;
+      z-index: 1000;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      max-width: calc(100% - 30px);
+      padding: 12px 17px;
+      border-radius: 12px;
+      background: var(--pink);
+      color: #241720;
+      font-size: .88rem;
+      display: none;
+    }
+
+    .toast.show { display: block; }
+
+    @media(max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr .7fr; gap: 22px; }
+      .nav-links { display: none; }
+      .grid.three { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media(max-width: 620px) {
+      section { padding: 55px 17px; }
+      .hero { padding-top: 38px; }
+      .hero-grid, .grid.two, .grid.three { grid-template-columns: 1fr; }
+      .hero-photo-wrap { max-width: 260px; margin-top: 15px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+      .settings-row { align-items: flex-start; flex-direction: column; gap: 8px; }
+      .settings-row input[type="range"] { width: 100%; }
+      .quote-wrap { padding-inline: 17px; }
+    }
+
+    @media(prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
     }
   </style>
 </head>
 
 <body>
-  <header class="topbar">
-    <div class="wrap topbar-inner">
-      <a class="brand" href="#home">SUDHANSHU<span>.</span></a>
-      <div class="top-actions">
-        <button class="icon-btn" id="themeToggle" aria-label="Toggle day and night theme" title="Day/night theme">☼</button>
-        <button class="icon-btn" id="menuOpen" aria-label="Open navigation menu" aria-controls="drawer">☰</button>
+  <div class="welcome" id="welcome">
+    <div class="welcome-inner">
+      <p class="eyebrow">WELCOME TO MY DIGITAL SPACE</p>
+      <h1>Dream. Learn.<br><span class="pink">Build.</span></h1>
+      <p>Exploring AI, technology, creative ideas and the journey of becoming a better builder every day.</p>
+      <button class="btn" id="enter-site">Enter my portfolio ↗</button>
+    </div>
+  </div>
+
+  <header class="navbar">
+    <div class="nav-inner">
+      <a class="brand" href="#home">SK<span>.</span></a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#learning">Learning</a>
+        <a href="#progress">Progress</a>
+        <a href="#team">Team</a>
+        <a href="#profile">Profile</a>
+        <a href="#subscription">Plans</a>
+        <a href="#help">Help</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle theme">☼</button>
+        <a class="icon-btn" href="#profile" aria-label="Display settings">⚙</a>
       </div>
     </div>
   </header>
 
-  <div class="drawer" id="drawer" aria-hidden="true">
-    <aside class="drawer-panel" role="dialog" aria-modal="true" aria-label="Site navigation">
-      <div class="drawer-head">
-        <a class="brand" href="#home">SUDHANSHU<span>.</span></a>
-        <button class="icon-btn" id="menuClose" aria-label="Close navigation menu">×</button>
-      </div>
-      <nav id="siteNav">
-        <a href="#home">01 / Home</a>
-        <a href="#about">02 / About</a>
-        <a href="#skills">03 / Skills Explorer</a>
-        <a href="#learning">04 / Learning Roadmap</a>
-        <a href="#projects">05 / Projects</a>
-        <a href="#progress">06 / Progress</a>
-        <a href="#contact">07 / Contact</a>
-      </nav>
-      <div class="settings">
-        <strong>Display settings</strong>
-        <label for="brightness">Brightness</label>
-        <input id="brightness" type="range" min="65" max="115" value="100">
-        <p class="muted" style="font-size:12px">Adjust this page's visual brightness.</p>
-        <button class="btn" id="drawerTheme">Switch theme</button>
-      </div>
-    </aside>
-  </div>
-
   <main>
-    <section class="hero wrap" id="home">
-      <div class="hero-grid">
-        <div class="reveal">
-          <div class="mono">AI STUDENT · DEVELOPER IN PROGRESS</div>
-          <h1>Curious mind.<br><span class="accent">Building</span><br>what's next.</h1>
-          <p class="hero-copy">I'm Sudhanshu Kumar, a B.Tech AI student exploring programming, web development and practical AI. I learn by building, experimenting and improving one project at a time.</p>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">AI STUDENT · DEVELOPER · BUILDER</p>
+          <h1>Hi, I'm<br><span class="pink">Sudhanshu Kumar.</span></h1>
+          <p class="hero-copy">I'm learning to turn ideas into useful digital products. My journey includes AI, programming, web development, entrepreneurship and building projects that solve real problems.</p>
           <div class="hero-actions">
-            <a class="btn primary" href="#projects">Explore my projects ↗</a>
-            <a class="btn" href="#skills">Explore skills ↓</a>
+            <a class="btn" href="#projects">Explore my work ↗</a>
+            <a class="btn secondary" href="#about">My journey</a>
           </div>
-          <div class="hero-meta">
-            <span>AI & CS</span><span>Learning by building</span><span>India</span>
+          <div class="hero-tags">
+            <span class="tag">AI & CS</span>
+            <span class="tag">Web Development</span>
+            <span class="tag">Startup Ideas</span>
+            <span class="tag">Always Learning</span>
           </div>
         </div>
-        <div class="portrait-box reveal">
-          <div class="portrait-ring">
-            <img class="portrait" src="abcd.jpeg" alt="Portrait of Sudhanshu Kumar" onerror="this.style.display='none';this.parentElement.style.background='var(--panel2)';this.parentElement.insertAdjacentHTML('beforeend','<div style=&quot;aspect-ratio:1;display:grid;place-items:center;text-align:center;padding:25px;color:var(--muted)&quot;>Add your photo file<br><strong>abcd.jpeg</strong><br>to the repository root</div>')">
+        <div class="hero-photo-wrap">
+          <img class="hero-photo" src="abcd.jpeg" alt="Sudhanshu Kumar" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+          <div style="display:none;aspect-ratio:4/5;place-items:center;background:var(--surface);border-radius:28px;padding:25px;text-align:center;color:var(--muted)">
+            Photo not found.<br>Keep abcd.jpeg in the repository root.
           </div>
-          <div class="portrait-note"><strong>LEARN. BUILD. REPEAT.</strong>One step at a time.</div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="about">
-      <div class="wrap">
+    <div class="container quote-wrap">
+      <div class="quote-card" id="quote-card">
+        <div class="quote-top">
+          <span class="quote-label">DAILY INSPIRATION</span>
+          <span class="tag" id="quote-count">Thought 1</span>
+        </div>
+        <p class="quote-text" id="quote-text">Small steps, repeated with purpose, can build something remarkable.</p>
+        <div class="quote-author" id="quote-author">Original thought · Consistency</div>
+        <div class="quote-actions">
+          <button class="btn small" id="next-quote" type="button">Next thought ↗</button>
+          <button class="btn secondary small" id="pause-quotes" type="button">Pause rotation</button>
+        </div>
+        <div class="quote-progress"><span id="quote-bar"></span></div>
+        <p class="muted" style="font-size:.77rem;margin-bottom:0">Thoughts rotate automatically. Click the card or button for another. Famous quotations are labelled when attribution is commonly reported; verify wording before formal reuse.</p>
+      </div>
+    </div>
+
+    <section id="about">
+      <div class="container">
         <div class="section-head">
-          <div class="mono">01 — About</div>
-          <h2>Learning to turn ideas into useful things.</h2>
+          <p class="eyebrow">A LITTLE ABOUT ME</p>
+          <h2>Learning today.<br><span class="pink">Building for tomorrow.</span></h2>
+          <p>I'm a B.Tech student focused on Artificial Intelligence, developing my foundations in programming, mathematics, web technologies and product thinking.</p>
         </div>
-        <div class="grid-2">
+        <div class="grid three">
           <article class="card">
-            <h3>Who I am</h3>
-            <p>I'm a first-year B.Tech student in Artificial Intelligence at Zenith School of AI, K.R. Mangalam University. I'm building my foundations in programming, mathematics, web technologies and product thinking.</p>
-            <p>My goal is to become a capable AI builder who can understand a problem, create a solution and explain how it works.</p>
+            <h3>My Mission</h3>
+            <p>Build useful technology, keep learning, and turn promising ideas into real projects.</p>
           </article>
           <article class="card">
-            <h3>What I'm working towards</h3>
-            <p>Stronger coding fundamentals, practical projects, clear communication, collaboration and a deeper understanding of AI systems.</p>
-            <span class="tag">AI foundations</span><span class="tag">Web development</span><span class="tag">Problem solving</span><span class="tag">Product thinking</span>
+            <h3>My Approach</h3>
+            <p>Learn the fundamentals, practise consistently, ask better questions, and improve through feedback.</p>
+          </article>
+          <article class="card">
+            <h3>My Direction</h3>
+            <p>Explore AI engineering, full-stack development, entrepreneurship and collaborative building.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="skills">
-      <div class="wrap">
+    <section id="skills">
+      <div class="container">
         <div class="section-head">
-          <div class="mono">02 — Interactive skill library</div>
-          <h2>Skills are tools. Learn where to use them.</h2>
-          <p>Choose a category, then click any skill's “Explore skill” button. You'll see practical uses, project ideas and what to learn next.</p>
+          <p class="eyebrow">SKILLS & TECHNOLOGY</p>
+          <h2>My current <span class="pink">toolkit.</span></h2>
+          <p>These cards represent technologies I'm learning or exploring. The level descriptions are self-reported learning stages, not professional certifications.</p>
         </div>
-        <div class="skill-toolbar" id="skillFilters">
-          <button class="filter-btn active" data-filter="all">All skills</button>
-          <button class="filter-btn" data-filter="web">Web development</button>
-          <button class="filter-btn" data-filter="programming">Programming</button>
-          <button class="filter-btn" data-filter="tools">Tools & systems</button>
-          <button class="filter-btn" data-filter="ai">AI & data</button>
+        <div class="grid three">
+          <article class="card skill-card">
+            <i class="devicon-python-plain colored skill-logo" aria-hidden="true"></i>
+            <h3>Python</h3><span class="tag">Learning fundamentals</span>
+            <p>Variables, conditions, loops, functions and problem-solving for future AI projects.</p>
+            <div class="skill-level"><span style="width:25%"></span></div>
+          </article>
+          <article class="card skill-card">
+            <i class="devicon-html5-plain colored skill-logo" aria-hidden="true"></i>
+            <h3>HTML5</h3><span class="tag">Learning fundamentals</span>
+            <p>Building page structure, links, forms, images and semantic web pages.</p>
+            <div class="skill-level"><span style="width:40%"></span></div>
+          </article>
+          <article class="card skill-card">
+            <i class="devicon-css3-plain colored skill-logo" aria-hidden="true"></i>
+            <h3>CSS3</h3><span class="tag">Learning fundamentals</span>
+            <p>Layouts, responsive design, typography, spacing and visual styling.</p>
+            <div class="skill-level"><span style="width:25%"></span></div>
+          </article>
+          <article class="card skill-card">
+            <i class="devicon-javascript-plain colored skill-logo" aria-hidden="true"></i>
+            <h3>JavaScript</h3><span class="tag">Next to learn</span>
+            <p>Interactive web pages, events, dynamic content and browser behaviour.</p>
+            <div class="skill-level"><span style="width:8%"></span></div>
+          </article>
+          <article class="card skill-card">
+            <i class="devicon-github-original skill-logo" aria-hidden="true"></i>
+            <h3>GitHub & Git</h3><span class="tag">Practising</span>
+            <p>Version control, commits, repositories and publishing projects.</p>
+            <div class="skill-level"><span style="width:25%"></span></div>
+          </article>
+          <article class="card skill-card">
+            <i class="devicon-vscode-plain colored skill-logo" aria-hidden="true"></i>
+            <h3>VS Code</h3><span class="tag">Using for practice</span>
+            <p>Writing code, organising files and building small experiments.</p>
+            <div class="skill-level"><span style="width:35%"></span></div>
+          </article>
         </div>
-        <div class="grid-3" id="skillGrid"></div>
-        <p class="muted" style="font-size:12px;margin-top:18px">Learning status is a starting guide, not a certified assessment. Update it as your experience grows.</p>
+        <p class="notice" style="margin-top:18px">Skill bars are editable estimates. Update them as you practise and gain experience. Logos require an internet connection.</p>
       </div>
     </section>
 
-    <section class="section" id="learning">
-      <div class="wrap">
+    <section id="projects">
+      <div class="container">
         <div class="section-head">
-          <div class="mono">03 — Learning roadmap</div>
-          <h2>Build strong foundations, then go deeper.</h2>
-          <p>These are learning stages and goals, not claims that every skill is already mastered.</p>
+          <p class="eyebrow">PROJECTS & TOOLS</p>
+          <h2>Learning by <span class="pink">making.</span></h2>
+          <p>A growing collection of practice work and ideas. An idea is not the same as a finished product, so each project is labelled honestly.</p>
         </div>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="mono">Stage 01 · Current foundations</div>
-            <h3>HTML, CSS, Python, Git and core mathematics</h3>
-            <p>Practice semantic pages, responsive layouts, loops, functions, basic algorithms and version control.</p>
-          </div>
-          <div class="timeline-item">
-            <div class="mono">Stage 02 · Next</div>
-            <h3>JavaScript, DOM, APIs and SQL</h3>
-            <p>Make pages interactive, validate forms, fetch public API data and store structured information.</p>
-          </div>
-          <div class="timeline-item">
-            <div class="mono">Stage 03 · Build full-stack</div>
-            <h3>React, backend, databases and testing</h3>
-            <p>Create complete applications with accessible interfaces, reliable data handling and clear documentation.</p>
-          </div>
-          <div class="timeline-item">
-            <div class="mono">Stage 04 · AI direction</div>
-            <h3>Linear algebra, statistics, machine learning and AI APIs</h3>
-            <p>Learn the maths, evaluate models carefully and build useful AI features with responsible data handling.</p>
-          </div>
-          <div class="timeline-item">
-            <div class="mono">Stage 05 · Deployment</div>
-            <h3>Linux, networking, cloud, security and MLOps</h3>
-            <p>Learn deployment, monitoring, testing and security fundamentals before scaling projects.</p>
-          </div>
-        </div>
-
-        <div style="margin-top:32px" class="grid-2">
+        <div class="grid three">
           <article class="card">
-            <div class="mono">Current academic context</div>
-            <h3>Zenith School of AI</h3>
-            <p>Mathematical Thinking for AI & CS, Python Foundations, Internet/Cloud/DevOps, Linear Algebra, Product Thinking and Communication.</p>
+            <div class="project-icon">⌘</div>
+            <h3>Personal Portfolio</h3>
+            <p>This website: a place to present my learning, projects and goals.</p>
+            <div class="project-links">
+              <a href="https://github.com/sudh4nshukum4r/First-portfolio-website" target="_blank" rel="noopener noreferrer">GitHub repository ↗</a>
+            </div>
           </article>
           <article class="card">
-            <div class="mono">How to use this roadmap</div>
-            <h3>Learn → build → explain</h3>
-            <p>For every topic, complete a small exercise, build a mini-project, write notes and publish your work when it is ready.</p>
+            <div class="project-icon">⌨</div>
+            <h3>Python Learning</h3>
+            <p>Programming notes, exercises and practice as I strengthen my fundamentals.</p>
+            <div class="project-links">
+              <a href="https://github.com/sudh4nshukum4r/FULL-PYTHON-LEC" target="_blank" rel="noopener noreferrer">Python repository ↗</a>
+            </div>
+          </article>
+          <article class="card">
+            <div class="project-icon">◇</div>
+            <h3>HTML Practice</h3>
+            <p>Building web pages and learning how websites are structured.</p>
+            <div class="project-links">
+              <a href="https://github.com/sudh4nshukum4r/BASIC-TO-ADV-PROJECT-OF-HTML" target="_blank" rel="noopener noreferrer">HTML repository ↗</a>
+            </div>
+          </article>
+          <article class="card">
+            <div class="project-icon">✦</div>
+            <h3>AI Builder Lab</h3>
+            <p>Future project direction: experiment with AI tools and build helpful prototypes.</p>
+            <span class="tag">Concept / in planning</span>
+          </article>
+          <article class="card">
+            <div class="project-icon">◈</div>
+            <h3>PANGOLIN</h3>
+            <p>Exploring a premium clothing brand concept with a minimal identity and digital experience.</p>
+            <span class="tag">Concept / in planning</span>
+          </article>
+          <article class="card">
+            <div class="project-icon">⚙</div>
+            <h3>Robotics & AI</h3>
+            <p>Learning the foundations needed for future experiments in sensors, robotics and intelligent systems.</p>
+            <span class="tag">Learning / exploration</span>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="projects">
-      <div class="wrap">
+    <section id="learning">
+      <div class="container">
         <div class="section-head">
-          <div class="mono">04 — Selected projects</div>
-          <h2>Work that shows the learning.</h2>
-          <p>These cards link to your existing repositories. Add project screenshots, demos and clear descriptions as each project improves.</p>
+          <p class="eyebrow">LEARNING ROADMAP</p>
+          <h2>One step at a <span class="pink">time.</span></h2>
+          <p>A practical sequence for strengthening foundations before taking on more advanced AI work.</p>
         </div>
-        <div class="grid-3">
-          <article class="card project-card">
-            <div class="mono">01 / Portfolio</div>
-            <h3>Personal Portfolio Website</h3>
-            <p>A personal web presence to share learning, projects, goals and contact links.</p>
-            <a class="btn" href="https://github.com/sudh4nshukum4r/First-portfolio-website" target="_blank" rel="noopener noreferrer">View repository ↗</a>
-          </article>
-          <article class="card project-card">
-            <div class="mono">02 / Python</div>
-            <h3>Full Python Learning</h3>
-            <p>A repository for Python notes, exercises and practice as the programming foundation develops.</p>
-            <a class="btn" href="https://github.com/sudh4nshukum4r/FULL-PYTHON-LEC" target="_blank" rel="noopener noreferrer">View repository ↗</a>
-          </article>
-          <article class="card project-card">
-            <div class="mono">03 / Web development</div>
-            <h3>HTML Practice Projects</h3>
-            <p>HTML learning work and practice pages, organized as a growing web development collection.</p>
-            <a class="btn" href="https://github.com/sudh4nshukum4r/BASIC-TO-ADV-PROJECT-OF-HTML" target="_blank" rel="noopener noreferrer">View repository ↗</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="progress">
-      <div class="wrap">
-        <div class="section-head">
-          <div class="mono">05 — Progress</div>
-          <h2>Make progress visible.</h2>
-          <p>Use this checklist to plan your next steps. It does not automatically save progress between visits; this version keeps the tracker simple and honest.</p>
-        </div>
-        <div class="grid-2">
-          <article class="card">
-            <h3>Web development checklist</h3>
-            <label><input type="checkbox"> Build a semantic HTML page</label><br>
-            <label><input type="checkbox"> Make a responsive CSS layout</label><br>
-            <label><input type="checkbox"> Add JavaScript interactions</label><br>
-            <label><input type="checkbox"> Validate a form</label><br>
-            <label><input type="checkbox"> Deploy a finished project</label>
-          </article>
-          <article class="card">
-            <h3>Programming checklist</h3>
-            <label><input type="checkbox"> Practise loops and functions</label><br>
-            <label><input type="checkbox"> Solve beginner problems</label><br>
-            <label><input type="checkbox"> Use Git commits regularly</label><br>
-            <label><input type="checkbox"> Document a Python project</label><br>
-            <label><input type="checkbox"> Explain my code in simple words</label>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
-      <div class="wrap">
-        <div class="callout">
-          <div class="mono">06 — Contact & collaboration</div>
-          <h2>Let's connect through what we build.</h2>
-          <p>Explore my repositories and follow the projects as they develop.</p>
-          <div class="hero-actions">
-            <a class="btn primary" href="https://github.com/sudh4nshukum4r" target="_blank" rel="noopener noreferrer">GitHub profile ↗</a>
-            <button class="btn" id="copyProfile">Copy GitHub link</button>
+        <div class="card roadmap">
+          <div class="roadmap-item">
+            <h3>01 · Programming Foundations</h3>
+            <p>Python syntax, conditions, loops, functions, lists, dictionaries and debugging.</p>
           </div>
-          <p id="copyMessage" aria-live="polite" style="font-size:13px;margin-top:12px"></p>
+          <div class="roadmap-item">
+            <h3>02 · Web Development</h3>
+            <p>HTML, CSS, responsive layouts, JavaScript, accessibility and Git workflows.</p>
+          </div>
+          <div class="roadmap-item">
+            <h3>03 · Mathematics for AI</h3>
+            <p>Algebra, functions, probability, statistics, vectors and linear algebra.</p>
+          </div>
+          <div class="roadmap-item">
+            <h3>04 · Data & Machine Learning</h3>
+            <p>Python data tools, data cleaning, visualisation, ML fundamentals and model evaluation.</p>
+          </div>
+          <div class="roadmap-item">
+            <h3>05 · Build & Collaborate</h3>
+            <p>Ship portfolio projects, write clear documentation, seek feedback and contribute to team work.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="progress">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">PERSONAL PROGRESS</p>
+          <h2>Small wins <span class="pink">count.</span></h2>
+          <p>Tick tasks as you finish them. Your checklist is saved in this browser on this device only.</p>
+        </div>
+        <div class="grid two">
+          <div class="card">
+            <div class="progress-total" id="progress-total">0 of 8 tasks completed</div>
+            <div class="progress-list" id="progress-list">
+              <label class="progress-item"><input type="checkbox" data-task="python"><span>Practise Python for 20 minutes</span></label>
+              <label class="progress-item"><input type="checkbox" data-task="html"><span>Build or improve one HTML page</span></label>
+              <label class="progress-item"><input type="checkbox" data-task="css"><span>Practise one CSS layout concept</span></label>
+              <label class="progress-item"><input type="checkbox" data-task="math"><span>Solve a mathematics problem</span></label>
+              <label class="progress-item"><input type="checkbox" data-task="git"><span>Make a meaningful Git commit</span></label>
+              <label class="progress-item"><input type="checkbox" data-task="read"><span>Review notes from class</span></label>
+              <label class="progress-item"><input type="checkbox" data-task="project"><span>Make progress on a project</span></label>
+              <label class="progress-item"><input type="checkbox" data-task="reflect"><span>Write down one lesson learned</span></label>
+            </div>
+            <button class="btn secondary small" id="reset-progress" type="button" style="margin-top:16px">Reset checklist</button>
+          </div>
+          <div class="card">
+            <h3>Remember your direction</h3>
+            <p>You don't need to master everything today. Consistent practice, honest reflection and completed projects create a strong foundation over time.</p>
+            <div class="notice">Tip: Choose a small daily target you can realistically complete alongside college classes, rest and other responsibilities.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="team">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">TEAM & COLLABORATION</p>
+          <h2>Good work grows <span class="pink">together.</span></h2>
+        </div>
+        <div class="grid two">
+          <article class="card">
+            <h3>Independent Builder</h3>
+            <p>Currently documenting my own learning journey and exploring ideas. This section will grow when real collaborators join a project.</p>
+            <span class="tag">Current status: Solo builder</span>
+          </article>
+          <article class="card">
+            <h3>Open to Learning Together</h3>
+            <p>Interested in connecting with students and builders who enjoy programming, AI, product design and thoughtful experimentation.</p>
+            <a class="btn small" href="#help">Send a query ↗</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="profile">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">PROFILE & SETTINGS</p>
+          <h2>Your display, <span class="pink">your choice.</span></h2>
+          <p>Change the appearance of this website on your current browser.</p>
+        </div>
+        <div class="grid two">
+          <div class="card">
+            <h3>Display settings</h3>
+            <div class="settings-row">
+              <label for="brightness">Screen brightness effect</label>
+              <input id="brightness" type="range" min="65" max="115" value="100">
+            </div>
+            <div class="settings-row">
+              <label for="theme-select">Colour theme</label>
+              <select id="theme-select" class="icon-btn">
+                <option value="dark">Midnight / Dark</option>
+                <option value="light">Ivory / Light</option>
+              </select>
+            </div>
+            <button class="btn secondary small" id="reset-settings" type="button">Reset display settings</button>
+          </div>
+          <div class="card">
+            <h3>Public profile</h3>
+            <p>This is a public portfolio. It does not currently have private user accounts, login, password recovery or a private database.</p>
+            <a class="btn secondary small" href="https://github.com/sudh4nshukum4r" target="_blank" rel="noopener noreferrer">Visit GitHub profile ↗</a>
+            <p class="notice" style="margin-top:16px">Avoid putting passwords, private identity documents, bank information or other sensitive details in public forms or repository code.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="subscription">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">SUBSCRIPTION IDEAS</p>
+          <h2>Growing in <span class="pink">public.</span></h2>
+          <p>A preview of possible future community features. These are concepts, not purchasable plans.</p>
+        </div>
+        <div class="grid three">
+          <article class="card">
+            <h3>Free Explorer</h3>
+            <p>Portfolio access, public projects, learning notes and basic resources.</p>
+            <span class="tag">Current concept</span>
+          </article>
+          <article class="card">
+            <h3>Builder</h3>
+            <p>Possible future project logs, build challenges and guided learning resources.</p>
+            <span class="tag">Future idea</span>
+          </article>
+          <article class="card">
+            <h3>Creator</h3>
+            <p>Possible future community showcases, collaboration tools and deeper project write-ups.</p>
+            <span class="tag">Future idea</span>
+          </article>
+        </div>
+        <p class="notice" style="margin-top:18px">No payments or subscriptions are processed by this website. Do not enter payment details here.</p>
+      </div>
+    </section>
+
+    <section id="help">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">HELP / QUERY</p>
+          <h2>Let's start a <span class="pink">conversation.</span></h2>
+          <p>Prepare a message about a project, collaboration or suggestion. This static website cannot send it to me automatically.</p>
+        </div>
+        <div class="grid two">
+          <div class="card">
+            <form id="query-form">
+              <div class="form-grid">
+                <div class="field">
+                  <label for="query-name">Your name</label>
+                  <input id="query-name" name="name" maxlength="80" placeholder="Name">
+                </div>
+                <div class="field">
+                  <label for="query-email">Email (optional)</label>
+                  <input id="query-email" name="email" type="email" maxlength="150" placeholder="you@example.com">
+                </div>
+                <div class="field full">
+                  <label for="query-type">Topic</label>
+                  <select id="query-type" name="type">
+                    <option>General question</option>
+                    <option>Project collaboration</option>
+                    <option>AI / technology</option>
+                    <option>Portfolio feedback</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div class="field full">
+                  <label for="query-message">Message</label>
+                  <textarea id="query-message" name="message" maxlength="3000" required placeholder="Write your message..."></textarea>
+                </div>
+                <div class="field full">
+                  <button class="btn" type="submit">Prepare & copy message ↗</button>
+                </div>
+              </div>
+            </form>
+            <p class="muted" style="font-size:.8rem">The form copies the message to your clipboard when supported. It does not submit or email it. Do not include sensitive information.</p>
+          </div>
+          <div class="card">
+            <h3>Find me online</h3>
+            <p>Explore my public repositories and follow the projects as they develop.</p>
+            <div class="project-links">
+              <a href="https://github.com/sudh4nshukum4r" target="_blank" rel="noopener noreferrer">GitHub profile ↗</a>
+              <a href="https://github.com/sudh4nshukum4r/First-portfolio-website" target="_blank" rel="noopener noreferrer">Portfolio source ↗</a>
+            </div>
+            <div class="notice" style="margin-top:22px">For a real contact form, we'll need a secure backend or form service and an appropriate privacy notice.</div>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="wrap footer-inner">
-      <span>© <span id="year"></span> Sudhanshu Kumar</span>
-      <span class="muted">Designed to learn. Built to improve.</span>
+  <footer>
+    <div class="container">
+      <div class="brand">Sudhanshu Kumar<span>.</span></div>
+      <p>Learning, creating and improving one step at a time.</p>
+      <div class="footer-links">
+        <a href="#home">Back to top ↑</a>
+        <a href="#projects">Projects</a>
+        <a href="#help">Contact / Query</a>
+        <a href="https://github.com/sudh4nshukum4r" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+      <p style="font-size:.78rem;margin-top:22px">© <span id="year"></span> Sudhanshu Kumar. Built as a personal portfolio.</p>
     </div>
   </footer>
 
-  <div class="modal" id="skillModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <article class="modal-card">
-      <div class="modal-head">
-        <div>
-          <div class="mono" id="modalCategory">SKILL GUIDE</div>
-          <h2 id="modalTitle">Skill name</h2>
-          <p id="modalIntro"></p>
-        </div>
-        <button class="icon-btn" id="modalClose" aria-label="Close skill details">×</button>
-      </div>
-      <h3>Where is it used?</h3>
-      <ul id="modalUses"></ul>
-      <h3>What can you build?</h3>
-      <ul id="modalProjects"></ul>
-      <h3>How should you practise?</h3>
-      <p id="modalPractice"></p>
-      <h3>What should you learn next?</h3>
-      <p id="modalNext"></p>
-      <button class="btn primary" id="modalDone">Got it</button>
-    </article>
-  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script>
-    const skills = [
-      {
-        name:"HTML", category:"web", status:"Foundation",
-        intro:"HTML gives a web page its structure and meaning. It tells the browser which parts are headings, paragraphs, images, links and forms.",
-        uses:["Structuring websites and articles.","Creating accessible forms and navigation.","Organising content for browsers and search engines."],
-        projects:["Personal profile page","Student registration form","Accessible multi-section portfolio"],
-        practice:"Build a page with headings, links, images, lists, semantic sections and a form. Check that links and labels work.",
-        next:"CSS, semantic HTML, accessibility and basic SEO."
-      },
-      {
-        name:"CSS", category:"web", status:"Foundation",
-        intro:"CSS controls how a page looks: layout, spacing, colours, typography, responsiveness and animations.",
-        uses:["Making websites adapt to phones and laptops.","Creating layouts, cards, navigation and themes.","Improving readability and visual consistency."],
-        projects:["Responsive landing page","Dark/light theme design","Product card layout"],
-        practice:"Recreate a simple design using Flexbox and Grid. Test it at mobile and desktop widths.",
-        next:"Responsive design, Flexbox, Grid, transitions and CSS variables."
-      },
-      {
-        name:"JavaScript", category:"web", status:"Next skill",
-        intro:"JavaScript makes websites interactive. It can respond to clicks, update page content, validate forms and communicate with APIs.",
-        uses:["Opening menus and dialogs.","Checking form input before submission.","Fetching public API data and updating the page."],
-        projects:["Interactive calculator","Form validation","Weather dashboard using a suitable public API"],
-        practice:"Learn variables, conditions, loops, functions, arrays, objects, DOM selection and event listeners. Build one small feature at a time.",
-        next:"DOM events, asynchronous JavaScript, fetch, promises and modules."
-      },
-      {
-        name:"Python", category:"programming", status:"Foundation",
-        intro:"Python is a general-purpose language used for automation, scripting, data work, backend services and many AI workflows.",
-        uses:["Automating repetitive computer tasks.","Processing files and structured data.","Building backend logic and experimenting with AI."],
-        projects:["Marks calculator","File organiser script","Simple expense tracker"],
-        practice:"Practise variables, conditions, loops, functions, lists, dictionaries, imports and error handling. Run your code and test different inputs.",
-        next:"Functions, data structures, files, exceptions, modules and problem solving."
-      },
-      {
-        name:"Git & GitHub", category:"tools", status:"Essential tool",
-        intro:"Git tracks changes in your code. GitHub hosts repositories and helps people share work and collaborate.",
-        uses:["Keeping a history of project changes.","Backing up and sharing code.","Collaborating through branches and pull requests."],
-        projects:["Publish your portfolio source","Maintain a Python learning repository","Write a useful project README"],
-        practice:"Practise status, add, commit, push, pull and reading diffs. Make small commits with clear messages.",
-        next:"Branches, merge conflicts, pull requests and GitHub Actions."
-      },
-      {
-        name:"SQL & Databases", category:"programming", status:"Roadmap",
-        intro:"SQL is used to query and manage structured data in relational databases.",
-        uses:["Searching and filtering records.","Storing application users or orders.","Summarising data with queries."],
-        projects:["Student records database","Library book tracker","Basic inventory database"],
-        practice:"Learn tables, primary keys, SELECT, WHERE, ORDER BY, JOIN, GROUP BY and safe parameterised queries.",
-        next:"Relational modelling, joins, constraints, indexes and database integration."
-      },
-      {
-        name:"React", category:"web", status:"Roadmap",
-        intro:"React is a JavaScript library for building user interfaces from reusable components.",
-        uses:["Building dashboards and complex interfaces.","Reusing UI elements across pages.","Managing changing application state."],
-        projects:["Task dashboard","Searchable project catalogue","Reusable portfolio components"],
-        practice:"Learn JavaScript first, then components, props, state, events, lists and effects.",
-        next:"React fundamentals, routing, forms, API calls and testing."
-      },
-      {
-        name:"APIs & JSON", category:"web", status:"Next skill",
-        intro:"An API defines how software systems exchange information. JSON is a common format for structured data.",
-        uses:["Connecting a website to a service.","Loading live information into an interface.","Allowing a frontend to communicate with a backend."],
-        projects:["Public API explorer","Search interface","Simple app that displays API results"],
-        practice:"Understand requests, responses, JSON, HTTP status codes, fetch and loading/error states. Never put secret API keys in public frontend code.",
-        next:"HTTP, REST concepts, asynchronous JavaScript and backend fundamentals."
-      },
-      {
-        name:"Linux & Terminal", category:"tools", status:"Roadmap",
-        intro:"Linux and command-line tools help developers inspect files, run programs and manage many development environments.",
-        uses:["Navigating directories and running scripts.","Installing development tools.","Understanding permissions, processes and logs."],
-        projects:["Command-line notes","Automated backup script in a safe test folder","Documented development setup"],
-        practice:"Practise pwd, ls, cd, mkdir, cp, mv, cat and basic process commands in your own environment. Check commands before running them.",
-        next:"Permissions, shell basics, processes, networking and package management."
-      },
-      {
-        name:"Networking & Web", category:"tools", status:"Roadmap",
-        intro:"Networking explains how devices and services communicate, including how browsers reach websites.",
-        uses:["Understanding DNS and HTTP/HTTPS.","Debugging connectivity problems.","Learning how web applications are deployed."],
-        projects:["Draw a browser-to-server diagram","Inspect your own site's network requests","Write a DNS and HTTP glossary"],
-        practice:"Learn IP addresses, DNS, ports, HTTP, TLS and client/server architecture. Practise only on systems you own or have permission to test.",
-        next:"HTTP headers, DNS, TLS, routing basics and web security fundamentals."
-      },
-      {
-        name:"Maths & Linear Algebra", category:"ai", status:"Current studies",
-        intro:"Mathematics supports algorithmic thinking and is a foundation for understanding many machine-learning methods.",
-        uses:["Representing data as vectors and matrices.","Understanding transformations and model calculations.","Reasoning about patterns, probability and optimisation."],
-        projects:["Vector calculator","Visualise matrix operations","Explain a sequence or counting problem"],
-        practice:"Solve small problems on paper, check the result with code and explain each step in your own words.",
-        next:"Vectors, matrices, probability, statistics, functions and calculus foundations."
-      },
-      {
-        name:"Data & Visualisation", category:"ai", status:"Roadmap",
-        intro:"Data analysis helps turn raw data into understandable summaries, patterns and charts.",
-        uses:["Cleaning and organising datasets.","Finding trends and comparing groups.","Communicating evidence with charts."],
-        projects:["Analyse a public dataset","Create a simple chart report","Summarise a dataset with Python"],
-        practice:"Learn spreadsheets and Python basics, then practise with Pandas and Matplotlib on public, non-sensitive datasets.",
-        next:"Data cleaning, descriptive statistics, Pandas and visualisation."
-      },
-      {
-        name:"AI & Machine Learning", category:"ai", status:"Future goal",
-        intro:"Machine learning uses data and algorithms to learn patterns and make predictions. AI is a broader field that includes other approaches too.",
-        uses:["Classifying or predicting from data.","Building recommendation prototypes.","Adding language or image features using suitable models."],
-        projects:["Small classification experiment","Compare model predictions","Document an AI feature with its limitations"],
-        practice:"Strengthen Python, maths, statistics and data handling first. Use beginner datasets and evaluate results instead of trusting outputs blindly.",
-        next:"Statistics, data preparation, train/test splits, model evaluation and responsible AI."
-      },
-      {
-        name:"Cloud & Deployment", category:"tools", status:"Roadmap",
-        intro:"Deployment makes an application available to other people. Cloud platforms provide infrastructure and managed services.",
-        uses:["Hosting websites and backend applications.","Managing application configuration.","Monitoring performance and reliability."],
-        projects:["Deploy a static portfolio","Document a deployment workflow","Add basic error and uptime checks"],
-        practice:"Start with GitHub Pages for static sites. Learn environment variables and deployment basics before using paid cloud services.",
-        next:"Hosting, DNS, environment configuration, logs, CI/CD and security basics."
+    (function () {
+      const $ = (id) => document.getElementById(id);
+      const toast = $("toast");
+      let toastTimer;
+
+      function notify(message) {
+        toast.textContent = message;
+        toast.classList.add("show");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove("show"), 2800);
       }
-    ];
 
-    const grid = document.getElementById("skillGrid");
-    const modal = document.getElementById("skillModal");
-    const drawer = document.getElementById("drawer");
-    let previousFocus = null;
-
-    function renderSkills(filter = "all") {
-      grid.innerHTML = "";
-      skills.filter(s => filter === "all" || s.category === filter).forEach(skill => {
-        const card = document.createElement("article");
-        card.className = "card skill-card";
-        const icon = document.createElement("div");
-        icon.className = "skill-icon";
-        icon.textContent = skill.category.toUpperCase() + " / SKILL GUIDE";
-        const title = document.createElement("h3");
-        title.textContent = skill.name;
-        const status = document.createElement("div");
-        status.className = "level";
-        status.textContent = skill.status;
-        const desc = document.createElement("p");
-        desc.textContent = skill.intro;
-        const button = document.createElement("button");
-        button.className = "btn";
-        button.textContent = "Explore skill ↗";
-        button.addEventListener("click", () => openSkill(skill));
-        card.append(icon, title, status, desc, button);
-        grid.appendChild(card);
+      // Welcome overlay
+      const welcome = $("welcome");
+      if (sessionStorage.getItem("portfolioWelcomeSeen") === "yes") {
+        welcome.classList.add("hidden");
+      }
+      $("enter-site").addEventListener("click", () => {
+        welcome.classList.add("hidden");
+        sessionStorage.setItem("portfolioWelcomeSeen", "yes");
       });
-    }
 
-    function fillList(id, items) {
-      const list = document.getElementById(id);
-      list.replaceChildren();
-      items.forEach(item => {
-        const li = document.createElement("li");
-        li.textContent = item;
-        list.appendChild(li);
+      // Theme settings
+      const themeToggle = $("theme-toggle");
+      const themeSelect = $("theme-select");
+      const brightness = $("brightness");
+
+      function setTheme(theme) {
+        document.body.classList.toggle("light", theme === "light");
+        themeSelect.value = theme;
+        localStorage.setItem("portfolioTheme", theme);
+      }
+
+      function setBrightness(value) {
+        document.documentElement.style.setProperty("--brightness", Number(value) / 100);
+        brightness.value = value;
+        localStorage.setItem("portfolioBrightness", value);
+      }
+
+      setTheme(localStorage.getItem("portfolioTheme") || "dark");
+      setBrightness(localStorage.getItem("portfolioBrightness") || 100);
+
+      themeToggle.addEventListener("click", () => {
+        setTheme(document.body.classList.contains("light") ? "dark" : "light");
       });
-    }
+      themeSelect.addEventListener("change", () => setTheme(themeSelect.value));
+      brightness.addEventListener("input", () => setBrightness(brightness.value));
 
-    function openSkill(skill) {
-      previousFocus = document.activeElement;
-      document.getElementById("modalCategory").textContent = skill.category + " / " + skill.status;
-      document.getElementById("modalTitle").textContent = skill.name;
-      document.getElementById("modalIntro").textContent = skill.intro;
-      fillList("modalUses", skill.uses);
-      fillList("modalProjects", skill.projects);
-      document.getElementById("modalPractice").textContent = skill.practice;
-      document.getElementById("modalNext").textContent = skill.next;
-      modal.classList.add("open");
-      document.body.style.overflow = "hidden";
-      document.getElementById("modalClose").focus();
-    }
+      $("reset-settings").addEventListener("click", () => {
+        setTheme("dark");
+        setBrightness(100);
+        notify("Display settings reset.");
+      });
 
-    function closeSkill() {
-      modal.classList.remove("open");
-      document.body.style.overflow = "";
-      if (previousFocus) previousFocus.focus();
-    }
+      // Motivational thoughts
+      const thoughts = [
+        { text: "Small steps, repeated with purpose, can build something remarkable.", author: "Original thought · Consistency" },
+        { text: "Well done is better than well said.", author: "Benjamin Franklin · Commonly attributed" },
+        { text: "The secret of getting ahead is getting started.", author: "Mark Twain · Commonly attributed" },
+        { text: "It always seems impossible until it's done.", author: "Nelson Mandela · Commonly attributed" },
+        { text: "Genius is one percent inspiration and ninety-nine percent perspiration.", author: "Thomas Edison · Commonly attributed" },
+        { text: "Start where you are. Use what you have. Do what you can.", author: "Arthur Ashe · Commonly attributed" },
+        { text: "Make your first version useful, then make it better.", author: "Original thought · Building" },
+        { text: "Curiosity becomes powerful when you turn it into experiments.", author: "Original thought · Innovation" },
+        { text: "Your skills grow each time you practise, test, and try again.", author: "Original thought · Learning" },
+        { text: "A meaningful idea matters more when it helps real people.", author: "Original thought · Entrepreneurship" },
+        { text: "Read deeply, think clearly, and explain simply.", author: "Original thought · Communication" },
+        { text: "You do not need to know everything to begin learning something.", author: "Original thought · Growth" },
+        { text: "Make your next attempt wiser than your last.", author: "Original thought · Resilience" },
+        { text: "The future is built by people willing to learn what comes next.", author: "Original thought · Technology" },
+        { text: "Progress is still progress when it happens quietly.", author: "Original thought · Consistency" },
+        { text: "Think independently. Check your facts. Stay open to learning.", author: "Original thought · Critical thinking" },
+        { text: "Great things are done by a series of small things brought together.", author: "Vincent van Gogh · Commonly attributed" },
+        { text: "The only way to do great work is to love what you do.", author: "Steve Jobs · Stanford speech, 2005" },
+        { text: "If you can dream it, you can do it.", author: "Often attributed to Walt Disney; attribution disputed" },
+        { text: "No act of kindness, no matter how small, is ever wasted.", author: "Aesop · Commonly attributed" },
+        { text: "Learning never exhausts the mind.", author: "Leonardo da Vinci · Commonly attributed" },
+        { text: "Be curious, not judgmental.", author: "Often attributed to Walt Whitman; attribution disputed" },
+        { text: "Simplicity is the ultimate sophistication.", author: "Often attributed to Leonardo da Vinci; attribution disputed" },
+        { text: "The best way out is always through.", author: "Robert Frost · Commonly attributed" },
+        { text: "What you do makes a difference, and you have to decide what kind of difference you want to make.", author: "Jane Goodall · Commonly quoted" },
+        { text: "Poetry is when an emotion has found its thought and the thought has found words.", author: "Robert Frost · Commonly attributed" },
+        { text: "The journey of a thousand miles begins with a single step.", author: "Laozi · Translation varies" },
+        { text: "A goal without a plan is just a wish.", author: "Antoine de Saint-Exupéry · Commonly attributed" },
+        { text: "Never stop learning, because life never stops teaching.", author: "Original thought · Growth" },
+        { text: "Build something small today that your future self can improve tomorrow.", author: "Original thought · Engineering" }
+      ];
 
-    renderSkills();
+      let currentThought = -1;
+      let rotationTimer = null;
+      let rotationPaused = false;
+      let barStart = Date.now();
+      const rotationMs = 15000;
 
-    document.getElementById("skillFilters").addEventListener("click", event => {
-      const button = event.target.closest("[data-filter]");
-      if (!button) return;
-      document.querySelectorAll(".filter-btn").forEach(b => b.classList.toggle("active", b === button));
-      renderSkills(button.dataset.filter);
-    });
-
-    document.getElementById("modalClose").addEventListener("click", closeSkill);
-    document.getElementById("modalDone").addEventListener("click", closeSkill);
-    modal.addEventListener("click", event => { if (event.target === modal) closeSkill(); });
-    document.addEventListener("keydown", event => {
-      if (event.key === "Escape") {
-        closeSkill();
-        closeDrawer();
+      function showNextThought() {
+        let next = Math.floor(Math.random() * thoughts.length);
+        if (thoughts.length > 1) {
+          while (next === currentThought) {
+            next = Math.floor(Math.random() * thoughts.length);
+          }
+        }
+        currentThought = next;
+        $("quote-text").textContent = "“" + thoughts[next].text + "”";
+        $("quote-author").textContent = thoughts[next].author;
+        $("quote-count").textContent = "Thought " + (next + 1) + " / " + thoughts.length;
+        barStart = Date.now();
+        $("quote-bar").style.transition = "none";
+        $("quote-bar").style.width = "0%";
+        requestAnimationFrame(() => {
+          $("quote-bar").style.transition = "width " + rotationMs + "ms linear";
+          $("quote-bar").style.width = "100%";
+        });
       }
-    });
 
-    function openDrawer() {
-      drawer.classList.add("open");
-      drawer.setAttribute("aria-hidden", "false");
-      document.body.style.overflow = "hidden";
-      document.getElementById("menuClose").focus();
-    }
-    function closeDrawer() {
-      drawer.classList.remove("open");
-      drawer.setAttribute("aria-hidden", "true");
-      if (!modal.classList.contains("open")) document.body.style.overflow = "";
-    }
-
-    document.getElementById("menuOpen").addEventListener("click", openDrawer);
-    document.getElementById("menuClose").addEventListener("click", closeDrawer);
-    drawer.addEventListener("click", event => { if (event.target === drawer) closeDrawer(); });
-    document.querySelectorAll("#siteNav a").forEach(link => link.addEventListener("click", closeDrawer));
-
-    function toggleTheme() {
-      document.body.classList.toggle("light");
-      const isLight = document.body.classList.contains("light");
-      document.getElementById("themeToggle").textContent = isLight ? "☾" : "☼";
-      document.getElementById("drawerTheme").textContent = isLight ? "Switch to night" : "Switch to day";
-    }
-    document.getElementById("themeToggle").addEventListener("click", toggleTheme);
-    document.getElementById("drawerTheme").addEventListener("click", toggleTheme);
-
-    document.getElementById("brightness").addEventListener("input", event => {
-      document.documentElement.style.setProperty("--brightness", Number(event.target.value) / 100);
-    });
-
-    document.getElementById("copyProfile").addEventListener("click", async () => {
-      const message = document.getElementById("copyMessage");
-      const url = "https://github.com/sudh4nshukum4r";
-      try {
-        await navigator.clipboard.writeText(url);
-        message.textContent = "GitHub profile link copied!";
-      } catch {
-        message.textContent = "Copy this link: " + url;
+      function startRotation() {
+        clearInterval(rotationTimer);
+        if (!rotationPaused) rotationTimer = setInterval(showNextThought, rotationMs);
       }
-    });
 
-    document.getElementById("year").textContent = new Date().getFullYear();
+      $("next-quote").addEventListener("click", () => {
+        showNextThought();
+        startRotation();
+      });
+
+      $("quote-card").addEventListener("click", (event) => {
+        if (event.target.closest("button")) return;
+        showNextThought();
+        startRotation();
+      });
+
+      $("pause-quotes").addEventListener("click", () => {
+        rotationPaused = !rotationPaused;
+        $("pause-quotes").textContent = rotationPaused ? "Resume rotation" : "Pause rotation";
+        if (rotationPaused) {
+          clearInterval(rotationTimer);
+          $("quote-bar").style.transition = "none";
+        } else {
+          startRotation();
+        }
+      });
+
+      showNextThought();
+      startRotation();
+
+      // Progress tracker, saved only in this browser
+      const progressBoxes = Array.from(document.querySelectorAll("[data-task]"));
+
+      function loadProgress() {
+        progressBoxes.forEach((box) => {
+          box.checked = localStorage.getItem("portfolioTask_" + box.dataset.task) === "yes";
+        });
+        updateProgress();
+      }
+
+      function updateProgress() {
+        const complete = progressBoxes.filter((box) => box.checked).length;
+        $("progress-total").textContent = complete + " of " + progressBoxes.length + " tasks completed";
+      }
+
+      progressBoxes.forEach((box) => {
+        box.addEventListener("change", () => {
+          localStorage.setItem("portfolioTask_" + box.dataset.task, box.checked ? "yes" : "no");
+          updateProgress();
+        });
+      });
+
+      $("reset-progress").addEventListener("click", () => {
+        progressBoxes.forEach((box) => {
+          box.checked = false;
+          localStorage.removeItem("portfolioTask_" + box.dataset.task);
+        });
+        updateProgress();
+        notify("Checklist reset.");
+      });
+
+      loadProgress();
+
+      // Query form: prepare and copy; no server submission
+      $("query-form").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const name = $("query-name").value.trim();
+        const email = $("query-email").value.trim();
+        const type = $("query-type").value;
+        const message = $("query-message").value.trim();
+
+        if (!message) {
+          notify("Please enter a message first.");
+          return;
+        }
+
+        const prepared = [
+          "Portfolio query",
+          "Name: " + (name || "Not provided"),
+          "Email: " + (email || "Not provided"),
+          "Topic: " + type,
+          "",
+          message
+        ].join("\n");
+
+        try {
+          await navigator.clipboard.writeText(prepared);
+          notify("Message copied. It has NOT been sent.");
+        } catch (error) {
+          const area = document.createElement("textarea");
+          area.value = prepared;
+          area.style.position = "fixed";
+          area.style.opacity = "0";
+          document.body.appendChild(area);
+          area.select();
+          const copied = document.execCommand("copy");
+          area.remove();
+          notify(copied ? "Message copied. It has NOT been sent." : "Copy failed. Please select and copy your message manually.");
+        }
+      });
+
+      $("year").textContent = new Date().getFullYear();
+    })();
   </script>
 </body>
 </html>
