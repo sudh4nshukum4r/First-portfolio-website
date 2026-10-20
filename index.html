@@ -1,0 +1,341 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090d18">
+  <meta name="description" content="Sudhanshu Kumar — B.Tech AI student learning Python, web development, and building technology projects.">
+  <title>Sudhanshu Kumar | AI Student & Builder</title>
+
+  <style>
+    :root {
+      --bg: #090d18;
+      --panel: #111827;
+      --text: #f4f7ff;
+      --muted: #a5b0c5;
+      --accent: #70e1f5;
+      --purple: #a78bfa;
+      --border: rgba(255,255,255,.10);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, Arial, sans-serif;
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    .container { width: min(1080px, 90%); margin: auto; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(9,13,24,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo { font-weight: 800; font-size: 1.15rem; }
+    .logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .nav-links a:hover, .text-link:hover { color: var(--accent); }
+
+    .hero {
+      min-height: 78vh;
+      display: grid;
+      grid-template-columns: 1.4fr .8fr;
+      align-items: center;
+      gap: 55px;
+      padding-top: 75px;
+      padding-bottom: 75px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: .78rem;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: clamp(2.7rem, 6vw, 5rem);
+      line-height: 1.08;
+      letter-spacing: -2px;
+      margin: 18px 0;
+    }
+
+    .gradient {
+      background: linear-gradient(90deg, var(--accent), var(--purple));
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    .hero p, .section-intro { color: var(--muted); max-width: 650px; }
+
+    .buttons { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
+
+    .button {
+      display: inline-block;
+      padding: 11px 19px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      font-weight: 700;
+      transition: transform .2s, border-color .2s;
+    }
+
+    .button:hover { transform: translateY(-2px); border-color: var(--accent); }
+
+    .primary { background: var(--accent); color: #07111c; }
+
+    .portrait-wrap {
+      padding: 12px;
+      border: 1px solid rgba(112,225,245,.4);
+      border-radius: 28px;
+      background: linear-gradient(145deg, #18243a, #101322);
+      box-shadow: 0 25px 80px rgba(0,0,0,.3);
+    }
+
+    .portrait {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      border-radius: 19px;
+      background: var(--panel);
+    }
+
+    section { padding: 75px 0; scroll-margin-top: 75px; }
+
+    .section-title { font-size: clamp(1.9rem, 4vw, 2.7rem); margin-bottom: 12px; }
+    .section-intro { margin-bottom: 30px; }
+
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+
+    .card {
+      padding: 25px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 17px;
+    }
+
+    .card h3 { margin-bottom: 10px; font-size: 1.15rem; }
+    .card p { color: var(--muted); }
+    .card .text-link { display: inline-block; margin-top: 15px; color: var(--accent); }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    .tag {
+      padding: 7px 13px;
+      border-radius: 9px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      color: #dce5f7;
+      font-size: .92rem;
+    }
+
+    .contact-card { text-align: center; }
+    .contact-card p { margin: 12px auto 20px; max-width: 580px; }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 25px 0;
+      color: var(--muted);
+      font-size: .9rem;
+      text-align: center;
+    }
+
+    @media (max-width: 720px) {
+      nav { padding: 14px 0; align-items: flex-start; flex-direction: column; }
+      .nav-links { gap: 13px; }
+      .hero { min-height: auto; grid-template-columns: 1fr; gap: 35px; padding-top: 55px; }
+      .portrait-wrap { max-width: 330px; }
+      .grid { grid-template-columns: 1fr; }
+      section { padding: 55px 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="container" aria-label="Main navigation">
+      <a class="logo" href="#home">SUDHANSHU<span>.</span></a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero container" id="home">
+      <div>
+        <div class="eyebrow">AI Student · Curious Builder</div>
+        <h1>Hi, I'm <span class="gradient">Sudhanshu Kumar.</span></h1>
+        <p>
+          I'm a B.Tech Artificial Intelligence student learning Python,
+          web development, and the technologies shaping our future.
+          I believe in learning by building, improving through practice,
+          and turning ideas into useful projects.
+        </p>
+        <div class="buttons">
+          <a class="button primary" href="#projects">Explore My Projects ↘</a>
+          <a class="button" href="https://github.com/sudh4nshukum4r"
+             target="_blank" rel="noopener noreferrer">My GitHub ↗</a>
+        </div>
+      </div>
+
+      <div class="portrait-wrap">
+        <img
+          class="portrait"
+          src="WIN_20260916_11_21_37_Pro.jpg"
+          alt="Portrait of Sudhanshu Kumar"
+          onerror="this.style.display='none'; this.nextElementSibling.hidden=false;"
+        >
+        <p hidden style="padding:25px;text-align:center;color:#a5b0c5">
+          Add your portrait image to this repository to display it here.
+        </p>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="eyebrow">A little about me</div>
+        <h2 class="section-title">Learning today. Building for tomorrow.</h2>
+        <p class="section-intro">
+          I'm pursuing B.Tech in Artificial Intelligence at Zenith School of AI,
+          K.R. Mangalam University, Sohna. I'm developing my foundations in
+          programming and the web while exploring AI, robotics, and startup ideas.
+          My focus is on consistent learning and practical experience.
+        </p>
+
+        <div class="grid">
+          <article class="card">
+            <h3>My learning journey</h3>
+            <p>Python, programming fundamentals, HTML, CSS, Git, and GitHub — one concept and project at a time.</p>
+          </article>
+          <article class="card">
+            <h3>What interests me</h3>
+            <p>Artificial intelligence, robotics, automation, product building, and technology-driven startups.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="eyebrow">My toolkit</div>
+        <h2 class="section-title">Skills I'm developing</h2>
+        <p class="section-intro">These are my current learning areas. I'll update this list as I gain experience.</p>
+        <div class="tags">
+          <span class="tag">Python · Learning</span>
+          <span class="tag">HTML5</span>
+          <span class="tag">CSS3 · Learning</span>
+          <span class="tag">Git & GitHub</span>
+          <span class="tag">AI Fundamentals</span>
+          <span class="tag">Problem Solving</span>
+          <span class="tag">Robotics · Exploring</span>
+          <span class="tag">Product Thinking</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="eyebrow">Things I'm working on</div>
+        <h2 class="section-title">Featured projects</h2>
+        <p class="section-intro">Explore my learning repositories and follow my progress.</p>
+
+        <div class="grid">
+          <article class="card">
+            <h3>Python Learning</h3>
+            <p>My Python learning journey, practice exercises, and programming fundamentals.</p>
+            <a class="text-link" href="https://github.com/sudh4nshukum4r/FULL-PYTHON-LEC" target="_blank" rel="noopener noreferrer">View repository ↗</a>
+          </article>
+
+          <article class="card">
+            <h3>HTML Projects</h3>
+            <p>Web development practice, HTML examples, and projects as I build my frontend skills.</p>
+            <a class="text-link" href="https://github.com/sudh4nshukum4r/BASIC-TO-ADV-PROJECT-OF-HTML" target="_blank" rel="noopener noreferrer">View repository ↗</a>
+          </article>
+
+          <article class="card">
+            <h3>SIGMA FSD</h3>
+            <p>My coursework and practice in full-stack development fundamentals.</p>
+            <a class="text-link" href="https://github.com/sudh4nshukum4r/SIGMA-FSD" target="_blank" rel="noopener noreferrer">View repository ↗</a>
+          </article>
+
+          <article class="card">
+            <h3>AI & Robotics Ideas</h3>
+            <p>Exploring concepts for AI-powered products, automation, and robotics through learning and experimentation.</p>
+            <a class="text-link" href="https://github.com/sudh4nshukum4r" target="_blank" rel="noopener noreferrer">Follow my work ↗</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="card contact-card">
+          <div class="eyebrow">Let's connect</div>
+          <h2 class="section-title">Ideas start with a conversation.</h2>
+          <p>
+            Interested in technology, AI, learning projects, or collaborating
+            on ideas? Find me on GitHub.
+          </p>
+          <a class="button primary"
+             href="https://github.com/sudh4nshukum4r"
+             target="_blank" rel="noopener noreferrer">Connect on GitHub ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © <span id="year">2026</span> Sudhanshu Kumar · Built with HTML & CSS
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
