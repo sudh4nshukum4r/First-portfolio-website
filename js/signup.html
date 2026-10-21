@@ -1,0 +1,477 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101126">
+  <title>Create Your Account | LS4</title>
+  <meta name="description" content="Join LS4, your global learning community.">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #101126;
+      --panel: #191b35;
+      --border: #343654;
+      --text: #f5f5ff;
+      --muted: #b4b6d1;
+      --purple: #9275ff;
+      --blue: #5ca8ff;
+      --danger: #ff9696;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 28px 16px;
+      display: grid;
+      place-items: center;
+      font-family: Inter, system-ui, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at top left, #29204f 0, transparent 45%),
+        radial-gradient(ellipse at bottom right, #172f50 0, transparent 40%),
+        var(--bg);
+    }
+
+    .page { width: 100%; max-width: 720px; }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 22px;
+      text-decoration: none;
+      color: white;
+    }
+
+    .logo {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 15px;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--purple), var(--blue));
+    }
+
+    .brand-name { font-size: 23px; font-weight: 850; }
+    .brand-sub { display: block; color: var(--muted); font-size: 11px; letter-spacing: 2px; }
+
+    .card {
+      background: rgba(25, 27, 53, .96);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: clamp(20px, 5vw, 38px);
+      box-shadow: 0 25px 80px #0004;
+    }
+
+    h1 { margin: 0 0 9px; font-size: clamp(27px, 5vw, 36px); }
+    .intro { color: var(--muted); line-height: 1.6; margin: 0 0 24px; }
+
+    .top-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    label { display: block; font-size: 13px; font-weight: 650; margin-bottom: 8px; }
+
+    input, select {
+      width: 100%;
+      min-height: 46px;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      padding: 11px 12px;
+      background: #111329;
+      color: var(--text);
+      font: inherit;
+    }
+
+    input:focus, select:focus {
+      outline: 2px solid var(--purple);
+      outline-offset: 2px;
+    }
+
+    .field { min-width: 0; margin-bottom: 17px; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 14px; }
+    .full { grid-column: 1 / -1; }
+    .hint { display: block; color: var(--muted); font-size: 12px; margin-top: 7px; line-height: 1.5; }
+
+    .password-rules {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+      padding-left: 20px;
+      margin: -6px 0 17px;
+    }
+
+    .checkrow {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin: 14px 0 20px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .checkrow input { width: 17px; min-height: 17px; margin-top: 3px; }
+
+    button, .button-link {
+      min-height: 47px;
+      border: 0;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font: inherit;
+      font-weight: 750;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: transform .15s ease, opacity .15s ease;
+    }
+
+    button:hover, .button-link:hover { transform: translateY(-1px); }
+    button:disabled { opacity: .55; cursor: wait; transform: none; }
+
+    .primary {
+      width: 100%;
+      color: white;
+      background: linear-gradient(100deg, #8465ff, #477fe9);
+    }
+
+    .social {
+      width: 100%;
+      background: #222541;
+      border: 1px solid var(--border);
+      color: white;
+    }
+
+    .social-options { display: grid; gap: 10px; margin-bottom: 20px; }
+    .separator { display: flex; align-items: center; gap: 12px; color: var(--muted); font-size: 12px; margin: 20px 0; }
+    .separator::before, .separator::after { content: ""; height: 1px; background: var(--border); flex: 1; }
+
+    .message { display: none; padding: 12px; border-radius: 10px; margin: 0 0 18px; line-height: 1.5; font-size: 13px; }
+    .message.show { display: block; }
+    .message.error { color: var(--danger); background: #49262d; }
+    .message.success { color: #a9f3c4; background: #173d32; }
+
+    .bottom { text-align: center; color: var(--muted); font-size: 14px; margin-top: 22px; }
+    a { color: #b5a4ff; }
+    .footer { text-align: center; color: var(--muted); font-size: 12px; margin-top: 20px; }
+
+    @media (max-width: 540px) {
+      .grid, .top-options { grid-template-columns: 1fr; }
+      .card { border-radius: 18px; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <a class="brand" href="index.html" aria-label="LS4 home">
+      <span class="logo">LS4</span>
+      <span>
+        <span class="brand-name">LE4RNSP4CE</span>
+        <span class="brand-sub">LEARN · BUILD · SHARE · GROW</span>
+      </span>
+    </a>
+
+    <section class="card">
+      <h1>Create your account</h1>
+      <p class="intro">Join a global community to learn new skills, build projects and grow together.</p>
+
+      <div class="top-options">
+        <div>
+          <label for="country">Country / Region</label>
+          <select id="country" name="country">
+            <option value="IN" selected>🇮🇳 India</option>
+            <option value="US">🇺🇸 United States</option>
+            <option value="GB">🇬🇧 United Kingdom</option>
+            <option value="AE">🇦🇪 United Arab Emirates</option>
+            <option value="BD">🇧🇩 Bangladesh</option>
+            <option value="PK">🇵🇰 Pakistan</option>
+            <option value="NP">🇳🇵 Nepal</option>
+            <option value="LK">🇱🇰 Sri Lanka</option>
+            <option value="CA">🇨🇦 Canada</option>
+            <option value="AU">🇦🇺 Australia</option>
+            <option value="JP">🇯🇵 Japan</option>
+            <option value="CN">🇨🇳 China</option>
+            <option value="FR">🇫🇷 France</option>
+            <option value="DE">🇩🇪 Germany</option>
+            <option value="BR">🇧🇷 Brazil</option>
+            <option value="NG">🇳🇬 Nigeria</option>
+            <option value="OTHER">Other country</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="language">Website language</label>
+          <select id="language" name="language">
+            <option value="en" selected>English</option>
+            <option value="hi">हिन्दी — Hindi</option>
+            <option value="bn">বাংলা — Bengali</option>
+            <option value="ta">தமிழ் — Tamil</option>
+            <option value="te">తెలుగు — Telugu</option>
+            <option value="mr">मराठी — Marathi</option>
+            <option value="gu">ગુજરાતી — Gujarati</option>
+            <option value="pa">ਪੰਜਾਬੀ — Punjabi</option>
+            <option value="ur">اردو — Urdu</option>
+            <option value="ar">العربية — Arabic</option>
+            <option value="es">Español — Spanish</option>
+            <option value="fr">Français — French</option>
+            <option value="de">Deutsch — German</option>
+            <option value="ja">日本語 — Japanese</option>
+            <option value="zh">中文 — Chinese</option>
+            <option value="pt">Português — Portuguese</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="social-options">
+        <button type="button" class="social" id="googleButton">Continue with Google</button>
+        <button type="button" class="social" id="microsoftButton">Continue with Microsoft</button>
+      </div>
+
+      <div class="separator">OR CREATE AN ACCOUNT WITH EMAIL</div>
+
+      <div id="formMessage" class="message" role="status" aria-live="polite"></div>
+
+      <form id="signupForm">
+        <div class="grid">
+          <div class="field">
+            <label for="firstName">First name *</label>
+            <input id="firstName" name="firstName" autocomplete="given-name" maxlength="60" required>
+          </div>
+
+          <div class="field">
+            <label for="middleName">Middle name (optional)</label>
+            <input id="middleName" name="middleName" autocomplete="additional-name" maxlength="60">
+          </div>
+
+          <div class="field">
+            <label for="lastName">Last name *</label>
+            <input id="lastName" name="lastName" autocomplete="family-name" maxlength="60" required>
+          </div>
+
+          <div class="field">
+            <label for="username">Username *</label>
+            <input id="username" name="username" autocomplete="username" minlength="3" maxlength="20" pattern="[A-Za-z0-9_]+" required>
+            <span class="hint">3–20 characters: letters, numbers and underscore.</span>
+          </div>
+
+          <div class="field full">
+            <label for="email">Email address *</label>
+            <input id="email" name="email" type="email" autocomplete="email" maxlength="254" required>
+          </div>
+
+          <div class="field full">
+            <label for="phone">Phone number *</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+91 9876543210" maxlength="20" required>
+            <span class="hint">Include your country code, for example +91 for India.</span>
+          </div>
+
+          <div class="field">
+            <label for="password">Password *</label>
+            <input id="password" name="password" type="password" autocomplete="new-password" minlength="8" maxlength="128" required>
+          </div>
+
+          <div class="field">
+            <label for="confirmPassword">Confirm password *</label>
+            <input id="confirmPassword" name="confirmPassword" type="password" autocomplete="new-password" minlength="8" maxlength="128" required>
+          </div>
+        </div>
+
+        <ul class="password-rules">
+          <li>At least 8 characters</li>
+          <li>At least one uppercase letter (A–Z)</li>
+          <li>At least one lowercase letter (a–z)</li>
+          <li>At least one number (0–9)</li>
+          <li>At least one special character, such as ! @ # $</li>
+        </ul>
+
+        <label class="checkrow">
+          <input type="checkbox" id="terms" required>
+          <span>I agree to the platform's Terms of Service and Privacy Policy.</span>
+        </label>
+
+        <p class="hint">Robot verification will be connected as part of the security setup. This page does not yet contain a live CAPTCHA, so it is not ready for public signup.</p>
+
+        <button type="submit" class="primary" id="signupButton">Create your account</button>
+      </form>
+
+      <p class="bottom">Already have an account? <a href="login.html">Log in</a></p>
+    </section>
+
+    <p class="footer">LS4 · Learn. Build. Share. Grow.</p>
+  </main>
+
+  <script type="module">
+    import { initializeApp } from
+      "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
+
+    import {
+      getAuth,
+      createUserWithEmailAndPassword,
+      updateProfile,
+      sendEmailVerification,
+      GoogleAuthProvider,
+      OAuthProvider,
+      signInWithPopup
+    } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAq2dZSTyMha1TyifA37ZkUGNB69Bb__mY",
+      authDomain: "le4rnsp4ce.firebaseapp.com",
+      projectId: "le4rnsp4ce",
+      storageBucket: "le4rnsp4ce.firebasestorage.app",
+      messagingSenderId: "679714213034",
+      appId: "1:679714213034:web:2768833e0c6ce25398d4d3",
+      measurementId: "G-9GE67VBYFM"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const form = document.getElementById("signupForm");
+    const message = document.getElementById("formMessage");
+    const submitButton = document.getElementById("signupButton");
+
+    function showMessage(text, kind = "error") {
+      message.textContent = text;
+      message.className = `message show ${kind}`;
+    }
+
+    function checkPassword(password) {
+      return password.length >= 8 &&
+        /[A-Z]/.test(password) &&
+        /[a-z]/.test(password) &&
+        /[0-9]/.test(password) &&
+        /[^A-Za-z0-9]/.test(password);
+    }
+
+    form.addEventListener("submit", async event => {
+      event.preventDefault();
+      message.className = "message";
+
+      const firstName = document.getElementById("firstName").value.trim();
+      const middleName = document.getElementById("middleName").value.trim();
+      const lastName = document.getElementById("lastName").value.trim();
+      const username = document.getElementById("username").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+      const country = document.getElementById("country").value;
+      const language = document.getElementById("language").value;
+
+      if (!/^[A-Za-z0-9_]{3,20}$/.test(username)) {
+        showMessage("Username must be 3–20 characters using letters, numbers or underscores.");
+        return;
+      }
+
+      if (!/^\+[1-9]\d{7,14}$/.test(phone.replace(/[\s()-]/g, ""))) {
+        showMessage("Enter a valid phone number with country code, such as +919876543210.");
+        return;
+      }
+
+      if (!checkPassword(password)) {
+        showMessage("Password must contain 8+ characters, uppercase, lowercase, a number and a special character.");
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        showMessage("Passwords do not match.");
+        return;
+      }
+
+      submitButton.disabled = true;
+      submitButton.textContent = "Creating account…";
+
+      try {
+        const credential = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+        const fullName = [firstName, middleName, lastName]
+          .filter(Boolean)
+          .join(" ");
+
+        await updateProfile(credential.user, {
+          displayName: fullName
+        });
+
+        await sendEmailVerification(credential.user);
+
+        /*
+          IMPORTANT:
+          This creates a Firebase Authentication account and sends
+          an email verification message. It does NOT yet save username,
+          phone, country or language to a Firestore user profile.
+          Unique usernames must be enforced in Firestore rules/backend.
+        */
+
+        try {
+          localStorage.setItem("ls4-language", language);
+          localStorage.setItem("ls4-country", country);
+        } catch {
+          // Account creation should not fail if browser storage is blocked.
+        }
+
+        showMessage(
+          "Account created! Check your email to verify it. Profile details and username availability still need the secure database setup.",
+          "success"
+        );
+
+        form.reset();
+      } catch (error) {
+        const messages = {
+          "auth/email-already-in-use": "This email already has an account. Please log in.",
+          "auth/invalid-email": "Please enter a valid email address.",
+          "auth/weak-password": "Please choose a stronger password.",
+          "auth/operation-not-allowed": "Email/password sign-up is disabled in Firebase Authentication settings.",
+          "auth/network-request-failed": "Network error. Check your internet and try again."
+        };
+
+        showMessage(messages[error.code] || `Signup failed: ${error.message}`);
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = "Create your account";
+      }
+    });
+
+    document.getElementById("googleButton").addEventListener("click", async () => {
+      try {
+        await signInWithPopup(auth, new GoogleAuthProvider());
+        window.location.href = "dashboard.html";
+      } catch (error) {
+        showMessage(
+          error.code === "auth/operation-not-allowed"
+            ? "Google sign-in is not enabled yet. Enable Google in Firebase Authentication."
+            : `Google sign-in: ${error.message}`
+        );
+      }
+    });
+
+    document.getElementById("microsoftButton").addEventListener("click", async () => {
+      try {
+        const provider = new OAuthProvider("microsoft.com");
+        await signInWithPopup(auth, provider);
+        window.location.href = "dashboard.html";
+      } catch (error) {
+        showMessage(
+          error.code === "auth/operation-not-allowed"
+            ? "Microsoft sign-in is not enabled yet. Configure the Microsoft provider in Firebase first."
+            : `Microsoft sign-in: ${error.message}`
+        );
+      }
+    });
+  </script>
+</body>
+</html>
