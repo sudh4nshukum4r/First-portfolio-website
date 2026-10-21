@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | LearnSpace</title>
+  <style>
+    html.auth-checking body { visibility: hidden; }
+    body {
+      margin: 0;
+      padding: 32px 20px;
+      font-family: Arial, sans-serif;
+      background: #0b0b12;
+      color: #fff;
+    }
+    main { max-width: 850px; margin: 45px auto; }
+    .card {
+      background: #191923;
+      border: 1px solid #303040;
+      border-radius: 14px;
+      padding: 24px;
+      margin: 20px 0;
+    }
+    a, button {
+      display: inline-block;
+      padding: 12px 18px;
+      margin: 8px 8px 8px 0;
+      border: 0;
+      border-radius: 8px;
+      background: #ffd84d;
+      color: #171717;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    p { color: #d0d0dd; line-height: 1.6; }
+  </style>
+  <script>
+    document.documentElement.classList.add("auth-checking");
+  </script>
+</head>
+<body>
+  <main>
+    <h1>My Dashboard</h1>
+    <p id="status">Checking your account...</p>
+
+    <section class="card">
+      <h2>Welcome, <span id="userName">Learner</span>!</h2>
+      <p>This is your personal LearnSpace dashboard.</p>
+      <a href="./courses.html">Explore Courses</a>
+      <a href="./index.html">Home</a>
+      <button id="logoutButton" type="button">Log out</button>
+    </section>
+  </main>
+
+  <script type="module">
+    import { initializeApp } from
+      "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
+    import {
+      getAuth,
+      onAuthStateChanged,
+      signOut
+    } from
+      "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "PASTE_YOUR_EXISTING_FIREBASE_API_KEY",
+      authDomain: "le4rnsp4ce.firebaseapp.com",
+      projectId: "le4rnsp4ce",
+      storageBucket: "le4rnsp4ce.firebasestorage.app",
+      messagingSenderId: "679714213034",
+      appId: "1:679714213034:web:2768833e0c6ce25398d4d3"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        window.location.replace("./login.html");
+        return;
+      }
+
+      document.getElementById("userName").textContent =
+        user.displayName || user.email || "Learner";
+      document.getElementById("status").textContent =
+        "You are logged in.";
+      document.documentElement.classList.remove("auth-checking");
+    });
+
+    document.getElementById("logoutButton").addEventListener("click", async () => {
+      try {
+        await signOut(auth);
+        window.location.replace("./login.html");
+      } catch (error) {
+        document.getElementById("status").textContent =
+          "Logout failed. Please try again.";
+      }
+    });
+  </script>
+</body>
+</html>
