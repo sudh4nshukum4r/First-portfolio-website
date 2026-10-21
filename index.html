@@ -5,593 +5,922 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#10111b">
-  <meta name="description" content="LE4RNSP4CE — learn, create and grow together.">
-  <title>LE4RNSP4CE — Learn Together</title>
+  <meta name="description" content="LE4RNSP4CE — Learn together, build together.">
+  <title>LE4RNSP4CE — Learning Community</title>
+
   <style>
     :root {
-      --bg: #0d0e16;
-      --panel: #151722;
-      --panel2: #1c1f2d;
-      --text: #f5f6ff;
-      --muted: #a3a8bd;
-      --line: #2a2d3d;
+      color-scheme: dark;
+      --bg: #10111b;
+      --panel: #191b29;
+      --panel2: #222538;
+      --text: #f4f5ff;
+      --muted: #a2a8c2;
+      --line: #303349;
       --accent: #8b7cff;
-      --accent2: #b5aaff;
-      --radius: 18px;
+      --accent2: #55d6be;
+      --danger: #ff8292;
+      --shadow: 0 14px 40px #0002;
     }
 
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, sans-serif;
       background: var(--bg);
       color: var(--text);
-      font-family: Inter, ui-sans-serif, system-ui, Arial, sans-serif;
+      line-height: 1.6;
     }
+
     button, input, textarea, select { font: inherit; }
-    button, a { -webkit-tap-highlight-color: transparent; }
-    a { color: inherit; text-decoration: none; }
     button { cursor: pointer; }
-    .app { min-height: 100vh; padding-bottom: 92px; }
+    a { color: inherit; text-decoration: none; }
+
+    button:focus-visible, input:focus-visible,
+    textarea:focus-visible, select:focus-visible,
+    a:focus-visible {
+      outline: 2px solid var(--accent2);
+      outline-offset: 3px;
+    }
+
     .topbar {
-      position: sticky; top: 0; z-index: 10;
-      display: flex; align-items: center; gap: 12px;
-      padding: 13px max(16px, calc((100vw - 1080px)/2));
-      background: rgba(13,14,22,.93);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 13px max(18px, calc((100% - 1120px) / 2));
+      background: var(--bg);
       border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(16px);
     }
-    .brand { display: flex; align-items: center; gap: 10px; min-width: max-content; }
-    .logo {
-      display: grid; place-items: center; width: 42px; height: 42px;
-      border-radius: 14px; background: linear-gradient(135deg,#6d5dfc,#a78bfa);
-      font-weight: 900; font-size: 19px;
+
+    .brand { font-size: 21px; font-weight: 900; letter-spacing: -.7px; }
+    .brand span { color: var(--accent); }
+    .top-actions { display: flex; align-items: center; gap: 10px; }
+
+    .btn {
+      border: 1px solid var(--line);
+      background: var(--panel2);
+      color: var(--text);
+      padding: 9px 14px;
+      border-radius: 11px;
+      font-weight: 650;
     }
-    .brand-name { font-weight: 850; letter-spacing: .4px; }
-    .brand-sub { color: var(--muted); font-size: 11px; margin-top: 2px; }
-    .search-wrap { flex: 1; max-width: 420px; margin: 0 auto; position: relative; }
-    .search-wrap input {
-      width: 100%; background: var(--panel); border: 1px solid var(--line);
-      border-radius: 13px; padding: 11px 14px 11px 38px; color: var(--text);
-      outline: none;
+
+    .btn.primary {
+      background: var(--accent);
+      color: #fff;
+      border-color: transparent;
     }
-    .search-wrap input:focus, textarea:focus, input:focus {
-      border-color: var(--accent);
+
+    .btn:disabled { opacity: .6; cursor: wait; }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px 18px 100px;
     }
-    .search-icon { position: absolute; left: 13px; top: 10px; color: var(--muted); }
-    .icon-btn {
-      display: grid; place-items: center; width: 40px; height: 40px;
-      border: 1px solid var(--line); border-radius: 13px;
-      background: var(--panel); color: var(--text); font-size: 18px;
+
+    .hero {
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: linear-gradient(130deg, var(--panel), #252344);
+      box-shadow: var(--shadow);
     }
-    .menu-wrap { position: relative; }
-    .menu {
-      display: none; position: absolute; right: 0; top: 48px; width: 230px;
-      padding: 8px; border: 1px solid var(--line); border-radius: 15px;
-      background: var(--panel); box-shadow: 0 18px 50px #0008;
+
+    .eyebrow {
+      color: var(--accent2);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      font-size: 12px;
     }
-    .menu.open { display: block; }
-    .menu a, .menu button {
-      display: block; width: 100%; padding: 11px; border: 0; border-radius: 9px;
-      text-align: left; color: var(--text); background: transparent;
+
+    h1 { font-size: clamp(29px, 5vw, 44px); line-height: 1.15; margin: 8px 0 12px; }
+    h2 { margin: 0 0 12px; }
+    h3 { line-height: 1.35; }
+    .muted { color: var(--muted); }
+    .hero p { max-width: 650px; color: var(--muted); }
+
+    .section { margin-top: 28px; }
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
     }
-    .menu a:hover, .menu button:hover { background: var(--panel2); }
-    main { width: min(720px, calc(100% - 28px)); margin: 26px auto; }
-    .welcome {
-      padding: 25px; border: 1px solid #35304e; border-radius: 24px;
-      background: radial-gradient(circle at 90% 0%, #51429a55, transparent 40%),
-                  linear-gradient(135deg,#1b1b2b,#151722);
+
+    .search {
+      width: min(100%, 340px);
+      background: var(--panel);
+      border: 1px solid var(--line);
+      color: var(--text);
+      padding: 12px 14px;
+      border-radius: 12px;
     }
-    .eyebrow { color: var(--accent2); font-size: 12px; font-weight: 750; letter-spacing: 1.5px; }
-    h1 { font-size: clamp(27px,5vw,39px); line-height: 1.12; margin: 12px 0; }
-    .muted { color: var(--muted); line-height: 1.6; }
-    .primary, .secondary {
-      border: 0; border-radius: 12px; padding: 11px 15px; font-weight: 750;
+
+    .filters { display: flex; gap: 8px; flex-wrap: wrap; margin: 14px 0; }
+    .filter.active { background: var(--accent); border-color: var(--accent); color: white; }
+
+    .feed { display: grid; gap: 14px; }
+
+    .post, .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+      min-width: 0;
     }
-    .primary { color: white; background: var(--accent); }
-    .secondary { color: var(--text); background: var(--panel2); border: 1px solid var(--line); }
-    .welcome-actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 18px; }
-    .section-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 25px 0 13px; }
-    h2 { font-size: 19px; margin: 0; }
-    .chips { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 5px; }
-    .chip {
-      white-space: nowrap; border: 1px solid var(--line); color: var(--muted);
-      background: var(--panel); padding: 8px 12px; border-radius: 99px;
+
+    .post-head {
+      display: flex;
+      align-items: center;
+      gap: 11px;
     }
-    .chip.active { background: #302b51; color: #d9d3ff; border-color: #6355b8; }
-    .composer, .post, .feature-card, .empty-state {
-      background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
-    }
-    .composer { padding: 16px; }
-    .composer-top { display: flex; align-items: center; gap: 11px; }
+
     .avatar {
-      flex: 0 0 auto; display: grid; place-items: center; width: 42px; height: 42px;
-      border-radius: 50%; color: white; font-weight: 800;
-      background: linear-gradient(135deg,#6d5dfc,#d16ba5);
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), #4ccbb7);
+      color: white;
+      font-weight: 900;
     }
-    .fake-input {
-      flex: 1; text-align: left; padding: 13px 15px; border-radius: 99px;
-      border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
+
+    .post-meta { min-width: 0; flex: 1; }
+    .post-meta strong, .post-meta small { display: block; overflow-wrap: anywhere; }
+    .post-meta small { color: var(--muted); font-size: 12px; }
+
+    .post-type {
+      color: var(--accent2);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 4px 9px;
+      font-size: 12px;
+      white-space: nowrap;
     }
-    .composer-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
-    .mini-action { border: 0; background: transparent; color: var(--muted); padding: 8px 9px; border-radius: 9px; }
-    .mini-action:hover { background: var(--panel2); color: var(--text); }
-    .post { padding: 17px; margin-top: 14px; }
-    .post-head { display: flex; align-items: center; gap: 10px; }
-    .post-meta { flex: 1; min-width: 0; }
-    .post-meta strong { display: block; font-size: 14px; }
-    .post-meta small { color: var(--muted); }
-    .post-type { font-size: 11px; color: var(--accent2); background: #302b51; padding: 5px 8px; border-radius: 99px; }
-    .post h3 { margin: 17px 0 8px; font-size: 18px; }
-    .post p { color: #d4d6e4; line-height: 1.65; white-space: pre-wrap; overflow-wrap: anywhere; }
+
+    .post h3 { margin: 17px 0 8px; }
+    .post p { white-space: pre-wrap; overflow-wrap: anywhere; }
     .tags { color: var(--accent2); overflow-wrap: anywhere; }
-    .post-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
-    .post-actions button { flex: 1; min-width: 75px; border: 0; border-radius: 9px; padding: 9px 5px; background: transparent; color: var(--muted); }
-    .post-actions button:hover, .post-actions button.liked { background: #302b51; color: #d9d3ff; }
-    .feature-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 11px; }
-    .feature-card { padding: 16px; }
-    .feature-card .symbol { font-size: 23px; }
-    .feature-card strong { display: block; margin: 9px 0 5px; }
-    .feature-card p { color: var(--muted); font-size: 13px; line-height: 1.5; margin: 0; }
-    .empty-state { padding: 25px; text-align: center; color: var(--muted); }
-    .bottom-nav {
-      position: fixed; z-index: 15; bottom: 0; left: 0; right: 0;
-      display: flex; justify-content: center; gap: 0; padding: 8px 8px max(8px, env(safe-area-inset-bottom));
-      background: rgba(18,19,30,.96); border-top: 1px solid var(--line);
-      backdrop-filter: blur(16px);
+    .post-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+
+    .empty-state {
+      text-align: center;
+      color: var(--muted);
+      border: 1px dashed var(--line);
+      border-radius: 16px;
+      padding: 32px 16px;
     }
-    .nav-item {
-      flex: 1; max-width: 160px; display: flex; flex-direction: column;
-      align-items: center; gap: 4px; padding: 7px 3px; border: 0;
-      border-radius: 12px; background: transparent; color: var(--muted); font-size: 11px;
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
     }
-    .nav-item .nav-icon { font-size: 20px; }
-    .nav-item.active { color: var(--accent2); background: #292542; }
-    .modal-backdrop {
-      display: none; position: fixed; z-index: 30; inset: 0; padding: 16px;
-      background: #0009; align-items: center; justify-content: center;
-    }
-    .modal-backdrop.open { display: flex; }
-    .modal {
-      width: min(560px,100%); max-height: 90vh; overflow-y: auto;
-      padding: 20px; border: 1px solid var(--line); border-radius: 22px;
-      background: var(--panel); box-shadow: 0 24px 70px #0009;
-    }
-    .modal-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
-    .field { display: block; margin: 13px 0; }
-    .field span { display: block; margin-bottom: 7px; color: var(--muted); font-size: 13px; }
-    .field input, .field textarea, .field select {
-      width: 100%; border: 1px solid var(--line); border-radius: 11px;
-      padding: 12px; background: var(--bg); color: var(--text); outline: none;
-    }
-    .field textarea { min-height: 105px; resize: vertical; }
-    .modal-footer { display: flex; flex-wrap: wrap; gap: 9px; justify-content: flex-end; margin-top: 17px; }
-    .notice { color: var(--muted); font-size: 12px; line-height: 1.5; }
-    .toast {
-      position: fixed; z-index: 50; left: 50%; bottom: 100px; transform: translateX(-50%);
-      display: none; max-width: calc(100% - 32px); padding: 12px 16px;
-      border-radius: 12px; background: #292542; border: 1px solid #51458d;
-      color: white; box-shadow: 0 8px 30px #0007;
-    }
-    .toast.show { display: block; }
+
     .hidden { display: none !important; }
 
-    @media (max-width: 560px) {
-      .topbar { gap: 8px; padding: 10px; }
-      .brand { gap: 7px; }
-      .logo { width: 36px; height: 36px; border-radius: 11px; }
-      .brand-name { font-size: 13px; }
-      .brand-sub { display: none; }
-      .search-wrap input { padding: 10px 8px 10px 30px; font-size: 12px; }
-      .search-icon { left: 10px; top: 9px; }
-      .icon-btn { width: 36px; height: 36px; }
-      main { margin-top: 16px; }
-      .welcome { padding: 20px; }
-      .feature-grid { grid-template-columns: 1fr 1fr; }
-      .post { padding: 13px; }
-      .nav-item { font-size: 10px; }
+    .bottom-nav {
+      position: fixed;
+      z-index: 9;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 5px;
+      padding: 9px max(10px, calc((100% - 760px) / 2));
+      background: var(--panel);
+      border-top: 1px solid var(--line);
+    }
+
+    .nav-item {
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      border-radius: 12px;
+      padding: 9px 4px;
+      font-size: 13px;
+    }
+
+    .nav-item.active { color: var(--text); background: var(--panel2); }
+    .nav-icon { display: block; font-size: 20px; line-height: 1.3; }
+
+    .menu-wrap { position: relative; }
+    .menu {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 45px;
+      width: 220px;
+      padding: 8px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .menu.open { display: grid; }
+    .menu button {
+      text-align: left;
+      border: 0;
+      background: transparent;
+      color: var(--text);
+      padding: 10px;
+      border-radius: 9px;
+    }
+    .menu button:hover { background: var(--panel2); }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 30;
+      inset: 0;
+      padding: 18px;
+      background: #000a;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal.open { display: flex; }
+    .modal-card {
+      width: min(100%, 620px);
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: var(--panel);
+    }
+
+    .field { display: grid; gap: 6px; margin: 13px 0; }
+    .field label { font-size: 14px; font-weight: 700; }
+    .field input, .field textarea, .field select {
+      width: 100%;
+      color: var(--text);
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 11px 12px;
+    }
+
+    .field textarea { min-height: 100px; resize: vertical; }
+    .modal-actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 18px; }
+    #photoPreview { display: block; max-width: 100%; max-height: 260px; border-radius: 12px; margin-top: 12px; }
+    .status { font-size: 13px; color: var(--muted); }
+    .toast {
+      display: none;
+      position: fixed;
+      z-index: 50;
+      bottom: 90px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: max-content;
+      max-width: calc(100% - 30px);
+      background: var(--text);
+      color: var(--bg);
+      padding: 12px 16px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
+    .toast.show { display: block; }
+
+    body[data-theme="light"] {
+      color-scheme: light;
+      --bg: #f5f6fb;
+      --panel: #fff;
+      --panel2: #eceefa;
+      --text: #171827;
+      --muted: #626981;
+      --line: #dfe2ee;
+    }
+
+    footer { margin-top: 35px; text-align: center; color: var(--muted); font-size: 13px; }
+
+    @media (max-width: 600px) {
+      .topbar { padding: 12px; }
+      .brand { font-size: 17px; }
+      .top-actions { gap: 5px; }
+      .top-actions .btn { padding: 8px 9px; font-size: 12px; }
+      .container { padding: 16px 12px 100px; }
+      .hero { padding: 21px; }
+      .post, .panel { padding: 16px; }
+      .post-type { font-size: 10px; }
     }
   </style>
 </head>
+
 <body>
-<div class="app">
   <header class="topbar">
-    <a class="brand" href="./index.html" aria-label="LE4RNSP4CE Home">
-      <div class="logo">L4</div>
-      <div>
-        <div class="brand-name">LE4RNSP4CE</div>
-        <div class="brand-sub">Learn · Create · Grow</div>
-      </div>
-    </a>
-
-    <label class="search-wrap">
-      <span class="search-icon">⌕</span>
-      <input id="searchInput" type="search" placeholder="Search learning..." aria-label="Search posts and sections">
-    </label>
-
-    <a class="icon-btn" href="./login.html" aria-label="Account and login" title="Account">♙</a>
-    <div class="menu-wrap">
-      <button class="icon-btn" id="menuButton" aria-label="Open menu" aria-expanded="false">⋮</button>
-      <div class="menu" id="menu">
-        <a href="./courses.html">▣ &nbsp; My Courses</a>
-        <a href="./dashboard.html">▦ &nbsp; Dashboard</a>
-        <button data-view="doubts">? &nbsp; Doubt Hub</button>
-        <button data-view="library">▤ &nbsp; My Library</button>
-        <button data-view="reels">▷ &nbsp; Reels & Media</button>
-        <button data-view="settings">⚙ &nbsp; Settings</button>
-        <button data-view="help">✉ &nbsp; Help & Support</button>
-        <a href="./login.html">⇥ &nbsp; Login / Sign Up</a>
+    <a class="brand" href="./index.html">LE4RN<span>SP4CE</span></a>
+    <div class="top-actions">
+      <a class="btn" id="loginLink" href="./login.html">Login</a>
+      <button class="btn" id="themeButton" type="button" aria-label="Toggle theme">◐</button>
+      <div class="menu-wrap">
+        <button class="btn" id="menuButton" type="button"
+          aria-expanded="false" aria-controls="menu">•••</button>
+        <div class="menu" id="menu">
+          <button data-view="doubts">Doubt Hub</button>
+          <button data-view="courses">Courses / My Courses</button>
+          <button data-view="library">Library / My Library</button>
+          <button data-view="reels">Reels & Media</button>
+          <button data-view="dashboard">Dashboard</button>
+          <button data-view="settings">Settings & Security</button>
+          <button data-view="help">Help & Support</button>
+          <button id="logoutButton" class="hidden" type="button">Log out</button>
+        </div>
       </div>
     </div>
   </header>
 
-  <main>
-    <section class="view" id="homeView">
-      <div class="welcome">
-        <div class="eyebrow">YOUR LEARNING UNIVERSE</div>
-        <h1>Learn something.<br>Build something.</h1>
-        <p class="muted">A space to learn new skills, share ideas, solve doubts and grow together.</p>
-        <div class="welcome-actions">
-          <button class="primary" data-open-create="Post">＋ Create a post</button>
-          <button class="secondary" data-view="discover">Explore community →</button>
+  <main class="container">
+    <section id="homeView">
+      <div class="hero">
+        <div class="eyebrow">Your learning community</div>
+        <h1>Learn together.<br>Build together.</h1>
+        <p>Share what you're learning, ask questions, discover projects and grow with other learners.</p>
+        <div class="top-actions">
+          <button class="btn primary" data-open-create="Post">＋ Create a post</button>
+          <button class="btn" data-view="discover">Explore community</button>
         </div>
+        <p class="status" id="authStatus">Checking your login…</p>
       </div>
 
-      <div class="section-head">
-        <h2>Your space</h2>
-        <span class="muted" style="font-size:12px">One home for your learning</span>
-      </div>
-      <div class="feature-grid">
-        <a class="feature-card" href="./courses.html"><span class="symbol">▣</span><strong>Courses</strong><p>Explore lessons and build your skills.</p></a>
-        <button class="feature-card" data-view="doubts" style="text-align:left;color:inherit"><span class="symbol">💬</span><strong>Doubt Hub</strong><p>Ask questions and discuss solutions.</p></button>
-        <button class="feature-card" data-view="library" style="text-align:left;color:inherit"><span class="symbol">📚</span><strong>Library</strong><p>Keep useful learning resources together.</p></button>
-        <a class="feature-card" href="./dashboard.html"><span class="symbol">▦</span><strong>Dashboard</strong><p>Open your learning dashboard.</p></a>
-      </div>
-
-      <div class="section-head">
-        <h2>Community feed</h2>
-        <button class="secondary" data-open-create="Post">＋ Create</button>
-      </div>
-      <div class="chips" id="feedFilters">
-        <button class="chip active" data-filter="All">For you</button>
-        <button class="chip" data-filter="Post">Posts</button>
-        <button class="chip" data-filter="Doubt">Doubts</button>
-        <button class="chip" data-filter="Photo">Photos</button>
-        <button class="chip" data-filter="Project">Projects</button>
-      </div>
-      <div id="feed"></div>
-    </section>
-
-    <section class="view hidden" id="discoverView">
-      <div class="section-head"><h2>Discover</h2></div>
-      <p class="muted">Find your next learning goal. Choose a section to continue.</p>
-      <div class="feature-grid">
-        <a class="feature-card" href="./courses.html"><span class="symbol">▣</span><strong>Courses</strong><p>Lessons and skill-building.</p></a>
-        <button class="feature-card" data-view="doubts" style="text-align:left;color:inherit"><span class="symbol">💬</span><strong>Doubt Hub</strong><p>Ask and discuss questions.</p></button>
-        <button class="feature-card" data-view="library" style="text-align:left;color:inherit"><span class="symbol">📚</span><strong>Library</strong><p>Your saved learning items.</p></button>
-        <button class="feature-card" data-view="reels" style="text-align:left;color:inherit"><span class="symbol">▷</span><strong>Reels & Media</strong><p>Short educational media.</p></button>
-      </div>
-    </section>
-
-    <section class="view hidden" id="profileView">
-      <div class="welcome">
-        <div class="avatar">L</div>
-        <h1>Your learning profile</h1>
-        <p class="muted">Sign in to manage your account, profile and learning progress.</p>
-        <div class="welcome-actions">
-          <a class="primary" href="./login.html">Login / Sign Up</a>
-          <a class="secondary" href="./dashboard.html">Open Dashboard</a>
+      <section class="section">
+        <div class="section-heading">
+          <h2>Community feed</h2>
+          <input id="searchInput" class="search" type="search"
+            placeholder="Search posts, topics, people…" aria-label="Search posts">
         </div>
+
+        <div class="filters" aria-label="Filter posts">
+          <button class="btn filter active" data-filter="All">All</button>
+          <button class="btn filter" data-filter="Post">Posts</button>
+          <button class="btn filter" data-filter="Doubt">Doubts</button>
+          <button class="btn filter" data-filter="Project">Projects</button>
+          <button class="btn filter" data-filter="Learning Update">Learning updates</button>
+        </div>
+
+        <div id="feed" class="feed">
+          <div class="empty-state">Loading community posts…</div>
+        </div>
+      </section>
+    </section>
+
+    <section id="discoverView" class="hidden">
+      <div class="hero">
+        <div class="eyebrow">Explore</div>
+        <h1>Discover something new.</h1>
+        <p>Find learning opportunities, people and ideas.</p>
       </div>
-      <div class="section-head"><h2>Your shortcuts</h2></div>
-      <div class="feature-grid">
-        <a class="feature-card" href="./courses.html"><span class="symbol">▣</span><strong>My Courses</strong><p>Continue learning.</p></a>
-        <button class="feature-card" data-view="library" style="text-align:left;color:inherit"><span class="symbol">📚</span><strong>Saved Library</strong><p>Find saved items.</p></button>
-        <button class="feature-card" data-view="settings" style="text-align:left;color:inherit"><span class="symbol">⚙</span><strong>Settings</strong><p>Manage preferences.</p></button>
-        <button class="feature-card" data-view="help" style="text-align:left;color:inherit"><span class="symbol">✉</span><strong>Help & Support</strong><p>Get help with a problem.</p></button>
-      </div>
-    </section>
-
-    <section class="view hidden" id="doubtsView">
-      <div class="section-head"><h2>Doubt Hub</h2><button class="primary" data-open-create="Doubt">＋ Ask a doubt</button></div>
-      <p class="muted">Explain what you are stuck on. The community can help you think it through.</p>
-      <div id="doubtFeed"></div>
-    </section>
-
-    <section class="view hidden" id="libraryView">
-      <div class="section-head"><h2>My Library</h2></div>
-      <div class="empty-state">Your saved resources will appear here. Saving across devices needs a database and user account.</div>
-    </section>
-
-    <section class="view hidden" id="reelsView">
-      <div class="section-head"><h2>Reels & Media</h2><button class="primary" data-open-create="Reel">＋ Add reel</button></div>
-      <div class="empty-state">A home for short learning videos and media. Video uploads and playback storage need a backend.</div>
-    </section>
-
-    <section class="view hidden" id="settingsView">
-      <div class="section-head"><h2>Settings</h2></div>
-      <div class="feature-card">
-        <strong>Appearance</strong>
-        <p>LE4RNSP4CE currently uses the dark theme.</p>
-        <div class="welcome-actions"><button class="secondary" id="themeButton">Switch light / dark theme</button></div>
-      </div>
-      <div class="feature-card" style="margin-top:12px">
-        <strong>Account & Security</strong>
-        <p class="muted">Use the existing Firebase login page for your account.</p>
-        <a class="primary" href="./login.html">Open account page</a>
+      <div class="section grid">
+        <article class="panel"><h3>Community posts</h3><p class="muted">Explore what learners are sharing.</p><button class="btn" data-view="home">Open feed</button></article>
+        <article class="panel"><h3>Courses</h3><p class="muted">Organise the courses you want to learn.</p><button class="btn" data-view="courses">Explore courses</button></article>
+        <article class="panel"><h3>Projects</h3><p class="muted">Share projects and learn from others.</p><button class="btn" data-filter="Project" data-view="home">Explore projects</button></article>
+        <article class="panel"><h3>Doubts</h3><p class="muted">Ask a question or help another learner.</p><button class="btn" data-view="doubts">Open Doubt Hub</button></article>
       </div>
     </section>
 
-    <section class="view hidden" id="helpView">
-      <div class="section-head"><h2>Help & Support</h2></div>
-      <div class="feature-grid">
-        <div class="feature-card"><span class="symbol">🔑</span><strong>Login & Password</strong><p>Open Login / Sign Up to access the available account recovery options.</p><a href="./login.html">Open login →</a></div>
-        <div class="feature-card"><span class="symbol">📱</span><strong>Mobile & OTP</strong><p>Phone OTP needs a configured Firebase phone provider.</p></div>
-        <div class="feature-card"><span class="symbol">⚠</span><strong>Technical issue</strong><p>Note the page, what you clicked and the error message.</p></div>
-        <div class="feature-card"><span class="symbol">✉</span><strong>Email support</strong><p>A verified support email or ticket service must be configured before messages can be sent.</p></div>
+    <section id="createView" class="hidden">
+      <div class="hero">
+        <div class="eyebrow">Creator studio</div>
+        <h1>Share your learning.</h1>
+        <p>Write a post, ask a doubt or share a project with the community.</p>
+        <button class="btn primary" data-open-create="Post">＋ Create</button>
+        <button class="btn" data-open-create="Doubt">Ask a doubt</button>
       </div>
     </section>
+
+    <section id="profileView" class="hidden">
+      <div class="hero">
+        <div class="eyebrow">Your space</div>
+        <h1 id="profileName">Your profile</h1>
+        <p id="profileEmail" class="muted">Sign in to see your account details.</p>
+        <p class="muted">Your posts appear in the community feed. More profile options can be added next.</p>
+        <a class="btn" href="./login.html">Account / Login</a>
+      </div>
+      <section class="section">
+        <h2>Your posts</h2>
+        <div id="myPosts" class="feed"><div class="empty-state">Sign in to view your posts.</div></div>
+      </section>
+    </section>
+
+    <section id="doubtsView" class="hidden">
+      <div class="hero">
+        <div class="eyebrow">Ask. Understand. Help.</div>
+        <h1>Doubt Hub</h1>
+        <p>Post a clear question so the community can help you learn.</p>
+        <button class="btn primary" data-open-create="Doubt">＋ Ask a doubt</button>
+      </div>
+      <section class="section">
+        <h2>Community doubts</h2>
+        <div id="doubtFeed" class="feed"><div class="empty-state">Loading doubts…</div></div>
+      </section>
+    </section>
+
+    <section id="coursesView" class="hidden">
+      <div class="hero"><div class="eyebrow">Learning paths</div><h1>Courses</h1><p>Keep track of courses you want to study. Course enrolment and progress tracking will need their own database features.</p></div>
+      <div class="section grid">
+        <article class="panel"><h3>Python</h3><p class="muted">Programming fundamentals and practice.</p></article>
+        <article class="panel"><h3>Web Development</h3><p class="muted">HTML, CSS, JavaScript and web projects.</p></article>
+        <article class="panel"><h3>AI & Machine Learning</h3><p class="muted">Maths, data and machine learning foundations.</p></article>
+      </div>
+    </section>
+
+    <section id="libraryView" class="hidden">
+      <div class="hero"><div class="eyebrow">Learning resources</div><h1>Library</h1><p>Save useful notes, links and learning resources. Persistent saved items will be connected in a later step.</p></div>
+      <div class="section panel"><p class="muted">Your personal saved library is not connected yet.</p><button class="btn" data-view="discover">Discover resources</button></div>
+    </section>
+
+    <section id="reelsView" class="hidden">
+      <div class="hero"><div class="eyebrow">Short-form learning</div><h1>Reels & Media</h1><p>Share quick explanations, demos and learning videos. Video upload and playback need media storage and validation.</p><button class="btn primary" data-open-create="Learning Update">Share a learning update</button></div>
+    </section>
+
+    <section id="dashboardView" class="hidden">
+      <div class="hero"><div class="eyebrow">Your progress</div><h1>Dashboard</h1><p>Review your learning activity and contributions.</p><div class="grid"><article class="panel"><h3 id="myPostCount">0</h3><p class="muted">Your posts currently loaded</p></article><article class="panel"><h3 id="communityPostCount">0</h3><p class="muted">Community posts currently loaded</p></article></div></div>
+    </section>
+
+    <section id="settingsView" class="hidden">
+      <div class="hero"><div class="eyebrow">Account</div><h1>Settings & Security</h1><p>Use a unique password, verify your email, and never share passwords or verification codes.</p><a class="btn" href="./login.html">Open login and account page</a><p class="status">Password changes, session management and additional sign-in providers require separate implementation.</p></div>
+    </section>
+
+    <section id="helpView" class="hidden">
+      <div class="hero"><div class="eyebrow">We're here to help</div><h1>Help & Support</h1><p>Having trouble? Try these steps first.</p></div>
+      <div class="section grid">
+        <article class="panel"><h3>Can't sign in?</h3><p class="muted">Check your email and password, then use the password reset option on the login page.</p></article>
+        <article class="panel"><h3>Email verification</h3><p class="muted">Open the verification email from Firebase and follow its instructions.</p></article>
+        <article class="panel"><h3>Posts not loading?</h3><p class="muted">Check your internet connection, browser console and Firestore Security Rules.</p></article>
+      </div>
+    </section>
+
+    <footer>LE4RNSP4CE · Learn together, build together.</footer>
   </main>
 
   <nav class="bottom-nav" aria-label="Main navigation">
-    <button class="nav-item active" data-view="home"><span class="nav-icon">⌂</span><span>Home</span></button>
-    <button class="nav-item" data-view="discover"><span class="nav-icon">⌕</span><span>Discover</span></button>
-    <button class="nav-item" data-open-create="Post"><span class="nav-icon">⊕</span><span>Create</span></button>
-    <button class="nav-item" data-view="profile"><span class="nav-icon">♙</span><span>Profile</span></button>
+    <button class="nav-item active" data-view="home"><span class="nav-icon">⌂</span>Home</button>
+    <button class="nav-item" data-view="discover"><span class="nav-icon">⌕</span>Discover</button>
+    <button class="nav-item" data-view="create"><span class="nav-icon">＋</span>Create</button>
+    <button class="nav-item" data-view="profile"><span class="nav-icon">◎</span>Profile</button>
   </nav>
-</div>
 
-<div class="modal-backdrop" id="createModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-  <div class="modal">
-    <div class="modal-head">
-      <div><div class="eyebrow">LE4RNSP4CE CREATOR</div><h2 id="modalTitle">Create something</h2></div>
-      <button class="icon-btn" id="closeModal" aria-label="Close">×</button>
-    </div>
+  <div class="modal" id="createModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <div class="section-heading">
+        <h2 id="modalTitle">Create something</h2>
+        <button class="btn" id="closeModal" type="button" aria-label="Close">✕</button>
+      </div>
 
-    <label class="field"><span>What do you want to create?</span>
-      <select id="postType">
-        <option>Post</option><option>Doubt</option><option>Photo</option><option>Reel</option><option>Project</option>
-      </select>
-    </label>
-    <label class="field"><span>Topic or raw notes (AI draft helper)</span>
-      <textarea id="topicInput" placeholder="Example: Today I learned Python loops and made a small project..."></textarea>
-    </label>
-    <label class="field"><span>Upload a photo (optional)</span>
-      <input id="photoInput" type="file" accept="image/*">
-    </label>
-    <img id="photoPreview" class="hidden" alt="Selected photo preview" style="width:100%;max-height:240px;object-fit:contain;border-radius:12px">
-    <div class="welcome-actions">
-      <button class="secondary" id="generateButton">✦ Generate draft</button>
-    </div>
-    <p class="notice">This starter uses a local template helper, not a connected AI service. It does not upload your photo.</p>
-    <label class="field"><span>Title</span><input id="postTitle" maxlength="120" placeholder="Suggested title appears here"></label>
-    <label class="field"><span>Description</span><textarea id="postDescription" maxlength="2000" placeholder="Edit your description before posting"></textarea></label>
-    <label class="field"><span>Hashtags</span><input id="postTags" placeholder="#Python #Learning"></label>
-    <label class="field"><span>Mentions (optional)</span><input id="postMentions" placeholder="@username"></label>
-    <p class="notice">Mentions are plain text in this starter. Real account tagging requires a user directory and database. Review AI suggestions before sharing.</p>
-    <div class="modal-footer">
-      <button class="secondary" id="cancelCreate">Cancel</button>
-      <button class="primary" id="publishButton">Publish preview</button>
+      <p class="status">You must sign in with a verified email before publishing.</p>
+
+      <div class="field">
+        <label for="postType">Content type</label>
+        <select id="postType">
+          <option>Post</option>
+          <option>Doubt</option>
+          <option>Project</option>
+          <option>Learning Update</option>
+          <option>Photo</option>
+          <option>Reel</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="topicInput">Topic or notes (for draft helper)</label>
+        <textarea id="topicInput" placeholder="What are you learning or asking about?"></textarea>
+      </div>
+
+      <button class="btn" id="generateButton" type="button">Generate a starter draft</button>
+
+      <div class="field">
+        <label for="postTitle">Title</label>
+        <input id="postTitle" maxlength="120" placeholder="Give your post a title">
+      </div>
+
+      <div class="field">
+        <label for="postDescription">Description</label>
+        <textarea id="postDescription" maxlength="2000" placeholder="Share details with the community"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="postTags">Tags</label>
+        <input id="postTags" maxlength="300" placeholder="#Python #AI">
+      </div>
+
+      <div class="field">
+        <label for="postMentions">Mentions (text only for now)</label>
+        <input id="postMentions" maxlength="300" placeholder="@username">
+      </div>
+
+      <div class="field">
+        <label for="photoInput">Photo (preview only in this version)</label>
+        <input id="photoInput" type="file" accept="image/*">
+        <img id="photoPreview" class="hidden" alt="Selected photo preview">
+        <p class="status">Selected images are not uploaded to online storage yet.</p>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn primary" id="publishButton" type="button">Publish post</button>
+        <button class="btn" id="cancelCreate" type="button">Cancel</button>
+      </div>
     </div>
   </div>
-</div>
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script>
-  const $ = (id) => document.getElementById(id);
-  const viewNames = ["home","discover","profile","doubts","library","reels","settings","help"];
-  let activeFilter = "All";
-  let localPosts = [
-    {
-      type:"Post", title:"Small steps. Strong skills.",
-      description:"Learning Python one concept at a time. Today's goal: understand loops and build something useful.",
-      tags:"#Python #AIBuilders #LearnTogether", mentions:"",
-      author:"LE4RNSP4CE Community", created:"Example post", likes:0
-    }
-  ];
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  function showToast(message) {
-    const toast = $("toast");
-    toast.textContent = message;
-    toast.classList.add("show");
-    clearTimeout(showToast.timer);
-    showToast.timer = setTimeout(() => toast.classList.remove("show"), 2800);
-  }
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
+    import {
+      getAuth, onAuthStateChanged, signOut
+    } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
+    import {
+      getFirestore, collection, addDoc, query, orderBy, limit,
+      onSnapshot, serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
 
-  function showView(name) {
-    if (!viewNames.includes(name)) name = "home";
-    viewNames.forEach(view => $(view + "View")?.classList.toggle("hidden", view !== name));
-    document.querySelectorAll(".nav-item[data-view]").forEach(button => {
-      button.classList.toggle("active", button.dataset.view === name);
-    });
-    $("menu").classList.remove("open");
-    $("menuButton").setAttribute("aria-expanded","false");
-    window.scrollTo({top:0, behavior:"smooth"});
-  }
-
-  function escapeHTML(value) {
-    return String(value).replace(/[&<>"']/g, char => ({
-      "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-    })[char]);
-  }
-
-  function postCard(post, index) {
-    return `<article class="post" data-post-index="${index}">
-      <div class="post-head">
-        <div class="avatar">${escapeHTML((post.author || "L").slice(0,1).toUpperCase())}</div>
-        <div class="post-meta"><strong>${escapeHTML(post.author || "Community member")}</strong>
-        <small>${escapeHTML(post.created || "Just now")}</small></div>
-        <span class="post-type">${escapeHTML(post.type)}</span>
-      </div>
-      <h3>${escapeHTML(post.title || "Learning update")}</h3>
-      <p>${escapeHTML(post.description || "")}</p>
-      ${post.photo ? `<img src="${post.photo}" alt="Post attachment" style="width:100%;max-height:340px;object-fit:contain;border-radius:12px">` : ""}
-      <div class="tags">${escapeHTML([post.tags,post.mentions].filter(Boolean).join(" "))}</div>
-      <div class="post-actions">
-        <button data-like="${index}">♡ Like <span>${post.likes || 0}</span></button>
-        <button data-comment="${index}">▢ Comment</button>
-        <button data-save="${index}">♧ Save</button>
-      </div>
-    </article>`;
-  }
-
-  function renderFeed() {
-    const query = $("searchInput").value.trim().toLowerCase();
-    const filtered = localPosts.map((post,index)=>({post,index})).filter(({post}) => {
-      const matchesType = activeFilter === "All" || post.type === activeFilter;
-      const text = [post.title,post.description,post.tags,post.mentions,post.type].join(" ").toLowerCase();
-      return matchesType && (!query || text.includes(query));
-    });
-    $("feed").innerHTML = filtered.length
-      ? filtered.map(({post,index})=>postCard(post,index)).join("")
-      : `<div class="empty-state">No matching posts yet. Try another search or create a post.</div>`;
-    $("doubtFeed").innerHTML = localPosts.map((post,index)=>({post,index}))
-      .filter(({post})=>post.type==="Doubt")
-      .map(({post,index})=>postCard(post,index)).join("")
-      || `<div class="empty-state">No doubts in this local preview yet. Be the first to ask one.</div>`;
-  }
-
-  function openCreate(type="Post") {
-    $("postType").value = type;
-    $("topicInput").value = "";
-    $("postTitle").value = "";
-    $("postDescription").value = "";
-    $("postTags").value = "";
-    $("postMentions").value = "";
-    $("photoInput").value = "";
-    $("photoPreview").src = "";
-    $("photoPreview").classList.add("hidden");
-    $("createModal").classList.add("open");
-    $("menu").classList.remove("open");
-    $("topicInput").focus();
-  }
-  function closeCreate() {
-    $("createModal").classList.remove("open");
-  }
-
-  function generateDraft() {
-    const topic = $("topicInput").value.trim();
-    if (!topic) {
-      showToast("Pehle topic ya apne notes likho.");
-      $("topicInput").focus();
-      return;
-    }
-    const type = $("postType").value;
-    const clean = topic.replace(/\s+/g," ").trim();
-    const title = clean.length > 58 ? clean.slice(0,55).trim() + "..." : clean;
-    const tags = [...new Set((clean.toLowerCase().match(/[a-z0-9]+/g)||[])
-      .filter(word=>word.length>3 && !["today","learned","about","with","this","that","from"].includes(word))
-      .slice(0,3))].map(word=>"#"+word).join(" ");
-    $("postTitle").value = type === "Doubt" ? "Need help: " + title : title;
-    $("postDescription").value = type === "Doubt"
-      ? "I'm working on: " + clean + "\nWhat I understand so far:\nWhat I need help with:"
-      : "Here's my learning update:\n" + clean + "\nWhat I learned:\nWhat I'll try next:";
-    $("postTags").value = tags || "#LearnTogether #LE4RNSP4CE";
-    showToast("Draft ready! Review and edit before publishing.");
-  }
-
-  $("menuButton").addEventListener("click",()=>{
-    const isOpen = $("menu").classList.toggle("open");
-    $("menuButton").setAttribute("aria-expanded",String(isOpen));
-  });
-  document.addEventListener("click",event=>{
-    if (!event.target.closest(".menu-wrap")) {
-      $("menu").classList.remove("open");
-      $("menuButton").setAttribute("aria-expanded","false");
-    }
-  });
-
-  document.addEventListener("click",event=>{
-    const viewButton = event.target.closest("[data-view]");
-    const createButton = event.target.closest("[data-open-create]");
-    const filterButton = event.target.closest("[data-filter]");
-    const likeButton = event.target.closest("[data-like]");
-    const commentButton = event.target.closest("[data-comment]");
-    const saveButton = event.target.closest("[data-save]");
-
-    if (viewButton) showView(viewButton.dataset.view);
-    if (createButton) openCreate(createButton.dataset.openCreate);
-    if (filterButton) {
-      activeFilter = filterButton.dataset.filter;
-      document.querySelectorAll("[data-filter]").forEach(button=>button.classList.toggle("active",button===filterButton));
-      renderFeed();
-    }
-    if (likeButton) {
-      const post = localPosts[Number(likeButton.dataset.like)];
-      post.likes = (post.likes || 0) + 1;
-      renderFeed();
-    }
-    if (commentButton) showToast("Comments ke liye database connect karna hoga.");
-    if (saveButton) showToast("Saved items ko permanently rakhne ke liye database chahiye.");
-  });
-
-  $("searchInput").addEventListener("input",renderFeed);
-  $("closeModal").addEventListener("click",closeCreate);
-  $("cancelCreate").addEventListener("click",closeCreate);
-  $("createModal").addEventListener("click",event=>{
-    if (event.target === $("createModal")) closeCreate();
-  });
-  $("generateButton").addEventListener("click",generateDraft);
-
-  $("photoInput").addEventListener("change",()=>{
-    const file = $("photoInput").files[0];
-    if (!file) return;
-    if (!file.type.startsWith("image/")) {
-      showToast("Please choose an image file.");
-      $("photoInput").value = "";
-      return;
-    }
-    if (file.size > 4 * 1024 * 1024) {
-      showToast("Choose an image under 4 MB for this preview.");
-      $("photoInput").value = "";
-      return;
-    }
-    const reader = new FileReader();
-    reader.onload = () => {
-      $("photoPreview").src = reader.result;
-      $("photoPreview").classList.remove("hidden");
+    const firebaseConfig = {
+      apiKey: "AIzaSyAq2dZSTyMha1TyifA37ZkUGNB69Bb__mY",
+      authDomain: "le4rnsp4ce.firebaseapp.com",
+      projectId: "le4rnsp4ce",
+      storageBucket: "le4rnsp4ce.firebasestorage.app",
+      messagingSenderId: "679714213034",
+      appId: "1:679714213034:web:2768833e0c6ce25398d4d3",
+      measurementId: "G-9GE67VBYFM"
     };
-    reader.readAsDataURL(file);
-  });
 
-  $("publishButton").addEventListener("click",()=>{
-    const title = $("postTitle").value.trim();
-    const description = $("postDescription").value.trim();
-    const type = $("postType").value;
-    if (!title || !description) {
-      showToast("Title aur description bharo, ya Generate draft use karo.");
-      return;
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const $ = id => document.getElementById(id);
+
+    const views = [
+      "home", "discover", "create", "profile", "doubts",
+      "courses", "library", "reels", "dashboard", "settings", "help"
+    ];
+
+    let currentUser = null;
+    let posts = [];
+    let activeFilter = "All";
+    let unsubscribePosts = null;
+    let toastTimer;
+
+    function toast(message) {
+      $("toast").textContent = message;
+      $("toast").classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => $("toast").classList.remove("show"), 3500);
     }
-    const photo = $("photoPreview").classList.contains("hidden") ? "" : $("photoPreview").src;
-    localPosts.unshift({
-      type,title,description,tags:$("postTags").value.trim(),
-      mentions:$("postMentions").value.trim(),
-      author:"My preview post",created:"Just now",likes:0,photo
+
+    function escapeHTML(value) {
+      return String(value ?? "").replace(/[&<>"']/g, char => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;",
+        '"': "&quot;", "'": "&#39;"
+      })[char]);
+    }
+
+    function formatDate(timestamp) {
+      if (!timestamp?.toDate) return "Just now";
+      return timestamp.toDate().toLocaleString();
+    }
+
+    function showView(name) {
+      if (!views.includes(name)) name = "home";
+
+      views.forEach(view => {
+        $(view + "View")?.classList.toggle("hidden", view !== name);
+      });
+
+      document.querySelectorAll(".nav-item[data-view]").forEach(button => {
+        button.classList.toggle("active", button.dataset.view === name);
+      });
+
+      $("menu").classList.remove("open");
+      $("menuButton").setAttribute("aria-expanded", "false");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+
+      if (name === "profile") renderMyPosts();
+      if (name === "dashboard") updateDashboard();
+    }
+
+    function renderPost(post) {
+      const author = post.author || "Community member";
+      const initials = author.slice(0, 1).toUpperCase();
+
+      return `<article class="post">
+        <div class="post-head">
+          <div class="avatar">${escapeHTML(initials)}</div>
+          <div class="post-meta">
+            <strong>${escapeHTML(author)}</strong>
+            <small>${escapeHTML(formatDate(post.createdAt))}</small>
+          </div>
+          <span class="post-type">${escapeHTML(post.type || "Post")}</span>
+        </div>
+        <h3>${escapeHTML(post.title || "Learning update")}</h3>
+        <p>${escapeHTML(post.description || "")}</p>
+        <div class="tags">${escapeHTML([post.tags, post.mentions].filter(Boolean).join(" "))}</div>
+        <div class="post-actions">
+          <button class="btn" type="button" data-like-info>♡ ${Number(post.likes) || 0} Likes</button>
+          <button class="btn" type="button" data-comment-info>▢ Comments</button>
+          <button class="btn" type="button" data-save-info>♧ Save</button>
+        </div>
+      </article>`;
+    }
+
+    function renderFeed() {
+      const search = $("searchInput").value.trim().toLowerCase();
+
+      const filtered = posts.filter(post => {
+        const matchesType = activeFilter === "All" || post.type === activeFilter;
+        const searchable = [
+          post.title, post.description, post.tags,
+          post.mentions, post.type, post.author
+        ].join(" ").toLowerCase();
+
+        return matchesType && (!search || searchable.includes(search));
+      });
+
+      $("feed").innerHTML = filtered.length
+        ? filtered.map(renderPost).join("")
+        : `<div class="empty-state">${
+            posts.length
+              ? "No matching posts. Try a different search or filter."
+              : "No posts yet. Sign in and share the first learning update!"
+          }</div>`;
+
+      const doubts = posts.filter(post => post.type === "Doubt");
+      $("doubtFeed").innerHTML = doubts.length
+        ? doubts.map(renderPost).join("")
+        : `<div class="empty-state">No doubts posted yet.</div>`;
+
+      renderMyPosts();
+      updateDashboard();
+    }
+
+    function renderMyPosts() {
+      if (!currentUser) {
+        $("myPosts").innerHTML = `<div class="empty-state">Sign in to view your posts.</div>`;
+        return;
+      }
+
+      const mine = posts.filter(post => post.uid === currentUser.uid);
+      $("myPosts").innerHTML = mine.length
+        ? mine.map(renderPost).join("")
+        : `<div class="empty-state">You haven't published any posts yet.</div>`;
+    }
+
+    function updateDashboard() {
+      $("communityPostCount").textContent = String(posts.length);
+      $("myPostCount").textContent = String(
+        currentUser ? posts.filter(post => post.uid === currentUser.uid).length : 0
+      );
+    }
+
+    function openCreate(type = "Post") {
+      if (!currentUser) {
+        toast("Pehle login karo, phir post publish kar sakte ho.");
+        window.location.href = "./login.html";
+        return;
+      }
+
+      $("postType").value = type;
+      $("topicInput").value = "";
+      $("postTitle").value = "";
+      $("postDescription").value = "";
+      $("postTags").value = "";
+      $("postMentions").value = "";
+      $("photoInput").value = "";
+      $("photoPreview").removeAttribute("src");
+      $("photoPreview").classList.add("hidden");
+      $("createModal").classList.add("open");
+      $("menu").classList.remove("open");
+      $("topicInput").focus();
+    }
+
+    function closeCreate() {
+      $("createModal").classList.remove("open");
+    }
+
+    function generateDraft() {
+      const topic = $("topicInput").value.trim();
+
+      if (!topic) {
+        toast("Pehle apna topic ya notes likho.");
+        $("topicInput").focus();
+        return;
+      }
+
+      const title = topic.length > 58 ? topic.slice(0, 55).trim() + "..." : topic;
+      const words = topic.toLowerCase().match(/[a-z0-9]+/g) || [];
+      const tags = [...new Set(words.filter(word => word.length > 3).slice(0, 3))]
+        .map(word => "#" + word).join(" ");
+
+      $("postTitle").value = $("postType").value === "Doubt"
+        ? "Need help: " + title : title;
+
+      $("postDescription").value = $("postType").value === "Doubt"
+        ? "I'm working on:\n" + topic + "\n\nWhat I understand so far:\nWhat I need help with:"
+        : "Here's my learning update:\n" + topic + "\n\nWhat I learned:\nWhat I'll try next:";
+
+      $("postTags").value = tags || "#LearnTogether #LE4RNSP4CE";
+      toast("Starter draft ready. Review it before publishing.");
+    }
+
+    onAuthStateChanged(auth, user => {
+      currentUser = user;
+
+      $("loginLink").textContent = user ? "Account" : "Login";
+      $("loginLink").href = user ? "#profileView" : "./login.html";
+      $("logoutButton").classList.toggle("hidden", !user);
+      $("authStatus").textContent = user
+        ? `Signed in as ${user.email || "community member"}${user.emailVerified ? " · Email verified" : " · Email not verified"}`
+        : "You're browsing as a guest. Login to publish posts.";
+
+      $("profileName").textContent = user
+        ? (user.displayName || user.email?.split("@")[0] || "Your profile")
+        : "Your profile";
+      $("profileEmail").textContent = user?.email || "Sign in to see your account details.";
+
+      if (unsubscribePosts) unsubscribePosts();
+
+      const postsQuery = query(
+        collection(db, "posts"),
+        orderBy("createdAt", "desc"),
+        limit(100)
+      );
+
+      unsubscribePosts = onSnapshot(postsQuery, snapshot => {
+        posts = snapshot.docs.map(document => ({
+          id: document.id,
+          ...document.data()
+        }));
+        renderFeed();
+      }, error => {
+        console.error("Firestore feed error:", error.code, error.message);
+        $("feed").innerHTML = `<div class="empty-state">Posts load nahi hue. Firestore Rules aur internet connection check karo.</div>`;
+        $("doubtFeed").innerHTML = `<div class="empty-state">Doubts load nahi hue.</div>`;
+        toast("Feed access blocked ho sakta hai. Firestore Rules check karo.");
+      });
     });
-    activeFilter = "All";
-    document.querySelectorAll("[data-filter]").forEach(button=>button.classList.toggle("active",button.dataset.filter==="All"));
-    closeCreate();
-    showView(type==="Doubt" ? "doubts" : "home");
-    renderFeed();
-    showToast("Post preview added. It is not shared with other users.");
-  });
 
-  $("themeButton").addEventListener("click",()=>{
-    const light = document.body.dataset.theme !== "light";
-    document.body.dataset.theme = light ? "light" : "dark";
-    if (light) {
-      document.documentElement.style.setProperty("--bg","#f5f6fb");
-      document.documentElement.style.setProperty("--panel","#ffffff");
-      document.documentElement.style.setProperty("--panel2","#eef0f8");
-      document.documentElement.style.setProperty("--text","#171827");
-      document.documentElement.style.setProperty("--muted","#60677d");
-      document.documentElement.style.setProperty("--line","#dfe2ee");
-    } else {
-      ["--bg","--panel","--panel2","--text","--muted","--line"].forEach(name=>document.documentElement.style.removeProperty(name));
-    }
-    showToast(light ? "Light theme enabled." : "Dark theme enabled.");
-  });
+    document.addEventListener("click", event => {
+      const viewButton = event.target.closest("[data-view]");
+      const createButton = event.target.closest("[data-open-create]");
+      const filterButton = event.target.closest("[data-filter]");
 
-  renderFeed();
-</script>
+      if (viewButton) {
+        showView(viewButton.dataset.view);
+      }
+
+      if (createButton) {
+        openCreate(createButton.dataset.openCreate);
+      }
+
+      if (filterButton) {
+        activeFilter = filterButton.dataset.filter;
+        document.querySelectorAll("[data-filter]").forEach(button => {
+          button.classList.toggle("active", button.dataset.filter === activeFilter);
+        });
+
+        if (filterButton.dataset.view) showView(filterButton.dataset.view);
+        renderFeed();
+      }
+
+      if (event.target.closest("[data-like-info]")) {
+        toast("Likes ka database feature agle step mein connect karenge.");
+      }
+      if (event.target.closest("[data-comment-info]")) {
+        toast("Comments ka database feature agle step mein connect karenge.");
+      }
+      if (event.target.closest("[data-save-info]")) {
+        toast("Personal saved library agle step mein connect karenge.");
+      }
+
+      if (!event.target.closest(".menu-wrap")) {
+        $("menu").classList.remove("open");
+        $("menuButton").setAttribute("aria-expanded", "false");
+      }
+    });
+
+    $("menuButton").addEventListener("click", () => {
+      const isOpen = $("menu").classList.toggle("open");
+      $("menuButton").setAttribute("aria-expanded", String(isOpen));
+    });
+
+    $("searchInput").addEventListener("input", renderFeed);
+    $("closeModal").addEventListener("click", closeCreate);
+    $("cancelCreate").addEventListener("click", closeCreate);
+    $("generateButton").addEventListener("click", generateDraft);
+
+    $("createModal").addEventListener("click", event => {
+      if (event.target === $("createModal")) closeCreate();
+    });
+
+    $("photoInput").addEventListener("change", () => {
+      const file = $("photoInput").files[0];
+      if (!file) return;
+
+      if (!file.type.startsWith("image/") || file.size > 4 * 1024 * 1024) {
+        toast("Image file select karo jo 4 MB se chhoti ho.");
+        $("photoInput").value = "";
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        $("photoPreview").src = reader.result;
+        $("photoPreview").classList.remove("hidden");
+      };
+      reader.readAsDataURL(file);
+    });
+
+    $("publishButton").addEventListener("click", async () => {
+      const title = $("postTitle").value.trim();
+      const description = $("postDescription").value.trim();
+      const type = $("postType").value;
+
+      if (!currentUser) {
+        toast("Pehle login karo.");
+        window.location.href = "./login.html";
+        return;
+      }
+
+      if (!currentUser.emailVerified) {
+        toast("Pehle apna email verify karo.");
+        return;
+      }
+
+      if (!title || !description) {
+        toast("Title aur description dono zaroor bharo.");
+        return;
+      }
+
+      if ($("photoInput").files.length) {
+        toast("Photo sirf preview hoti hai. Photo upload abhi connected nahi hai.");
+        return;
+      }
+
+      const button = $("publishButton");
+      button.disabled = true;
+      button.textContent = "Publishing…";
+
+      try {
+        await addDoc(collection(db, "posts"), {
+          type,
+          title,
+          description,
+          tags: $("postTags").value.trim(),
+          mentions: $("postMentions").value.trim(),
+          author: currentUser.displayName || currentUser.email.split("@")[0],
+          uid: currentUser.uid,
+          createdAt: serverTimestamp(),
+          likes: 0
+        });
+
+        activeFilter = "All";
+        document.querySelectorAll("[data-filter]").forEach(item => {
+          item.classList.toggle("active", item.dataset.filter === "All");
+        });
+
+        closeCreate();
+        showView(type === "Doubt" ? "doubts" : "home");
+        toast("Post publish ho gayi!");
+      } catch (error) {
+        console.error("Post publish error:", error.code, error.message);
+        toast(error.code === "permission-denied"
+          ? "Firestore Rules ne request block ki. Rules setup check karo."
+          : "Post publish nahi hui. Internet aur Firebase setup check karo.");
+      } finally {
+        button.disabled = false;
+        button.textContent = "Publish post";
+      }
+    });
+
+    $("logoutButton").addEventListener("click", async () => {
+      try {
+        await signOut(auth);
+        $("menu").classList.remove("open");
+        showView("home");
+        toast("You have been signed out.");
+      } catch (error) {
+        console.error("Sign out error:", error);
+        toast("Logout nahi ho paya. Dobara try karo.");
+      }
+    });
+
+    $("themeButton").addEventListener("click", () => {
+      const light = document.body.dataset.theme !== "light";
+      document.body.dataset.theme = light ? "light" : "dark";
+      toast(light ? "Light theme enabled." : "Dark theme enabled.");
+    });
+  </script>
 </body>
 </html>
