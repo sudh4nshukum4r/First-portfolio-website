@@ -1,137 +1,650 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#090d19">
-  <title>Login | LS4 LE4RNSP4CE</title>
+  <meta name="theme-color" content="#09090d">
+  <meta name="description" content="Log in to your LE4RNSP4CE learning account.">
+  <title>Log In | LE4RNSP4CE</title>
+
   <style>
+    :root {
+      color-scheme: dark;
+      --bg: #09090d;
+      --panel: #111116;
+      --field: #17171e;
+      --border: #302d3b;
+      --text: #f7f5ff;
+      --muted: #a6a2b5;
+      --purple: #bb91ff;
+      --pink: #ed9aff;
+    }
+
     * { box-sizing: border-box; }
+
     body {
-      margin: 0; min-height: 100vh; padding: 20px;
-      display: grid; place-items: center;
-      font-family: Arial, sans-serif; color: #f4f6ff;
-      background: radial-gradient(ellipse at top left, #242354, transparent 45%), #090d19;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background:
+        radial-gradient(ellipse at 12% 8%, #53267855, transparent 40%),
+        radial-gradient(ellipse at 95% 85%, #46217645, transparent 42%),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+        BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
+
+    button, input { font: inherit; }
+    a { color: var(--purple); text-decoration: none; }
+    a:hover { color: #e0caff; }
+
+    .topbar {
+      width: min(1180px, calc(100% - 40px));
+      min-height: 82px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      color: var(--text);
+      font-size: 18px;
+      font-weight: 850;
+      letter-spacing: -.7px;
+    }
+
+    .brand-mark {
+      width: 39px;
+      height: 39px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      color: white;
+      font-size: 20px;
+      background: linear-gradient(135deg, #a66cff, #ec83fa);
+      box-shadow: 0 0 30px #a66cff35;
+    }
+
+    .top-note {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .top-note a { margin-left: 5px; font-weight: 750; }
+
+    .page {
+      width: min(1180px, calc(100% - 40px));
+      flex: 1;
+      margin: auto;
+      padding: 30px 0 55px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(350px, 470px);
+      align-items: center;
+      gap: clamp(40px, 9vw, 125px);
+    }
+
+    .intro { animation: appear .6s ease both; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 13px;
+      border: 1px solid #a66cff44;
+      border-radius: 50px;
+      background: #a66cff12;
+      color: #dbc5ff;
+      font-size: 11px;
+      font-weight: 750;
+      letter-spacing: 1.4px;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #a9ff77;
+      box-shadow: 0 0 12px #a9ff77;
+    }
+
+    .intro h1 {
+      margin: 25px 0 17px;
+      max-width: 600px;
+      font-size: clamp(43px, 5.5vw, 72px);
+      line-height: 1.04;
+      letter-spacing: -3.5px;
+    }
+
+    .gradient {
+      color: transparent;
+      background: linear-gradient(100deg, #c4a0ff, #f09bff 60%, #b4ffe1);
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    .intro-copy {
+      max-width: 450px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.9;
+    }
+
+    .benefits {
+      display: grid;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .benefit {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      color: #e4e0ef;
+      font-size: 13px;
+    }
+
+    .benefit-icon {
+      width: 39px;
+      height: 39px;
+      flex: 0 0 39px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #ffffff14;
+      border-radius: 12px;
+      background: #ffffff06;
+      color: #d8baff;
+      font-size: 17px;
+    }
+
     .card {
-      width: min(100%, 420px); padding: 30px;
-      background: #11182a; border: 1px solid #29344d;
-      border-radius: 20px;
+      padding: clamp(24px, 3.7vw, 36px);
+      border: 1px solid #ffffff16;
+      border-radius: 25px;
+      background: linear-gradient(145deg, #191720ee, #101016f5);
+      box-shadow: 0 30px 100px #0008, 0 0 65px #a66cff0c;
+      backdrop-filter: blur(24px);
+      animation: appear .7s .08s ease both;
     }
-    h1 { margin-top: 0; }
-    p { color: #a7b1c8; line-height: 1.6; }
-    label { display: block; margin: 16px 0 8px; }
-    input {
-      width: 100%; padding: 13px; border-radius: 10px;
-      border: 1px solid #29344d; background: #090d19;
-      color: white; font-size: 16px;
+
+    .card-heading { margin-bottom: 24px; }
+
+    .card-heading h2 {
+      margin: 0 0 9px;
+      font-size: 30px;
+      letter-spacing: -1px;
     }
-    button {
-      width: 100%; padding: 13px; margin-top: 12px;
-      border: 0; border-radius: 10px; cursor: pointer;
-      font-size: 15px; font-weight: bold;
+
+    .card-heading p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
     }
-    .primary { background: linear-gradient(100deg, #b4a9ff, #65e6d3); color: #090d19; }
-    .secondary { background: #202a40; color: white; border: 1px solid #29344d; }
-    #message { overflow-wrap: anywhere; font-size: 14px; }
-    a { color: #b7afff; }
-    .links { margin-top: 20px; text-align: center; line-height: 2; }
-    button:disabled { opacity: .6; cursor: wait; }
 
-    
-.password-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  width: 100%;
-}
+    .socials {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 11px;
+    }
 
-.password-wrapper input {
-  flex: 1;
-  min-width: 0;
-}
+    .social-btn {
+      min-width: 0;
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: #f4f1fb;
+      background: #ffffff04;
+      font-size: 12px;
+      font-weight: 650;
+      cursor: pointer;
+      transition: background .2s, border-color .2s, transform .2s;
+    }
 
-.password-toggle {
-  padding: 10px 12px;
-  cursor: pointer;
-  white-space: nowrap;
-}
+    .social-btn:hover {
+      background: #a66cff12;
+      border-color: #a66cff88;
+      transform: translateY(-2px);
+    }
 
+    .social-btn:disabled { opacity: .55; cursor: wait; }
+
+    .social-icon { font-size: 16px; font-weight: 850; }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      margin: 23px 0;
+      color: #817c91;
+      font-size: 10px;
+      letter-spacing: .7px;
+    }
+
+    .divider::before, .divider::after {
+      content: "";
+      height: 1px;
+      flex: 1;
+      background: var(--border);
+    }
+
+    .field { margin-bottom: 18px; }
+
+    .field label {
+      display: block;
+      margin-bottom: 9px;
+      color: #e6e2f0;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .input-wrap { position: relative; }
+
+    .control {
+      width: 100%;
+      min-width: 0;
+      height: 53px;
+      padding: 0 15px;
+      border: 1px solid #35313f;
+      border-radius: 12px;
+      outline: none;
+      background: var(--field);
+      color: var(--text);
+      font-size: 14px;
+      transition: border-color .2s, box-shadow .2s, background .2s;
+    }
+
+    .control::placeholder { color: #777486; opacity: 1; }
+
+    .control:focus {
+      border-color: #b68aff;
+      background: #1a1722;
+      box-shadow: 0 0 0 3px #a66cff20;
+    }
+
+    .password-input { padding-right: 78px; }
+
+    .show-btn {
+      position: absolute;
+      top: 50%;
+      right: 9px;
+      transform: translateY(-50%);
+      padding: 7px 9px;
+      border: 0;
+      border-radius: 7px;
+      background: transparent;
+      color: #c9aaff;
+      font-size: 11px;
+      font-weight: 750;
+      cursor: pointer;
+    }
+
+    .show-btn:hover { background: #a66cff17; }
+
+    .form-options {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 0 0 21px;
+      font-size: 11px;
+    }
+
+    .remember {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      cursor: pointer;
+    }
+
+    .remember input {
+      width: 15px;
+      height: 15px;
+      margin: 0;
+      accent-color: #b68aff;
+    }
+
+    .primary-btn {
+      width: 100%;
+      min-height: 53px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 0;
+      border-radius: 13px;
+      color: #120b1a;
+      background: linear-gradient(100deg, #c4a0ff, #ee9bff);
+      box-shadow: 0 9px 32px #b56bff25;
+      font-size: 13px;
+      font-weight: 850;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s, opacity .2s;
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 13px 38px #b56bff3d;
+    }
+
+    .primary-btn:disabled {
+      opacity: .6;
+      cursor: wait;
+      transform: none;
+    }
+
+    .status {
+      display: none;
+      margin: 0 0 17px;
+      padding: 13px;
+      border: 1px solid #ffffff18;
+      border-radius: 11px;
+      color: #e1ddec;
+      background: #ffffff06;
+      font-size: 12px;
+      line-height: 1.75;
+      overflow-wrap: anywhere;
+    }
+
+    .status.show { display: block; }
+    .status.error { color: #ffb8c0; border-color: #ff718033; background: #ff71800b; }
+    .status.success { color: #b9ffce; border-color: #7cffaa33; background: #7cffaa0b; }
+
+    .status button {
+      margin-top: 8px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: #d0b3ff;
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .signup-note {
+      margin: 21px 0 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .security-note {
+      margin: 17px 0 0;
+      color: #777486;
+      font-size: 10px;
+      line-height: 1.8;
+      text-align: center;
+    }
+
+    .footer {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 0 0 22px;
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      color: #716d7e;
+      font-size: 10px;
+    }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 900px) {
+      .page {
+        grid-template-columns: minmax(0, 1fr) minmax(320px, 410px);
+        gap: 30px;
+      }
+
+      .intro h1 {
+        font-size: clamp(39px, 5vw, 55px);
+        letter-spacing: -2px;
+      }
+
+      .intro-copy { font-size: 13px; }
+    }
+
+    @media (max-width: 700px) {
+      .topbar {
+        width: calc(100% - 30px);
+        min-height: 70px;
+      }
+
+      .brand { font-size: 16px; }
+
+      .page {
+        width: calc(100% - 30px);
+        padding: 15px 0 35px;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 24px;
+      }
+
+      .intro { padding: 15px 0 0; }
+
+      .intro h1 {
+        margin: 19px 0 12px;
+        font-size: clamp(39px, 9vw, 55px);
+        letter-spacing: -2px;
+      }
+
+      .intro-copy { margin: 0; }
+
+      .benefits {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 9px;
+        margin-top: 22px;
+      }
+
+      .benefit {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+        font-size: 10px;
+      }
+
+      .benefit-icon { width: 34px; height: 34px; flex-basis: 34px; }
+
+      .card {
+        width: 100%;
+        max-width: 520px;
+        margin: 0 auto;
+        padding: 25px 20px;
+        border-radius: 21px;
+      }
+
+      .footer { width: calc(100% - 30px); }
+    }
+
+    @media (max-width: 380px) {
+      .card { padding: 21px 15px; }
+      .socials { grid-template-columns: 1fr; }
+      .top-note { font-size: 11px; }
+      .form-options { font-size: 10px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
   </style>
 </head>
+
 <body>
-  <main class="card">
-    <h1>Welcome back 👋</h1>
-    <p>Sign in to your LS4 learning space.</p>
+  <header class="topbar">
+    <a class="brand" href="./index.html" aria-label="LE4RNSP4CE home">
+      <span class="brand-mark">L</span>
+      <span>LE4RNSP4CE</span>
+    </a>
 
-    <p id="message" role="status" aria-live="polite"></p>
-
-    <form id="loginForm">
-      <label for="email">Email address</label>
-      <input id="email" type="email" autocomplete="email"
-             placeholder="you@example.com" required>
-
-     
-<label for="password">Password</label>
-
-<div class="password-wrapper">
-  <input
-    id="password"
-    type="password"
-    autocomplete="current-password"
-    placeholder="Enter your password"
-    required
-  >
-
-  <button
-    type="button"
-    id="togglePassword"
-    class="password-toggle"
-    aria-label="Show password"
-  >Show</button>
-</div>
-
-
-      <button class="primary" id="loginButton" type="submit">
-        Sign in
-      </button>
-    </form>
-
-    <button class="secondary" id="googleButton" type="button">
-      Continue with Google
-    </button>
-
-    <button class="secondary" id="verifyButton" type="button" hidden>
-      Resend verification email
-    </button>
-
-    <button class="secondary" id="checkButton" type="button" hidden>
-      I've verified my email — check again
-    </button>
-
-    <button class="secondary" id="resetButton" type="button">
-      Forgot password?
-    </button>
-
-    <div class="links">
-      <a href="signup.html">Create an account</a><br>
-      <a href="index.html">Back to home</a>
+    <div class="top-note">
+      New here?
+      <a href="./signup.html">Create account</a>
     </div>
+  </header>
+
+  <main class="page">
+    <section class="intro">
+      <div class="eyebrow">
+        <span class="dot"></span>
+        WELCOME BACK
+      </div>
+
+      <h1>
+        Your next idea<br>
+        starts <span class="gradient">here.</span>
+      </h1>
+
+      <p class="intro-copy">
+        Pick up where you left off. Sign in to your learning space,
+        explore new ideas and keep moving towards your goals.
+      </p>
+
+      <div class="benefits">
+        <div class="benefit">
+          <span class="benefit-icon" aria-hidden="true">✦</span>
+          <span>Your learning, in one place</span>
+        </div>
+        <div class="benefit">
+          <span class="benefit-icon" aria-hidden="true">⌘</span>
+          <span>Keep building your skills</span>
+        </div>
+        <div class="benefit">
+          <span class="benefit-icon" aria-hidden="true">↗</span>
+          <span>Make your next move</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="loginTitle">
+      <div class="card-heading">
+        <h2 id="loginTitle">Welcome back</h2>
+        <p>Enter your details to access your account.</p>
+      </div>
+
+      <div class="socials">
+        <button class="social-btn" id="googleButton" type="button">
+          <span class="social-icon" style="color:#a9c7ff">G</span>
+          Continue with Google
+        </button>
+
+        <button class="social-btn" id="githubButton" type="button">
+          <span class="social-icon">⌘</span>
+          Continue with GitHub
+        </button>
+      </div>
+
+      <div class="divider">OR CONTINUE WITH EMAIL</div>
+
+      <div id="status" class="status" role="status" aria-live="polite"></div>
+
+      <form id="loginForm">
+        <div class="field">
+          <label for="email">Email address</label>
+          <input
+            class="control"
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="username"
+            placeholder="you@example.com"
+            maxlength="254"
+            required
+          >
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+
+          <div class="input-wrap">
+            <input
+              class="control password-input"
+              id="password"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              placeholder="Enter your password"
+              maxlength="128"
+              required
+            >
+
+            <button
+              class="show-btn"
+              id="togglePassword"
+              type="button"
+              aria-controls="password"
+              aria-pressed="false"
+            >Show</button>
+          </div>
+        </div>
+
+        <div class="form-options">
+          <label class="remember" for="rememberMe">
+            <input id="rememberMe" type="checkbox" checked>
+            Keep me signed in
+          </label>
+
+          <a href="#" id="forgotPassword">Forgot password?</a>
+        </div>
+
+        <button class="primary-btn" id="loginButton" type="submit">
+          Log in <span aria-hidden="true">→</span>
+        </button>
+      </form>
+
+      <p class="signup-note">
+        Don't have an account?
+        <a href="./signup.html">Sign up free</a>
+      </p>
+
+      <p class="security-note">
+        Your account is protected by Firebase Authentication.
+        Never share your password or verification links.
+      </p>
+    </section>
   </main>
 
+  <footer class="footer">
+    <span>© <span id="year"></span> LE4RNSP4CE</span>
+    <span>Made for curious minds.</span>
+  </footer>
+
   <script type="module">
-    import { initializeApp } from
+    import { initializeApp, getApps } from
       "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
 
     import {
-      getAuth, setPersistence, browserLocalPersistence,
-      onAuthStateChanged, signInWithEmailAndPassword,
-      GoogleAuthProvider, signInWithPopup,
-      sendEmailVerification, sendPasswordResetEmail, reload
+      getAuth,
+      signInWithEmailAndPassword,
+      signInWithPopup,
+      GoogleAuthProvider,
+      GithubAuthProvider,
+      sendPasswordResetEmail,
+      sendEmailVerification,
+      setPersistence,
+      browserLocalPersistence,
+      browserSessionPersistence,
+      onAuthStateChanged,
+      reload,
+      signOut
     } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
 
-    // Use the same existing Firebase project as dashboard.html.
     const firebaseConfig = {
       apiKey: "AIzaSyAq2dZSTyMha1TyifA37ZkUGNB69Bb__mY",
       authDomain: "le4rnsp4ce.firebaseapp.com",
@@ -142,190 +655,255 @@
       measurementId: "G-9GE67VBYFM"
     };
 
-    const app = initializeApp(firebaseConfig);
+    const app = getApps().length
+      ? getApps()[0]
+      : initializeApp(firebaseConfig);
+
     const auth = getAuth(app);
 
     const form = document.getElementById("loginForm");
-    const email = document.getElementById("email");
-    const password = document.getElementById("password");
-    const message = document.getElementById("message");
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
     const loginButton = document.getElementById("loginButton");
-    const googleButton = document.getElementById("googleButton");
-    const verifyButton = document.getElementById("verifyButton");
-    const checkButton = document.getElementById("checkButton");
-    const resetButton = document.getElementById("resetButton");
+    const statusBox = document.getElementById("status");
+    const rememberMe = document.getElementById("rememberMe");
 
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    let redirecting = false;
     let busy = false;
-    let verificationUser = null;
 
-    function say(text, error = false) {
-      message.textContent = text;
-      message.style.color = error ? "#ff9292" : "#65e6d3";
+    function showStatus(message, type = "") {
+      statusBox.replaceChildren();
+      statusBox.className = "status show" + (type ? " " + type : "");
+      statusBox.textContent = message;
     }
 
-    function verificationMode(user) {
-      verificationUser = user;
-      verifyButton.hidden = false;
-      checkButton.hidden = false;
-      say("Your email is not verified yet. Check your inbox and spam folder, open the verification link, then return here.");
+    function showVerificationMessage(user) {
+      statusBox.replaceChildren();
+      statusBox.className = "status show error";
+
+      const message = document.createElement("span");
+      message.textContent =
+        "Your email is not verified yet. Open the verification email sent to " +
+        (user.email || "your email address") +
+        ". Check your spam folder too.";
+
+      const breakLine = document.createElement("br");
+      const resendButton = document.createElement("button");
+      resendButton.type = "button";
+      resendButton.textContent = "Resend verification email";
+
+      resendButton.addEventListener("click", async () => {
+        resendButton.disabled = true;
+
+        try {
+          await reload(user);
+
+          if (user.emailVerified) {
+            showStatus("Email verified. Opening your dashboard...", "success");
+            window.location.replace("./dashboard.html");
+            return;
+          }
+
+          await sendEmailVerification(user);
+          showStatus(
+            "Verification email sent. Check your inbox and spam folder.",
+            "success"
+          );
+        } catch (error) {
+          console.error(error);
+          showStatus(friendlyError(error), "error");
+        } finally {
+          resendButton.disabled = false;
+        }
+      });
+
+      statusBox.append(message, breakLine, resendButton);
     }
 
-    function setBusy(value) {
+    function friendlyError(error) {
+      const messages = {
+        "auth/invalid-credential":
+          "Email or password is incorrect. Check your details and try again.",
+        "auth/invalid-email":
+          "Please enter a valid email address.",
+        "auth/user-disabled":
+          "This account has been disabled. Contact the website administrator.",
+        "auth/too-many-requests":
+          "Too many attempts. Wait a little before trying again.",
+        "auth/popup-closed-by-user":
+          "The sign-in popup was closed before the process finished.",
+        "auth/popup-blocked":
+          "Your browser blocked the popup. Allow popups and try again.",
+        "auth/operation-not-allowed":
+          "This sign-in provider is not enabled in Firebase Authentication.",
+        "auth/account-exists-with-different-credential":
+          "This email uses a different sign-in method. Try the method used to create your account.",
+        "auth/network-request-failed":
+          "Network error. Check your internet connection and try again."
+      };
+
+      return messages[error?.code] ||
+        "Something went wrong. Please check your connection and try again.";
+    }
+
+    async function applyPersistence() {
+      await setPersistence(
+        auth,
+        rememberMe.checked
+          ? browserLocalPersistence
+          : browserSessionPersistence
+      );
+    }
+
+    function setBusy(value, label = "Log in →") {
       busy = value;
       loginButton.disabled = value;
-      googleButton.disabled = value;
-      resetButton.disabled = value;
-      verifyButton.disabled = value;
-      checkButton.disabled = value;
-      loginButton.textContent = value ? "Please wait..." : "Sign in";
+      loginButton.textContent = value ? "Please wait..." : label;
+
+      document.querySelectorAll(".social-btn").forEach(button => {
+        button.disabled = value;
+      });
     }
 
-    function showError(error) {
-      const messages = {
-        "auth/invalid-credential": "Email or password is incorrect.",
-        "auth/invalid-email": "Please enter a valid email address.",
-        "auth/too-many-requests": "Too many attempts. Please wait and try again.",
-        "auth/network-request-failed": "Network error. Check your internet.",
-        "auth/popup-closed-by-user": "Google sign-in was cancelled.",
-        "auth/popup-blocked": "Allow popups in your browser and try again.",
-        "auth/unauthorized-domain": "Add sudh4nshukum4r.github.io to Firebase Authorized domains.",
-        "auth/operation-not-allowed": "Enable this sign-in method in Firebase Authentication."
-      };
-      say(messages[error.code] || `Sign-in failed: ${error.code || error.message}`, true);
-    }
+    async function handleSignedInUser(user) {
+      if (redirecting) return;
 
-    async function continueIfVerified(user) {
-      await reload(user);
-      if (user.emailVerified) {
+      try {
+        await reload(user);
+
+        if (!user.emailVerified) {
+          showVerificationMessage(user);
+          return;
+        }
+
+        redirecting = true;
+        showStatus("Login successful. Opening your learning space...", "success");
         window.location.replace("./dashboard.html");
-        return true;
+      } catch (error) {
+        console.error(error);
+        showStatus(
+          "We couldn't check your verification status. Check your internet connection and try again.",
+          "error"
+        );
       }
-      verificationMode(user);
-      return false;
     }
+
+    onAuthStateChanged(auth, async user => {
+      if (!user || redirecting || busy) return;
+
+      await handleSignedInUser(user);
+    });
 
     form.addEventListener("submit", async event => {
       event.preventDefault();
-      if (busy) return;
+
+      if (busy || !form.reportValidity()) return;
 
       setBusy(true);
-      verifyButton.hidden = true;
-      checkButton.hidden = true;
 
       try {
-        await setPersistence(auth, browserLocalPersistence);
-        const result = await signInWithEmailAndPassword(
-          auth, email.value.trim(), password.value
+        await applyPersistence();
+
+        const email = emailInput.value.trim().toLowerCase();
+        const password = passwordInput.value;
+
+        const credential = await signInWithEmailAndPassword(
+          auth,
+          email,
+          password
         );
 
-        const verified = await continueIfVerified(result.user);
-        if (!verified) {
-          try {
-            await sendEmailVerification(result.user);
-            say("Verification email sent (if available). Check your inbox and spam folder, then click the verification link.");
-          } catch (error) {
-            say("Your email is still unverified. Open the verification email already sent, or try Resend verification email. " + (error.code || ""), true);
-          }
-        }
-      } catch (error) {
-        showError(error);
-      } finally {
-        setBusy(false);
-      }
-    });
+        await reload(credential.user);
 
-    googleButton.addEventListener("click", async () => {
-      if (busy) return;
-      setBusy(true);
-      try {
-        await setPersistence(auth, browserLocalPersistence);
-        await signInWithPopup(auth, new GoogleAuthProvider());
+        if (!credential.user.emailVerified) {
+          showVerificationMessage(credential.user);
+          return;
+        }
+
+        redirecting = true;
+        showStatus("Login successful. Opening your learning space...", "success");
         window.location.replace("./dashboard.html");
       } catch (error) {
-        showError(error);
+        console.error("Login error:", error);
+        showStatus(friendlyError(error), "error");
       } finally {
         setBusy(false);
       }
     });
 
-    verifyButton.addEventListener("click", async () => {
-      if (busy || !verificationUser) return;
-      setBusy(true);
-      try {
-        await sendEmailVerification(verificationUser);
-        say("Verification email sent. Check your inbox and spam folder.");
-      } catch (error) {
-        showError(error);
-      } finally {
-        setBusy(false);
-      }
+    document.getElementById("togglePassword").addEventListener("click", event => {
+      const button = event.currentTarget;
+      const reveal = passwordInput.type === "password";
+
+      passwordInput.type = reveal ? "text" : "password";
+      button.textContent = reveal ? "Hide" : "Show";
+      button.setAttribute("aria-pressed", String(reveal));
     });
 
-    checkButton.addEventListener("click", async () => {
-      if (busy || !verificationUser) return;
-      setBusy(true);
-      try {
-        await continueIfVerified(verificationUser);
-      } catch (error) {
-        showError(error);
-      } finally {
-        setBusy(false);
-      }
-    });
+    document.getElementById("forgotPassword").addEventListener("click", async event => {
+      event.preventDefault();
 
-    resetButton.addEventListener("click", async () => {
-      if (busy) return;
-      if (!email.value.trim()) {
-        say("Enter your email address first, then click Forgot password.", true);
-        email.focus();
+      const email = emailInput.value.trim().toLowerCase();
+
+      if (!email) {
+        showStatus(
+          "Enter your email address above first, then click Forgot password again.",
+          "error"
+        );
+        emailInput.focus();
         return;
       }
-      setBusy(true);
+
       try {
-        await sendPasswordResetEmail(auth, email.value.trim());
-        say("If an account exists for this email, a password reset email will arrive. Check spam too.");
+        await sendPasswordResetEmail(auth, email);
+        showStatus(
+          "If an account exists for that email, a password reset message has been sent. Check your inbox and spam folder.",
+          "success"
+        );
       } catch (error) {
-        showError(error);
-      } finally {
-        setBusy(false);
+        console.error("Password reset error:", error);
+        showStatus(friendlyError(error), "error");
       }
     });
 
-    // Only verified existing sessions go to the dashboard.
-    try {
-      await setPersistence(auth, browserLocalPersistence);
-      onAuthStateChanged(auth, async user => {
-        if (!user) return;
-        try {
-          await reload(user);
-          if (user.emailVerified) {
-            window.location.replace("./dashboard.html");
-          } else {
-            verificationMode(user);
-          }
-        } catch (error) {
-          showError(error);
+    async function socialLogin(provider) {
+      if (busy) return;
+
+      setBusy(true);
+
+      try {
+        await applyPersistence();
+
+        const result = await signInWithPopup(auth, provider);
+        await reload(result.user);
+
+        if (!result.user.emailVerified) {
+          showVerificationMessage(result.user);
+          return;
         }
-      });
-    } catch (error) {
-      showError(error);
+
+        redirecting = true;
+        showStatus("Login successful. Opening your learning space...", "success");
+        window.location.replace("./dashboard.html");
+      } catch (error) {
+        console.error("Social login error:", error);
+        showStatus(friendlyError(error), "error");
+      } finally {
+        setBusy(false);
+      }
     }
 
-    
-const passwordInput = document.getElementById("password");
-const togglePassword = document.getElementById("togglePassword");
+    document.getElementById("googleButton").addEventListener("click", () => {
+      socialLogin(new GoogleAuthProvider());
+    });
 
-togglePassword.addEventListener("click", () => {
-  const isHidden = passwordInput.type === "password";
-
-  passwordInput.type = isHidden ? "text" : "password";
-  togglePassword.textContent = isHidden ? "Hide" : "Show";
-  togglePassword.setAttribute(
-    "aria-label",
-    isHidden ? "Hide password" : "Show password"
-  );
-});
-
+    document.getElementById("githubButton").addEventListener("click", () => {
+      socialLogin(new GithubAuthProvider());
+    });
   </script>
 </body>
 </html>
+```
