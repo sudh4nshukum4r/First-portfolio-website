@@ -1,0 +1,289 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0b12">
+  <title>Learning Space | LE4RNSP4CE</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0b12;
+      --panel: #141420;
+      --border: #29283b;
+      --muted: #aaa8c0;
+      --purple: #a78bfa;
+      --pink: #f0abfc;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      color: #f7f5ff;
+      background:
+        radial-gradient(ellipse at 80% 0%, #302052 0, transparent 38%),
+        var(--bg);
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input, select { font: inherit; }
+    .wrap { width: min(1120px, 92%); margin: auto; }
+    header {
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 18px; padding: 22px 0; border-bottom: 1px solid #ffffff12;
+    }
+    .brand { font-weight: 850; letter-spacing: .7px; }
+    .brand span { color: var(--purple); }
+    nav { display: flex; gap: 20px; color: var(--muted); font-size: 14px; }
+    nav a:hover { color: white; }
+    .hero { padding: 76px 0 38px; max-width: 800px; }
+    .eyebrow { color: var(--pink); font-size: 12px; font-weight: 800; letter-spacing: 2px; }
+    h1 { font-size: clamp(38px, 7vw, 68px); line-height: 1.05; margin: 16px 0; letter-spacing: -2px; }
+    .gradient {
+      background: linear-gradient(90deg, #c4b5fd, #f0abfc);
+      color: transparent; background-clip: text;
+    }
+    .intro { color: var(--muted); font-size: 17px; line-height: 1.8; max-width: 660px; }
+    .search { display: flex; gap: 10px; margin-top: 26px; }
+    input, select {
+      color: white; background: #171724; border: 1px solid var(--border);
+      border-radius: 13px; padding: 15px; outline: none; min-width: 0;
+    }
+    input { flex: 1; }
+    input:focus, select:focus { border-color: var(--purple); }
+    .filters { display: flex; gap: 10px; flex-wrap: wrap; margin: 22px 0 30px; }
+    .filters select { flex: 1; min-width: 145px; }
+    .section-head { display: flex; justify-content: space-between; gap: 12px; align-items: end; margin: 32px 0 18px; }
+    h2 { font-size: 25px; margin: 0; }
+    .muted { color: var(--muted); font-size: 14px; line-height: 1.6; }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 15px; }
+    .card {
+      background: linear-gradient(145deg, #191827, #11111a);
+      border: 1px solid var(--border); border-radius: 18px; padding: 21px;
+      transition: transform .2s, border-color .2s;
+    }
+    .card:hover { transform: translateY(-3px); border-color: #8b5cf6; }
+    .symbol {
+      display: grid; place-items: center; width: 44px; height: 44px;
+      background: #8b5cf621; border-radius: 13px; font-size: 21px;
+    }
+    .tag {
+      display: inline-block; color: #d8ccff; background: #8b5cf624;
+      padding: 5px 9px; border-radius: 20px; font-size: 11px; margin: 15px 0 8px;
+    }
+    .card h3 { margin: 4px 0 8px; font-size: 18px; }
+    .card p { color: var(--muted); font-size: 13px; line-height: 1.7; min-height: 66px; }
+    .learn { color: var(--pink); font-size: 13px; font-weight: 750; }
+    .empty { display: none; padding: 32px; border: 1px dashed var(--border); border-radius: 15px; text-align: center; color: var(--muted); }
+    .roadmap {
+      margin: 55px 0; padding: 26px; border: 1px solid var(--border);
+      border-radius: 20px; background: #151420;
+    }
+    .steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-top: 22px; }
+    .step { border-left: 2px solid #8b5cf6; padding: 8px 12px; }
+    .step strong { display: block; margin-bottom: 7px; }
+    footer { padding: 25px 0 40px; border-top: 1px solid #ffffff12; color: var(--muted); font-size: 13px; }
+    @media (max-width: 760px) {
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .steps { grid-template-columns: repeat(2, 1fr); }
+      .hero { padding-top: 52px; }
+    }
+    @media (max-width: 520px) {
+      header { align-items: flex-start; flex-direction: column; }
+      nav { flex-wrap: wrap; gap: 14px; }
+      .grid { grid-template-columns: 1fr; }
+      .search { flex-direction: column; }
+      .section-head { align-items: flex-start; flex-direction: column; }
+      .roadmap { padding: 18px; }
+      h1 { letter-spacing: -1px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <a class="brand" href="./index.html">LE4RNSP4CE<span>.</span></a>
+    <nav aria-label="Main navigation">
+      <a href="./index.html">Home</a>
+      <a href="./dashboard.html">Dashboard</a>
+      <a href="./courses.html">Courses</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="eyebrow">YOUR PERSONAL LEARNING UNIVERSE</div>
+      <h1>Curiosity is the beginning of <span class="gradient">everything.</span></h1>
+      <p class="intro">
+        Discover what a skill is, why it matters, how to learn it, and what
+        you can create with it. Start with the basics and grow at your own pace.
+      </p>
+      <div class="search">
+        <input id="search" type="search" placeholder="Search Python, AI, design, science..." aria-label="Search learning topics">
+      </div>
+      <div class="filters">
+        <select id="category" aria-label="Filter by field">
+          <option value="all">All fields</option>
+          <option value="technology">Technology</option>
+          <option value="science">Science & Engineering</option>
+          <option value="creative">Creative Skills</option>
+          <option value="business">Business & Career</option>
+          <option value="foundation">School & Foundations</option>
+        </select>
+        <select id="level" aria-label="Filter by level">
+          <option value="all">All levels</option>
+          <option value="beginner">Beginner</option>
+          <option value="intermediate">Intermediate</option>
+          <option value="advanced">Advanced</option>
+        </select>
+        <select id="year" aria-label="Filter by college year">
+          <option value="all">All stages</option>
+          <option value="school">School / Foundation</option>
+          <option value="1">1st year</option>
+          <option value="2">2nd year</option>
+          <option value="3">3rd year</option>
+          <option value="4">4th year</option>
+          <option value="career">Career / Lifelong learning</option>
+        </select>
+      </div>
+    </section>
+
+    <section aria-labelledby="explore-title">
+      <div class="section-head">
+        <div>
+          <h2 id="explore-title">Explore your next skill</h2>
+          <p class="muted">Start anywhere. Build your knowledge one step at a time.</p>
+        </div>
+        <span id="count" class="muted" aria-live="polite"></span>
+      </div>
+      <div class="grid" id="grid">
+        <article class="card" data-category="technology" data-level="beginner" data-year="1" data-search="python programming coding automation ai data">
+          <div class="symbol">⌘</div><span class="tag">TECHNOLOGY · BEGINNER</span>
+          <h3>Python Programming</h3>
+          <p><strong>What:</strong> A versatile programming language. <strong>Why:</strong> Automation, data and AI. <strong>Start:</strong> Variables, conditions and loops.</p>
+          <a class="learn" href="https://docs.python.org/3/tutorial/" target="_blank" rel="noopener noreferrer">Explore learning resource ↗</a>
+        </article>
+        <article class="card" data-category="technology" data-level="beginner" data-year="1" data-search="html css javascript web development frontend websites">
+          <div class="symbol">⌘</div><span class="tag">TECHNOLOGY · BEGINNER</span>
+          <h3>Web Development</h3>
+          <p><strong>What:</strong> How websites work. <strong>Why:</strong> Build your own web experiences. <strong>Start:</strong> HTML, CSS and JavaScript.</p>
+          <a class="learn" href="https://developer.mozilla.org/en-US/docs/Learn_web_development" target="_blank" rel="noopener noreferrer">Explore learning resource ↗</a>
+        </article>
+        <article class="card" data-category="technology" data-level="intermediate" data-year="2" data-search="data structures algorithms dsa coding interview problem solving">
+          <div class="symbol">◇</div><span class="tag">COMPUTER SCIENCE · INTERMEDIATE</span>
+          <h3>Data Structures & Algorithms</h3>
+          <p><strong>What:</strong> Ways to organize data and solve problems. <strong>Why:</strong> Efficient software and interviews. <strong>Start:</strong> Arrays and strings.</p>
+          <a class="learn" href="https://www.geeksforgeeks.org/" target="_blank" rel="noopener noreferrer">Explore learning resource ↗</a>
+        </article>
+        <article class="card" data-category="technology" data-level="intermediate" data-year="2" data-search="artificial intelligence machine learning data science neural networks">
+          <div class="symbol">✳</div><span class="tag">AI & DATA · INTERMEDIATE</span>
+          <h3>AI & Machine Learning</h3>
+          <p><strong>What:</strong> Systems that learn patterns from data. <strong>Why:</strong> Prediction, automation and intelligent products. <strong>Start:</strong> Python, statistics and linear algebra.</p>
+          <a class="learn" href="https://developers.google.com/machine-learning" target="_blank" rel="noopener noreferrer">Explore learning resource ↗</a>
+        </article>
+        <article class="card" data-category="technology" data-level="advanced" data-year="3" data-search="cloud devops docker kubernetes deployment infrastructure">
+          <div class="symbol">☁</div><span class="tag">CLOUD · ADVANCED</span>
+          <h3>Cloud & DevOps</h3>
+          <p><strong>What:</strong> Deploying and operating software systems. <strong>Why:</strong> Reliable applications at scale. <strong>Start:</strong> Linux, Git, networking and scripting.</p>
+          <a class="learn" href="https://roadmap.sh/devops" target="_blank" rel="noopener noreferrer">Explore learning resource ↗</a>
+        </article>
+        <article class="card" data-category="technology" data-level="advanced" data-year="3" data-search="cybersecurity network security secure coding defense">
+          <div class="symbol">⬡</div><span class="tag">SECURITY · ADVANCED</span>
+          <h3>Cybersecurity</h3>
+          <p><strong>What:</strong> Protecting systems and information. <strong>Why:</strong> Reduce digital risks. <strong>Start:</strong> Networking, operating systems and security fundamentals.</p>
+          <a class="learn" href="https://www.cisa.gov/cybersecurity-training-exercises" target="_blank" rel="noopener noreferrer">Explore learning resource ↗</a>
+        </article>
+        <article class="card" data-category="science" data-level="beginner" data-year="school" data-search="mathematics algebra calculus probability statistics physics">
+          <div class="symbol">∑</div><span class="tag">FOUNDATIONS</span>
+          <h3>Maths & Logical Thinking</h3>
+          <p><strong>What:</strong> Patterns, quantities and reasoning. <strong>Why:</strong> Essential for science, engineering and AI. <strong>Start:</strong> Algebra and problem-solving.</p>
+          <a class="learn" href="https://www.khanacademy.org/math" target="_blank" rel="noopener noreferrer">Explore learning resource ↗</a>
+        </article>
+        <article class="card" data-category="science" data-level="intermediate" data-year="2" data-search="robotics electronics arduino sensors engineering">
+          <div class="symbol">⚙</div><span class="tag">ENGINEERING</span>
+          <h3>Robotics & Electronics</h3>
+          <p><strong>What:</strong> Hardware, sensors and control systems. <strong>Why:</strong> Build interactive machines. <strong>Start:</strong> Circuits, programming and basic physics.</p>
+          <a class="learn" href="https://docs.arduino.cc/" target="_blank" rel="noopener noreferrer">Explore learning resource ↗</a>
+        </article>
+        <article class="card" data-category="creative" data-level="beginner" data-year="career" data-search="ui ux design figma prototyping research accessibility">
+          <div class="symbol">✎</div><span class="tag">CREATIVE</span>
+          <h3>UI/UX Design</h3>
+          <p><strong>What:</strong> Designing useful digital experiences. <strong>Why:</strong> Make products easier to use. <strong>Start:</strong> User needs, layout and prototyping.</p>
+          <a class="learn" href="https://www.figma.com/resource-library/" target="_blank" rel="noopener noreferrer">Explore learning resource ↗</a>
+        </article>
+        <article class="card" data-category="business" data-level="beginner" data-year="career" data-search="communication writing leadership teamwork productivity">
+          <div class="symbol">◎</div><span class="tag">LIFE & CAREER</span>
+          <h3>Communication & Leadership</h3>
+          <p><strong>What:</strong> Expressing ideas and working with others. <strong>Why:</strong> Useful in every field. <strong>Start:</strong> Listening, clear writing and feedback.</p>
+          <a class="learn" href="https://www.coursera.org/" target="_blank" rel="noopener noreferrer">Explore learning resource ↗</a>
+        </article>
+        <article class="card" data-category="business" data-level="intermediate" data-year="3" data-search="internship resume portfolio interview job applications career">
+          <div class="symbol">↗</div><span class="tag">CAREER PREPARATION</span>
+          <h3>Internships & Job Readiness</h3>
+          <p><strong>What:</strong> Preparing to apply for roles. <strong>Why:</strong> Connect skills to experience. <strong>Start:</strong> Projects, resume and interview practice.</p>
+          <a class="learn" href="https://www.linkedin.com/jobs/" target="_blank" rel="noopener noreferrer">Explore job opportunities ↗</a>
+        </article>
+        <article class="card" data-category="business" data-level="beginner" data-year="career" data-search="entrepreneurship business startup product marketing finance">
+          <div class="symbol">✧</div><span class="tag">BUSINESS</span>
+          <h3>Entrepreneurship</h3>
+          <p><strong>What:</strong> Finding problems and building solutions. <strong>Why:</strong> Turn ideas into products. <strong>Start:</strong> Customer discovery and simple prototypes.</p>
+          <a class="learn" href="https://www.startupindia.gov.in/" target="_blank" rel="noopener noreferrer">Explore learning resource ↗</a>
+        </article>
+      </div>
+      <div class="empty" id="empty">No matching topics yet. Try another search or change your filters.</div>
+    </section>
+
+    <section class="roadmap">
+      <span class="eyebrow">A SIMPLE LEARNING METHOD</span>
+      <h2 style="margin-top:12px">From curious to capable.</h2>
+      <p class="muted">A flexible roadmap for any field. Your progress depends on practice, not just watching lessons.</p>
+      <div class="steps">
+        <div class="step"><strong>01 · Explore</strong><span class="muted">What is it and why does it matter?</span></div>
+        <div class="step"><strong>02 · Foundations</strong><span class="muted">Learn concepts and prerequisites.</span></div>
+        <div class="step"><strong>03 · Practice</strong><span class="muted">Solve exercises and check understanding.</span></div>
+        <div class="step"><strong>04 · Build</strong><span class="muted">Create projects using your skills.</span></div>
+        <div class="step"><strong>05 · Advance</strong><span class="muted">Explore specializations and real-world work.</span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap">LE4RNSP4CE · Keep learning, keep building. <br>Resources may be provided by external websites; availability and content can change.</div></footer>
+
+  <script>
+    const search = document.getElementById("search");
+    const category = document.getElementById("category");
+    const level = document.getElementById("level");
+    const year = document.getElementById("year");
+    const cards = [...document.querySelectorAll(".card")];
+    const count = document.getElementById("count");
+    const empty = document.getElementById("empty");
+
+    function filterCards() {
+      const query = search.value.trim().toLowerCase();
+      let visible = 0;
+
+      cards.forEach(card => {
+        const matchesText = (card.innerText + " " + card.dataset.search)
+          .toLowerCase().includes(query);
+        const matchesCategory = category.value === "all" || card.dataset.category === category.value;
+        const matchesLevel = level.value === "all" || card.dataset.level === level.value;
+        const matchesYear = year.value === "all" || card.dataset.year === year.value;
+        const show = matchesText && matchesCategory && matchesLevel && matchesYear;
+
+        card.hidden = !show;
+        if (show) visible++;
+      });
+
+      count.textContent = `${visible} learning ${visible === 1 ? "topic" : "topics"}`;
+      empty.style.display = visible ? "none" : "block";
+    }
+
+    [search, category, level, year].forEach(control => {
+      control.addEventListener("input", filterCards);
+      control.addEventListener("change", filterCards);
+    });
+
+    filterCards();
+  </script>
+</body>
+</html>
