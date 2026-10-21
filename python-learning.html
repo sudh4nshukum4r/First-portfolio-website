@@ -170,6 +170,21 @@
         output predict karo aur khud practice karo.
       </p>
       <a class="button" href="#lesson1">Start Lesson</a>
+      <div style="margin-top: 20px;">
+  <button
+    type="button"
+    id="completeLessonButton"
+    style="padding: 12px 16px; border: 0; border-radius: 10px;
+    background: #8495ff; color: #10152a; font-weight: bold;
+    cursor: pointer;"
+  >
+    Mark lesson complete
+  </button>
+
+  <p id="completionMessage" aria-live="polite">
+    Finish the lesson and mark it complete.
+  </p>
+</div>
     </section>
 
     <section class="lesson" id="lesson1">
@@ -312,6 +327,62 @@ print(a / b)  # Division</code></pre>
         result.style.color = "#ffaaaa";
       }
     });
+    const PROGRESS_KEY = "le4rnsp4ce.progress.v1";
+
+const completeButton = document.getElementById("completeLessonButton");
+const completionMessage = document.getElementById("completionMessage");
+
+function getLearningProgress() {
+  try {
+    return JSON.parse(localStorage.getItem(PROGRESS_KEY) || "{}");
+  } catch {
+    return {};
+  }
+}
+
+function updateCompletionButton() {
+  const progress = getLearningProgress();
+
+  const completed =
+    Array.isArray(progress.python?.completedLessons) &&
+    progress.python.completedLessons.includes("python-intro");
+
+  completeButton.textContent = completed
+    ? "Lesson completed ✓"
+    : "Mark lesson complete";
+
+  completeButton.disabled = completed;
+
+  completionMessage.textContent = completed
+    ? "Lesson completed! Your progress has been saved in this browser."
+    : "Finish the lesson and mark it complete.";
+}
+
+completeButton.addEventListener("click", () => {
+  try {
+    const progress = getLearningProgress();
+
+    if (!progress.python || typeof progress.python !== "object") {
+      progress.python = {};
+    }
+
+    if (!Array.isArray(progress.python.completedLessons)) {
+      progress.python.completedLessons = [];
+    }
+
+    if (!progress.python.completedLessons.includes("python-intro")) {
+      progress.python.completedLessons.push("python-intro");
+    }
+
+    localStorage.setItem(PROGRESS_KEY, JSON.stringify(progress));
+    updateCompletionButton();
+  } catch (error) {
+    completionMessage.textContent =
+      "Progress save nahi ho paya. Browser storage check karo.";
+  }
+});
+
+updateCompletionButton();
   </script>
 </body>
 </html>
