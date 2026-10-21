@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python Learning | LE4RNSP4CE</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b1020;
+      color: #eef2ff;
+      line-height: 1.7;
+    }
+
+    header {
+      padding: 18px 7%;
+      background: #11182b;
+      border-bottom: 1px solid #29334c;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: #8b9cff;
+    }
+
+    a {
+      color: #a9b7ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      width: min(1000px, 90%);
+      margin: 40px auto;
+    }
+
+    .hero, .lesson, .practice {
+      background: #141d32;
+      border: 1px solid #293752;
+      border-radius: 18px;
+      padding: 26px;
+      margin-bottom: 24px;
+    }
+
+    .tag {
+      display: inline-block;
+      color: #b6c1ff;
+      background: #252f4b;
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: clamp(30px, 5vw, 46px);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      margin-bottom: 12px;
+      color: #c1cbff;
+    }
+
+    p {
+      margin: 10px 0;
+      color: #d2d9eb;
+    }
+
+    pre {
+      background: #080d19;
+      border: 1px solid #293752;
+      padding: 18px;
+      border-radius: 12px;
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+
+    code {
+      font-family: Consolas, monospace;
+      color: #a8f0cf;
+      font-size: 15px;
+    }
+
+    .button {
+      display: inline-block;
+      background: #8495ff;
+      color: #10152a;
+      padding: 11px 18px;
+      border-radius: 10px;
+      font-weight: bold;
+      margin-top: 14px;
+    }
+
+    .button:hover {
+      background: #aab5ff;
+      text-decoration: none;
+    }
+
+    .note {
+      border-left: 4px solid #8495ff;
+      padding: 12px 16px;
+      background: #1b2640;
+      border-radius: 8px;
+      margin-top: 16px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #425070;
+      background: #080d19;
+      color: white;
+      margin: 12px 0;
+    }
+
+    button {
+      cursor: pointer;
+      border: 0;
+      border-radius: 8px;
+      background: #8495ff;
+      color: #10152a;
+      padding: 11px 16px;
+      font-weight: bold;
+    }
+
+    #result {
+      margin-top: 12px;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      color: #98a4bf;
+      padding: 28px 16px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">LE4RNSP4CE</div>
+    <a href="./learning-space.html">← Back to Learning Space</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <span class="tag">PYTHON • BEGINNER • LESSON 01</span>
+      <h1>Start Your Python Journey</h1>
+      <p>
+        Python ko zero se seekho. Concepts samjho, code padho,
+        output predict karo aur khud practice karo.
+      </p>
+      <a class="button" href="#lesson1">Start Lesson</a>
+    </section>
+
+    <section class="lesson" id="lesson1">
+      <h2>01. What is Python?</h2>
+      <p>
+        Python ek programming language hai. Iska use websites,
+        automation, data analysis, AI aur machine learning mein hota hai.
+      </p>
+
+      <h2>02. Your first Python program</h2>
+      <p><code>print()</code> ka use screen par output show karne ke liye hota hai.</p>
+
+      <pre><code>print("Hello, World!")
+print("I am learning Python")</code></pre>
+
+      <p><strong>Expected output:</strong></p>
+      <pre><code>Hello, World!
+I am learning Python</code></pre>
+
+      <div class="note">
+        Remember: text ko quotes ke andar likhte hain.
+        Python mein spelling aur brackets sahi hona zaroori hai.
+      </div>
+    </section>
+
+    <section class="lesson">
+      <h2>03. Variables</h2>
+      <p>
+        Variable ek naam hai jiske through hum value ko store
+        aur use kar sakte hain.
+      </p>
+
+      <pre><code>name = "Sudhanshu"
+age = 20
+
+print(name)
+print(age)</code></pre>
+
+      <p><strong>Expected output:</strong></p>
+      <pre><code>Sudhanshu
+20</code></pre>
+
+      <p>
+        Yahan <code>name</code> mein text aur <code>age</code> mein
+        number store kiya gaya hai.
+      </p>
+    </section>
+
+    <section class="lesson">
+      <h2>04. Basic data types</h2>
+
+      <pre><code>name = "Alex"       # String: text
+age = 18            # Integer: whole number
+price = 99.5        # Float: decimal number
+is_student = True   # Boolean: True or False
+
+print(type(name))
+print(type(age))
+print(type(price))
+print(type(is_student))</code></pre>
+
+      <p>
+        Common data types: <code>str</code>, <code>int</code>,
+        <code>float</code> aur <code>bool</code>.
+      </p>
+    </section>
+
+    <section class="lesson">
+      <h2>05. Basic calculations</h2>
+
+      <pre><code>a = 10
+b = 3
+
+print(a + b)  # Addition
+print(a - b)  # Subtraction
+print(a * b)  # Multiplication
+print(a / b)  # Division</code></pre>
+
+      <p><strong>Expected output:</strong></p>
+      <pre><code>13
+7
+30
+3.3333333333333335</code></pre>
+    </section>
+
+    <section class="practice">
+      <h2>Quick Practice</h2>
+      <p>
+        Agar code hai <code>x = 5</code> aur
+        <code>y = 4</code>, toh <code>print(x * y)</code>
+        ka output kya hoga?
+      </p>
+
+      <input
+        type="number"
+        id="answer"
+        placeholder="Apna answer yahan likho"
+      >
+
+      <button type="button" id="checkAnswer">Check Answer</button>
+      <p id="result" aria-live="polite"></p>
+    </section>
+
+    <section class="lesson">
+      <h2>What comes next?</h2>
+      <p>
+        Next lessons mein input, conditions, loops, functions,
+        lists, dictionaries aur Python projects cover kar sakte ho.
+      </p>
+      <p>
+        Practice tip: code ko khud type karo, output predict karo,
+        phir Python interpreter mein run karke verify karo.
+      </p>
+      <a class="button" href="./learning-space.html">
+        Explore Learning Space
+      </a>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 LE4RNSP4CE • Learn. Practice. Build.
+  </footer>
+
+  <script>
+    const answerInput = document.getElementById("answer");
+    const result = document.getElementById("result");
+
+    document.getElementById("checkAnswer").addEventListener("click", () => {
+      if (answerInput.value.trim() === "") {
+        result.textContent = "Please enter your answer first.";
+        result.style.color = "#ffd27d";
+        return;
+      }
+
+      if (Number(answerInput.value) === 20) {
+        result.textContent = "Correct! 5 × 4 = 20. Great work!";
+        result.style.color = "#8df0b5";
+      } else {
+        result.textContent = "Not quite. Try multiplying 5 by 4 again.";
+        result.style.color = "#ffaaaa";
+      }
+    });
+  </script>
+</body>
+</html>
