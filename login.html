@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0D000A">
   <title>Login | LearnSpace</title>
+
   <style>
     :root {
       --bg: #0D000A;
@@ -13,7 +14,9 @@
       --white: #F3F2F2;
       --card: rgba(255,255,255,.06);
     }
+
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       min-height: 100vh;
@@ -27,6 +30,7 @@
         radial-gradient(ellipse at bottom right, #25205c, transparent 45%),
         var(--bg);
     }
+
     .card {
       width: 100%;
       max-width: 430px;
@@ -37,10 +41,26 @@
       backdrop-filter: blur(18px);
       box-shadow: 0 20px 80px #0008;
     }
-    .logo { color: var(--yellow); font-size: 24px; font-weight: 800; }
+
+    .logo {
+      color: var(--yellow);
+      font-size: 24px;
+      font-weight: 800;
+    }
+
     h1 { margin-bottom: 6px; }
-    .muted { color: #c8bfc8; font-size: 14px; }
-    label { display: block; margin: 16px 0 7px; }
+
+    .muted {
+      color: #c8bfc8;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    label {
+      display: block;
+      margin: 16px 0 7px;
+    }
+
     input {
       width: 100%;
       padding: 13px;
@@ -50,7 +70,11 @@
       color: white;
       font-size: 16px;
     }
-    input:focus { outline: 2px solid var(--yellow); }
+
+    input:focus {
+      outline: 2px solid var(--yellow);
+    }
+
     button {
       width: 100%;
       margin-top: 22px;
@@ -63,7 +87,17 @@
       font-weight: bold;
       cursor: pointer;
     }
-    .switch { text-align: center; margin-top: 20px; }
+
+    button:disabled {
+      opacity: .65;
+      cursor: wait;
+    }
+
+    .switch {
+      text-align: center;
+      margin-top: 20px;
+    }
+
     .switch button {
       width: auto;
       margin: 0;
@@ -71,34 +105,72 @@
       background: none;
       color: var(--yellow);
     }
-    .notice { margin-top: 16px; font-size: 12px; color: #c8bfc8; }
+
+    .notice {
+      margin-top: 16px;
+      font-size: 13px;
+      color: #c8bfc8;
+      overflow-wrap: anywhere;
+    }
+
+    .home-link {
+      display: block;
+      text-align: center;
+      margin-top: 18px;
+      color: var(--yellow);
+      text-decoration: none;
+      font-weight: 600;
+    }
   </style>
 </head>
+
 <body>
   <main class="card">
     <div class="logo">LEARNSPACE</div>
     <p class="muted">Learn. Build. Grow.</p>
 
     <h1 id="heading">Create your account</h1>
-    <p class="muted" id="subtitle">Start your learning journey today.</p>
+    <p class="muted" id="subtitle">
+      Start your learning journey today.
+    </p>
 
     <form id="accountForm">
       <div id="nameField">
         <label for="name">Full name</label>
-        <input id="name" name="name" autocomplete="name"
-               placeholder="Your full name" required>
+        <input
+          id="name"
+          name="name"
+          autocomplete="name"
+          placeholder="Your full name"
+          maxlength="80"
+          required
+        >
       </div>
 
       <label for="email">Email address</label>
-      <input id="email" name="email" type="email"
-             autocomplete="email" placeholder="you@example.com" required>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        autocomplete="email"
+        placeholder="you@example.com"
+        required
+      >
 
       <label for="password">Password</label>
-      <input id="password" name="password" type="password"
-             autocomplete="new-password" minlength="8"
-             placeholder="At least 8 characters" required>
+      <input
+        id="password"
+        name="password"
+        type="password"
+        autocomplete="new-password"
+        minlength="8"
+        placeholder="At least 8 characters"
+        required
+      >
 
-      <button type="submit" id="submitButton">Create account</button>
+      <button type="submit" id="submitButton">
+        Create account
+      </button>
     </form>
 
     <div class="switch">
@@ -106,16 +178,45 @@
       <button type="button" id="switchButton">Log in</button>
     </div>
 
-    <p class="notice" id="message" aria-live="polite">
-      Design preview only. Accounts are not created yet.
+    <p class="notice" id="message" role="status" aria-live="polite">
+      Create an account or log in using your email.
     </p>
+
+    <a class="home-link" href="./index.html">
+      ← Back to Home
+    </a>
   </main>
 
-  <script>
+  <script type="module">
+    import { initializeApp } from
+      "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
+
+    import {
+      getAuth,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword,
+      updateProfile
+    } from
+      "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAq2dZSTyMha1TyifA37ZkUGNB69Bb__mY",
+      authDomain: "le4rnsp4ce.firebaseapp.com",
+      projectId: "le4rnsp4ce",
+      storageBucket: "le4rnsp4ce.firebasestorage.app",
+      messagingSenderId: "679714213034",
+      appId: "1:679714213034:web:2768833e0c6ce25398d4d3",
+      measurementId: "G-9GE67VBYFM"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
     const form = document.getElementById("accountForm");
     const nameField = document.getElementById("nameField");
     const nameInput = document.getElementById("name");
-    const password = document.getElementById("password");
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
     const heading = document.getElementById("heading");
     const subtitle = document.getElementById("subtitle");
     const submitButton = document.getElementById("submitButton");
@@ -124,43 +225,127 @@
     const message = document.getElementById("message");
 
     let isLogin = false;
+    let isSubmitting = false;
 
     switchButton.addEventListener("click", () => {
       isLogin = !isLogin;
+
       nameField.hidden = isLogin;
       nameInput.required = !isLogin;
-      password.autocomplete = isLogin ? "current-password" : "new-password";
-      heading.textContent = isLogin ? "Welcome back" : "Create your account";
+      passwordInput.autocomplete = isLogin
+        ? "current-password"
+        : "new-password";
+
+      heading.textContent = isLogin
+        ? "Welcome back"
+        : "Create your account";
+
       subtitle.textContent = isLogin
         ? "Log in to continue learning."
         : "Start your learning journey today.";
-      submitButton.textContent = isLogin ? "Log in" : "Create account";
+
+      submitButton.textContent = isLogin
+        ? "Log in"
+        : "Create account";
+
       switchText.textContent = isLogin
         ? "New here?"
         : "Already have an account?";
-      switchButton.textContent = isLogin ? "Sign up" : "Log in";
-      message.textContent =
-        "Design preview only. Accounts are not created yet.";
+
+      switchButton.textContent = isLogin
+        ? "Sign up"
+        : "Log in";
+
+      message.textContent = "";
     });
 
-    form.addEventListener("submit", (event) => {
+    function friendlyError(error) {
+      switch (error.code) {
+        case "auth/email-already-in-use":
+          return "This email is already registered. Try logging in.";
+        case "auth/invalid-email":
+          return "Please enter a valid email address.";
+        case "auth/weak-password":
+          return "Choose a stronger password.";
+        case "auth/invalid-credential":
+          return "Email or password is incorrect.";
+        case "auth/too-many-requests":
+          return "Too many attempts. Please wait and try again.";
+        case "auth/network-request-failed":
+          return "Network problem. Check your internet connection.";
+        case "auth/operation-not-allowed":
+          return "Email/Password sign-in is not enabled in Firebase.";
+        case "auth/unauthorized-domain":
+          return "This website domain is not authorized in Firebase.";
+        default:
+          console.error("Firebase error:", error.code);
+          return "Something went wrong. Please try again.";
+      }
+    }
+
+    form.addEventListener("submit", async (event) => {
       event.preventDefault();
-      message.textContent =
-        "Demo only: connect a secure authentication service to enable accounts.";
+
+      if (isSubmitting) return;
+
+      const email = emailInput.value.trim();
+      const password = passwordInput.value;
+      const fullName = nameInput.value.trim();
+
+      if (!isLogin && !fullName) {
+        message.textContent = "Please enter your full name.";
+        return;
+      }
+
+      if (password.length < 8) {
+        message.textContent =
+          "Password must contain at least 8 characters.";
+        return;
+      }
+
+      isSubmitting = true;
+      submitButton.disabled = true;
+      switchButton.disabled = true;
+      submitButton.textContent = isLogin
+        ? "Logging in..."
+        : "Creating account...";
+
+      message.textContent = "";
+
+      try {
+        if (isLogin) {
+          await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+          );
+        } else {
+          const result = await createUserWithEmailAndPassword(
+            auth,
+            email,
+            password
+          );
+
+          await updateProfile(result.user, {
+            displayName: fullName
+          });
+        }
+
+        message.textContent = "Success! Opening LearnSpace...";
+
+        window.location.assign("./index.html");
+
+      } catch (error) {
+        message.textContent = friendlyError(error);
+        submitButton.textContent = isLogin
+          ? "Log in"
+          : "Create account";
+      } finally {
+        isSubmitting = false;
+        submitButton.disabled = false;
+        switchButton.disabled = false;
+      }
     });
   </script>
 </body>
-
-  
-<a href="./index.html" style="
-  display:block;
-  text-align:center;
-  margin-top:18px;
-  color:#FEDD00;
-  text-decoration:none;
-  font-weight:600;
-">
-  ← Back to Home
-</a>
-
 </html>
