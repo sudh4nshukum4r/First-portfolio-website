@@ -454,7 +454,65 @@
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { transition-duration: .01ms !important; }
+
+      
     }
+
+    
+/* Learning progress card */
+.progress-panel {
+  margin: 24px 0;
+  padding: 22px;
+  border: 1px solid #343044;
+  border-radius: 18px;
+  background: #171520;
+}
+
+.progress-panel h2 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.progress-description {
+  margin: 0 0 18px;
+  color: #aaa4bb;
+  font-size: 13px;
+}
+
+.progress-track {
+  height: 10px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #302b3c;
+}
+
+.progress-fill {
+  width: 0%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #a78bfa, #e879f9);
+  transition: width 0.3s ease;
+}
+
+.progress-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 12px;
+  color: #c9c2d8;
+  font-size: 12px;
+}
+
+.progress-panel a {
+  color: #c4b5fd;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.progress-panel a:hover {
+  text-decoration: underline;
+}
+
   </style>
 </head>
 
@@ -559,6 +617,41 @@
 
       <div class="section-heading">
         <div>
+          
+<section class="progress-panel" aria-labelledby="learningProgressTitle">
+  <h2 id="learningProgressTitle">Your Learning Progress</h2>
+
+  <p class="progress-description">
+    Keep learning, one lesson at a time.
+  </p>
+
+  <div class="progress-meta">
+    <span>Python — Starter Lesson</span>
+    <span id="pythonProgressCount">0 / 1 lesson</span>
+  </div>
+
+  <div
+    class="progress-track"
+    role="progressbar"
+    aria-label="Python lesson progress"
+    aria-valuemin="0"
+    aria-valuemax="1"
+    aria-valuenow="0"
+    id="pythonProgressBar"
+  >
+    <div class="progress-fill" id="pythonProgressFill"></div>
+  </div>
+
+  <div class="progress-meta">
+    <span id="pythonProgressPercent">0% complete</span>
+    <a href="./python-learning.html">Continue learning →</a>
+  </div>
+
+  <p class="progress-description" style="margin-top: 16px; margin-bottom: 0;">
+    Progress is currently saved in this browser, not synced across devices.
+  </p>
+</section>
+
           <h2>Explore your space</h2>
           <p>Choose where you want to go next.</p>
         </div>
