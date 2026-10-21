@@ -1,0 +1,327 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101225">
+  <title>Create account | LE4RNSP4CE</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; padding: 24px 14px;
+      display: grid; place-items: center;
+      font-family: system-ui, Arial, sans-serif;
+      color: #f7f7ff;
+      background: radial-gradient(circle at top, #30255c, #101225 60%);
+    }
+    .card {
+      width: min(100%, 520px); padding: 28px;
+      border: 1px solid #3a3b60; border-radius: 22px;
+      background: #17182b;
+      box-shadow: 0 20px 60px #0005;
+    }
+    h1 { margin: 0 0 8px; font-size: 28px; }
+    .muted { color: #b8bad2; line-height: 1.6; }
+    label { display: block; margin: 14px 0 6px; font-size: 14px; }
+    input, select {
+      width: 100%; min-height: 46px; padding: 11px 12px;
+      color: white; background: #22243b;
+      border: 1px solid #484a6c; border-radius: 10px;
+      font: inherit;
+    }
+    input:focus, select:focus {
+      outline: 2px solid #a99cff; outline-offset: 2px;
+    }
+    button, .social {
+      width: 100%; min-height: 46px; margin-top: 12px;
+      display: flex; align-items: center; justify-content: center;
+      padding: 11px; border: 0; border-radius: 10px;
+      font: inherit; font-weight: 700; text-decoration: none;
+      cursor: pointer;
+    }
+    .primary { color: #101225; background: #b4a5ff; }
+    .social { color: white; background: #292b45; border: 1px solid #484a6c; }
+    button:disabled { opacity: .6; cursor: wait; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .message { margin-top: 14px; font-size: 14px; overflow-wrap: anywhere; }
+    .error { color: #ffaaaa; }
+    .success { color: #9df2bd; }
+    .small { font-size: 12px; }
+    a { color: #c7bdff; }
+    @media (max-width: 420px) {
+      .card { padding: 20px; }
+      .row { grid-template-columns: 1fr; gap: 0; }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Create your LS4 account</h1>
+    <p class="muted">Learn. Build. Share. Grow.</p>
+
+    <div class="row">
+      <div>
+        <label for="firstName">First name *</label>
+        <input id="firstName" autocomplete="given-name" required maxlength="60">
+      </div>
+      <div>
+        <label for="lastName">Last name</label>
+        <input id="lastName" autocomplete="family-name" maxlength="60">
+      </div>
+    </div>
+
+    <label for="username">Username *</label>
+    <input id="username" autocomplete="username"
+      placeholder="e.g. sudhanshu_01" minlength="3" maxlength="24"
+      pattern="[A-Za-z0-9_]+" required>
+    <p class="muted small">Use 3–24 letters, numbers or underscores.</p>
+
+    <label for="email">Email address *</label>
+    <input id="email" type="email" autocomplete="email" required maxlength="254">
+
+    <label for="country">Country *</label>
+    <select id="country" required>
+      <option value="">Choose your country</option>
+      <option value="IN">India</option>
+      <option value="US">United States</option>
+      <option value="GB">United Kingdom</option>
+      <option value="CA">Canada</option>
+      <option value="AU">Australia</option>
+      <option value="BD">Bangladesh</option>
+      <option value="NP">Nepal</option>
+      <option value="PK">Pakistan</option>
+      <option value="LK">Sri Lanka</option>
+      <option value="AE">United Arab Emirates</option>
+      <option value="SG">Singapore</option>
+      <option value="DE">Germany</option>
+      <option value="FR">France</option>
+      <option value="JP">Japan</option>
+      <option value="BR">Brazil</option>
+      <option value="ZA">South Africa</option>
+      <option value="OTHER">Other</option>
+    </select>
+
+    <label for="language">Preferred language *</label>
+    <select id="language" required>
+      <option value="en">English</option>
+      <option value="hi">हिन्दी (Hindi)</option>
+      <option value="bn">বাংলা (Bengali)</option>
+      <option value="ur">اردو (Urdu)</option>
+      <option value="ne">नेपाली (Nepali)</option>
+      <option value="ta">தமிழ் (Tamil)</option>
+      <option value="te">తెలుగు (Telugu)</option>
+      <option value="mr">मराठी (Marathi)</option>
+      <option value="es">Español (Spanish)</option>
+      <option value="fr">Français (French)</option>
+      <option value="ar">العربية (Arabic)</option>
+      <option value="pt">Português (Portuguese)</option>
+      <option value="de">Deutsch (German)</option>
+      <option value="ja">日本語 (Japanese)</option>
+      <option value="zh">中文 (Chinese)</option>
+    </select>
+
+    <label for="password">Password *</label>
+    <input id="password" type="password" autocomplete="new-password"
+      minlength="8" required>
+    <p class="muted small">Use at least 8 characters. A longer, unique password is safer.</p>
+
+    <label for="confirmPassword">Confirm password *</label>
+    <input id="confirmPassword" type="password"
+      autocomplete="new-password" minlength="8" required>
+
+    <label>
+      <input id="terms" type="checkbox" style="width:auto;min-height:auto">
+      I agree to the LS4 terms and privacy policy.
+    </label>
+
+    <button class="primary" id="createBtn" type="button">
+      Create new account
+    </button>
+
+    <p class="muted" style="text-align:center">Or continue with</p>
+    <button class="social" id="googleBtn" type="button">Continue with Google</button>
+    <button class="social" id="microsoftBtn" type="button">Continue with Microsoft</button>
+    <button class="social" id="githubBtn" type="button">Continue with GitHub</button>
+    <button class="social" id="linkedinBtn" type="button">Continue with LinkedIn</button>
+
+    <p id="message" class="message" role="status" aria-live="polite"></p>
+    <p class="muted">Already have an account? <a href="login.html">Log in</a></p>
+    <p class="muted"><a href="index.html">Back to LS4 home</a></p>
+    <p class="muted small">Support: <a href="mailto:supportle4nsp4ce@gmail.com">supportle4nsp4ce@gmail.com</a></p>
+  </main>
+
+  <script type="module">
+    import { initializeApp } from
+      "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
+
+    import {
+      getAuth, createUserWithEmailAndPassword, updateProfile,
+      sendEmailVerification, GoogleAuthProvider, OAuthProvider,
+      GithubAuthProvider, signInWithPopup
+    } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
+
+    import {
+      getFirestore, doc, runTransaction, serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAq2dZSTyMha1TyifA37ZkUGNB69Bb__mY",
+      authDomain: "le4rnsp4ce.firebaseapp.com",
+      projectId: "le4rnsp4ce",
+      storageBucket: "le4rnsp4ce.firebasestorage.app",
+      messagingSenderId: "679714213034",
+      appId: "1:679714213034:web:2768833e0c6ce25398d4d3",
+      measurementId: "G-9GE67VBYFM"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const $ = (id) => document.getElementById(id);
+    const message = $("message");
+    const createBtn = $("createBtn");
+
+    function showMessage(text, type = "error") {
+      message.textContent = text;
+      message.className = "message " + type;
+    }
+
+    function explainError(error) {
+      const messages = {
+        "auth/email-already-in-use": "This email already has an account. Please log in.",
+        "auth/invalid-email": "Please enter a valid email address.",
+        "auth/weak-password": "Choose a stronger password.",
+        "auth/popup-closed-by-user": "The sign-in window was closed. Try again.",
+        "auth/popup-blocked": "Your browser blocked the sign-in popup. Allow popups and retry.",
+        "auth/operation-not-allowed": "This sign-in method is not enabled in Firebase yet.",
+        "auth/unauthorized-domain": "This website domain is not authorized in Firebase.",
+        "permission-denied": "Database permissions are not configured correctly yet."
+      };
+      return messages[error.code] ||
+        "Something went wrong. Check your Firebase setup and try again.";
+    }
+
+    async function reserveProfile(user, profile) {
+      const usernameKey = profile.username.toLowerCase();
+      const usernameRef = doc(db, "usernames", usernameKey);
+      const profileRef = doc(db, "users", user.uid);
+
+      await runTransaction(db, async (transaction) => {
+        const existing = await transaction.get(usernameRef);
+        if (existing.exists()) throw new Error("USERNAME_TAKEN");
+
+        transaction.set(usernameRef, {
+          uid: user.uid,
+          username: profile.username,
+          createdAt: serverTimestamp()
+        });
+
+        transaction.set(profileRef, {
+          uid: user.uid,
+          username: profile.username,
+          displayName: profile.displayName,
+          country: profile.country,
+          language: profile.language,
+          email: user.email || "",
+          photoURL: user.photoURL || "",
+          createdAt: serverTimestamp()
+        });
+      });
+    }
+
+    createBtn.addEventListener("click", async () => {
+      if (!$("firstName").value.trim()) {
+        showMessage("Please enter your first name."); return;
+      }
+      if (!$("country").value) {
+        showMessage("Please choose your country."); return;
+      }
+      if (!$("terms").checked) {
+        showMessage("Please agree to the terms first."); return;
+      }
+
+      const username = $("username").value.trim();
+      if (!/^[A-Za-z0-9_]{3,24}$/.test(username)) {
+        showMessage("Username must be 3–24 characters: letters, numbers or _."); return;
+      }
+
+      const password = $("password").value;
+      if (password !== $("confirmPassword").value) {
+        showMessage("Passwords do not match."); return;
+      }
+      if (password.length < 8) {
+        showMessage("Password must contain at least 8 characters."); return;
+      }
+
+      createBtn.disabled = true;
+      showMessage("Creating your account…", "success");
+
+      let createdUser = null;
+      try {
+        const credential = await createUserWithEmailAndPassword(
+          auth, $("email").value.trim(), password
+        );
+        createdUser = credential.user;
+
+        const displayName = [
+          $("firstName").value.trim(),
+          $("lastName").value.trim()
+        ].filter(Boolean).join(" ");
+
+        await updateProfile(createdUser, { displayName });
+
+        await reserveProfile(createdUser, {
+          username,
+          displayName,
+          country: $("country").value,
+          language: $("language").value
+        });
+
+        await sendEmailVerification(createdUser);
+        showMessage(
+          "Account created! Check your email to verify your address, then log in.",
+          "success"
+        );
+      } catch (error) {
+        if (error.message === "USERNAME_TAKEN") {
+          showMessage("Username already exists. Please choose another.");
+        } else {
+          showMessage(explainError(error));
+        }
+      } finally {
+        createBtn.disabled = false;
+      }
+    });
+
+    async function socialLogin(provider) {
+      try {
+        showMessage("Opening sign-in…", "success");
+        const result = await signInWithPopup(auth, provider);
+        showMessage(
+          "Signed in as " + (result.user.displayName || result.user.email) +
+          ". Profile setup and unique username reservation must be completed before using the dashboard.",
+          "success"
+        );
+      } catch (error) {
+        showMessage(explainError(error));
+      }
+    }
+
+    $("googleBtn").addEventListener("click", () =>
+      socialLogin(new GoogleAuthProvider()));
+
+    $("microsoftBtn").addEventListener("click", () =>
+      socialLogin(new OAuthProvider("microsoft.com")));
+
+    $("githubBtn").addEventListener("click", () =>
+      socialLogin(new GithubAuthProvider()));
+
+    $("linkedinBtn").addEventListener("click", () =>
+      showMessage(
+        "LinkedIn needs a separate supported OAuth/OIDC integration and provider configuration. This button is not connected yet."
+      ));
+  </script>
+</body>
+</html>
