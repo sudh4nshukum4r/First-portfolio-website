@@ -3,26 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Python Learning | LE4RNSP4CE</title>
-
+  <meta name="theme-color" content="#0b0b14">
+  <title>Python Learning Hub | LE4RNSP4CE</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      --bg: #0b0b14;
+      --panel: #141421;
+      --panel2: #1b1b2b;
+      --text: #f4f3ff;
+      --muted: #aaa9c1;
+      --purple: #a78bfa;
+      --cyan: #67e8f9;
+      --green: #86efac;
+      --border: #303047;
     }
+
+    * { box-sizing: border-box; }
 
     body {
-      font-family: Arial, sans-serif;
-      background: #0b1020;
-      color: #eef2ff;
-      line-height: 1.7;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, Arial, sans-serif;
+      line-height: 1.65;
     }
 
+    a { color: var(--cyan); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
     header {
-      padding: 18px 7%;
-      background: #11182b;
-      border-bottom: 1px solid #29334c;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #0b0b14ed;
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      max-width: 1150px;
+      margin: auto;
+      padding: 15px 22px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -30,359 +51,575 @@
       flex-wrap: wrap;
     }
 
-    .logo {
-      font-size: 22px;
-      font-weight: bold;
-      color: #8b9cff;
+    .brand { font-weight: 900; font-size: 1.15rem; }
+    .brand span { color: var(--purple); }
+
+    .navlinks {
+      display: flex;
+      gap: 17px;
+      flex-wrap: wrap;
+      font-size: .92rem;
     }
 
-    a {
-      color: #a9b7ff;
-      text-decoration: none;
+    .container { max-width: 1150px; margin: auto; padding: 28px 22px 60px; }
+
+    .hero {
+      padding: 42px 0 30px;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 24px;
+      align-items: center;
     }
 
-    a:hover {
-      text-decoration: underline;
+    .eyebrow {
+      color: var(--cyan);
+      text-transform: uppercase;
+      font-size: .78rem;
+      letter-spacing: 2px;
+      font-weight: 800;
     }
 
-    main {
-      width: min(1000px, 90%);
-      margin: 40px auto;
-    }
+    h1 { font-size: clamp(2.3rem, 6vw, 4.4rem); line-height: 1.08; margin: 12px 0; }
+    h1 span { color: var(--purple); }
+    h2 { line-height: 1.25; }
+    .muted { color: var(--muted); }
 
-    .hero, .lesson, .practice {
-      background: #141d32;
-      border: 1px solid #293752;
+    .panel, .card, .lesson, .topic {
+      background: var(--panel);
+      border: 1px solid var(--border);
       border-radius: 18px;
-      padding: 26px;
-      margin-bottom: 24px;
     }
 
-    .tag {
-      display: inline-block;
-      color: #b6c1ff;
-      background: #252f4b;
-      border-radius: 20px;
-      padding: 4px 12px;
-      font-size: 13px;
-      margin-bottom: 12px;
-    }
-
-    h1 {
-      font-size: clamp(30px, 5vw, 46px);
-      line-height: 1.2;
-      margin-bottom: 16px;
-    }
-
-    h2 {
-      margin-bottom: 12px;
-      color: #c1cbff;
-    }
-
-    p {
-      margin: 10px 0;
-      color: #d2d9eb;
-    }
-
-    pre {
-      background: #080d19;
-      border: 1px solid #293752;
-      padding: 18px;
-      border-radius: 12px;
-      overflow-x: auto;
-      margin: 16px 0;
-    }
-
-    code {
-      font-family: Consolas, monospace;
-      color: #a8f0cf;
-      font-size: 15px;
-    }
+    .panel { padding: 24px; }
+    .card { padding: 19px; }
+    .card h3 { margin-top: 0; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
 
     .button {
       display: inline-block;
-      background: #8495ff;
-      color: #10152a;
-      padding: 11px 18px;
+      background: var(--purple);
+      color: #100b20;
+      padding: 11px 17px;
+      border: 0;
       border-radius: 10px;
-      font-weight: bold;
-      margin-top: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      font-size: .95rem;
     }
 
-    .button:hover {
-      background: #aab5ff;
-      text-decoration: none;
+    .button.secondary {
+      background: var(--panel2);
+      color: var(--text);
+      border: 1px solid var(--border);
     }
 
-    .note {
-      border-left: 4px solid #8495ff;
-      padding: 12px 16px;
-      background: #1b2640;
-      border-radius: 8px;
-      margin-top: 16px;
-    }
+    .button:hover { filter: brightness(1.1); text-decoration: none; }
 
-    input {
-      width: 100%;
-      padding: 12px;
-      border-radius: 8px;
-      border: 1px solid #425070;
-      background: #080d19;
-      color: white;
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 20px; }
+    .stat { padding: 14px; background: var(--panel2); border-radius: 12px; }
+    .stat strong { display: block; font-size: 1.4rem; color: var(--cyan); }
+
+    section { margin-top: 48px; }
+    .section-heading { margin-bottom: 18px; }
+    .section-heading p { color: var(--muted); margin-top: 5px; }
+
+    .progress-track {
+      height: 9px;
+      background: #29293c;
+      border-radius: 20px;
+      overflow: hidden;
       margin: 12px 0;
     }
 
-    button {
-      cursor: pointer;
-      border: 0;
-      border-radius: 8px;
-      background: #8495ff;
-      color: #10152a;
-      padding: 11px 16px;
-      font-weight: bold;
+    .progress-fill {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--purple), var(--cyan));
+      transition: width .25s;
     }
 
-    #result {
+    .toolbar { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0; }
+
+    input, select {
+      background: var(--panel2);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+      font: inherit;
+    }
+
+    input { flex: 1; min-width: 200px; }
+    select { max-width: 100%; }
+
+    .lesson { padding: 21px; margin-bottom: 17px; scroll-margin-top: 90px; }
+    .lesson-top { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: start; }
+    .tag { color: var(--cyan); font-size: .8rem; font-weight: 800; }
+    .lesson h3 { margin: 5px 0; }
+    .lesson p { color: var(--muted); }
+
+    pre {
+      overflow-x: auto;
+      padding: 17px;
+      background: #080811;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: #d9d7ff;
+      font-size: .92rem;
+      white-space: pre;
+    }
+
+    .output {
+      padding: 12px 15px;
+      background: #10201b;
+      color: var(--green);
+      border-radius: 10px;
+      overflow-x: auto;
+    }
+
+    .lesson-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+    .complete-label { display: flex; align-items: center; gap: 8px; color: var(--muted); }
+    .complete-label input { flex: none; min-width: auto; accent-color: var(--purple); }
+
+    details {
+      background: var(--panel2);
+      border-radius: 10px;
+      padding: 12px 15px;
       margin-top: 12px;
-      font-weight: bold;
     }
 
-    footer {
-      text-align: center;
-      color: #98a4bf;
-      padding: 28px 16px;
+    summary { cursor: pointer; font-weight: 700; }
+
+    .topic { padding: 17px; }
+    .topic strong { display: block; margin-bottom: 5px; }
+    .topic p { color: var(--muted); margin: 0; font-size: .92rem; }
+
+    .callout {
+      border-left: 3px solid var(--purple);
+      padding: 12px 16px;
+      background: var(--panel2);
+      border-radius: 0 10px 10px 0;
+    }
+
+    footer { border-top: 1px solid var(--border); padding: 24px 10px; color: var(--muted); text-align: center; }
+
+    @media (max-width: 760px) {
+      .hero { grid-template-columns: 1fr; padding-top: 25px; }
+      .grid { grid-template-columns: repeat(2, 1fr); }
+      .container { padding-inline: 15px; }
+      nav { padding-inline: 15px; }
+    }
+
+    @media (max-width: 480px) {
+      .grid, .stats { grid-template-columns: 1fr; }
+      .navlinks { gap: 10px; }
+      .panel { padding: 18px; }
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="logo">LE4RNSP4CE</div>
-    <a href="./learning-space.html">← Back to Learning Space</a>
-  </header>
+<header>
+  <nav>
+    <a class="brand" href="index.html">LE4RNS<span>P4CE</span></a>
+    <div class="navlinks">
+      <a href="index.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="learning-space.html">Learning Space</a>
+      <a href="coding-practice.html">Coding Practice</a>
+    </div>
+  </nav>
+</header>
 
-  <main>
-    <section class="hero">
-      <span class="tag">PYTHON • BEGINNER • LESSON 01</span>
-      <h1>Start Your Python Journey</h1>
-      <p>
-        Python ko zero se seekho. Concepts samjho, code padho,
-        output predict karo aur khud practice karo.
+<main class="container">
+  <div class="hero">
+    <div>
+      <div class="eyebrow">Your Python journey starts here</div>
+      <h1>Learn Python.<br><span>Build real skills.</span></h1>
+      <p class="muted">
+        Learn step by step with simple explanations, working examples,
+        expected outputs, practice questions and revision checkpoints.
+        Beginner se AI/ML foundations tak!
       </p>
-      <a class="button" href="#lesson1">Start Lesson</a>
-      <div style="margin-top: 20px;">
-  <button
-    type="button"
-    id="completeLessonButton"
-    style="padding: 12px 16px; border: 0; border-radius: 10px;
-    background: #8495ff; color: #10152a; font-weight: bold;
-    cursor: pointer;"
-  >
-    Mark lesson complete
-  </button>
+      <a class="button" href="#roadmap">Explore Roadmap →</a>
+      <a class="button secondary" href="#lessons">Start Learning</a>
+    </div>
 
-  <p id="completionMessage" aria-live="polite">
-    Finish the lesson and mark it complete.
-  </p>
-</div>
-    </section>
-
-    <section class="lesson" id="lesson1">
-      <h2>01. What is Python?</h2>
-      <p>
-        Python ek programming language hai. Iska use websites,
-        automation, data analysis, AI aur machine learning mein hota hai.
-      </p>
-
-      <h2>02. Your first Python program</h2>
-      <p><code>print()</code> ka use screen par output show karne ke liye hota hai.</p>
-
-      <pre><code>print("Hello, World!")
-print("I am learning Python")</code></pre>
-
-      <p><strong>Expected output:</strong></p>
-      <pre><code>Hello, World!
-I am learning Python</code></pre>
-
-      <div class="note">
-        Remember: text ko quotes ke andar likhte hain.
-        Python mein spelling aur brackets sahi hona zaroori hai.
+    <div class="panel">
+      <div class="eyebrow">Your learning progress</div>
+      <h2 id="progressText">0% completed</h2>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
       </div>
-    </section>
+      <p class="muted" id="progressDetail">0 of 12 lessons completed</p>
+      <div class="stats">
+        <div class="stat"><strong id="completedCount">0</strong><small>Completed</small></div>
+        <div class="stat"><strong>12</strong><small>Core lessons</small></div>
+        <div class="stat"><strong>6</strong><small>Learning stages</small></div>
+      </div>
+      <button class="button secondary" id="resetProgress" style="margin-top:15px">
+        Reset Progress
+      </button>
+    </div>
+  </div>
 
-    <section class="lesson">
-      <h2>03. Variables</h2>
-      <p>
-        Variable ek naam hai jiske through hum value ko store
-        aur use kar sakte hain.
-      </p>
+  <section id="roadmap">
+    <div class="section-heading">
+      <h2>Python Roadmap</h2>
+      <p>Follow the stages in order. Strong fundamentals matter more than rushing.</p>
+    </div>
 
-      <pre><code>name = "Sudhanshu"
-age = 20
+    <div class="grid">
+      <div class="topic"><strong>01 · Foundations</strong><p>Print, variables, data types, input and operators.</p></div>
+      <div class="topic"><strong>02 · Logic & Loops</strong><p>Conditions, for loops, while loops and patterns.</p></div>
+      <div class="topic"><strong>03 · Data Structures</strong><p>Strings, lists, tuples, sets and dictionaries.</p></div>
+      <div class="topic"><strong>04 · Functions & Files</strong><p>Functions, modules, exceptions and file handling.</p></div>
+      <div class="topic"><strong>05 · Problem Solving</strong><p>Searching, sorting, recursion and Big-O basics.</p></div>
+      <div class="topic"><strong>06 · Advanced Path</strong><p>OOP, APIs, databases, testing and AI/ML foundations.</p></div>
+    </div>
+  </section>
 
-print(name)
-print(age)</code></pre>
+  <section id="lessons">
+    <div class="section-heading">
+      <h2>Interactive Lessons</h2>
+      <p>Read the concept, study the code, check the output and try the practice question.</p>
+    </div>
 
-      <p><strong>Expected output:</strong></p>
-      <pre><code>Sudhanshu
-20</code></pre>
+    <div class="toolbar">
+      <input type="search" id="searchInput" placeholder="Search lessons, e.g. loops, lists, functions...">
+      <select id="levelFilter" aria-label="Filter lessons by level">
+        <option value="all">All levels</option>
+        <option value="Beginner">Beginner</option>
+        <option value="Intermediate">Intermediate</option>
+      </select>
+      <select id="statusFilter" aria-label="Filter by completion">
+        <option value="all">All lessons</option>
+        <option value="incomplete">Not completed</option>
+        <option value="complete">Completed</option>
+      </select>
+    </div>
 
-      <p>
-        Yahan <code>name</code> mein text aur <code>age</code> mein
-        number store kiya gaya hai.
-      </p>
-    </section>
+    <div id="lessonList"></div>
+    <p id="noResults" class="muted" hidden>No lessons match your search. Try another keyword.</p>
+  </section>
 
-    <section class="lesson">
-      <h2>04. Basic data types</h2>
+  <section id="practice">
+    <div class="section-heading">
+      <h2>Practice Routine</h2>
+      <p>Use this checklist every time you learn a new topic.</p>
+    </div>
+    <div class="panel">
+      <label class="complete-label"><input type="checkbox" class="routine-check" data-key="understand"> I can explain the concept in my own words.</label><br>
+      <label class="complete-label"><input type="checkbox" class="routine-check" data-key="type"> I typed the code myself instead of only copying it.</label><br>
+      <label class="complete-label"><input type="checkbox" class="routine-check" data-key="modify"> I changed the example and observed what happened.</label><br>
+      <label class="complete-label"><input type="checkbox" class="routine-check" data-key="solve"> I solved at least one question without looking at the answer.</label><br>
+      <label class="complete-label"><input type="checkbox" class="routine-check" data-key="revise"> I revised the topic the next day.</label>
+    </div>
+  </section>
 
-      <pre><code>name = "Alex"       # String: text
-age = 18            # Integer: whole number
-price = 99.5        # Float: decimal number
-is_student = True   # Boolean: True or False
+  <section>
+    <div class="section-heading">
+      <h2>Keep Practising</h2>
+      <p>After the lessons, challenge yourself on coding platforms.</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <h3>LeetCode</h3>
+        <p class="muted">Practice coding problems and interview-style questions.</p>
+        <a href="https://leetcode.com/" target="_blank" rel="noopener noreferrer">Open LeetCode ↗</a>
+      </div>
+      <div class="card">
+        <h3>HackerRank</h3>
+        <p class="muted">Build confidence with structured Python exercises.</p>
+        <a href="https://www.hackerrank.com/" target="_blank" rel="noopener noreferrer">Open HackerRank ↗</a>
+      </div>
+      <div class="card">
+        <h3>GeeksforGeeks</h3>
+        <p class="muted">Explore explanations, data structures and algorithms.</p>
+        <a href="https://www.geeksforgeeks.org/" target="_blank" rel="noopener noreferrer">Open GeeksforGeeks ↗</a>
+      </div>
+    </div>
+  </section>
 
-print(type(name))
-print(type(age))
-print(type(price))
-print(type(is_student))</code></pre>
+  <section>
+    <div class="callout">
+      <strong>Important:</strong> This page displays code examples and expected outputs,
+      but it does not execute Python code in your browser. Run your programs using
+      Python on your computer or a trusted online Python environment.
+      Your lesson progress is saved in this browser only; it is not synced to Firebase.
+    </div>
+  </section>
+</main>
 
-      <p>
-        Common data types: <code>str</code>, <code>int</code>,
-        <code>float</code> aur <code>bool</code>.
-      </p>
-    </section>
+<footer>LE4RNSP4CE · Learn consistently. Practise honestly. Build useful things.</footer>
 
-    <section class="lesson">
-      <h2>05. Basic calculations</h2>
+<script>
+  const lessons = [
+    {
+      id: "l1", title: "Your First Python Program", level: "Beginner", stage: "Foundations",
+      concept: "print() displays information on the screen. Text is written inside quotation marks.",
+      code: 'print("Hello, World!")\\nprint("I am learning Python.")',
+      output: "Hello, World!\\nI am learning Python.",
+      question: "Write a program that prints your name and your learning goal.",
+      hint: "Use two print() statements.",
+      solution: 'print("My name is Sudhanshu")\\nprint("My goal is to learn Python")',
+      explanation: "Each print() call displays its content on a new line."
+    },
+    {
+      id: "l2", title: "Variables and Data Types", level: "Beginner", stage: "Foundations",
+      concept: "A variable is a name that refers to a value. Common types include int, float, str and bool.",
+      code: 'name = "Sudhanshu"\\nage = 18\\nscore = 82.5\\nis_learning = True\\n\\nprint(name)\\nprint(type(score))',
+      output: "Sudhanshu\\n<class 'float'>",
+      question: "Create variables for a course name, number of lessons and completion status. Print them.",
+      hint: "Use a string, an integer and a Boolean.",
+      solution: 'course = "Python"\\nlessons = 12\\ncompleted = False\\n\\nprint(course)\\nprint(lessons)\\nprint(completed)',
+      explanation: "Python determines the type of a value automatically."
+    },
+    {
+      id: "l3", title: "Input and Type Conversion", level: "Beginner", stage: "Foundations",
+      concept: "input() reads text from the user. Convert that text to int or float when doing arithmetic.",
+      code: 'age = int(input("Enter your age: "))\\nprint(age + 1)',
+      output: "If the input is 18:\\n19",
+      question: "Ask the user for two numbers and print their sum.",
+      hint: "Use int(input(...)) twice.",
+      solution: 'a = int(input("First number: "))\\nb = int(input("Second number: "))\\nprint(a + b)',
+      explanation: "input() returns a string, so int() converts numeric text into an integer."
+    },
+    {
+      id: "l4", title: "Operators and Expressions", level: "Beginner", stage: "Foundations",
+      concept: "Arithmetic operators include +, -, *, /, //, %, and **. The % operator returns a remainder.",
+      code: 'a = 17\\nb = 5\\nprint(a // b)\\nprint(a % b)\\nprint(2 ** 3)',
+      output: "3\\n2\\n8",
+      question: "Calculate the area of a rectangle using length and width variables.",
+      hint: "Area = length * width.",
+      solution: 'length = 8\\nwidth = 4\\narea = length * width\\nprint(area)',
+      explanation: "// performs floor division, % returns the remainder and ** raises a power."
+    },
+    {
+      id: "l5", title: "Conditions: if, elif, else", level: "Beginner", stage: "Logic",
+      concept: "Conditions let a program choose which code to run. Indentation defines each block.",
+      code: 'number = 7\\nif number > 0:\\n    print("Positive")\\nelif number < 0:\\n    print("Negative")\\nelse:\\n    print("Zero")',
+      output: "Positive",
+      question: "Write a program that prints Even or Odd for an integer.",
+      hint: "Check whether number % 2 == 0.",
+      solution: 'number = int(input("Number: "))\\nif number % 2 == 0:\\n    print("Even")\\nelse:\\n    print("Odd")',
+      explanation: "A number is even if its remainder after division by 2 is zero."
+    },
+    {
+      id: "l6", title: "For Loops and range()", level: "Beginner", stage: "Loops",
+      concept: "A for loop repeats code for each item in a sequence. range(1, 5) produces 1, 2, 3, 4.",
+      code: 'for number in range(1, 5):\\n    print(number)',
+      output: "1\\n2\\n3\\n4",
+      question: "Print numbers from 1 to 10.",
+      hint: "Remember that the stop value in range() is excluded.",
+      solution: 'for number in range(1, 11):\\n    print(number)',
+      explanation: "The stop argument is excluded, so range(1, 11) includes 10."
+    },
+    {
+      id: "l7", title: "While Loops", level: "Beginner", stage: "Loops",
+      concept: "A while loop repeats as long as its condition is true. Update the condition to avoid an endless loop.",
+      code: 'count = 1\\nwhile count <= 3:\\n    print(count)\\n    count += 1',
+      output: "1\\n2\\n3",
+      question: "Use a while loop to print 5, 4, 3, 2, 1.",
+      hint: "Start at 5 and subtract 1 on each repetition.",
+      solution: 'count = 5\\nwhile count >= 1:\\n    print(count)\\n    count -= 1',
+      explanation: "count -= 1 decreases the counter on every iteration."
+    },
+    {
+      id: "l8", title: "Strings and Useful Methods", level: "Beginner", stage: "Data Structures",
+      concept: "Strings store text. Methods such as lower(), upper(), strip() and replace() return useful results.",
+      code: 'text = "  Python Basics  "\\nprint(text.strip())\\nprint(text.lower())\\nprint(len(text))',
+      output: "Python Basics\\n  python basics  \\n16",
+      question: "Count how many vowels are in a word, ignoring uppercase and lowercase.",
+      hint: "Convert the word to lowercase and loop over its characters.",
+      solution: 'word = input("Word: ").lower()\\ncount = 0\\nfor char in word:\\n    if char in "aeiou":\\n        count += 1\\nprint(count)',
+      explanation: "lower() makes the vowel check consistent. len() counts characters, including spaces."
+    },
+    {
+      id: "l9", title: "Lists and List Operations", level: "Beginner", stage: "Data Structures",
+      concept: "A list stores multiple items in order. Indexing starts at zero; append() adds an item.",
+      code: 'scores = [70, 85, 92]\\nscores.append(78)\\nprint(scores)\\nprint(max(scores))',
+      output: "[70, 85, 92, 78]\\n92",
+      question: "Find the sum and average of the numbers in a list.",
+      hint: "Use sum(numbers) and len(numbers).",
+      solution: 'numbers = [10, 20, 30, 40]\\ntotal = sum(numbers)\\naverage = total / len(numbers)\\nprint(total)\\nprint(average)',
+      explanation: "sum() adds the values and len() returns the number of items."
+    },
+    {
+      id: "l10", title: "Dictionaries and Sets", level: "Beginner", stage: "Data Structures",
+      concept: "A dictionary maps keys to values. A set stores unique elements.",
+      code: 'student = {"name": "Asha", "score": 90}\\nprint(student["name"])\\nprint(set([1, 1, 2, 3]))',
+      output: "Asha\\n{1, 2, 3}\\n(Set display order can vary.)",
+      question: "Create a dictionary for a product with name and price, then print the price.",
+      hint: "Access a dictionary value with its key in square brackets.",
+      solution: 'product = {"name": "Notebook", "price": 50}\\nprint(product["price"])',
+      explanation: "Dictionary keys are used to retrieve their associated values."
+    },
+    {
+      id: "l11", title: "Functions and Return Values", level: "Intermediate", stage: "Functions",
+      concept: "Functions package reusable logic. Parameters receive inputs; return sends a result back to the caller.",
+      code: 'def add(a, b):\\n    return a + b\\n\\nresult = add(4, 6)\\nprint(result)',
+      output: "10",
+      question: "Write a function that returns the square of a number.",
+      hint: "Define square(number) and return number * number.",
+      solution: 'def square(number):\\n    return number * number\\n\\nprint(square(5))',
+      explanation: "return gives the calculated value to the code that called the function."
+    },
+    {
+      id: "l12", title: "Files, Exceptions and Next Steps", level: "Intermediate", stage: "Beyond Basics",
+      concept: "Use with open(...) to work with files safely. try/except handles expected errors without crashing the whole program.",
+      code: 'try:\\n    number = int("42")\\n    print(number)\\nexcept ValueError:\\n    print("Invalid number")',
+      output: "42",
+      question: "Convert user input to an integer and handle invalid input with ValueError.",
+      hint: "Put int(input(...)) inside try and catch ValueError.",
+      solution: 'try:\\n    number = int(input("Enter an integer: "))\\n    print(number)\\nexcept ValueError:\\n    print("Please enter a valid integer.")',
+      explanation: "After these basics, continue to OOP, modules, testing, APIs, SQL, Git and data structures and algorithms."
+    }
+  ];
 
-      <pre><code>a = 10
-b = 3
+  const STORAGE_KEY = "learnspace_python_progress_v1";
+  const ROUTINE_KEY = "learnspace_python_routine_v1";
 
-print(a + b)  # Addition
-print(a - b)  # Subtraction
-print(a * b)  # Multiplication
-print(a / b)  # Division</code></pre>
+  function loadProgress() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+    catch { return []; }
+  }
 
-      <p><strong>Expected output:</strong></p>
-      <pre><code>13
-7
-30
-3.3333333333333335</code></pre>
-    </section>
+  function saveProgress(progress) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(progress)); }
+    catch { /* Progress may not persist when browser storage is disabled. */ }
+  }
 
-    <section class="practice">
-      <h2>Quick Practice</h2>
-      <p>
-        Agar code hai <code>x = 5</code> aur
-        <code>y = 4</code>, toh <code>print(x * y)</code>
-        ka output kya hoga?
-      </p>
+  function escapeHTML(value) {
+    return String(value).replace(/[&<>"']/g, char => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;",
+      '"': "&quot;", "'": "&#39;"
+    })[char]);
+  }
 
-      <input
-        type="number"
-        id="answer"
-        placeholder="Apna answer yahan likho"
-      >
+  function renderLessons() {
+    const query = document.getElementById("searchInput").value.trim().toLowerCase();
+    const level = document.getElementById("levelFilter").value;
+    const status = document.getElementById("statusFilter").value;
+    const completed = loadProgress();
 
-      <button type="button" id="checkAnswer">Check Answer</button>
-      <p id="result" aria-live="polite"></p>
-    </section>
-
-    <section class="lesson">
-      <h2>What comes next?</h2>
-      <p>
-        Next lessons mein input, conditions, loops, functions,
-        lists, dictionaries aur Python projects cover kar sakte ho.
-      </p>
-      <p>
-        Practice tip: code ko khud type karo, output predict karo,
-        phir Python interpreter mein run karke verify karo.
-      </p>
-      <a class="button" href="./learning-space.html">
-        Explore Learning Space
-      </a>
-    </section>
-  </main>
-
-  <footer>
-    © 2026 LE4RNSP4CE • Learn. Practice. Build.
-  </footer>
-
-  <script>
-    const answerInput = document.getElementById("answer");
-    const result = document.getElementById("result");
-
-    document.getElementById("checkAnswer").addEventListener("click", () => {
-      if (answerInput.value.trim() === "") {
-        result.textContent = "Please enter your answer first.";
-        result.style.color = "#ffd27d";
-        return;
-      }
-
-      if (Number(answerInput.value) === 20) {
-        result.textContent = "Correct! 5 × 4 = 20. Great work!";
-        result.style.color = "#8df0b5";
-      } else {
-        result.textContent = "Not quite. Try multiplying 5 by 4 again.";
-        result.style.color = "#ffaaaa";
-      }
+    const filtered = lessons.filter(lesson => {
+      const matchesQuery = (lesson.title + " " + lesson.concept + " " + lesson.stage).toLowerCase().includes(query);
+      const matchesLevel = level === "all" || lesson.level === level;
+      const isComplete = completed.includes(lesson.id);
+      const matchesStatus = status === "all" ||
+        (status === "complete" && isComplete) ||
+        (status === "incomplete" && !isComplete);
+      return matchesQuery && matchesLevel && matchesStatus;
     });
-    const PROGRESS_KEY = "le4rnsp4ce.progress.v1";
 
-const completeButton = document.getElementById("completeLessonButton");
-const completionMessage = document.getElementById("completionMessage");
+    document.getElementById("lessonList").innerHTML = filtered.map(lesson => {
+      const isComplete = completed.includes(lesson.id);
+      return `
+        <article class="lesson" id="${lesson.id}">
+          <div class="lesson-top">
+            <div>
+              <div class="tag">${escapeHTML(lesson.stage)} · ${escapeHTML(lesson.level)}</div>
+              <h3>${escapeHTML(lesson.title)}</h3>
+            </div>
+            <label class="complete-label">
+              <input type="checkbox" class="lesson-check" data-id="${lesson.id}" ${isComplete ? "checked" : ""}>
+              Completed
+            </label>
+          </div>
+          <p>${escapeHTML(lesson.concept)}</p>
+          <strong>Example</strong>
+          <pre><code>${escapeHTML(lesson.code.replace(/\\n/g, "\n"))}</code></pre>
+          <strong>Expected output</strong>
+          <pre class="output">${escapeHTML(lesson.output.replace(/\\n/g, "\n"))}</pre>
+          <details>
+            <summary>Practice question</summary>
+            <p>${escapeHTML(lesson.question)}</p>
+            <details>
+              <summary>Show hint</summary>
+              <p>${escapeHTML(lesson.hint)}</p>
+            </details>
+            <details>
+              <summary>Reveal solution</summary>
+              <pre><code>${escapeHTML(lesson.solution.replace(/\\n/g, "\n"))}</code></pre>
+              <p>${escapeHTML(lesson.explanation)}</p>
+              <p class="muted">Try typing the solution yourself and then change the input values.</p>
+            </details>
+          </details>
+          <div class="lesson-actions">
+            <button class="button secondary copy-btn" data-id="${lesson.id}">Copy Example</button>
+            <a class="button secondary" href="#practice">Open Practice Checklist</a>
+          </div>
+        </article>`;
+    }).join("");
 
-function getLearningProgress() {
-  try {
-    return JSON.parse(localStorage.getItem(PROGRESS_KEY) || "{}");
-  } catch {
-    return {};
+    document.getElementById("noResults").hidden = filtered.length !== 0;
+
+    document.querySelectorAll(".lesson-check").forEach(checkbox => {
+      checkbox.addEventListener("change", event => {
+        const current = loadProgress();
+        const id = event.target.dataset.id;
+        const next = event.target.checked
+          ? [...new Set([...current, id])]
+          : current.filter(item => item !== id);
+        saveProgress(next);
+        renderLessons();
+        updateProgress();
+      });
+    });
+
+    document.querySelectorAll(".copy-btn").forEach(button => {
+      button.addEventListener("click", async () => {
+        const lesson = lessons.find(item => item.id === button.dataset.id);
+        const code = lesson.code.replace(/\\n/g, "\n");
+        try {
+          await navigator.clipboard.writeText(code);
+          button.textContent = "Copied!";
+          setTimeout(() => button.textContent = "Copy Example", 1300);
+        } catch {
+          alert("Copy was blocked by your browser. Select the code and copy it manually.");
+        }
+      });
+    });
+
+    updateProgress();
   }
-}
 
-function updateCompletionButton() {
-  const progress = getLearningProgress();
-
-  const completed =
-    Array.isArray(progress.python?.completedLessons) &&
-    progress.python.completedLessons.includes("python-intro");
-
-  completeButton.textContent = completed
-    ? "Lesson completed ✓"
-    : "Mark lesson complete";
-
-  completeButton.disabled = completed;
-
-  completionMessage.textContent = completed
-    ? "Lesson completed! Your progress has been saved in this browser."
-    : "Finish the lesson and mark it complete.";
-}
-
-completeButton.addEventListener("click", () => {
-  try {
-    const progress = getLearningProgress();
-
-    if (!progress.python || typeof progress.python !== "object") {
-      progress.python = {};
-    }
-
-    if (!Array.isArray(progress.python.completedLessons)) {
-      progress.python.completedLessons = [];
-    }
-
-    if (!progress.python.completedLessons.includes("python-intro")) {
-      progress.python.completedLessons.push("python-intro");
-    }
-
-    localStorage.setItem(PROGRESS_KEY, JSON.stringify(progress));
-    updateCompletionButton();
-  } catch (error) {
-    completionMessage.textContent =
-      "Progress save nahi ho paya. Browser storage check karo.";
+  function updateProgress() {
+    const count = loadProgress().length;
+    const percent = Math.round(count / lessons.length * 100);
+    document.getElementById("progressText").textContent = percent + "% completed";
+    document.getElementById("progressFill").style.width = percent + "%";
+    document.getElementById("progressDetail").textContent = count + " of " + lessons.length + " lessons completed";
+    document.getElementById("completedCount").textContent = count;
   }
-});
 
-updateCompletionButton();
-  </script>
+  document.getElementById("searchInput").addEventListener("input", renderLessons);
+  document.getElementById("levelFilter").addEventListener("change", renderLessons);
+  document.getElementById("statusFilter").addEventListener("change", renderLessons);
+
+  document.getElementById("resetProgress").addEventListener("click", () => {
+    if (confirm("Reset all Python lesson progress on this browser?")) {
+      saveProgress([]);
+      renderLessons();
+    }
+  });
+
+  document.querySelectorAll(".routine-check").forEach(box => {
+    try {
+      box.checked = JSON.parse(localStorage.getItem(ROUTINE_KEY) || "{}")[box.dataset.key] === true;
+    } catch { /* Use unchecked defaults if storage is unavailable. */ }
+
+    box.addEventListener("change", () => {
+      const routine = {};
+      document.querySelectorAll(".routine-check").forEach(item => {
+        routine[item.dataset.key] = item.checked;
+      });
+      try { localStorage.setItem(ROUTINE_KEY, JSON.stringify(routine)); } catch {}
+    });
+  });
+
+  renderLessons();
+</script>
 </body>
 </html>
