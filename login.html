@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0D000A">
+  <title>Login | LearnSpace</title>
+  <style>
+    :root {
+      --bg: #0D000A;
+      --yellow: #FEDD00;
+      --white: #F3F2F2;
+      --card: rgba(255,255,255,.06);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      color: var(--white);
+      font-family: Arial, sans-serif;
+      background:
+        radial-gradient(ellipse at top left, #49204c, transparent 45%),
+        radial-gradient(ellipse at bottom right, #25205c, transparent 45%),
+        var(--bg);
+    }
+    .card {
+      width: 100%;
+      max-width: 430px;
+      padding: 32px;
+      border: 1px solid #ffffff30;
+      border-radius: 24px;
+      background: var(--card);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 20px 80px #0008;
+    }
+    .logo { color: var(--yellow); font-size: 24px; font-weight: 800; }
+    h1 { margin-bottom: 6px; }
+    .muted { color: #c8bfc8; font-size: 14px; }
+    label { display: block; margin: 16px 0 7px; }
+    input {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #ffffff35;
+      border-radius: 10px;
+      background: #0D000A90;
+      color: white;
+      font-size: 16px;
+    }
+    input:focus { outline: 2px solid var(--yellow); }
+    button {
+      width: 100%;
+      margin-top: 22px;
+      padding: 14px;
+      border: 0;
+      border-radius: 10px;
+      background: var(--yellow);
+      color: var(--bg);
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .switch { text-align: center; margin-top: 20px; }
+    .switch button {
+      width: auto;
+      margin: 0;
+      padding: 0;
+      background: none;
+      color: var(--yellow);
+    }
+    .notice { margin-top: 16px; font-size: 12px; color: #c8bfc8; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="logo">LEARNSPACE</div>
+    <p class="muted">Learn. Build. Grow.</p>
+
+    <h1 id="heading">Create your account</h1>
+    <p class="muted" id="subtitle">Start your learning journey today.</p>
+
+    <form id="accountForm">
+      <div id="nameField">
+        <label for="name">Full name</label>
+        <input id="name" name="name" autocomplete="name"
+               placeholder="Your full name" required>
+      </div>
+
+      <label for="email">Email address</label>
+      <input id="email" name="email" type="email"
+             autocomplete="email" placeholder="you@example.com" required>
+
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password"
+             autocomplete="new-password" minlength="8"
+             placeholder="At least 8 characters" required>
+
+      <button type="submit" id="submitButton">Create account</button>
+    </form>
+
+    <div class="switch">
+      <span id="switchText">Already have an account?</span>
+      <button type="button" id="switchButton">Log in</button>
+    </div>
+
+    <p class="notice" id="message" aria-live="polite">
+      Design preview only. Accounts are not created yet.
+    </p>
+  </main>
+
+  <script>
+    const form = document.getElementById("accountForm");
+    const nameField = document.getElementById("nameField");
+    const nameInput = document.getElementById("name");
+    const password = document.getElementById("password");
+    const heading = document.getElementById("heading");
+    const subtitle = document.getElementById("subtitle");
+    const submitButton = document.getElementById("submitButton");
+    const switchText = document.getElementById("switchText");
+    const switchButton = document.getElementById("switchButton");
+    const message = document.getElementById("message");
+
+    let isLogin = false;
+
+    switchButton.addEventListener("click", () => {
+      isLogin = !isLogin;
+      nameField.hidden = isLogin;
+      nameInput.required = !isLogin;
+      password.autocomplete = isLogin ? "current-password" : "new-password";
+      heading.textContent = isLogin ? "Welcome back" : "Create your account";
+      subtitle.textContent = isLogin
+        ? "Log in to continue learning."
+        : "Start your learning journey today.";
+      submitButton.textContent = isLogin ? "Log in" : "Create account";
+      switchText.textContent = isLogin
+        ? "New here?"
+        : "Already have an account?";
+      switchButton.textContent = isLogin ? "Sign up" : "Log in";
+      message.textContent =
+        "Design preview only. Accounts are not created yet.";
+    });
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      message.textContent =
+        "Demo only: connect a secure authentication service to enable accounts.";
+    });
+  </script>
+</body>
+</html>
