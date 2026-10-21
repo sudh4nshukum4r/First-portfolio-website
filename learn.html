@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b0d14">
+<title>Code Studio | LE4RNSP4CE</title>
+
+<style>
+:root {
+  color-scheme: dark;
+  --bg:#0b0d14; --panel:#121622; --panel2:#191f2d;
+  --text:#eef1fb; --muted:#9ba5ba; --border:#2a3244;
+  --accent:#a78bfa; --cyan:#67e8f9; --green:#86efac;
+  --shadow:0 12px 35px #0003;
+}
+html[data-theme="light"] {
+  color-scheme:light;
+  --bg:#f4f6fb; --panel:#fff; --panel2:#edf0f8;
+  --text:#1a2030; --muted:#626d83; --border:#dce1ec;
+  --accent:#7148d9; --cyan:#087e9a; --green:#13814b;
+  --shadow:0 10px 30px #24304a12;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:14px/1.55 Inter,system-ui,Arial,sans-serif}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+a{color:var(--cyan);text-decoration:none}
+a:hover{text-decoration:underline}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.topbar{height:auto;min-height:64px;padding:12px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;background:var(--panel)}
+.brand{font-size:19px;font-weight:900;letter-spacing:-.6px;color:var(--text)}
+.brand span{color:var(--accent)}
+.nav{display:flex;align-items:center;gap:15px;flex-wrap:wrap}
+.nav a{color:var(--muted);font-size:13px}
+.btn{border:1px solid var(--border);background:var(--panel2);color:var(--text);padding:9px 13px;border-radius:9px;font-weight:650}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:white}
+.btn:hover{filter:brightness(1.08)}
+.app{max-width:1600px;margin:auto;padding:22px}
+.hero{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:23px;flex-wrap:wrap}
+.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--cyan);font-weight:800}
+h1{font-size:clamp(28px,4vw,42px);line-height:1.15;margin:7px 0}
+h2{font-size:21px;margin:0 0 8px}
+h3{font-size:15px;margin:0 0 6px}
+p{margin:5px 0 12px}
+.muted{color:var(--muted)}
+.hero p{max-width:700px}
+.hero-actions{display:flex;gap:9px;flex-wrap:wrap}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:24px}
+.stat,.panel,.skill-card,.lesson-card{border:1px solid var(--border);border-radius:13px;background:var(--panel);box-shadow:var(--shadow)}
+.stat{padding:15px}
+.stat strong{display:block;font-size:23px;color:var(--accent)}
+.stat span{color:var(--muted);font-size:12px}
+.layout{display:grid;grid-template-columns:245px minmax(0,1fr);gap:17px;align-items:start}
+.sidebar{padding:16px;position:sticky;top:12px}
+.side-title{font-size:11px;text-transform:uppercase;letter-spacing:1.3px;color:var(--muted);font-weight:800;margin:7px 0 10px}
+.side-link{display:flex;width:100%;text-align:left;align-items:center;gap:9px;padding:10px 11px;border:0;border-radius:8px;background:transparent;color:var(--text);margin:3px 0}
+.side-link:hover,.side-link.active{background:var(--panel2)}
+.side-link.active{color:var(--accent);font-weight:800}
+.side-note{border-top:1px solid var(--border);margin-top:15px;padding-top:13px;font-size:12px;color:var(--muted)}
+.content{min-width:0}
+.view{display:none}
+.view.active{display:block}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:15px 0}
+.field{background:var(--panel2);color:var(--text);border:1px solid var(--border);padding:11px 12px;border-radius:9px;min-width:0}
+.search{flex:1;min-width:190px}
+select.field{max-width:100%}
+.skill-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.skill-card{padding:16px;box-shadow:none;transition:transform .15s,border-color .15s}
+.skill-card:hover{transform:translateY(-2px);border-color:var(--accent)}
+.skill-icon{font-size:22px;margin-bottom:9px}
+.skill-card p{font-size:12px;color:var(--muted);min-height:38px}
+.pill{display:inline-block;font-size:10px;padding:4px 8px;border-radius:30px;background:var(--panel2);color:var(--cyan);margin:3px 3px 8px 0}
+.section-head{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+.panel{padding:17px;box-shadow:none;margin-bottom:15px}
+.notice{border-left:3px solid var(--accent);background:var(--panel2);padding:12px 14px;border-radius:0 8px 8px 0;margin:12px 0}
+.workspace{border:1px solid var(--border);border-radius:13px;overflow:hidden;background:var(--panel);box-shadow:var(--shadow)}
+.workspace-head{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.workspace-title{font-weight:800}
+.workspace-actions{display:flex;gap:7px;flex-wrap:wrap}
+.workspace-body{display:grid;grid-template-columns:165px minmax(0,1fr);min-height:470px}
+.explorer{background:var(--panel2);padding:12px;border-right:1px solid var(--border)}
+.file-label{font-size:10px;color:var(--muted);letter-spacing:1px;font-weight:800;margin-bottom:12px}
+.file-btn{width:100%;text-align:left;padding:9px 8px;border:0;border-radius:6px;color:var(--text);background:transparent;margin-bottom:3px}
+.file-btn.active,.file-btn:hover{background:var(--panel);color:var(--accent)}
+.editor-area{min-width:0;display:flex;flex-direction:column}
+.tabs{display:flex;overflow-x:auto;border-bottom:1px solid var(--border);background:var(--panel2)}
+.tab{padding:10px 13px;border:0;border-right:1px solid var(--border);background:transparent;color:var(--muted);white-space:nowrap}
+.tab.active{background:var(--panel);color:var(--text);border-top:2px solid var(--accent)}
+.editor-meta{padding:6px 12px;color:var(--muted);font-size:11px;display:flex;justify-content:space-between;gap:8px}
+.code-editor{display:grid;grid-template-columns:42px minmax(0,1fr);flex:1;min-height:330px;background:var(--bg)}
+.line-numbers{padding:12px 9px;text-align:right;overflow:hidden;white-space:pre;color:var(--muted);opacity:.65;font:13px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace;user-select:none}
+textarea.code{width:100%;height:100%;min-height:330px;resize:vertical;border:0;border-radius:0;outline:none;background:transparent;color:var(--text);padding:12px;font:13px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace;tab-size:2;white-space:pre;overflow:auto}
+.editor-footer{display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap;padding:8px 12px;border-top:1px solid var(--border);color:var(--muted);font-size:11px}
+.below-editor{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:14px}
+.output-panel{border:1px solid var(--border);border-radius:12px;overflow:hidden;min-width:0}
+.output-head{padding:10px 12px;background:var(--panel2);border-bottom:1px solid var(--border);font-weight:800}
+.output-body{padding:12px;min-height:115px;overflow:auto;overflow-wrap:anywhere}
+.preview-frame{width:100%;height:290px;border:0;background:white;display:block}
+.console-text{font:12px/1.7 ui-monospace,monospace;white-space:pre-wrap}
+.question{padding:14px 0;border-bottom:1px solid var(--border)}
+.question:last-child{border-bottom:0}
+.question summary{cursor:pointer;font-weight:750}
+.question pre,pre.sample{overflow:auto;padding:13px;border:1px solid var(--border);background:var(--bg);border-radius:8px;white-space:pre-wrap;font:12px/1.65 ui-monospace,monospace}
+.progress-track{height:7px;background:var(--panel2);border-radius:20px;overflow:hidden;margin:10px 0}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--cyan));width:0}
+.check{display:flex;gap:9px;align-items:flex-start;padding:9px 0}
+.check input{margin-top:4px;accent-color:var(--accent)}
+.lesson-layout{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+footer{border-top:1px solid var(--border);padding:25px;text-align:center;color:var(--muted);margin-top:35px;font-size:12px}
+[hidden]{display:none!important}
+@media(max-width:1000px){.layout{grid-template-columns:1fr}.sidebar{position:static}.side-menu{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:3px}.side-note{display:none}.skill-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.app{padding:14px}.topbar{padding:12px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.skill-grid{grid-template-columns:1fr}.workspace-body{grid-template-columns:1fr}.explorer{border-right:0;border-bottom:1px solid var(--border)}.side-menu{grid-template-columns:repeat(2,minmax(0,1fr))}.below-editor,.lesson-layout{grid-template-columns:1fr}.code-editor{grid-template-columns:32px minmax(0,1fr)}.line-numbers{padding:12px 5px}.hero-actions{width:100%}.hero-actions .btn{flex:1}}
+</style>
+</head>
+
+<body>
+<header class="topbar">
+  <a class="brand" href="index.html">LE4RNS<span>P4CE</span></a>
+  <div class="nav">
+    <a href="index.html">Home</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="learning-space.html">Learning Space</a>
+    <a href="coding-practice.html">Practice</a>
+    <button class="btn" id="themeBtn" type="button">☀ Light mode</button>
+  </div>
+</header>
+
+<main class="app">
+  <section class="hero">
+    <div>
+      <div class="eyebrow">One space. Many skills. Your journey.</div>
+      <h1>Learn, build & <span style="color:var(--accent)">experiment.</span></h1>
+      <p class="muted">Explore programming, AI, web development, DSA and career skills. Study a concept, edit code, preview web projects and track your progress in one workspace.</p>
+    </div>
+    <div class="hero-actions">
+      <button class="btn primary" data-view="studio">Open Code Studio →</button>
+      <button class="btn" data-view="skills">Explore all skills</button>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="stat"><strong id="skillCount">30+</strong><span>Skill topics</span></div>
+    <div class="stat"><strong id="doneCount">0</strong><span>Lessons completed</span></div>
+    <div class="stat"><strong id="bookmarkCount">0</strong><span>Saved skills</span></div>
+    <div class="stat"><strong id="progressPercent">0%</strong><span>Your progress</span></div>
+  </section>
+
+  <div class="layout">
+    <aside class="sidebar panel">
+      <div class="side-title">Workspace</div>
+      <div class="side-menu">
+        <button class="side-link active" data-view="skills">⌕ &nbsp; Skill Library</button>
+        <button class="side-link" data-view="studio">⌘ &nbsp; Code Studio</button>
+        <button class="side-link" data-view="lessons">▤ &nbsp; Learn & Notes</button>
+        <button class="side-link" data-view="practice">✓ &nbsp; Practice Lab</button>
+        <button class="side-link" data-view="saved">☆ &nbsp; Bookmarks</button>
+        <button class="side-link" data-view="progress">◴ &nbsp; My Progress</button>
+      </div>
+      <div class="side-note">
+        <strong>Learning tip</strong>
+        <p>Read one concept, type the code yourself, test it, then change something and observe the result.</p>
+      </div>
+    </aside>
+
+    <div class="content">
+      <!-- SKILLS -->
+      <section class="view active" id="view-skills">
+        <div class="section-head">
+          <div><h2>Universal Skill Library</h2><p class="muted">Search any topic or choose a category.</p></div>
+        </div>
+        <div class="toolbar">
+          <input class="field search" id="skillSearch" type="search" placeholder="Search Python, React, AI, SQL, interviews...">
+          <select class="field" id="categoryFilter" aria-label="Skill category">
+            <option value="all">All categories</option>
+            <option>Programming</option><option>Web Development</option>
+            <option>Computer Science</option><option>AI & Data</option>
+            <option>Cloud & Tools</option><option>Career</option>
+            <option>Design & Business</option>
+          </select>
+          <select class="field" id="levelFilter" aria-label="Skill level">
+            <option value="all">All levels</option>
+            <option>Beginner</option><option>Intermediate</option><option>Advanced</option>
+          </select>
+        </div>
+        <div class="skill-grid" id="skillGrid"></div>
+        <p id="noSkills" class="muted" hidden>No matching skills found. Try another search.</p>
+      </section>
+
+      <!-- CODE STUDIO -->
+      <section class="view" id="view-studio">
+        <div class="section-head">
+          <div><h2>Code Studio</h2><p class="muted">Write code, run web previews, and experiment.</p></div>
+          <button class="btn" id="resetEditor">Reset sample files</button>
+        </div>
+        <div class="notice">
+          <strong>Execution support:</strong> HTML, CSS and JavaScript run in an isolated browser preview. Other languages can be edited here, but require a language runner to execute. This page does not pretend to compile Python, C++, or Java.
+        </div>
+
+        <div class="workspace">
+          <div class="workspace-head">
+            <span class="workspace-title">◈ LE4RNSP4CE / playground</span>
+            <div class="workspace-actions">
+              <button class="btn" id="saveFiles">Save files</button>
+              <button class="btn primary" id="runCode">▶ Run preview</button>
+            </div>
+          </div>
+
+          <div class="workspace-body">
+            <aside class="explorer">
+              <div class="file-label">EXPLORER · FILES</div>
+              <button class="file-btn active" data-file="html">▤ &nbsp; index.html</button>
+              <button class="file-btn" data-file="css">▤ &nbsp; style.css</button>
+              <button class="file-btn" data-file="js">▤ &nbsp; script.js</button>
+              <button class="file-btn" data-file="py">▤ &nbsp; main.py</button>
+              <p class="muted" style="font-size:11px;margin-top:18px">Files save in this browser. They are not automatically uploaded to GitHub.</p>
+            </aside>
+
+            <div class="editor-area">
+              <div class="tabs">
+                <button class="tab active" data-file="html">index.html</button>
+                <button class="tab" data-file="css">style.css</button>
+                <button class="tab" data-file="js">script.js</button>
+                <button class="tab" data-file="py">main.py</button>
+              </div>
+              <div class="editor-meta"><span id="editorFilename">index.html</span><span id="editorLanguage">HTML</span></div>
+              <div class="code-editor">
+                <div class="line-numbers" id="lineNumbers">1</div>
+                <textarea class="code" id="codeEditor" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="Code editor"></textarea>
+              </div>
+              <div class="editor-footer">
+                <span id="saveStatus">Ready</span>
+                <span id="lineStatus">Ln 1, Col 1</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="below-editor">
+          <div class="output-panel">
+            <div class="output-head">▣ Live Preview</div>
+            <iframe id="preview" class="preview-frame" title="Your web project preview" sandbox="allow-scripts"></iframe>
+          </div>
+          <div class="output-panel">
+            <div class="output-head">▸ Output / Console</div>
+            <div class="output-body">
+              <div class="console-text" id="consoleOutput">Ready. Click “Run preview” to build your HTML/CSS/JS project.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-top:15px">
+          <h3>Keyboard shortcuts</h3>
+          <p class="muted">Ctrl/Cmd + S: save your files · Tab: indent selected code · Use the file tabs to switch between files.</p>
+          <p class="muted">This lightweight editor does not yet provide a full compiler, debugger, extension marketplace or VS Code's complete syntax-highlighting engine.</p>
+        </div>
+      </section>
+
+      <!-- LESSONS -->
+      <section class="view" id="view-lessons">
+        <div class="section-head"><div><h2>Learn & Notes</h2><p class="muted">Concepts, examples and practical explanations.</p></div></div>
+        <div class="toolbar">
+          <input class="field search" id="lessonSearch" type="search" placeholder="Search notes or lessons...">
+        </div>
+        <div id="lessonGrid" class="lesson-layout"></div>
+      </section>
+
+      <!-- PRACTICE -->
+      <section class="view" id="view-practice">
+        <div class="section-head"><div><h2>Practice Lab</h2><p class="muted">Attempt the question before revealing the solution.</p></div></div>
+        <div id="questionList" class="panel"></div>
+        <div class="panel">
+          <h3>External challenge platforms</h3>
+          <p><a href="https://leetcode.com/" target="_blank" rel="noopener noreferrer">LeetCode</a> · <a href="https://www.hackerrank.com/" target="_blank" rel="noopener noreferrer">HackerRank</a> · <a href="https://www.geeksforgeeks.org/" target="_blank" rel="noopener noreferrer">GeeksforGeeks</a> · <a href="https://codeforces.com/" target="_blank" rel="noopener noreferrer">Codeforces</a></p>
+        </div>
+      </section>
+
+      <!-- SAVED -->
+      <section class="view" id="view-saved">
+        <div class="section-head"><div><h2>Bookmarked Skills</h2><p class="muted">Your saved topics, all in one place.</p></div></div>
+        <div class="skill-grid" id="savedGrid"></div>
+        <p id="noSaved" class="muted">No bookmarks yet. Open Skill Library and tap ☆ Save on a topic.</p>
+      </section>
+
+      <!-- PROGRESS -->
+      <section class="view" id="view-progress">
+        <div class="section-head"><div><h2>My Progress</h2><p class="muted">Track your learning on this browser.</p></div></div>
+        <div class="panel">
+          <h3 id="progressTitle">0% complete</h3>
+          <div class="progress-track"><div class="progress-fill" id="progressBar"></div></div>
+          <p class="muted" id="progressDetail">Complete lessons to build your progress.</p>
+          <div id="progressChecklist"></div>
+          <button class="btn" id="resetProgress">Reset lesson progress</button>
+        </div>
+        <div class="notice">Browser storage is local to this device and browser. It is not connected to Firebase or synced to your account yet.</div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer>LE4RNSP4CE · Learn with curiosity. Practise with purpose. Build real projects.</footer>
+
+<script>
+"use strict";
+
+const $ = (selector) => document.querySelector(selector);
+const $$ = (selector) => [...document.querySelectorAll(selector)];
+
+const skills = [
+  ["Python","Programming","Beginner","🐍","Variables, conditions, loops, functions and projects."],
+  ["C Programming","Programming","Beginner","C","Syntax, pointers, memory and core programming."],
+  ["C++","Programming","Intermediate","⚙","OOP, STL, problem solving and algorithms."],
+  ["Java","Programming","Beginner","☕","Classes, objects, collections and application basics."],
+  ["JavaScript","Web Development","Beginner","JS","Browser programming, DOM, events and async code."],
+  ["HTML","Web Development","Beginner","🌐","Semantic structure, forms, accessibility and pages."],
+  ["CSS","Web Development","Beginner","🎨","Layouts, responsive design, animations and styling."],
+  ["React","Web Development","Intermediate","⚛","Components, state, props, hooks and routing."],
+  ["Node.js & APIs","Web Development","Intermediate","⇄","Servers, REST APIs, validation and backend basics."],
+  ["SQL & Databases","Computer Science","Beginner","▤","Queries, joins, relationships and database design."],
+  ["Data Structures","Computer Science","Intermediate","🧱","Arrays, stacks, queues, trees, graphs and hashing."],
+  ["Algorithms & DSA","Computer Science","Intermediate","⌘","Searching, sorting, recursion and complexity."],
+  ["Git & GitHub","Cloud & Tools","Beginner","⑂","Version control, branches, commits and collaboration."],
+  ["Linux","Cloud & Tools","Beginner","▣","Terminal commands, files, permissions and processes."],
+  ["Networking","Cloud & Tools","Intermediate","⌁","HTTP, DNS, IP, TCP, TLS and network foundations."],
+  ["Cloud Computing","Cloud & Tools","Intermediate","☁","Cloud services, storage, deployment and architecture."],
+  ["DevOps & CI/CD","Cloud & Tools","Advanced","∞","Automation, pipelines, containers and monitoring."],
+  ["AI Foundations","AI & Data","Beginner","✧","AI concepts, use cases, responsible AI and terminology."],
+  ["Machine Learning","AI & Data","Intermediate","◈","Features, models, evaluation and data leakage."],
+  ["Deep Learning","AI & Data","Advanced","🧠","Neural networks, training, optimization and evaluation."],
+  ["Data Analytics","AI & Data","Beginner","▥","Data cleaning, exploration, charts and insights."],
+  ["Statistics for AI","AI & Data","Intermediate","∑","Probability, distributions, sampling and inference."],
+  ["Cybersecurity","Cloud & Tools","Intermediate","⬡","Defensive security, threat models and secure coding."],
+  ["Software Testing","Computer Science","Intermediate","✓","Test cases, unit tests, edge cases and regression."],
+  ["UI/UX Design","Design & Business","Beginner","✎","User research, wireframes, usability and prototypes."],
+  ["Product Thinking","Design & Business","Beginner","◉","User problems, validation, MVPs and product metrics."],
+  ["Communication","Career","Beginner","↗","Clear explanations, active listening and presentations."],
+  ["Aptitude","Career","Beginner","∴","Logical reasoning, quantitative and verbal practice."],
+  ["Interview Preparation","Career","Intermediate","▤","Technical interviews, projects and behavioural questions."],
+  ["Resume & Portfolio","Career","Beginner","▧","Project evidence, concise bullets and professional profile."]
+];
+
+const lessons = [
+  {id:"python-vars",title:"Python: Variables & Types",category:"Programming",level:"Beginner",desc:"Store values in names and inspect their types.",code:'name = "Learner"\\nscore = 90\\nprint(name)\\nprint(type(score))',output:"Learner\\n<class 'int'>"},
+  {id:"python-loop",title:"Python: Loops",category:"Programming",level:"Beginner",desc:"Repeat instructions with a for loop.",code:"for number in range(1, 6):\\n    print(number)",output:"1\\n2\\n3\\n4\\n5"},
+  {id:"python-func",title:"Python: Functions",category:"Programming",level:"Beginner",desc:"Package reusable logic using def and return.",code:"def add(a, b):\\n    return a + b\\n\\nprint(add(4, 6))",output:"10"},
+  {id:"html-base",title:"HTML: Page Structure",category:"Web Development",level:"Beginner",desc:"Build a semantic HTML page.",code:'<main>\\n  <h1>Hello, world!</h1>\\n  <p>My first web page.</p>\\n</main>',output:"A heading and a paragraph."},
+  {id:"css-flex",title:"CSS: Flexbox",category:"Web Development",level:"Beginner",desc:"Align items along a flexible layout.",code:".container {\\n  display: flex;\\n  gap: 1rem;\\n  align-items: center;\\n}",output:"Items appear in a flexible row by default."},
+  {id:"js-array",title:"JavaScript: Arrays",category:"Web Development",level:"Beginner",desc:"Store multiple values and process them.",code:"const numbers = [2, 4, 6];\\nconst total = numbers.reduce((sum, n) => sum + n, 0);\\nconsole.log(total);",output:"12"},
+  {id:"sql-select",title:"SQL: Filtering Rows",category:"Computer Science",level:"Beginner",desc:"Select records that match a condition.",code:"SELECT name, score\\nFROM students\\nWHERE score >= 80\\nORDER BY score DESC;",output:"Returns students with scores of 80 or higher, ordered by score."},
+  {id:"dsa-search",title:"DSA: Linear Search",category:"Computer Science",level:"Intermediate",desc:"Inspect values one by one until the target is found.",code:"def find_index(items, target):\\n    for i, item in enumerate(items):\\n        if item == target:\\n            return i\\n    return -1",output:"Returns the first matching index, or -1."},
+  {id:"ml-split",title:"ML: Train/Test Split",category:"AI & Data",level:"Intermediate",desc:"Evaluate models on data not used for fitting.",code:"from sklearn.model_selection import train_test_split\\n\\nX_train, X_test, y_train, y_test = train_test_split(\\n    X, y, test_size=0.2, random_state=42\\n)",output:"A reproducible 80/20 split for a suitable dataset."},
+  {id:"git-commit",title:"Git: Save a Change",category:"Cloud & Tools",level:"Beginner",desc:"Stage and commit a meaningful change.",code:"git status\\ngit add index.html\\ngit commit -m \\"Update homepage\\"",output:"Creates a local commit containing the staged change."},
+  {id:"http",title:"Networking: HTTP & HTTPS",category:"Cloud & Tools",level:"Beginner",desc:"Understand web requests and transport security.",code:"Browser → HTTPS request → Server\\nServer → HTTPS response → Browser",output:"HTTPS protects traffic using TLS; correct configuration still matters."},
+  {id:"product-mvp",title:"Product: Define an MVP",category:"Design & Business",level:"Beginner",desc:"Identify the smallest useful version of a product.",code:"1. Define the user\\n2. Identify one problem\\n3. Build one core workflow\\n4. Test with users",output:"A testable first version focused on one validated need."}
+];
+
+const questions = [
+  {id:"q1",title:"Python · Sum of a List",level:"Beginner",prompt:"Write a function that returns the sum of all numbers in a list.",hint:"Python has a built-in function that adds iterable values.",solution:"def list_sum(numbers):\\n    return sum(numbers)\\n\\nprint(list_sum([2, 3, 5]))",explanation:"sum() returns the total of the list values. For an empty list, it returns 0."},
+  {id:"q2",title:"Python · Even or Odd",level:"Beginner",prompt:"Given an integer n, print Even if it is divisible by 2; otherwise print Odd.",hint:"Check the remainder using the modulo operator %.",solution:'n = int(input("Enter a number: "))\\nif n % 2 == 0:\\n    print("Even")\\nelse:\\n    print("Odd")',explanation:"An even integer has remainder 0 when divided by 2."},
+  {id:"q3",title:"JavaScript · Find the Largest",level:"Beginner",prompt:"Find the largest number in [8, 3, 12, 5] without sorting the array.",hint:"Track the largest value seen so far, or use Math.max for the built-in approach.",solution:"const values = [8, 3, 12, 5];\\nlet largest = values[0];\\nfor (const value of values) {\\n  if (value > largest) largest = value;\\n}\\nconsole.log(largest);",explanation:"Each iteration compares one value against the current maximum."},
+  {id:"q4",title:"HTML · Accessible Form",level:"Intermediate",prompt:"Create a form with a properly labelled email input and a submit button.",hint:"Connect a label's for attribute to the input's id.",solution:'<form>\\n  <label for="email">Email</label>\\n  <input id="email" name="email" type="email" required>\\n  <button type="submit">Submit</button>\\n</form>',explanation:"The label association improves usability and accessibility; browser validation checks the email field format."},
+  {id:"q5",title:"DSA · Find an Index",level:"Intermediate",prompt:"Return the index of target in a list, or -1 if the target is absent.",hint:"enumerate() provides both an index and its value.",solution:"def find_index(items, target):\\n    for i, item in enumerate(items):\\n        if item == target:\\n            return i\\n    return -1",explanation:"Linear search takes O(n) time in the worst case and O(1) extra space."},
+  {id:"q6",title:"SQL · Filter Records",level:"Beginner",prompt:"Select the name and score of students scoring at least 75.",hint:"Use SELECT to choose columns and WHERE to filter rows.",solution:"SELECT name, score\\nFROM students\\nWHERE score >= 75;",explanation:"The query returns only rows that satisfy the WHERE condition."}
+];
+
+const escapeHTML = value => String(value).replace(/[&<>"']/g, ch => ({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+})[ch]);
+
+const readStore = (key, fallback) => {
+  try {
+    const value = localStorage.getItem(key);
+    return value === null ? fallback : JSON.parse(value);
+  } catch { return fallback; }
+};
+const writeStore = (key, value) => {
+  try { localStorage.setItem(key, JSON.stringify(value)); }
+  catch { setSaveStatus("Browser storage unavailable"); }
+};
+
+let bookmarks = readStore("ls_code_bookmarks", []);
+let completed = readStore("ls_code_completed", []);
+let currentFile = "html";
+let files = readStore("ls_code_files", null);
+
+const starterFiles = {
+  html: '<!DOCTYPE html>\\n<html lang="en">\\n<head>\\n  <meta charset="UTF-8">\\n  <meta name="viewport" content="width=device-width, initial-scale=1.0">\\n  <title>My Project</title>\\n</head>\\n<body>\\n  <main class="card">\\n    <h1>Hello, LE4RNSP4CE!</h1>\\n    <p>Edit the HTML, CSS and JS files.</p>\\n    <button id="helloBtn">Click me</button>\\n    <p id="message"></p>\\n  </main>\\n</body>\\n</html>',
+  css: 'body {\\n  margin: 0;\\n  min-height: 100vh;\\n  display: grid;\\n  place-items: center;\\n  font-family: system-ui, sans-serif;\\n  background: #eef2ff;\\n  color: #1e1b4b;\\n}\\n.card {\\n  max-width: 480px;\\n  padding: 32px;\\n  border-radius: 18px;\\n  background: white;\\n  box-shadow: 0 15px 45px #312e8118;\\n}\\nbutton {\\n  padding: 10px 15px;\\n  border: 0;\\n  border-radius: 8px;\\n  background: #6d28d9;\\n  color: white;\\n  cursor: pointer;\\n}',
+  js: 'const button = document.querySelector("#helloBtn");\\nconst message = document.querySelector("#message");\\n\\nbutton.addEventListener("click", () => {\\n  message.textContent = "Great! Your JavaScript works.";\\n  console.log("Button clicked!");\\n});',
+  py: 'def greet(name):\\n    return f"Hello, {name}!"\\n\\nprint(greet("Learner"))\\n\\n# Python editing is available here.\\n# Execution requires a Python runner.'
+};
+
+if (!files || typeof files !== "object") files = {...starterFiles};
+for (const key of Object.keys(starterFiles)) {
+  if (typeof files[key] !== "string") files[key] = starterFiles[key];
+}
+
+function setSaveStatus(message) {
+  const status = $("#saveStatus");
+  if (status) status.textContent = message;
+}
+
+function saveFiles() {
+  writeStore("ls_code_files", files);
+  setSaveStatus("Saved in this browser");
+}
+
+function updateStats() {
+  $("#doneCount").textContent = completed.length;
+  $("#bookmarkCount").textContent = bookmarks.length;
+  const percent = Math.round(completed.length / lessons.length * 100);
+  $("#progressPercent").textContent = percent + "%";
+  $("#progressTitle").textContent = percent + "% complete";
+  $("#progressBar").style.width = percent + "%";
+  $("#progressDetail").textContent = completed.length + " of " + lessons.length + " learning notes completed.";
+}
+
+function showView(name) {
+  $$(".view").forEach(view => view.classList.toggle("active", view.id === "view-" + name));
+  $$(".side-link").forEach(button => button.classList.toggle("active", button.dataset.view === name));
+  if (name === "studio") {
+    updateEditor();
+    renderPreview();
+  }
+  if (name === "saved") renderSaved();
+  if (name === "progress") renderProgress();
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+$$("[data-view]").forEach(button => button.addEventListener("click", () => showView(button.dataset.view)));
+
+const categoryFor = name => ({
+  "Programming":"Programming",
+  "Web Development":"Web Development",
+  "Computer Science":"Computer Science",
+  "AI & Data":"AI & Data",
+  "Cloud & Tools":"Cloud & Tools",
+  "Career":"Career",
+  "Design & Business":"Design & Business"
+}[name] || name);
+
+function skillCard(skill) {
+  const [name, category, level, icon, desc] = skill;
+  const saved = bookmarks.includes(name);
+  return `<article class="skill-card">
+    <div class="skill-icon">${escapeHTML(icon)}</div>
+    <h3>${escapeHTML(name)}</h3>
+    <span class="pill">${escapeHTML(category)}</span><span class="pill">${escapeHTML(level)}</span>
+    <p>${escapeHTML(desc)}</p>
+    <div class="hero-actions">
+      <button class="btn primary open-skill" data-skill="${escapeHTML(name)}">Learn →</button>
+      <button class="btn bookmark-btn" data-skill="${escapeHTML(name)}" aria-label="${saved ? "Remove bookmark" : "Bookmark"} ${escapeHTML(name)}">${saved ? "★ Saved" : "☆ Save"}</button>
+    </div>
+  </article>`;
+}
+
+function renderSkills() {
+  const query = $("#skillSearch").value.trim().toLowerCase();
+  const category = $("#categoryFilter").value;
+  const level = $("#levelFilter").value;
+  const filtered = skills.filter(skill =>
+    skill.join(" ").toLowerCase().includes(query) &&
+    (category === "all" || skill[1] === category) &&
+    (level === "all" || skill[2] === level)
+  );
+  $("#skillGrid").innerHTML = filtered.map(skillCard).join("");
+  $("#noSkills").hidden = filtered.length > 0;
+}
+
+$("#skillSearch").addEventListener("input", renderSkills);
+$("#categoryFilter").addEventListener("change", renderSkills);
+$("#levelFilter").addEventListener("change", renderSkills);
+
+function openSkill(name) {
+  const skill = skills.find(item => item[0] === name);
+  if (!skill) return;
+  const match = lessons.find(item => item.title.toLowerCase().includes(name.toLowerCase()));
+  showView("lessons");
+  $("#lessonSearch").value = match ? match.title : name;
+  renderLessons();
+  if (!match) {
+    $("#lessonGrid").innerHTML = `<div class="panel">
+      <span class="pill">${escapeHTML(skill[1])}</span>
+      <h2>${escapeHTML(skill[0])}</h2>
+      <p>${escapeHTML(skill[4])}</p>
+      <h3>Suggested learning path</h3>
+      <p>Start with fundamentals, follow guided examples, solve small exercises, then build a project and test it.</p>
+      <button class="btn primary" id="practiceThisSkill">Open Code Studio</button>
+    </div>`;
+    $("#practiceThisSkill").addEventListener("click", () => {
+      showView("studio");
+      if (name === "Python") switchFile("py");
+      else if (name === "HTML") switchFile("html");
+      else if (name === "CSS") switchFile("css");
+      else if (name === "JavaScript") switchFile("js");
+    });
+  }
+}
+
+document.addEventListener("click", event => {
+  const open = event.target.closest(".open-skill");
+  const bookmark = event.target.closest(".bookmark-btn");
+  if (open) openSkill(open.dataset.skill);
+  if (bookmark) {
+    const name = bookmark.dataset.skill;
+    bookmarks = bookmarks.includes(name) ? bookmarks.filter(item => item !== name) : [...bookmarks, name];
+    writeStore("ls_code_bookmarks", bookmarks);
+    renderSkills();
+    renderSaved();
+    updateStats();
+  }
+});
+
+function renderLessons() {
+  const query = ($("#lessonSearch")?.value || "").trim().toLowerCase();
+  const filtered = lessons.filter(lesson =>
+    (lesson.title + " " + lesson.category + " " + lesson.desc).toLowerCase().includes(query)
+  );
+  $("#lessonGrid").innerHTML = filtered.map(lesson => {
+    const done = completed.includes(lesson.id);
+    return `<article class="panel">
+      <span class="pill">${escapeHTML(lesson.category)}</span><span class="pill">${escapeHTML(lesson.level)}</span>
+      <h3>${escapeHTML(lesson.title)}</h3><p class="muted">${escapeHTML(lesson.desc)}</p>
+      <strong>Example</strong><pre class="sample">${escapeHTML(lesson.code.replace(/\\n/g,"\n"))}</pre>
+      <details><summary>Expected output / result</summary><pre class="sample">${escapeHTML(lesson.output)}</pre></details>
+      <label class="check"><input type="checkbox" class="lesson-done" data-id="${lesson.id}" ${done ? "checked" : ""}> Mark this lesson completed</label>
+      <button class="btn open-example" data-id="${lesson.id}">Open in Code Studio</button>
+    </article>`;
+  }).join("") || "<p class='muted'>No matching notes found.</p>";
+}
+$("#lessonSearch").addEventListener("input", renderLessons);
+
+document.addEventListener("change", event => {
+  if (event.target.matches(".lesson-done")) {
+    const id = event.target.dataset.id;
+    completed = event.target.checked
+      ? [...new Set([...completed, id])]
+      : completed.filter(item => item !== id);
+    writeStore("ls_code_completed", completed);
+    renderLessons();
+    updateStats();
+    renderProgress();
+  }
+});
+
+document.addEventListener("click", event => {
+  const button = event.target.closest(".open-example");
+  if (!button) return;
+  const lesson = lessons.find(item => item.id === button.dataset.id);
+  if (!lesson) return;
+  const name = lesson.title.toLowerCase();
+  showView("studio");
+  if (name.includes("html")) switchFile("html");
+  else if (name.includes("css")) switchFile("css");
+  else if (name.includes("javascript")) switchFile("js");
+  else if (name.includes("python")) switchFile("py");
+  setSaveStatus("Example: " + lesson.title);
+});
+
+function renderQuestions() {
+  $("#questionList").innerHTML = questions.map(q => `
+    <article class="question">
+      <span class="pill">${escapeHTML(q.level)}</span>
+      <h3>${escapeHTML(q.title)}</h3>
+      <p>${escapeHTML(q.prompt)}</p>
+      <details><summary>Show hint</summary><p class="muted">${escapeHTML(q.hint)}</p></details>
+      <details><summary>Reveal solution</summary>
+        <pre>${escapeHTML(q.solution.replace(/\\n/g,"\n"))}</pre>
+        <p>${escapeHTML(q.explanation)}</p>
+        <button class="btn load-solution" data-id="${q.id}">Load solution into editor</button>
+      </details>
+    </article>`).join("");
+}
+
+document.addEventListener("click", event => {
+  const button = event.target.closest(".load-solution");
+  if (!button) return;
+  const q = questions.find(item => item.id === button.dataset.id);
+  if (!q) return;
+  if (q.title.includes("JavaScript")) switchFile("js");
+  else if (q.title.includes("HTML")) switchFile("html");
+  else if (q.title.includes("SQL")) switchFile("py");
+  else switchFile("py");
+  files[currentFile] = q.solution.replace(/\\n/g,"\n");
+  updateEditor();
+  saveFiles();
+  showView("studio");
+});
+
+function renderSaved() {
+  const list = skills.filter(skill => bookmarks.includes(skill[0]));
+  $("#savedGrid").innerHTML = list.map(skillCard).join("");
+  $("#noSaved").hidden = list.length > 0;
+}
+
+function renderProgress() {
+  updateStats();
+  $("#progressChecklist").innerHTML = lessons.map(lesson => `
+    <label class="check"><input type="checkbox" class="lesson-done" data-id="${lesson.id}" ${completed.includes(lesson.id) ? "checked" : ""}>
+    ${escapeHTML(lesson.title)}</label>`).join("");
+}
+
+function switchFile(key) {
+  currentFile = key;
+  $$(".file-btn,.tab").forEach(button => button.classList.toggle("active", button.dataset.file === key));
+  updateEditor();
+}
+
+function updateEditor() {
+  const names = {html:"index.html",css:"style.css",js:"script.js",py:"main.py"};
+  const langs = {html:"HTML",css:"CSS",js:"JavaScript",py:"Python"};
+  $("#editorFilename").textContent = names[currentFile];
+  $("#editorLanguage").textContent = langs[currentFile];
+  $("#codeEditor").value = files[currentFile];
+  updateLineNumbers();
+  $("#lineStatus").textContent = "Ln 1, Col 1";
+}
+
+$$("[data-file]").forEach(button => button.addEventListener("click", () => switchFile(button.dataset.file)));
+
+function updateLineNumbers() {
+  const editor = $("#codeEditor");
+  const lines = editor.value.split("\n").length;
+  $("#lineNumbers").textContent = Array.from({length:lines}, (_,i) => i + 1).join("\n");
+  $("#lineNumbers").scrollTop = editor.scrollTop;
+}
+
+$("#codeEditor").addEventListener("input", () => {
+  files[currentFile] = $("#codeEditor").value;
+  updateLineNumbers();
+  setSaveStatus("Unsaved changes");
+  const pos = $("#codeEditor").selectionStart;
+  const before = $("#codeEditor").value.slice(0,pos).split("\n");
+  $("#lineStatus").textContent = `Ln ${before.length}, Col ${before[before.length-1].length+1}`;
+});
+$("#codeEditor").addEventListener("scroll", updateLineNumbers);
+$("#codeEditor").addEventListener("click", () => {
+  const pos = $("#codeEditor").selectionStart;
+  const before = $("#codeEditor").value.slice(0,pos).split("\n");
+  $("#lineStatus").textContent = `Ln ${before.length}, Col ${before[before.length-1].length+1}`;
+});
+$("#codeEditor").addEventListener("keydown", event => {
+  const editor = event.target;
+  if (event.key === "Tab") {
+    event.preventDefault();
+    const start = editor.selectionStart, end = editor.selectionEnd;
+    editor.setRangeText("  ", start, end, "end");
+    files[currentFile] = editor.value;
+    updateLineNumbers();
+    setSaveStatus("Unsaved changes");
+  }
+  if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "s") {
+    event.preventDefault();
+    saveFiles();
+  }
+});
+
+$("#saveFiles").addEventListener("click", saveFiles);
+$("#resetEditor").addEventListener("click", () => {
+  if (!confirm("Replace your saved playground files with the starter examples?")) return;
+  files = {...starterFiles};
+  saveFiles();
+  updateEditor();
+  renderPreview();
+});
+
+function renderPreview() {
+  const html = files.html;
+  const css = files.css;
+  const js = files.js;
+
+  // Keep the browser preview isolated in a sandboxed iframe.
+  // Console messages are forwarded as text, not executable markup.
+  const bridge = `
+    <script>
+      (() => {
+        const safe = value => {
+          try { return typeof value === "string" ? value : JSON.stringify(value); }
+          catch { return String(value); }
+        };
+        const original = console.log.bind(console);
+        console.log = (...args) => {
+          original(...args);
+          parent.postMessage({type:"learnspace-console", text:args.map(safe).join(" ")}, "*");
+        };
+        window.addEventListener("error", e => {
+          parent.postMessage({type:"learnspace-error", text:e.message}, "*");
+        });
+      })();
+    <\/script>`;
+
+  const doc = `<!doctype html>
+  <html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>${css.replace(/<\/style/gi,"<\\/style")}</style></head>
+  <body>${html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,"")}
+  ${bridge}
+  <script>${js.replace(/<\/script/gi,"<\\/script")}<\/script>
+  </body></html>`;
+
+  $("#preview").srcdoc = doc;
+  $("#consoleOutput").textContent = "Preview refreshed. Console messages will appear here.";
+}
+
+window.addEventListener("message", event => {
+  if (event.source !== $("#preview").contentWindow) return;
+  const data = event.data;
+  if (!data || !["learnspace-console","learnspace-error"].includes(data.type)) return;
+  const prefix = data.type === "learnspace-error" ? "Error: " : "> ";
+  const output = $("#consoleOutput");
+  output.textContent = (output.textContent + "\n" + prefix + String(data.text)).slice(-6000);
+});
+
+$("#runCode").addEventListener("click", () => {
+  if (currentFile === "py") {
+    $("#consoleOutput").textContent = "Python code is editable, but this page does not include a Python runtime. Connect a trusted Python execution service or run the file locally to execute it.";
+    return;
+  }
+  $("#consoleOutput").textContent = "Running browser preview…";
+  renderPreview();
+});
+
+$("#themeBtn").addEventListener("click", () => {
+  const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+  document.documentElement.dataset.theme = next;
+  try { localStorage.setItem("ls_code_theme", next); } catch {}
+  $("#themeBtn").textContent = next === "dark" ? "☀ Light mode" : "☾ Dark mode";
+});
+
+$("#resetProgress").addEventListener("click", () => {
+  if (!confirm("Reset all completed lessons on this browser?")) return;
+  completed = [];
+  writeStore("ls_code_completed", completed);
+  renderLessons();
+  renderProgress();
+});
+
+try {
+  const theme = localStorage.getItem("ls_code_theme");
+  if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
+} catch {}
+$("#themeBtn").textContent = document.documentElement.dataset.theme === "dark" ? "☀ Light mode" : "☾ Dark mode";
+
+renderSkills();
+renderLessons();
+renderQuestions();
+renderProgress();
+updateStats();
+updateEditor();
+renderPreview();
+</script>
+</body>
+</html>
