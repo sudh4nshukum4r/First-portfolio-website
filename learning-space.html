@@ -5,285 +5,774 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0b0b12">
+  <meta name="description" content="Explore skills, learning roadmaps, programming, AI, design, business and career skills with LE4RNSP4CE.">
   <title>Learning Space | LE4RNSP4CE</title>
+
   <style>
     :root {
-      color-scheme: dark;
       --bg: #0b0b12;
-      --panel: #141420;
-      --border: #29283b;
+      --panel: #151522;
+      --panel2: #1b1a2a;
+      --border: #302d46;
+      --text: #f7f5ff;
       --muted: #aaa8c0;
-      --purple: #a78bfa;
+      --purple: #b6a0ff;
       --pink: #f0abfc;
+      --green: #86efac;
     }
+
     * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
-      font-family: Inter, system-ui, -apple-system, sans-serif;
-      color: #f7f5ff;
+      color: var(--text);
       background:
-        radial-gradient(ellipse at 80% 0%, #302052 0, transparent 38%),
+        radial-gradient(ellipse at 80% 0%, #302052 0, transparent 32%),
         var(--bg);
-      min-height: 100vh;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      line-height: 1.6;
     }
+
     a { color: inherit; text-decoration: none; }
     button, input, select { font: inherit; }
-    .wrap { width: min(1120px, 92%); margin: auto; }
-    header {
-      display: flex; justify-content: space-between; align-items: center;
-      gap: 18px; padding: 22px 0; border-bottom: 1px solid #ffffff12;
+
+    .container {
+      width: min(1160px, 92%);
+      margin: auto;
     }
-    .brand { font-weight: 850; letter-spacing: .7px; }
-    .brand span { color: var(--purple); }
-    nav { display: flex; gap: 20px; color: var(--muted); font-size: 14px; }
-    nav a:hover { color: white; }
-    .hero { padding: 76px 0 38px; max-width: 800px; }
-    .eyebrow { color: var(--pink); font-size: 12px; font-weight: 800; letter-spacing: 2px; }
-    h1 { font-size: clamp(38px, 7vw, 68px); line-height: 1.05; margin: 16px 0; letter-spacing: -2px; }
+
+    header {
+      border-bottom: 1px solid #ffffff15;
+      background: #0b0b12eF;
+    }
+
+    .navbar {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 21px;
+      font-weight: 900;
+      letter-spacing: .5px;
+      white-space: nowrap;
+    }
+
+    .logo span { color: var(--purple); }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a:hover { color: var(--pink); }
+
+    .hero { padding: 66px 0 35px; }
+
+    .eyebrow {
+      color: var(--pink);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    h1 {
+      margin: 13px 0;
+      max-width: 850px;
+      font-size: clamp(38px, 7vw, 68px);
+      letter-spacing: -2px;
+      line-height: 1.08;
+    }
+
     .gradient {
       background: linear-gradient(90deg, #c4b5fd, #f0abfc);
-      color: transparent; background-clip: text;
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
     }
-    .intro { color: var(--muted); font-size: 17px; line-height: 1.8; max-width: 660px; }
-    .search { display: flex; gap: 10px; margin-top: 26px; }
-    input, select {
-      color: white; background: #171724; border: 1px solid var(--border);
-      border-radius: 13px; padding: 15px; outline: none; min-width: 0;
+
+    .hero p {
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 17px;
     }
-    input { flex: 1; }
-    input:focus, select:focus { border-color: var(--purple); }
-    .filters { display: flex; gap: 10px; flex-wrap: wrap; margin: 22px 0 30px; }
-    .filters select { flex: 1; min-width: 145px; }
-    .section-head { display: flex; justify-content: space-between; gap: 12px; align-items: end; margin: 32px 0 18px; }
-    h2 { font-size: 25px; margin: 0; }
-    .muted { color: var(--muted); font-size: 14px; line-height: 1.6; }
-    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 15px; }
-    .card {
-      background: linear-gradient(145deg, #191827, #11111a);
-      border: 1px solid var(--border); border-radius: 18px; padding: 21px;
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 23px;
+    }
+
+    .badge {
+      border: 1px solid var(--border);
+      background: #ffffff06;
+      padding: 6px 11px;
+      border-radius: 30px;
+      font-size: 12px;
+      color: #ded7ff;
+    }
+
+    .search-panel {
+      margin: 22px 0 28px;
+      padding: 22px;
+      border: 1px solid var(--border);
+      background: linear-gradient(145deg, #191729, #11111a);
+      border-radius: 19px;
+    }
+
+    .search-panel h2 { margin: 0 0 6px; }
+
+    .muted { color: var(--muted); }
+
+    .search-box {
+      display: flex;
+      gap: 10px;
+      margin: 17px 0;
+    }
+
+    .search-box input {
+      flex: 1;
+      min-width: 0;
+      padding: 15px 16px;
+      border: 1px solid #45405f;
+      background: #0c0c14;
+      color: var(--text);
+      border-radius: 11px;
+      outline: none;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--purple);
+      box-shadow: 0 0 0 3px #a78bfa20;
+    }
+
+    .primary-btn {
+      padding: 13px 19px;
+      border: 0;
+      border-radius: 11px;
+      color: #171024;
+      font-weight: 800;
+      background: linear-gradient(90deg, #c4b5fd, #f0abfc);
+      cursor: pointer;
+    }
+
+    .filters {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .filter-group label {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+
+    .filter-group select {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: #0c0c14;
+      color: var(--text);
+    }
+
+    .section-heading {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: end;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 42px 0 19px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: clamp(24px, 4vw, 34px);
+    }
+
+    .section-heading p {
+      margin: 5px 0 0;
+      color: var(--muted);
+    }
+
+    #result-count {
+      color: var(--purple);
+      font-size: 13px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .skill-card {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      padding: 21px;
+      border-radius: 17px;
+      border: 1px solid var(--border);
+      background: linear-gradient(150deg, #191827, #11111a);
       transition: transform .2s, border-color .2s;
     }
-    .card:hover { transform: translateY(-3px); border-color: #8b5cf6; }
-    .symbol {
-      display: grid; place-items: center; width: 44px; height: 44px;
-      background: #8b5cf621; border-radius: 13px; font-size: 21px;
+
+    .skill-card:hover {
+      transform: translateY(-4px);
+      border-color: #8772ca;
     }
-    .tag {
-      display: inline-block; color: #d8ccff; background: #8b5cf624;
-      padding: 5px 9px; border-radius: 20px; font-size: 11px; margin: 15px 0 8px;
+
+    .skill-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: #a78bfa1c;
+      font-size: 24px;
+      margin-bottom: 14px;
     }
-    .card h3 { margin: 4px 0 8px; font-size: 18px; }
-    .card p { color: var(--muted); font-size: 13px; line-height: 1.7; min-height: 66px; }
-    .learn { color: var(--pink); font-size: 13px; font-weight: 750; }
-    .empty { display: none; padding: 32px; border: 1px dashed var(--border); border-radius: 15px; text-align: center; color: var(--muted); }
+
+    .skill-card h3 {
+      margin: 0 0 8px;
+      font-size: 19px;
+    }
+
+    .skill-card p {
+      margin: 0 0 15px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin: 0 0 17px;
+    }
+
+    .meta span {
+      padding: 4px 8px;
+      border-radius: 20px;
+      font-size: 11px;
+      color: #ddd5ff;
+      background: #a78bfa18;
+    }
+
+    .learn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      margin-top: auto;
+      padding: 11px 13px;
+      border: 1px solid #7563a9;
+      border-radius: 10px;
+      color: #e7dcff;
+      font-weight: 750;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .learn:hover {
+      color: white;
+      background: #8b5cf626;
+    }
+
+    .featured .learn {
+      color: #171024;
+      background: linear-gradient(90deg, #c4b5fd, #f0abfc);
+      border: 0;
+    }
+
+    .empty-state {
+      display: none;
+      padding: 35px 20px;
+      border: 1px dashed var(--border);
+      border-radius: 15px;
+      text-align: center;
+      color: var(--muted);
+      margin-top: 15px;
+    }
+
     .roadmap {
-      margin: 55px 0; padding: 26px; border: 1px solid var(--border);
-      border-radius: 20px; background: #151420;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+      margin: 20px 0 50px;
     }
-    .steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-top: 22px; }
-    .step { border-left: 2px solid #8b5cf6; padding: 8px 12px; }
-    .step strong { display: block; margin-bottom: 7px; }
-    footer { padding: 25px 0 40px; border-top: 1px solid #ffffff12; color: var(--muted); font-size: 13px; }
-    @media (max-width: 760px) {
-      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .steps { grid-template-columns: repeat(2, 1fr); }
-      .hero { padding-top: 52px; }
+
+    .roadmap-step {
+      padding: 17px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
     }
-    @media (max-width: 520px) {
-      header { align-items: flex-start; flex-direction: column; }
-      nav { flex-wrap: wrap; gap: 14px; }
-      .grid { grid-template-columns: 1fr; }
-      .search { flex-direction: column; }
-      .section-head { align-items: flex-start; flex-direction: column; }
-      .roadmap { padding: 18px; }
-      h1 { letter-spacing: -1px; }
+
+    .roadmap-step .number {
+      color: var(--pink);
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    .roadmap-step h3 { font-size: 16px; margin: 7px 0; }
+    .roadmap-step p { color: var(--muted); font-size: 12px; margin: 0; }
+
+    .info-panel {
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      background: #171525;
+      margin: 35px 0;
+    }
+
+    .info-panel h2 { margin-top: 0; }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .info-grid h3 { margin-bottom: 5px; }
+    .info-grid p { color: var(--muted); font-size: 14px; margin-top: 0; }
+
+    footer {
+      border-top: 1px solid #ffffff15;
+      margin-top: 55px;
+      padding: 28px 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    footer .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .roadmap { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 600px) {
+      .navbar { align-items: flex-start; flex-direction: column; padding: 18px 0; }
+      .nav-links { gap: 13px; }
+      .hero { padding-top: 43px; }
+      .search-box { flex-direction: column; }
+      .filters { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .roadmap { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .info-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
+
 <body>
-  <header class="wrap">
-    <a class="brand" href="./index.html">LE4RNSP4CE<span>.</span></a>
-    <nav aria-label="Main navigation">
-      <a href="./index.html">Home</a>
-      <a href="./dashboard.html">Dashboard</a>
-      <a href="./courses.html">Courses</a>
+  <header>
+    <div class="container navbar">
+      <a class="logo" href="./index.html">LE4RNSP4CE<span>.</span></a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="./index.html">Home</a>
+        <a href="./dashboard.html">Dashboard</a>
+        <a href="./courses.html">Courses</a>
+        <a href="./learning-space.html">Learning Space</a>
     </nav>
+    </div>
   </header>
 
-  <main class="wrap">
+  <main class="container">
     <section class="hero">
-      <div class="eyebrow">YOUR PERSONAL LEARNING UNIVERSE</div>
-      <h1>Curiosity is the beginning of <span class="gradient">everything.</span></h1>
-      <p class="intro">
-        Discover what a skill is, why it matters, how to learn it, and what
-        you can create with it. Start with the basics and grow at your own pace.
+      <div class="eyebrow">Explore · Learn · Practise · Build</div>
+      <h1>Your skills.<br><span class="gradient">Your learning space.</span></h1>
+      <p>
+        Explore programming, artificial intelligence, design, science,
+        business and career skills. Find a starting point, follow a roadmap
+        and turn what you learn into real projects.
       </p>
-      <div class="search">
-        <input id="search" type="search" placeholder="Search Python, AI, design, science..." aria-label="Search learning topics">
-      </div>
-      <div class="filters">
-        <select id="category" aria-label="Filter by field">
-          <option value="all">All fields</option>
-          <option value="technology">Technology</option>
-          <option value="science">Science & Engineering</option>
-          <option value="creative">Creative Skills</option>
-          <option value="business">Business & Career</option>
-          <option value="foundation">School & Foundations</option>
-        </select>
-        <select id="level" aria-label="Filter by level">
-          <option value="all">All levels</option>
-          <option value="beginner">Beginner</option>
-          <option value="intermediate">Intermediate</option>
-          <option value="advanced">Advanced</option>
-        </select>
-        <select id="year" aria-label="Filter by college year">
-          <option value="all">All stages</option>
-          <option value="school">School / Foundation</option>
-          <option value="1">1st year</option>
-          <option value="2">2nd year</option>
-          <option value="3">3rd year</option>
-          <option value="4">4th year</option>
-          <option value="career">Career / Lifelong learning</option>
-        </select>
+
+      <div class="hero-badges">
+        <span class="badge">Beginner friendly</span>
+        <span class="badge">School to college</span>
+        <span class="badge">Projects & practice</span>
+        <span class="badge">Career pathways</span>
       </div>
     </section>
 
-    <section aria-labelledby="explore-title">
-      <div class="section-head">
-        <div>
-          <h2 id="explore-title">Explore your next skill</h2>
-          <p class="muted">Start anywhere. Build your knowledge one step at a time.</p>
-        </div>
-        <span id="count" class="muted" aria-live="polite"></span>
+    <section class="search-panel" aria-labelledby="search-title">
+      <h2 id="search-title">What do you want to learn?</h2>
+      <p class="muted">Search a skill, subject, project or career direction.</p>
+
+      <div class="search-box">
+        <input
+          type="search"
+          id="skill-search"
+          placeholder="Try Python, AI, web development, design..."
+          aria-label="Search learning skills"
+        >
+        <button class="primary-btn" id="search-button" type="button">Search</button>
       </div>
-      <div class="grid" id="grid">
-        <article class="card" data-category="technology" data-level="beginner" data-year="1" data-search="python programming coding automation ai data">
-          <div class="symbol">⌘</div><span class="tag">TECHNOLOGY · BEGINNER</span>
+
+      <div class="filters">
+        <div class="filter-group">
+          <label for="category-filter">Category</label>
+          <select id="category-filter">
+            <option value="all">All categories</option>
+            <option value="programming">Programming & Development</option>
+            <option value="ai">AI & Data</option>
+            <option value="technology">Technology & Engineering</option>
+            <option value="design">Design & Creativity</option>
+            <option value="business">Business & Entrepreneurship</option>
+            <option value="career">Career & Life Skills</option>
+            <option value="maths">Maths & Science</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="level-filter">Learning level</label>
+          <select id="level-filter">
+            <option value="all">All levels</option>
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="advanced">Advanced</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="year-filter">Suitable for</label>
+          <select id="year-filter">
+            <option value="all">All learners</option>
+            <option value="school">School students</option>
+            <option value="1">College year 1</option>
+            <option value="2">College year 2</option>
+            <option value="3">College year 3</option>
+            <option value="4">College year 4</option>
+            <option value="career">Career & job seekers</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <section id="explore">
+      <div class="section-heading">
+        <div>
+          <h2>Explore learning paths</h2>
+          <p>Choose a skill and start learning at your own pace.</p>
+        </div>
+        <span id="result-count" aria-live="polite">12 learning paths</span>
+      </div>
+
+      <div class="skills-grid" id="skills-grid">
+
+        <article class="skill-card featured"
+          data-category="programming"
+          data-level="beginner"
+          data-years="school 1 2 3 4 career"
+          data-search="python programming coding automation ai beginner variables loops functions projects">
+          <div class="skill-icon">🐍</div>
           <h3>Python Programming</h3>
-          <p><strong>What:</strong> A versatile programming language. <strong>Why:</strong> Automation, data and AI. <strong>Start:</strong> Variables, conditions and loops.</p>
-        <a class="learn" href="./python-learning.html">Start learning Python →</a>
+          <p>Learn programming fundamentals, variables, conditions, loops, functions and projects from scratch.</p>
+          <div class="meta">
+            <span>Beginner friendly</span>
+            <span>AI foundation</span>
+          </div>
+          <a class="learn" href="./python-learning.html">Start learning Python →</a>
         </article>
-        <article class="card" data-category="technology" data-level="beginner" data-year="1" data-search="html css javascript web development frontend websites">
-          <div class="symbol">⌘</div><span class="tag">TECHNOLOGY · BEGINNER</span>
+
+        <article class="skill-card"
+          data-category="programming"
+          data-level="beginner"
+          data-years="school 1 2 3 4 career"
+          data-search="web development html css javascript frontend website internet">
+          <div class="skill-icon">🌐</div>
           <h3>Web Development</h3>
-          <p><strong>What:</strong> How websites work. <strong>Why:</strong> Build your own web experiences. <strong>Start:</strong> HTML, CSS and JavaScript.</p>
+          <p>Understand the web and learn HTML, CSS, JavaScript and how websites are built.</p>
+          <div class="meta"><span>Beginner</span><span>Build websites</span></div>
           <a class="learn" href="https://developer.mozilla.org/en-US/docs/Learn_web_development" target="_blank" rel="noopener noreferrer">Explore learning resource ↗</a>
         </article>
-        <article class="card" data-category="technology" data-level="intermediate" data-year="2" data-search="data structures algorithms dsa coding interview problem solving">
-          <div class="symbol">◇</div><span class="tag">COMPUTER SCIENCE · INTERMEDIATE</span>
+
+        <article class="skill-card"
+          data-category="programming"
+          data-level="intermediate"
+          data-years="1 2 3 4 career"
+          data-search="data structures algorithms dsa problem solving coding interviews">
+          <div class="skill-icon">🧩</div>
           <h3>Data Structures & Algorithms</h3>
-          <p><strong>What:</strong> Ways to organize data and solve problems. <strong>Why:</strong> Efficient software and interviews. <strong>Start:</strong> Arrays and strings.</p>
-          <a class="learn" href="https://www.geeksforgeeks.org/" target="_blank" rel="noopener noreferrer">Explore learning resource ↗</a>
+          <p>Practise problem-solving, arrays, strings, searching, sorting and algorithmic thinking.</p>
+          <div class="meta"><span>Intermediate</span><span>Interview prep</span></div>
+          <a class="learn" href="https://www.geeksforgeeks.org/learn-data-structures-and-algorithms-dsa-tutorial/" target="_blank" rel="noopener noreferrer">Explore learning resource ↗</a>
         </article>
-        <article class="card" data-category="technology" data-level="intermediate" data-year="2" data-search="artificial intelligence machine learning data science neural networks">
-          <div class="symbol">✳</div><span class="tag">AI & DATA · INTERMEDIATE</span>
+
+        <article class="skill-card"
+          data-category="ai"
+          data-level="intermediate"
+          data-years="1 2 3 4 career"
+          data-search="artificial intelligence machine learning data science neural networks ai ml">
+          <div class="skill-icon">🤖</div>
           <h3>AI & Machine Learning</h3>
-          <p><strong>What:</strong> Systems that learn patterns from data. <strong>Why:</strong> Prediction, automation and intelligent products. <strong>Start:</strong> Python, statistics and linear algebra.</p>
+          <p>Build foundations in data, machine learning concepts, model evaluation and AI applications.</p>
+          <div class="meta"><span>Maths helpful</span><span>AI career</span></div>
           <a class="learn" href="https://developers.google.com/machine-learning" target="_blank" rel="noopener noreferrer">Explore learning resource ↗</a>
         </article>
-        <article class="card" data-category="technology" data-level="advanced" data-year="3" data-search="cloud devops docker kubernetes deployment infrastructure">
-          <div class="symbol">☁</div><span class="tag">CLOUD · ADVANCED</span>
+
+        <article class="skill-card"
+          data-category="technology"
+          data-level="intermediate"
+          data-years="1 2 3 4 career"
+          data-search="cloud devops linux git github docker deployment networking">
+          <div class="skill-icon">☁️</div>
           <h3>Cloud & DevOps</h3>
-          <p><strong>What:</strong> Deploying and operating software systems. <strong>Why:</strong> Reliable applications at scale. <strong>Start:</strong> Linux, Git, networking and scripting.</p>
+          <p>Learn Git, Linux, deployment, cloud concepts and the foundations of reliable software delivery.</p>
+          <div class="meta"><span>Intermediate</span><span>Practical skills</span></div>
           <a class="learn" href="https://roadmap.sh/devops" target="_blank" rel="noopener noreferrer">Explore learning resource ↗</a>
         </article>
-        <article class="card" data-category="technology" data-level="advanced" data-year="3" data-search="cybersecurity network security secure coding defense">
-          <div class="symbol">⬡</div><span class="tag">SECURITY · ADVANCED</span>
+
+        <article class="skill-card"
+          data-category="technology"
+          data-level="intermediate"
+          data-years="1 2 3 4 career"
+          data-search="cybersecurity security networking ethical hacking defensive security">
+          <div class="skill-icon">🔐</div>
           <h3>Cybersecurity</h3>
-          <p><strong>What:</strong> Protecting systems and information. <strong>Why:</strong> Reduce digital risks. <strong>Start:</strong> Networking, operating systems and security fundamentals.</p>
-          <a class="learn" href="https://www.cisa.gov/cybersecurity-training-exercises" target="_blank" rel="noopener noreferrer">Explore learning resource ↗</a>
+          <p>Understand online safety, networks, secure systems and defensive security fundamentals.</p>
+          <div class="meta"><span>Start with basics</span><span>Security</span></div>
+          <a class="learn" href="https://www.cisa.gov/resources-tools" target="_blank" rel="noopener noreferrer">Explore learning resource ↗</a>
         </article>
-        <article class="card" data-category="science" data-level="beginner" data-year="school" data-search="mathematics algebra calculus probability statistics physics">
-          <div class="symbol">∑</div><span class="tag">FOUNDATIONS</span>
+
+        <article class="skill-card"
+          data-category="maths"
+          data-level="beginner"
+          data-years="school 1 2 3 4 career"
+          data-search="maths mathematics logic algebra probability statistics discrete mathematics">
+          <div class="skill-icon">📐</div>
           <h3>Maths & Logical Thinking</h3>
-          <p><strong>What:</strong> Patterns, quantities and reasoning. <strong>Why:</strong> Essential for science, engineering and AI. <strong>Start:</strong> Algebra and problem-solving.</p>
+          <p>Strengthen algebra, patterns, probability, statistics and the logic used in computing.</p>
+          <div class="meta"><span>All levels</span><span>AI foundation</span></div>
           <a class="learn" href="https://www.khanacademy.org/math" target="_blank" rel="noopener noreferrer">Explore learning resource ↗</a>
         </article>
-        <article class="card" data-category="science" data-level="intermediate" data-year="2" data-search="robotics electronics arduino sensors engineering">
-          <div class="symbol">⚙</div><span class="tag">ENGINEERING</span>
+
+        <article class="skill-card"
+          data-category="technology"
+          data-level="beginner"
+          data-years="school 1 2 3 4 career"
+          data-search="robotics electronics arduino sensors circuits engineering">
+          <div class="skill-icon">⚙️</div>
           <h3>Robotics & Electronics</h3>
-          <p><strong>What:</strong> Hardware, sensors and control systems. <strong>Why:</strong> Build interactive machines. <strong>Start:</strong> Circuits, programming and basic physics.</p>
+          <p>Explore circuits, sensors, microcontrollers, physical computing and robotics projects.</p>
+          <div class="meta"><span>Hands-on</span><span>Build projects</span></div>
           <a class="learn" href="https://docs.arduino.cc/" target="_blank" rel="noopener noreferrer">Explore learning resource ↗</a>
         </article>
-        <article class="card" data-category="creative" data-level="beginner" data-year="career" data-search="ui ux design figma prototyping research accessibility">
-          <div class="symbol">✎</div><span class="tag">CREATIVE</span>
+
+        <article class="skill-card"
+          data-category="design"
+          data-level="beginner"
+          data-years="school 1 2 3 4 career"
+          data-search="ui ux design user interface user experience figma prototyping">
+          <div class="skill-icon">🎨</div>
           <h3>UI/UX Design</h3>
-          <p><strong>What:</strong> Designing useful digital experiences. <strong>Why:</strong> Make products easier to use. <strong>Start:</strong> User needs, layout and prototyping.</p>
-          <a class="learn" href="https://www.figma.com/resource-library/" target="_blank" rel="noopener noreferrer">Explore learning resource ↗</a>
+          <p>Learn user research, wireframes, interface design, prototypes and usability.</p>
+          <div class="meta"><span>Beginner</span><span>Creative</span></div>
+          <a class="learn" href="https://help.figma.com/" target="_blank" rel="noopener noreferrer">Explore learning resource ↗</a>
         </article>
-        <article class="card" data-category="business" data-level="beginner" data-year="career" data-search="communication writing leadership teamwork productivity">
-          <div class="symbol">◎</div><span class="tag">LIFE & CAREER</span>
+
+        <article class="skill-card"
+          data-category="career"
+          data-level="beginner"
+          data-years="school 1 2 3 4 career"
+          data-search="communication leadership teamwork public speaking writing presentation">
+          <div class="skill-icon">🎤</div>
           <h3>Communication & Leadership</h3>
-          <p><strong>What:</strong> Expressing ideas and working with others. <strong>Why:</strong> Useful in every field. <strong>Start:</strong> Listening, clear writing and feedback.</p>
-          <a class="learn" href="https://www.coursera.org/" target="_blank" rel="noopener noreferrer">Explore learning resource ↗</a>
+          <p>Improve presentations, teamwork, professional writing, listening and leadership.</p>
+          <div class="meta"><span>Every learner</span><span>Career skill</span></div>
+          <a class="learn" href="https://www.toastmasters.org/resources" target="_blank" rel="noopener noreferrer">Explore learning resource ↗</a>
         </article>
-        <article class="card" data-category="business" data-level="intermediate" data-year="3" data-search="internship resume portfolio interview job applications career">
-          <div class="symbol">↗</div><span class="tag">CAREER PREPARATION</span>
+
+        <article class="skill-card"
+          data-category="career"
+          data-level="intermediate"
+          data-years="2 3 4 career"
+          data-search="internship job readiness resume portfolio interview github career">
+          <div class="skill-icon">💼</div>
           <h3>Internships & Job Readiness</h3>
-          <p><strong>What:</strong> Preparing to apply for roles. <strong>Why:</strong> Connect skills to experience. <strong>Start:</strong> Projects, resume and interview practice.</p>
-          <a class="learn" href="https://www.linkedin.com/jobs/" target="_blank" rel="noopener noreferrer">Explore job opportunities ↗</a>
+          <p>Prepare your portfolio, resume, projects, interview skills and professional profile.</p>
+          <div class="meta"><span>Career preparation</span><span>College</span></div>
+          <a class="learn" href="https://www.linkedin.com/jobs/" target="_blank" rel="noopener noreferrer">Explore opportunities ↗</a>
         </article>
-        <article class="card" data-category="business" data-level="beginner" data-year="career" data-search="entrepreneurship business startup product marketing finance">
-          <div class="symbol">✧</div><span class="tag">BUSINESS</span>
-          <h3>Entrepreneurship</h3>
-          <p><strong>What:</strong> Finding problems and building solutions. <strong>Why:</strong> Turn ideas into products. <strong>Start:</strong> Customer discovery and simple prototypes.</p>
+
+        <article class="skill-card"
+          data-category="business"
+          data-level="beginner"
+          data-years="1 2 3 4 career"
+          data-search="entrepreneurship startup business product thinking marketing finance innovation">
+          <div class="skill-icon">🚀</div>
+          <h3>Entrepreneurship & Startups</h3>
+          <p>Explore customer discovery, product thinking, business models, marketing and validation.</p>
+          <div class="meta"><span>Ideas to products</span><span>Business</span></div>
           <a class="learn" href="https://www.startupindia.gov.in/" target="_blank" rel="noopener noreferrer">Explore learning resource ↗</a>
         </article>
+
       </div>
-      <div class="empty" id="empty">No matching topics yet. Try another search or change your filters.</div>
+
+      <div class="empty-state" id="empty-state">
+        <h3>No matching learning paths found</h3>
+        <p>Try another keyword or select different filters.</p>
+        <button class="primary-btn" id="reset-button" type="button">Reset search</button>
+      </div>
     </section>
 
-    <section class="roadmap">
-      <span class="eyebrow">A SIMPLE LEARNING METHOD</span>
-      <h2 style="margin-top:12px">From curious to capable.</h2>
-      <p class="muted">A flexible roadmap for any field. Your progress depends on practice, not just watching lessons.</p>
-      <div class="steps">
-        <div class="step"><strong>01 · Explore</strong><span class="muted">What is it and why does it matter?</span></div>
-        <div class="step"><strong>02 · Foundations</strong><span class="muted">Learn concepts and prerequisites.</span></div>
-        <div class="step"><strong>03 · Practice</strong><span class="muted">Solve exercises and check understanding.</span></div>
-        <div class="step"><strong>04 · Build</strong><span class="muted">Create projects using your skills.</span></div>
-        <div class="step"><strong>05 · Advance</strong><span class="muted">Explore specializations and real-world work.</span></div>
+    <section>
+      <div class="section-heading">
+        <div>
+          <h2>A roadmap that works</h2>
+          <p>Use this cycle for almost any skill you want to learn.</p>
+        </div>
       </div>
+
+      <div class="roadmap">
+        <div class="roadmap-step">
+          <span class="number">STEP 01</span>
+          <h3>Explore</h3>
+          <p>Understand the skill and why it matters.</p>
+        </div>
+        <div class="roadmap-step">
+          <span class="number">STEP 02</span>
+          <h3>Learn</h3>
+          <p>Study the foundations one concept at a time.</p>
+        </div>
+        <div class="roadmap-step">
+          <span class="number">STEP 03</span>
+          <h3>Practise</h3>
+          <p>Solve exercises and check your understanding.</p>
+        </div>
+        <div class="roadmap-step">
+          <span class="number">STEP 04</span>
+          <h3>Build</h3>
+          <p>Make projects that use what you learned.</p>
+        </div>
+        <div class="roadmap-step">
+          <span class="number">STEP 05</span>
+          <h3>Advance</h3>
+          <p>Get feedback, improve and explore harder topics.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-panel">
+      <h2>Learn for your next stage</h2>
+      <div class="info-grid">
+        <div>
+          <h3>School students</h3>
+          <p>Build foundations in maths, science, programming, communication and creative thinking.</p>
+        </div>
+        <div>
+          <h3>College students</h3>
+          <p>Connect coursework with practical projects, teamwork, internships and specialisation.</p>
+        </div>
+        <div>
+          <h3>Future professionals</h3>
+          <p>Develop deeper technical skills, a portfolio, professional habits and lifelong learning routines.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-panel">
+      <h2>Our learning principle</h2>
+      <p class="muted">
+        Don't try to master everything at once. Pick one skill, learn its
+        fundamentals, practise consistently, build a small project and then
+        move to the next level.
+      </p>
+      <a class="learn" style="max-width:260px" href="./python-learning.html">Start with Python →</a>
     </section>
   </main>
 
-  <footer><div class="wrap">LE4RNSP4CE · Keep learning, keep building. <br>Resources may be provided by external websites; availability and content can change.</div></footer>
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> LE4RNSP4CE</span>
+      <span>Learn with curiosity. Practise with purpose.</span>
+      <a href="./index.html">Back to Home ↑</a>
+    </div>
+  </footer>
 
   <script>
-    const search = document.getElementById("search");
-    const category = document.getElementById("category");
-    const level = document.getElementById("level");
-    const year = document.getElementById("year");
-    const cards = [...document.querySelectorAll(".card")];
-    const count = document.getElementById("count");
-    const empty = document.getElementById("empty");
+    const searchInput = document.getElementById("skill-search");
+    const categoryFilter = document.getElementById("category-filter");
+    const levelFilter = document.getElementById("level-filter");
+    const yearFilter = document.getElementById("year-filter");
+    const cards = Array.from(document.querySelectorAll(".skill-card"));
+    const resultCount = document.getElementById("result-count");
+    const emptyState = document.getElementById("empty-state");
 
-    function filterCards() {
-      const query = search.value.trim().toLowerCase();
+    function filterSkills() {
+      const query = searchInput.value.trim().toLowerCase();
+      const category = categoryFilter.value;
+      const level = levelFilter.value;
+      const year = yearFilter.value;
       let visible = 0;
 
       cards.forEach(card => {
-        const matchesText = (card.innerText + " " + card.dataset.search)
-          .toLowerCase().includes(query);
-        const matchesCategory = category.value === "all" || card.dataset.category === category.value;
-        const matchesLevel = level.value === "all" || card.dataset.level === level.value;
-        const matchesYear = year.value === "all" || card.dataset.year === year.value;
-        const show = matchesText && matchesCategory && matchesLevel && matchesYear;
+        const searchableText = (
+          card.innerText + " " + (card.dataset.search || "")
+        ).toLowerCase();
 
-        card.hidden = !show;
-        if (show) visible++;
+        const cardCategory = card.dataset.category;
+        const cardLevel = card.dataset.level;
+        const suitableYears = (card.dataset.years || "").split(/\s+/);
+
+        const matchesQuery = !query || searchableText.includes(query);
+        const matchesCategory = category === "all" || cardCategory === category;
+        const matchesLevel = level === "all" || cardLevel === level;
+        const matchesYear = year === "all" || suitableYears.includes(year);
+
+        const matches = matchesQuery && matchesCategory &&
+          matchesLevel && matchesYear;
+
+        card.hidden = !matches;
+
+        if (matches) visible++;
       });
 
-      count.textContent = `${visible} learning ${visible === 1 ? "topic" : "topics"}`;
-      empty.style.display = visible ? "none" : "block";
+      resultCount.textContent =
+        visible + (visible === 1 ? " learning path" : " learning paths");
+
+      emptyState.style.display = visible === 0 ? "block" : "none";
     }
 
-    [search, category, level, year].forEach(control => {
-      control.addEventListener("input", filterCards);
-      control.addEventListener("change", filterCards);
-    });
+    function resetFilters() {
+      searchInput.value = "";
+      categoryFilter.value = "all";
+      levelFilter.value = "all";
+      yearFilter.value = "all";
+      filterSkills();
+      searchInput.focus();
+    }
 
-    filterCards();
+    searchInput.addEventListener("input", filterSkills);
+    categoryFilter.addEventListener("change", filterSkills);
+    levelFilter.addEventListener("change", filterSkills);
+    yearFilter.addEventListener("change", filterSkills);
+    document.getElementById("search-button").addEventListener("click", filterSkills);
+    document.getElementById("reset-button").addEventListener("click", resetFilters);
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    filterSkills();
   </script>
 </body>
 </html>
