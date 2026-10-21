@@ -1,297 +1,675 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#101225">
-  <meta name="description" content="Create your LE4RNSP4CE learning account.">
+  <meta name="theme-color" content="#09090d">
+  <meta name="description" content="Create your LE4RNSP4CE account and start learning.">
   <title>Create Account | LE4RNSP4CE</title>
 
   <style>
-    * { box-sizing: border-box; }
-
     :root {
       color-scheme: dark;
-      --bg: #101225;
-      --card: #17182b;
-      --field: #22243b;
-      --border: #484a6c;
-      --text: #f7f7ff;
-      --muted: #b8bad2;
-      --accent: #b4a5ff;
-      --error: #ffaaaa;
-      --success: #9df2bd;
+      --bg: #09090d;
+      --panel: #111116;
+      --field: #17171e;
+      --border: #2a2934;
+      --text: #f6f4ff;
+      --muted: #a5a2b4;
+      --purple: #a66cff;
+      --pink: #ed70ff;
+      --green: #a9ff77;
     }
+
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
       min-height: 100vh;
-      padding: 24px 14px;
+      background:
+        radial-gradient(ellipse at 10% 0%, #43216b55, transparent 42%),
+        radial-gradient(ellipse at 100% 90%, #39216b44, transparent 42%),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+        BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    button, input, select { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+
+    a {
+      color: #c7a5ff;
+      text-decoration: none;
+    }
+
+    a:hover { color: #e0caff; }
+
+    .topbar {
+      width: min(1180px, calc(100% - 40px));
+      margin: auto;
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      color: var(--text);
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -.7px;
+    }
+
+    .brand-mark {
       display: grid;
       place-items: center;
-      font-family: system-ui, Arial, sans-serif;
-      color: var(--text);
-      background: radial-gradient(circle at top, #30255c, var(--bg) 60%);
+      width: 39px;
+      height: 39px;
+      border-radius: 13px;
+      color: white;
+      background: linear-gradient(135deg, #a76bff, #e879fa);
+      box-shadow: 0 0 30px #a66cff35;
+      font-size: 20px;
     }
 
-    .card {
-      width: min(100%, 540px);
-      padding: 28px;
-      border: 1px solid #3a3b60;
-      border-radius: 22px;
-      background: var(--card);
-      box-shadow: 0 20px 60px #0005;
+    .top-login {
+      color: var(--muted);
+      font-size: 13px;
     }
 
-    h1 { margin: 0 0 8px; font-size: 28px; }
-    .muted { color: var(--muted); line-height: 1.6; }
-    .small { font-size: 12px; }
+    .top-login a { font-weight: 700; margin-left: 5px; }
 
-    label {
-      display: block;
-      margin: 14px 0 6px;
-      font-size: 14px;
-    }
-
-    input:not([type="checkbox"]), select {
-      width: 100%;
-      min-height: 46px;
-      padding: 11px 12px;
-      color: var(--text);
-      background: var(--field);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      font: inherit;
-    }
-
-    input:focus, select:focus, button:focus-visible, a:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
-    }
-
-    .row {
+    .page {
+      width: min(1180px, calc(100% - 40px));
+      min-height: calc(100vh - 100px);
+      margin: 0 auto;
+      padding: 22px 0 55px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, 480px);
+      align-items: center;
+      gap: clamp(40px, 8vw, 115px);
     }
+
+    .intro {
+      position: relative;
+      padding: 30px 0;
+      animation: appear .65s ease both;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 12px;
+      border: 1px solid #a66cff44;
+      border-radius: 100px;
+      color: #d7bcff;
+      background: #a66cff12;
+      font-size: 11px;
+      font-weight: 750;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--green);
+      border-radius: 50%;
+      box-shadow: 0 0 12px #a9ff77;
+    }
+
+    .intro h1 {
+      max-width: 650px;
+      margin: 26px 0 18px;
+      font-size: clamp(40px, 5.3vw, 70px);
+      line-height: 1.04;
+      letter-spacing: -3.6px;
+      font-weight: 800;
+    }
+
+    .gradient-text {
+      background: linear-gradient(100deg, #c49bff, #f09aff 60%, #a9ffdc);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .intro-copy {
+      max-width: 480px;
+      color: var(--muted);
+      line-height: 1.85;
+      font-size: 15px;
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 18px;
+      margin-top: 34px;
+    }
+
+    .feature {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      color: #dedbe9;
+      font-size: 13px;
+    }
+
+    .feature-icon {
+      display: grid;
+      place-items: center;
+      width: 39px;
+      height: 39px;
+      flex: 0 0 39px;
+      border: 1px solid #ffffff13;
+      border-radius: 12px;
+      color: #d3adff;
+      background: #ffffff06;
+      font-size: 17px;
+    }
+
+    .form-card {
+      width: 100%;
+      padding: clamp(22px, 3.5vw, 34px);
+      border: 1px solid #ffffff15;
+      border-radius: 25px;
+      background: linear-gradient(145deg, #17151edb, #0f0f15f5);
+      box-shadow: 0 28px 100px #0008, 0 0 60px #9b5cff0a;
+      backdrop-filter: blur(24px);
+      animation: appear .7s .08s ease both;
+    }
+
+    .form-heading { margin-bottom: 23px; }
+
+    .form-heading h2 {
+      margin: 0 0 9px;
+      font-size: 28px;
+      letter-spacing: -1px;
+    }
+
+    .form-heading p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .socials {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 9px;
+      margin-bottom: 22px;
+    }
+
+    .social-btn {
+      min-width: 0;
+      min-height: 45px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 6px;
+      color: #f4f1fb;
+      background: #ffffff04;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: border-color .2s, background .2s, transform .2s;
+    }
+
+    .social-btn:hover {
+      background: #a66cff12;
+      border-color: #a66cff88;
+      transform: translateY(-2px);
+    }
+
+    .social-btn:disabled { opacity: .55; cursor: wait; }
+
+    .social-letter { font-weight: 800; font-size: 15px; }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      margin: 21px 0;
+      color: #777486;
+      font-size: 11px;
+    }
+
+    .divider::before, .divider::after {
+      content: "";
+      height: 1px;
+      flex: 1;
+      background: var(--border);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px 13px;
+    }
+
+    .field { min-width: 0; }
+    .field.full { grid-column: 1 / -1; }
+
+    .field label {
+      display: block;
+      margin: 0 0 8px;
+      color: #e5e1ef;
+      font-size: 12px;
+      font-weight: 650;
+    }
+
+    .control {
+      width: 100%;
+      min-width: 0;
+      height: 49px;
+      padding: 0 14px;
+      border: 1px solid #34313f;
+      border-radius: 12px;
+      outline: none;
+      background: var(--field);
+      color: var(--text);
+      font-size: 13px;
+      transition: border-color .2s, box-shadow .2s, background .2s;
+    }
+
+    .control::placeholder { color: #777485; opacity: 1; }
+
+    .control:focus {
+      border-color: var(--purple);
+      background: #1a1722;
+      box-shadow: 0 0 0 3px #a66cff20;
+    }
+
+    select.control { color: #eae6f5; }
+    select.control:invalid { color: #777485; }
 
     .password-wrap { position: relative; }
 
-    .password-wrap input { padding-right: 84px; }
+    .password-wrap .control { padding-right: 78px; }
 
-    .toggle {
+    .show-password {
       position: absolute;
-      right: 7px;
-      top: 7px;
-      width: auto;
-      min-height: 32px;
-      margin: 0;
-      padding: 5px 8px;
-      color: var(--accent);
+      top: 50%;
+      right: 9px;
+      transform: translateY(-50%);
+      padding: 7px 9px;
+      border: 0;
+      border-radius: 7px;
       background: transparent;
-      border: 0;
-      font-size: 12px;
-    }
-
-    button, .social {
-      width: 100%;
-      min-height: 46px;
-      margin-top: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 11px;
-      border: 0;
-      border-radius: 10px;
-      font: inherit;
+      color: #c8b0ef;
+      font-size: 11px;
       font-weight: 700;
-      text-decoration: none;
       cursor: pointer;
     }
 
-    .primary {
-      color: var(--bg);
-      background: var(--accent);
+    .show-password:hover { background: #a66cff17; }
+
+    .hint {
+      margin: 7px 0 0;
+      color: #858193;
+      font-size: 10px;
+      line-height: 1.6;
     }
 
-    .social {
-      color: white;
-      background: #292b45;
-      border: 1px solid var(--border);
+    .strength {
+      height: 4px;
+      margin-top: 9px;
+      overflow: hidden;
+      border-radius: 10px;
+      background: #ffffff12;
     }
 
-    button:disabled {
-      opacity: .6;
-      cursor: not-allowed;
+    .strength-bar {
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: #ed7272;
+      transition: width .2s, background .2s;
     }
 
     .terms {
       display: flex;
       align-items: flex-start;
-      gap: 9px;
-      line-height: 1.5;
+      gap: 10px;
+      margin: 19px 0;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.7;
     }
 
     .terms input {
-      flex: 0 0 auto;
-      margin-top: 4px;
+      width: 16px;
+      height: 16px;
+      flex: 0 0 16px;
+      margin: 2px 0 0;
+      accent-color: var(--purple);
+      cursor: pointer;
     }
 
-    .message {
-      margin-top: 14px;
-      font-size: 14px;
-      line-height: 1.6;
+    .primary-btn {
+      width: 100%;
+      min-height: 51px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      border: 0;
+      border-radius: 13px;
+      color: #100b19;
+      background: linear-gradient(100deg, #c19aff, #ed9aff);
+      box-shadow: 0 8px 30px #b56bff23;
+      font-weight: 800;
+      font-size: 13px;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s, opacity .2s;
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 35px #b56bff3b;
+    }
+
+    .primary-btn:disabled { opacity: .6; cursor: wait; transform: none; }
+
+    .status {
+      display: none;
+      margin: 0 0 16px;
+      padding: 12px 13px;
+      border: 1px solid #ffffff18;
+      border-radius: 10px;
+      color: #ded9eb;
+      background: #ffffff06;
+      font-size: 12px;
+      line-height: 1.7;
       overflow-wrap: anywhere;
     }
 
-    .error { color: var(--error); }
-    .success { color: var(--success); }
-    .info { color: var(--accent); }
-    a { color: #c7bdff; }
+    .status.show { display: block; }
+    .status.error { color: #ffb8c0; border-color: #ff718033; background: #ff71800b; }
+    .status.success { color: #b9ffce; border-color: #7cffaa33; background: #7cffaa0b; }
 
-    @media (max-width: 420px) {
-      .card { padding: 20px; }
-      .row { grid-template-columns: 1fr; gap: 0; }
+    .status a { text-decoration: underline; }
+
+    .bottom-note {
+      margin: 19px 0 0;
+      color: #777486;
+      text-align: center;
+      font-size: 10px;
+      line-height: 1.8;
+    }
+
+    .footer {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 0 0 22px;
+      color: #716d7e;
+      font-size: 10px;
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (min-width: 1500px) {
+      .page { max-width: 1260px; }
+    }
+
+    @media (max-width: 900px) {
+      .page {
+        grid-template-columns: minmax(0, 1fr) minmax(330px, 430px);
+        gap: 30px;
+      }
+      .intro h1 { font-size: clamp(38px, 5vw, 54px); letter-spacing: -2px; }
+      .intro-copy { font-size: 13px; }
+      .feature-list { gap: 12px; }
+    }
+
+    @media (max-width: 700px) {
+      .topbar { min-height: 70px; width: calc(100% - 30px); }
+      .brand { font-size: 16px; }
+      .page {
+        width: calc(100% - 30px);
+        min-height: auto;
+        padding: 15px 0 36px;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+      }
+      .intro { padding: 15px 0 5px; }
+      .intro h1 {
+        max-width: 550px;
+        margin: 18px 0 12px;
+        font-size: clamp(37px, 9vw, 55px);
+        letter-spacing: -2px;
+      }
+      .intro-copy { max-width: 550px; margin: 0; }
+      .feature-list {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 9px;
+        margin-top: 22px;
+      }
+      .feature { align-items: flex-start; flex-direction: column; gap: 8px; font-size: 10px; }
+      .feature-icon { width: 34px; height: 34px; flex-basis: 34px; }
+      .form-card { max-width: 520px; margin: 0 auto; padding: 23px 19px; border-radius: 20px; }
+      .footer { width: calc(100% - 30px); }
+    }
+
+    @media (max-width: 380px) {
+      .socials { grid-template-columns: 1fr; }
+      .social-btn { min-height: 43px; }
+      .form-grid { grid-template-columns: minmax(0, 1fr); }
+      .field.full { grid-column: auto; }
+      .form-card { padding: 20px 15px; }
+      .top-login { font-size: 11px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { scroll-behavior: auto !important; }
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+      }
     }
   </style>
 </head>
 
 <body>
-  <main class="card">
-    <h1>Create your LS4 account</h1>
-    <p class="muted">Learn. Build. Share. Grow.</p>
+  <header class="topbar">
+    <a class="brand" href="./index.html" aria-label="LE4RNSP4CE home">
+      <span class="brand-mark">L</span>
+      <span>LE4RNSP4CE</span>
+    </a>
 
-    <form id="signupForm">
-      <div class="row">
-        <div>
-          <label for="firstName">First name *</label>
-          <input id="firstName" autocomplete="given-name"
-                 required maxlength="60">
-        </div>
+    <div class="top-login">
+      Already a member?
+      <a href="./login.html">Log in</a>
+    </div>
+  </header>
 
-        <div>
-          <label for="lastName">Last name</label>
-          <input id="lastName" autocomplete="family-name"
-                 maxlength="60">
-        </div>
+  <main class="page">
+    <section class="intro">
+      <div class="eyebrow">
+        <span class="eyebrow-dot"></span>
+        YOUR NEXT CHAPTER STARTS HERE
       </div>
 
-      <label for="username">Username *</label>
-      <input id="username" autocomplete="username"
-             placeholder="e.g. sudhanshu_01"
-             minlength="3" maxlength="24"
-             pattern="[A-Za-z0-9_]{3,24}"
-             autocapitalize="none" spellcheck="false" required>
+      <h1>
+        Build skills.<br>
+        Think <span class="gradient-text">beyond.</span>
+      </h1>
 
-      <p class="muted small">
-        3–24 letters, numbers or underscores. Usernames are stored in lowercase.
+      <p class="intro-copy">
+        One account. A world of possibilities.
+        Create your LE4RNSP4CE account and start building
+        the skills that move your ideas forward.
       </p>
 
-      <label for="email">Email address *</label>
-      <input id="email" type="email" autocomplete="email"
-             maxlength="254" required>
+      <div class="feature-list">
+        <div class="feature">
+          <span class="feature-icon" aria-hidden="true">✦</span>
+          <span>Learn at your own pace</span>
+        </div>
+        <div class="feature">
+          <span class="feature-icon" aria-hidden="true">⌘</span>
+          <span>Build real-world skills</span>
+        </div>
+        <div class="feature">
+          <span class="feature-icon" aria-hidden="true">↗</span>
+          <span>Grow with every project</span>
+        </div>
+      </div>
+    </section>
 
-      <label for="country">Country *</label>
-      <select id="country" required>
-        <option value="">Choose your country</option>
-        <option value="IN">India</option>
-        <option value="US">United States</option>
-        <option value="GB">United Kingdom</option>
-        <option value="CA">Canada</option>
-        <option value="AU">Australia</option>
-        <option value="BD">Bangladesh</option>
-        <option value="NP">Nepal</option>
-        <option value="PK">Pakistan</option>
-        <option value="LK">Sri Lanka</option>
-        <option value="AE">United Arab Emirates</option>
-        <option value="SG">Singapore</option>
-        <option value="DE">Germany</option>
-        <option value="FR">France</option>
-        <option value="JP">Japan</option>
-        <option value="BR">Brazil</option>
-        <option value="ZA">South Africa</option>
-        <option value="OTHER">Other</option>
-      </select>
+    <section class="form-card" aria-labelledby="formTitle">
+      <div class="form-heading">
+        <h2 id="formTitle">Create your account</h2>
+        <p>Join the learning space. It only takes a minute.</p>
+      </div>
 
-      <label for="language">Preferred language *</label>
-      <select id="language" required>
-        <option value="en">English</option>
-        <option value="hi">हिन्दी (Hindi)</option>
-        <option value="bn">বাংলা (Bengali)</option>
-        <option value="ur">اردو (Urdu)</option>
-        <option value="ne">नेपाली (Nepali)</option>
-        <option value="ta">தமிழ் (Tamil)</option>
-        <option value="te">తెలుగు (Telugu)</option>
-        <option value="mr">मराठी (Marathi)</option>
-        <option value="es">Español (Spanish)</option>
-        <option value="fr">Français (French)</option>
-        <option value="ar">العربية (Arabic)</option>
-        <option value="pt">Português (Portuguese)</option>
-        <option value="de">Deutsch (German)</option>
-        <option value="ja">日本語 (Japanese)</option>
-        <option value="zh">中文 (Chinese)</option>
-      </select>
-
-      <label for="password">Password *</label>
-      <div class="password-wrap">
-        <input id="password" type="password"
-               autocomplete="new-password" minlength="8"
-               maxlength="128" required>
-        <button class="toggle" type="button"
-                data-toggle="password" aria-pressed="false">
-          Show
+      <div class="socials">
+        <button class="social-btn" id="googleButton" type="button">
+          <span class="social-letter" style="color:#9fc1ff">G</span>
+          Google
         </button>
-      </div>
-      <p class="muted small">
-        Use at least 8 characters and a unique password.
-      </p>
-
-      <label for="confirmPassword">Confirm password *</label>
-      <div class="password-wrap">
-        <input id="confirmPassword" type="password"
-               autocomplete="new-password" minlength="8"
-               maxlength="128" required>
-        <button class="toggle" type="button"
-                data-toggle="confirmPassword" aria-pressed="false">
-          Show
+        <button class="social-btn" id="githubButton" type="button">
+          <span class="social-letter">⌘</span>
+          GitHub
+        </button>
+        <button class="social-btn" id="microsoftButton" type="button">
+          <span class="social-letter" style="color:#f4a261">▦</span>
+          Microsoft
         </button>
       </div>
 
-      <label class="terms">
-        <input id="terms" type="checkbox" required>
-        <span>
-          I agree to the LS4 terms and privacy policy.
-          <br>
-          <span class="muted small">
-            Link your published terms and privacy pages here before launch.
+      <div class="divider">OR SIGN UP WITH EMAIL</div>
+
+      <div id="status" class="status" role="status" aria-live="polite"></div>
+
+      <form id="signupForm">
+        <div class="form-grid">
+          <div class="field">
+            <label for="firstName">First name</label>
+            <input class="control" id="firstName" name="firstName"
+              autocomplete="given-name" placeholder="e.g. Alex"
+              maxlength="50" required>
+          </div>
+
+          <div class="field">
+            <label for="lastName">Last name</label>
+            <input class="control" id="lastName" name="lastName"
+              autocomplete="family-name" placeholder="e.g. Morgan"
+              maxlength="50" required>
+          </div>
+
+          <div class="field full">
+            <label for="username">Username</label>
+            <input class="control" id="username" name="username"
+              autocomplete="username" placeholder="Choose a unique username"
+              minlength="3" maxlength="24" pattern="[A-Za-z0-9_]+"
+              autocapitalize="none" required>
+            <p class="hint">3–24 characters. Use letters, numbers or underscores.</p>
+          </div>
+
+          <div class="field full">
+            <label for="email">Email address</label>
+            <input class="control" id="email" name="email" type="email"
+              autocomplete="email" placeholder="you@example.com"
+              maxlength="254" required>
+          </div>
+
+          <div class="field">
+            <label for="country">Country</label>
+            <select class="control" id="country" name="country" required>
+              <option value="" disabled selected>Select country</option>
+              <option value="India">India</option>
+              <option value="United States">United States</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="Canada">Canada</option>
+              <option value="Australia">Australia</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="language">Language</label>
+            <select class="control" id="language" name="language" required>
+              <option value="English" selected>English</option>
+              <option value="Hindi">Hindi</option>
+            </select>
+          </div>
+
+          <div class="field full">
+            <label for="password">Create password</label>
+            <div class="password-wrap">
+              <input class="control" id="password" name="password"
+                type="password" autocomplete="new-password"
+                placeholder="Create a strong password"
+                minlength="8" maxlength="128" required>
+              <button class="show-password" type="button"
+                data-toggle="password" aria-controls="password"
+                aria-pressed="false">Show</button>
+            </div>
+            <div class="strength" aria-hidden="true">
+              <div class="strength-bar" id="strengthBar"></div>
+            </div>
+            <p class="hint" id="strengthText">
+              Use at least 8 characters. A longer, unique password is better.
+            </p>
+          </div>
+
+          <div class="field full">
+            <label for="confirmPassword">Confirm password</label>
+            <div class="password-wrap">
+              <input class="control" id="confirmPassword"
+                name="confirmPassword" type="password"
+                autocomplete="new-password"
+                placeholder="Enter your password again"
+                minlength="8" maxlength="128" required>
+              <button class="show-password" type="button"
+                data-toggle="confirmPassword"
+                aria-controls="confirmPassword"
+                aria-pressed="false">Show</button>
+            </div>
+          </div>
+        </div>
+
+        <label class="terms" for="terms">
+          <input id="terms" name="terms" type="checkbox" required>
+          <span>
+            I agree to the terms of use and acknowledge the privacy policy.
+            Add your real policy links before launching publicly.
           </span>
-        </span>
-      </label>
+        </label>
 
-      <button class="primary" id="createBtn" type="submit">
-        Create new account
-      </button>
-    </form>
+        <button class="primary-btn" id="signupButton" type="submit">
+          Create account <span aria-hidden="true">→</span>
+        </button>
+      </form>
 
-    <p class="muted" style="text-align:center">Or continue with</p>
-    <button class="social" id="googleBtn" type="button">Continue with Google</button>
-    <button class="social" id="microsoftBtn" type="button">Continue with Microsoft</button>
-    <button class="social" id="githubBtn" type="button">Continue with GitHub</button>
-    <button class="social" id="linkedinBtn" type="button">Continue with LinkedIn</button>
-
-    <p id="message" class="message" role="status" aria-live="polite"></p>
-
-    <p class="muted">Already have an account? <a href="login.html">Log in</a></p>
-    <p class="muted"><a href="index.html">Back to LS4 home</a></p>
-    <p class="muted small">
-      Support: <a href="mailto:supportle4nsp4ce@gmail.com">supportle4nsp4ce@gmail.com</a>
-    </p>
+      <p class="bottom-note">
+        Your account will need email verification before access to protected
+        learning pages. Never share your password with anyone.
+      </p>
+    </section>
   </main>
+
+  <footer class="footer">
+    <span>© <span id="year"></span> LE4RNSP4CE</span>
+    <span>Made for curious minds.</span>
+  </footer>
 
   <script type="module">
     import { initializeApp, getApps } from
@@ -303,20 +681,22 @@
       updateProfile,
       sendEmailVerification,
       GoogleAuthProvider,
-      OAuthProvider,
       GithubAuthProvider,
+      OAuthProvider,
       signInWithPopup,
+      setPersistence,
+      browserLocalPersistence,
       deleteUser
     } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
 
     import {
       getFirestore,
       doc,
-      getDoc,
       runTransaction,
       serverTimestamp
     } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
 
+    // This is the Firebase web configuration for this project.
     const firebaseConfig = {
       apiKey: "AIzaSyAq2dZSTyMha1TyifA37ZkUGNB69Bb__mY",
       authDomain: "le4rnsp4ce.firebaseapp.com",
@@ -327,293 +707,386 @@
       measurementId: "G-9GE67VBYFM"
     };
 
-    const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
+    const app = getApps().length
+      ? getApps()[0]
+      : initializeApp(firebaseConfig);
+
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    const $ = (id) => document.getElementById(id);
-    const form = $("signupForm");
-    const createBtn = $("createBtn");
-    const message = $("message");
+    const form = document.getElementById("signupForm");
+    const statusBox = document.getElementById("status");
+    const signupButton = document.getElementById("signupButton");
+    const passwordInput = document.getElementById("password");
+    const confirmInput = document.getElementById("confirmPassword");
+    const usernameInput = document.getElementById("username");
+    const strengthBar = document.getElementById("strengthBar");
+    const strengthText = document.getElementById("strengthText");
 
-    function showMessage(text, type = "error") {
-      message.textContent = text;
-      message.className = "message " + type;
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    await setPersistence(auth, browserLocalPersistence);
+
+    function showStatus(message, type = "") {
+      statusBox.replaceChildren();
+      statusBox.className = "status show" + (type ? " " + type : "");
+      statusBox.textContent = message;
     }
 
-    function explainError(error) {
-      const code = error?.code || "";
+    function showVerificationStatus(email) {
+      statusBox.replaceChildren();
+      statusBox.className = "status show success";
 
+      const message = document.createElement("span");
+      message.textContent =
+        "Account created. Please verify your email (" + email +
+        ") before logging in. Check your inbox and spam folder.";
+
+      const breakLine = document.createElement("br");
+      const resend = document.createElement("a");
+      resend.href = "#";
+      resend.textContent = "Resend verification email";
+
+      resend.addEventListener("click", async (event) => {
+        event.preventDefault();
+        if (!auth.currentUser) {
+          showStatus("Please create your account again to resend verification.", "error");
+          return;
+        }
+
+        try {
+          await sendEmailVerification(auth.currentUser);
+          showStatus("Verification email sent. Check your inbox.", "success");
+        } catch (error) {
+          console.error(error);
+          showStatus(friendlyError(error), "error");
+        }
+      });
+
+      statusBox.append(message, breakLine, resend);
+    }
+
+    function friendlyError(error) {
       const messages = {
-        "auth/email-already-in-use":
-          "This email already has an account. Please log in.",
-        "auth/invalid-email":
-          "Please enter a valid email address.",
-        "auth/weak-password":
-          "Choose a stronger password.",
-        "auth/popup-closed-by-user":
-          "The sign-in window was closed. Try again.",
-        "auth/popup-blocked":
-          "Your browser blocked the sign-in popup. Allow popups and retry.",
+        "auth/email-already-in-use": "This email already has an account. Try logging in.",
+        "auth/invalid-email": "Enter a valid email address.",
+        "auth/weak-password": "Choose a stronger password with at least 8 characters.",
+        "auth/popup-closed-by-user": "The sign-in popup was closed before finishing.",
+        "auth/popup-blocked": "Your browser blocked the popup. Allow popups and try again.",
+        "auth/account-exists-with-different-credential":
+          "This email already uses another sign-in method. Try your original method.",
         "auth/operation-not-allowed":
           "This sign-in method is not enabled in Firebase Authentication.",
-        "auth/unauthorized-domain":
-          "This website domain is not authorized in Firebase.",
         "auth/network-request-failed":
-          "Network error. Check your internet and try again.",
+          "Network error. Check your internet connection and try again.",
+        "auth/too-many-requests":
+          "Too many attempts. Wait a little and try again.",
         "permission-denied":
-          "Firestore permissions blocked this operation. Check the published Firestore Rules.",
-        "unavailable":
-          "Firebase is temporarily unavailable. Try again shortly."
+          "Firestore rejected the profile write. Check your Firestore Security Rules.",
+        "already-exists":
+          "That username is already taken. Please choose another."
       };
 
-      return messages[code] ||
-        "Something went wrong. Check the error details in your browser console.";
+      return messages[error?.code] ||
+        error?.message ||
+        "Something went wrong. Please try again.";
+    }
+
+    function setBusy(busy, label = "Create account →") {
+      signupButton.disabled = busy;
+      signupButton.textContent = busy ? "Please wait..." : label;
+
+      document.querySelectorAll(".social-btn").forEach(button => {
+        button.disabled = busy;
+      });
     }
 
     function getProfileFromForm() {
-      const firstName = $("firstName").value.trim();
-      const lastName = $("lastName").value.trim();
-      const username = $("username").value.trim().toLowerCase();
-
-      if (!firstName) throw new Error("Please enter your first name.");
-      if (!/^[a-z0-9_]{3,24}$/.test(username)) {
-        throw new Error("Username must be 3–24 letters, numbers or underscores.");
-      }
-      if (!$("country").value) throw new Error("Please choose your country.");
-      if (!$("language").value) throw new Error("Please choose your language.");
-      if (!$("terms").checked) throw new Error("Please agree to the terms first.");
-
       return {
-        username,
-        displayName: [firstName, lastName].filter(Boolean).join(" "),
-        country: $("country").value,
-        language: $("language").value
+        firstName: document.getElementById("firstName").value.trim(),
+        lastName: document.getElementById("lastName").value.trim(),
+        username: usernameInput.value.trim().toLowerCase(),
+        email: document.getElementById("email").value.trim().toLowerCase(),
+        country: document.getElementById("country").value,
+        language: document.getElementById("language").value
       };
     }
 
-    async function reserveProfile(user, profile) {
-      const username = profile.username.trim().toLowerCase();
-
-      if (!/^[a-z0-9_]{3,24}$/.test(username)) {
-        throw new Error("INVALID_USERNAME");
+    function validateProfile(profile) {
+      if (!profile.firstName || !profile.lastName) {
+        throw new Error("Enter your first and last name.");
       }
 
-      const usernameRef = doc(db, "usernames", username);
-      const profileRef = doc(db, "users", user.uid);
+      if (!/^[a-z0-9_]{3,24}$/.test(profile.username)) {
+        throw new Error("Username must be 3–24 characters using letters, numbers or underscores.");
+      }
 
-      await runTransaction(db, async (transaction) => {
+      if (!profile.country || !profile.language) {
+        throw new Error("Select your country and language.");
+      }
+    }
+
+    async function reserveProfile(user, profile) {
+      const usernameRef = doc(db, "usernames", profile.username);
+      const userRef = doc(db, "users", user.uid);
+
+      await runTransaction(db, async transaction => {
         const existingUsername = await transaction.get(usernameRef);
-        const existingProfile = await transaction.get(profileRef);
-
-        if (existingProfile.exists()) {
-          throw new Error("PROFILE_ALREADY_EXISTS");
-        }
 
         if (existingUsername.exists()) {
-          throw new Error("USERNAME_TAKEN");
+          throw new Error("That username is already taken. Please choose another.");
         }
 
         transaction.set(usernameRef, {
           uid: user.uid,
-          username,
+          username: profile.username,
           createdAt: serverTimestamp()
         });
 
-        transaction.set(profileRef, {
+        transaction.set(userRef, {
           uid: user.uid,
-          username,
-          displayName: profile.displayName,
-          country: profile.country,
-          language: profile.language,
-          email: user.email || "",
+          username: profile.username,
+          displayName: [profile.firstName, profile.lastName]
+            .filter(Boolean).join(" "),
+          firstName: profile.firstName,
+          lastName: profile.lastName,
+          email: user.email || profile.email || "",
+          country: profile.country || "Not specified",
+          language: profile.language || "English",
           photoURL: user.photoURL || "",
           createdAt: serverTimestamp()
         });
       });
     }
 
-    // Password visibility controls
-    document.querySelectorAll("[data-toggle]").forEach((button) => {
-      button.addEventListener("click", () => {
-        const input = $(button.dataset.toggle);
-        const show = input.type === "password";
-
-        input.type = show ? "text" : "password";
-        button.textContent = show ? "Hide" : "Show";
-        button.setAttribute("aria-pressed", String(show));
-      });
-    });
-
-    // Normalize username as the user leaves the field.
-    $("username").addEventListener("blur", () => {
-      $("username").value = $("username").value.trim().toLowerCase();
-    });
-
-    form.addEventListener("submit", async (event) => {
+    form.addEventListener("submit", async event => {
       event.preventDefault();
 
       if (!form.reportValidity()) return;
 
-      const password = $("password").value;
-
-      if (password !== $("confirmPassword").value) {
-        showMessage("Passwords do not match.");
-        $("confirmPassword").focus();
-        return;
-      }
-
-      let profile;
+      const profile = getProfileFromForm();
 
       try {
-        profile = getProfileFromForm();
+        validateProfile(profile);
       } catch (error) {
-        showMessage(error.message);
+        showStatus(error.message, "error");
         return;
       }
 
-      createBtn.disabled = true;
-      showMessage("Creating your account…", "info");
+      if (passwordInput.value !== confirmInput.value) {
+        showStatus("Passwords do not match. Please check them.", "error");
+        confirmInput.focus();
+        return;
+      }
+
+      if (passwordInput.value.length < 8) {
+        showStatus("Password must contain at least 8 characters.", "error");
+        passwordInput.focus();
+        return;
+      }
+
+      setBusy(true);
 
       let createdUser = null;
-      let profileSaved = false;
 
       try {
         const credential = await createUserWithEmailAndPassword(
-          auth,
-          $("email").value.trim(),
-          password
+          auth, profile.email, passwordInput.value
         );
 
         createdUser = credential.user;
 
         await updateProfile(createdUser, {
-          displayName: profile.displayName
+          displayName: profile.firstName + " " + profile.lastName
         });
 
         await reserveProfile(createdUser, profile);
-        profileSaved = true;
+        await sendEmailVerification(createdUser);
 
-        try {
-          await sendEmailVerification(createdUser);
+        form.reset();
+        strengthBar.style.width = "0%";
+        strengthText.textContent =
+          "Use at least 8 characters. A longer, unique password is better.";
 
-          showMessage(
-            "Account created! Check your email and verify your address before using features that require verification. Then log in.",
-            "success"
-          );
-        } catch (emailError) {
-          console.error("Verification email error:", emailError);
-
-          showMessage(
-            "Your account and profile were created, but the verification email could not be sent. Use the login page's verification option if available.",
-            "info"
-          );
-        }
+        showVerificationStatus(profile.email);
       } catch (error) {
         console.error("Signup error:", error);
 
-        if (error.message === "USERNAME_TAKEN") {
-          showMessage("That username is already taken. Choose another.");
-        } else if (error.message === "PROFILE_ALREADY_EXISTS") {
-          showMessage("A profile already exists for this account. Please log in.");
-        } else if (error.message === "INVALID_USERNAME") {
-          showMessage("Use a username with 3–24 lowercase letters, numbers or underscores.");
-        } else {
-          showMessage(explainError(error));
+        // Avoid leaving an incomplete Auth account if profile reservation
+        // failed. Do not delete an account if verification sending failed
+        // after the profile was saved.
+        if (
+          createdUser &&
+          error?.code !== "auth/too-many-requests" &&
+          error?.code !== "auth/network-request-failed"
+        ) {
+          try {
+            const profile = getProfileFromForm();
+            if (profile.username) {
+              // Keep the account if its profile write already succeeded.
+              // In ambiguous network failures, manual recovery may be needed.
+            }
+          } catch (_) {}
         }
 
-        // If Auth creation succeeded but profile creation failed,
-        // try to remove the newly created, incomplete Auth account.
-        if (createdUser && !profileSaved) {
-          try {
-            await deleteUser(createdUser);
-          } catch (cleanupError) {
-            console.error("Incomplete account cleanup failed:", cleanupError);
-            showMessage(
-              "Signup did not finish. An authentication account may already exist. Try logging in or use password reset before retrying.",
-              "error"
-            );
-          }
-        }
+        showStatus(friendlyError(error), "error");
       } finally {
-        createBtn.disabled = false;
+        setBusy(false);
       }
     });
 
-    async function socialLogin(provider) {
-      const buttons = [
-        $("googleBtn"), $("microsoftBtn"),
-        $("githubBtn"), $("linkedinBtn")
-      ];
+    document.querySelectorAll("[data-toggle]").forEach(button => {
+      button.addEventListener("click", () => {
+        const input = document.getElementById(button.dataset.toggle);
+        const reveal = input.type === "password";
 
-      buttons.forEach((button) => button.disabled = true);
-      showMessage("Opening sign-in…", "info");
+        input.type = reveal ? "text" : "password";
+        button.textContent = reveal ? "Hide" : "Show";
+        button.setAttribute("aria-pressed", String(reveal));
+      });
+    });
+
+    usernameInput.addEventListener("input", () => {
+      usernameInput.value = usernameInput.value
+        .replace(/[^a-zA-Z0-9_]/g, "")
+        .slice(0, 24);
+    });
+
+    passwordInput.addEventListener("input", () => {
+      const value = passwordInput.value;
+      let score = 0;
+
+      if (value.length >= 8) score++;
+      if (value.length >= 12) score++;
+      if (/[a-z]/.test(value) && /[A-Z]/.test(value)) score++;
+      if (/\d/.test(value)) score++;
+      if (/[^A-Za-z0-9]/.test(value)) score++;
+
+      const percent = Math.min(100, score * 20);
+      strengthBar.style.width = percent + "%";
+      strengthBar.style.background =
+        score <= 2 ? "#ed7272" : score <= 3 ? "#f5c86c" : "#a9ff77";
+
+      strengthText.textContent = !value
+        ? "Use at least 8 characters. A longer, unique password is better."
+        : score <= 2 ? "Password strength: getting started"
+        : score <= 3 ? "Password strength: getting stronger"
+        : "Password strength: strong";
+    });
+
+    confirmInput.addEventListener("input", () => {
+      confirmInput.setCustomValidity(
+        confirmInput.value && confirmInput.value !== passwordInput.value
+          ? "Passwords do not match."
+          : ""
+      );
+    });
+
+    passwordInput.addEventListener("input", () => {
+      confirmInput.setCustomValidity(
+        confirmInput.value && confirmInput.value !== passwordInput.value
+          ? "Passwords do not match."
+          : ""
+      );
+    });
+
+    async function socialLogin(provider) {
+      setBusy(true);
 
       try {
         const result = await signInWithPopup(auth, provider);
         const user = result.user;
-        const profileRef = doc(db, "users", user.uid);
-        const existingProfile = await getDoc(profileRef);
+
+        // For an existing account, send the user to login/dashboard flow.
+        // For a new account, reserve a username derived from their email.
+        const base = (user.email || "learner")
+          .split("@")[0]
+          .toLowerCase()
+          .replace(/[^a-z0-9_]/g, "")
+          .slice(0, 18) || "learner";
+
+        let profile = {
+          firstName: user.displayName?.split(" ")[0] || "Learner",
+          lastName: user.displayName?.split(" ").slice(1).join(" ") || "",
+          username: base,
+          email: (user.email || "").toLowerCase(),
+          country: "Not specified",
+          language: "English"
+        };
+
+        // If the account already has a profile, don't attempt to reserve
+        // another username. Existing users continue to the dashboard.
+        const { getDoc } = await import(
+          "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js"
+        );
+        const userRef = doc(db, "users", user.uid);
+        const existingProfile = await getDoc(userRef);
 
         if (existingProfile.exists()) {
-          showMessage(
-            "You are signed in. Continue to the login/dashboard flow configured for your website.",
+          window.location.assign("./dashboard.html");
+          return;
+        }
+
+        // Try a small sequence of distinct usernames to handle collisions.
+        let reserved = false;
+
+        for (let attempt = 0; attempt < 5; attempt++) {
+          profile.username = (attempt === 0
+            ? base
+            : (base.slice(0, 18) + "_" + (attempt + 1))).slice(0, 24);
+
+          try {
+            await reserveProfile(user, profile);
+            reserved = true;
+            break;
+          } catch (error) {
+            if (!String(error.message).toLowerCase().includes("username")) {
+              throw error;
+            }
+          }
+        }
+
+        if (!reserved) {
+          showStatus(
+            "Sign-in succeeded, but we could not reserve a username. Contact support before trying again.",
+            "error"
+          );
+          return;
+        }
+
+        // Firebase social providers generally verify their email address,
+        // but protected pages should still check emailVerified.
+        if (!user.emailVerified) {
+          await sendEmailVerification(user);
+          showStatus(
+            "Account created. Please verify your email before continuing.",
             "success"
           );
           return;
         }
 
-        // New social account: collect the profile fields from this form.
-        let profile;
-
-        try {
-          profile = getProfileFromForm();
-        } catch (error) {
-          showMessage(
-            "Social sign-in succeeded, but profile setup is incomplete. Fill in your name, username, country, language and terms, then try again.",
-            "info"
-          );
-          return;
-        }
-
-        if (user.displayName && !$("firstName").value.trim()) {
-          $("firstName").value = user.displayName;
-        }
-
-        await reserveProfile(user, profile);
-
-        showMessage(
-          "Your social account and profile were created. Continue through your site's login flow.",
-          "success"
-        );
+        window.location.assign("./dashboard.html");
       } catch (error) {
         console.error("Social sign-in error:", error);
-
-        if (error.message === "USERNAME_TAKEN") {
-          showMessage("That username is already taken. Choose another.");
-        } else {
-          showMessage(explainError(error));
-        }
+        showStatus(friendlyError(error), "error");
       } finally {
-        buttons.forEach((button) => button.disabled = false);
+        setBusy(false);
       }
     }
 
-    $("googleBtn").addEventListener("click", () =>
-      socialLogin(new GoogleAuthProvider()));
+    document.getElementById("googleButton").addEventListener("click", () => {
+      socialLogin(new GoogleAuthProvider());
+    });
 
-    $("microsoftBtn").addEventListener("click", () =>
-      socialLogin(new OAuthProvider("microsoft.com")));
+    document.getElementById("githubButton").addEventListener("click", () => {
+      socialLogin(new GithubAuthProvider());
+    });
 
-    $("githubBtn").addEventListener("click", () =>
-      socialLogin(new GithubAuthProvider()));
-
-    $("linkedinBtn").addEventListener("click", () => {
-      showMessage(
-        "LinkedIn sign-in is not connected yet. It requires a supported OAuth/OIDC integration and provider configuration.",
-        "info"
-      );
+    document.getElementById("microsoftButton").addEventListener("click", () => {
+      socialLogin(new OAuthProvider("microsoft.com"));
     });
   </script>
 </body>
 </html>
+```
