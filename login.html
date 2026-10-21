@@ -38,6 +38,26 @@
     a { color: #b7afff; }
     .links { margin-top: 20px; text-align: center; line-height: 2; }
     button:disabled { opacity: .6; cursor: wait; }
+
+    
+.password-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.password-wrapper input {
+  flex: 1;
+  min-width: 0;
+}
+
+.password-toggle {
+  padding: 10px 12px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
   </style>
 </head>
 <body>
@@ -52,9 +72,26 @@
       <input id="email" type="email" autocomplete="email"
              placeholder="you@example.com" required>
 
-      <label for="password">Password</label>
-      <input id="password" type="password"
-             autocomplete="current-password" required>
+     
+<label for="password">Password</label>
+
+<div class="password-wrapper">
+  <input
+    id="password"
+    type="password"
+    autocomplete="current-password"
+    placeholder="Enter your password"
+    required
+  >
+
+  <button
+    type="button"
+    id="togglePassword"
+    class="password-toggle"
+    aria-label="Show password"
+  >Show</button>
+</div>
+
 
       <button class="primary" id="loginButton" type="submit">
         Sign in
@@ -273,6 +310,22 @@
     } catch (error) {
       showError(error);
     }
+
+    
+const passwordInput = document.getElementById("password");
+const togglePassword = document.getElementById("togglePassword");
+
+togglePassword.addEventListener("click", () => {
+  const isHidden = passwordInput.type === "password";
+
+  passwordInput.type = isHidden ? "text" : "password";
+  togglePassword.textContent = isHidden ? "Hide" : "Show";
+  togglePassword.setAttribute(
+    "aria-label",
+    isHidden ? "Hide password" : "Show password"
+  );
+});
+
   </script>
 </body>
 </html>
