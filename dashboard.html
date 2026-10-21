@@ -4,57 +4,606 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#090d19">
-  <title>Dashboard | LS4 LE4RNSP4CE</title>
+  <meta name="theme-color" content="#09090d">
+  <title>Dashboard | LE4RNSP4CE</title>
+
   <style>
+    :root {
+      color-scheme: dark;
+      --bg: #09090d;
+      --panel: #121219;
+      --panel2: #191822;
+      --border: #2b2937;
+      --text: #f7f5ff;
+      --muted: #a6a2b5;
+      --purple: #bd96ff;
+      --pink: #ee9aff;
+      --green: #a9ff77;
+    }
+
     * { box-sizing: border-box; }
+
     body {
-      margin: 0; min-height: 100vh; padding: 24px;
-      font-family: Arial, sans-serif; color: #f4f6ff;
-      background: radial-gradient(ellipse at top left, #242354, transparent 45%), #090d19;
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at 80% 0%, #48236a30, transparent 36%),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
     }
-    header, main {
-      width: min(100%, 900px); margin: 24px auto;
-      padding: 24px; background: #11182a;
-      border: 1px solid #29344d; border-radius: 18px;
+
+    button, a { font: inherit; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; }
+
+    .app {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 245px minmax(0, 1fr);
     }
-    header { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
-    h1, h2 { margin-top: 0; }
-    p { color: #a7b1c8; line-height: 1.7; overflow-wrap: anywhere; }
-    button {
-      padding: 12px 18px; border: 0; border-radius: 10px;
-      background: linear-gradient(100deg, #b4a9ff, #65e6d3);
-      color: #090d19; font-weight: bold; cursor: pointer;
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 25px 16px;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid #ffffff10;
+      background: #0d0d12;
     }
-    button:disabled { opacity: .6; cursor: wait; }
-    #status { color: #65e6d3; }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 0 10px;
+      font-size: 17px;
+      font-weight: 850;
+      letter-spacing: -.6px;
+    }
+
+    .brand-mark {
+      width: 39px;
+      height: 39px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: linear-gradient(135deg, #a66cff, #ed83fa);
+      box-shadow: 0 0 26px #a66cff30;
+    }
+
+    .nav-label {
+      margin: 36px 12px 12px;
+      color: #777386;
+      font-size: 10px;
+      font-weight: 750;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+
+    .nav {
+      display: grid;
+      gap: 7px;
+    }
+
+    .nav a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 45px;
+      padding: 0 13px;
+      border: 1px solid transparent;
+      border-radius: 12px;
+      color: var(--muted);
+      font-size: 12px;
+      transition: .2s;
+    }
+
+    .nav a:hover, .nav a.active {
+      border-color: #a66cff2d;
+      color: #eadbff;
+      background: linear-gradient(90deg, #a66cff20, #a66cff06);
+    }
+
+    .nav-icon {
+      width: 20px;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    .sidebar-bottom {
+      margin-top: auto;
+      padding: 15px 10px 0;
+      border-top: 1px solid #ffffff10;
+    }
+
+    .account-mini {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .avatar {
+      width: 38px;
+      height: 38px;
+      flex: 0 0 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: linear-gradient(135deg, #a66cff, #ed83fa);
+      color: #130c1d;
+      font-weight: 850;
+    }
+
+    .account-text { min-width: 0; }
+    .account-text strong {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: 11px;
+    }
+
+    .account-text span {
+      display: block;
+      margin-top: 4px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .main { min-width: 0; padding: 30px clamp(18px, 4vw, 48px); }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 32px;
+    }
+
+    .breadcrumbs { color: var(--muted); font-size: 11px; }
+    .breadcrumbs strong { color: var(--text); }
+
+    .top-actions { display: flex; align-items: center; gap: 10px; }
+
+    .icon-btn, .logout-btn {
+      min-height: 40px;
+      padding: 0 13px;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      background: #ffffff04;
+      color: #e8e3f2;
+      font-size: 11px;
+      font-weight: 650;
+    }
+
+    .icon-btn:hover, .logout-btn:hover { border-color: #a66cff88; }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(24px, 4vw, 42px);
+      border: 1px solid #b78aff30;
+      border-radius: 24px;
+      background:
+        radial-gradient(ellipse at 90% 10%, #b16cff2c, transparent 45%),
+        linear-gradient(120deg, #1b1626, #121119);
+    }
+
+    .hero::after {
+      content: "✦";
+      position: absolute;
+      right: 8%;
+      top: 10%;
+      color: #d7baff24;
+      font-size: clamp(100px, 18vw, 200px);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #d7bcff;
+      font-size: 10px;
+      font-weight: 750;
+      letter-spacing: 1.5px;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 12px var(--green);
+    }
+
+    .hero h1 {
+      position: relative;
+      z-index: 1;
+      margin: 20px 0 12px;
+      font-size: clamp(29px, 4vw, 45px);
+      line-height: 1.13;
+      letter-spacing: -1.7px;
+    }
+
+    .gradient {
+      color: transparent;
+      background: linear-gradient(90deg, #c5a1ff, #f0a1ff);
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    .hero p {
+      position: relative;
+      z-index: 1;
+      max-width: 480px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+    .primary-btn, .secondary-btn {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 17px;
+      border-radius: 11px;
+      font-size: 11px;
+      font-weight: 800;
+      transition: transform .2s;
+    }
+
+    .primary-btn {
+      border: 0;
+      background: linear-gradient(100deg, #c6a2ff, #ef9bff);
+      color: #170d21;
+    }
+
+    .secondary-btn {
+      border: 1px solid #ffffff20;
+      background: #ffffff08;
+      color: #f3effa;
+    }
+
+    .primary-btn:hover, .secondary-btn:hover { transform: translateY(-2px); }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 15px;
+      margin: 34px 0 17px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: 19px;
+      letter-spacing: -.5px;
+    }
+
+    .section-heading p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .text-link { color: var(--purple); font-size: 11px; }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .stat {
+      min-width: 0;
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      background: linear-gradient(145deg, #17161f, #111116);
+    }
+
+    .stat-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .stat-icon { color: #d0adff; font-size: 18px; }
+    .stat-value { margin-top: 17px; font-size: 25px; font-weight: 800; }
+    .stat-note { margin-top: 6px; color: #888397; font-size: 10px; }
+
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 15px;
+    }
+
+    .course {
+      min-width: 0;
+      padding: 22px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--panel);
+      transition: transform .2s, border-color .2s;
+    }
+
+    .course:hover { transform: translateY(-3px); border-color: #a66cff65; }
+
+    .course-symbol {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #a66cff35;
+      border-radius: 14px;
+      background: #a66cff13;
+      color: #d8b9ff;
+      font-size: 20px;
+    }
+
+    .course h3 { margin: 17px 0 8px; font-size: 15px; }
+    .course p { min-height: 40px; margin: 0; color: var(--muted); font-size: 11px; line-height: 1.8; }
+
+    .course-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 19px;
+      padding-top: 14px;
+      border-top: 1px solid #ffffff10;
+      color: #bcb5ce;
+      font-size: 10px;
+    }
+
+    .status {
+      margin-top: 20px;
+      padding: 13px 15px;
+      border: 1px solid #ffffff12;
+      border-radius: 12px;
+      color: var(--muted);
+      background: #ffffff04;
+      font-size: 11px;
+      line-height: 1.7;
+      overflow-wrap: anywhere;
+    }
+
+    .status.error { color: #ffb8c0; border-color: #ff718033; }
+    .status.success { color: #b9ffce; border-color: #7cffaa33; }
+
+    #appContent { display: none; }
+    #loading { padding: 70px 20px; text-align: center; color: var(--muted); }
+
+    @media (max-width: 850px) {
+      .app { grid-template-columns: 78px minmax(0, 1fr); }
+      .sidebar { padding: 22px 10px; align-items: center; }
+      .brand { padding: 0; }
+      .brand-name, .nav-label, .nav-text,
+      .account-text { display: none; }
+      .nav { width: 100%; margin-top: 28px; }
+      .nav a { justify-content: center; padding: 0; }
+      .nav-icon { font-size: 18px; }
+      .sidebar-bottom { width: 100%; padding: 15px 0 0; }
+      .account-mini { justify-content: center; }
+      .main { padding: 24px 20px; }
+    }
+
+    @media (max-width: 560px) {
+      .app { display: block; padding-bottom: 72px; }
+      .sidebar {
+        position: fixed;
+        z-index: 10;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 65px;
+        padding: 7px 10px;
+        border-top: 1px solid #ffffff18;
+        border-right: 0;
+        background: #101016f5;
+        backdrop-filter: blur(18px);
+      }
+      .brand, .sidebar-bottom, .nav-label { display: none; }
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        gap: 3px;
+        margin: 0;
+      }
+      .nav a { flex: 1; min-height: 48px; border-radius: 10px; }
+      .nav-icon { font-size: 19px; }
+      .main { padding: 20px 15px 35px; }
+      .topbar { margin-bottom: 20px; }
+      .breadcrumbs { font-size: 10px; }
+      .logout-btn { min-height: 36px; padding: 0 10px; }
+      .hero { padding: 24px 20px; border-radius: 19px; }
+      .hero h1 { font-size: 33px; }
+      .hero p { font-size: 12px; }
+      .stats { grid-template-columns: 1fr; gap: 10px; }
+      .stat { padding: 17px; }
+      .stat-value { margin-top: 9px; font-size: 22px; }
+      .course-grid { grid-template-columns: 1fr; }
+      .section-heading h2 { font-size: 17px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: .01ms !important; }
+    }
   </style>
 </head>
-<body>
-  <header>
-    <div>
-      <h1>LS4 Dashboard</h1>
-      <p id="status" role="status" aria-live="polite">Checking your sign-in...</p>
-    </div>
-    <button id="logoutButton" type="button" disabled>Sign out</button>
-  </header>
 
-  <main>
-    <h2>Welcome to your learning space!</h2>
-    <p>Signed in account: <strong id="userEmail">Checking...</strong></p>
-    <p id="welcomeText">Your LS4 dashboard is loading.</p>
-  </main>
+<body>
+  <div id="loading" role="status" aria-live="polite">
+    <p>Checking your account...</p>
+  </div>
+
+  <div id="appContent" class="app">
+    <aside class="sidebar">
+      <a href="./index.html" class="brand">
+        <span class="brand-mark">L</span>
+        <span class="brand-name">LE4RNSP4CE</span>
+      </a>
+
+      <div class="nav-label">Workspace</div>
+
+      <nav class="nav" aria-label="Main navigation">
+        <a class="active" href="./dashboard.html" aria-current="page">
+          <span class="nav-icon">⌂</span><span class="nav-text">Overview</span>
+        </a>
+        <a href="./courses.html">
+          <span class="nav-icon">▤</span><span class="nav-text">Courses</span>
+        </a>
+        <a href="./index.html#projects">
+          <span class="nav-icon">◇</span><span class="nav-text">Projects</span>
+        </a>
+        <a href="./index.html#about">
+          <span class="nav-icon">◎</span><span class="nav-text">About</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="account-mini">
+          <div class="avatar" id="avatar">L</div>
+          <div class="account-text">
+            <strong id="sidebarName">Learner</strong>
+            <span id="sidebarEmail">Checking account...</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="breadcrumbs">Workspace / <strong>Overview</strong></div>
+        <div class="top-actions">
+          <button class="logout-btn" id="logoutButton" type="button">
+            Log out ↗
+          </button>
+        </div>
+      </header>
+
+      <section class="hero">
+        <div class="eyebrow"><span class="dot"></span> YOUR LEARNING SPACE</div>
+        <h1>Welcome back,<br><span class="gradient" id="welcomeName">Learner</span>.</h1>
+        <p>
+          Your next idea could become your next big project.
+          Explore your learning space and keep moving forward, one step at a time.
+        </p>
+        <div class="hero-actions">
+          <a class="primary-btn" href="./courses.html">Explore courses →</a>
+          <a class="secondary-btn" href="./index.html#projects">Discover projects</a>
+        </div>
+      </section>
+
+      <div class="section-heading">
+        <div>
+          <h2>Your overview</h2>
+          <p>Your account information at a glance.</p>
+        </div>
+      </div>
+
+      <section class="stats" aria-label="Account overview">
+        <article class="stat">
+          <div class="stat-top">
+            <span>Account status</span>
+            <span class="stat-icon">✦</span>
+          </div>
+          <div class="stat-value" id="accountStatus">Verified</div>
+          <div class="stat-note">Email verification status</div>
+        </article>
+
+        <article class="stat">
+          <div class="stat-top">
+            <span>Learning space</span>
+            <span class="stat-icon">⌘</span>
+          </div>
+          <div class="stat-value">Ready</div>
+          <div class="stat-note">Explore available learning pages</div>
+        </article>
+
+        <article class="stat">
+          <div class="stat-top">
+            <span>Your profile</span>
+            <span class="stat-icon">◎</span>
+          </div>
+          <div class="stat-value">Active</div>
+          <div class="stat-note">Signed in to LE4RNSP4CE</div>
+        </article>
+      </section>
+
+      <div class="section-heading">
+        <div>
+          <h2>Explore your space</h2>
+          <p>Choose where you want to go next.</p>
+        </div>
+        <a class="text-link" href="./courses.html">View courses →</a>
+      </div>
+
+      <section class="course-grid">
+        <a class="course" href="./courses.html">
+          <div class="course-symbol">⌘</div>
+          <h3>Learning courses</h3>
+          <p>Open your learning area and continue exploring technical topics.</p>
+          <div class="course-bottom">
+            <span>LEARNING SPACE</span>
+            <span>Open →</span>
+          </div>
+        </a>
+
+        <a class="course" href="./index.html#projects">
+          <div class="course-symbol">◇</div>
+          <h3>Projects & ideas</h3>
+          <p>Discover ideas and find inspiration for what you could build next.</p>
+          <div class="course-bottom">
+            <span>BUILD SOMETHING</span>
+            <span>Explore →</span>
+          </div>
+        </a>
+      </section>
+
+      <div id="status" class="status" role="status" aria-live="polite">
+        Your learning space is ready.
+      </div>
+    </main>
+  </div>
 
   <script type="module">
-    import { initializeApp } from
+    import { initializeApp, getApps } from
       "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
 
     import {
-      getAuth, setPersistence, browserLocalPersistence,
-      onAuthStateChanged, signOut, reload
+      getAuth,
+      onAuthStateChanged,
+      signOut,
+      reload
     } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
 
-    // Must match the configuration in login.html.
     const firebaseConfig = {
       apiKey: "AIzaSyAq2dZSTyMha1TyifA37ZkUGNB69Bb__mY",
       authDomain: "le4rnsp4ce.firebaseapp.com",
@@ -65,81 +614,85 @@
       measurementId: "G-9GE67VBYFM"
     };
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
+    const app = getApps().length
+      ? getApps()[0]
+      : initializeApp(firebaseConfig);
 
+    const auth = getAuth(app);
+    const loading = document.getElementById("loading");
+    const appContent = document.getElementById("appContent");
     const status = document.getElementById("status");
-    const userEmail = document.getElementById("userEmail");
-    const welcomeText = document.getElementById("welcomeText");
     const logoutButton = document.getElementById("logoutButton");
 
-    let checking = false;
     let redirecting = false;
+
+    function showStatus(message, type = "") {
+      status.textContent = message;
+      status.className = "status" + (type ? " " + type : "");
+    }
 
     function goToLogin(message) {
       if (redirecting) return;
       redirecting = true;
-      status.textContent = message;
+      loading.textContent = message;
       window.location.replace("./login.html");
     }
 
+    onAuthStateChanged(auth, async user => {
+      if (redirecting) return;
+
+      if (!user) {
+        goToLogin("Please sign in to access your learning space...");
+        return;
+      }
+
+      logoutButton.disabled = true;
+      showStatus("Checking your account...");
+
+      try {
+        await reload(user);
+
+        if (!user.emailVerified) {
+          goToLogin("Please verify your email first. Redirecting to login...");
+          return;
+        }
+
+        const name = user.displayName || "Learner";
+        const email = user.email || "Signed-in account";
+        const firstName = name.trim().split(/\s+/)[0] || "Learner";
+
+        document.getElementById("welcomeName").textContent = firstName;
+        document.getElementById("sidebarName").textContent = name;
+        document.getElementById("sidebarEmail").textContent = email;
+        document.getElementById("avatar").textContent =
+          firstName.charAt(0).toUpperCase();
+
+        document.getElementById("accountStatus").textContent = "Verified";
+
+        loading.style.display = "none";
+        appContent.style.display = "grid";
+        showStatus("Your account is verified. Welcome to your learning space.", "success");
+        logoutButton.disabled = false;
+      } catch (error) {
+        console.error("Account check failed:", error);
+        loading.textContent =
+          "We could not verify your account. Check your connection and refresh the page.";
+      }
+    });
+
     logoutButton.addEventListener("click", async () => {
       logoutButton.disabled = true;
-      status.textContent = "Signing out...";
+      showStatus("Signing out...");
+
       try {
         await signOut(auth);
         window.location.replace("./login.html");
       } catch (error) {
-        status.textContent = "Sign-out failed. Please try again.";
         console.error("Sign-out error:", error);
+        showStatus("Sign out failed. Check your internet connection and try again.", "error");
         logoutButton.disabled = false;
       }
     });
-
-    async function startDashboard() {
-      try {
-        await setPersistence(auth, browserLocalPersistence);
-
-        onAuthStateChanged(auth, async user => {
-          if (checking || redirecting) return;
-
-          if (!user) {
-            goToLogin("Please sign in to continue.");
-            return;
-          }
-
-          checking = true;
-          logoutButton.disabled = true;
-
-          try {
-            await reload(user);
-
-            if (!user.emailVerified) {
-              goToLogin("Please verify your email before continuing.");
-              return;
-            }
-
-            userEmail.textContent = user.email || "Google account";
-            welcomeText.textContent =
-              "You are signed in successfully. Your learning journey starts here.";
-            status.textContent = "You are logged in.";
-            logoutButton.disabled = false;
-          } catch (error) {
-            console.error("Session check failed:", error);
-            status.textContent = "Could not verify your session. Please sign in again.";
-            logoutButton.disabled = false;
-          } finally {
-            checking = false;
-          }
-        });
-      } catch (error) {
-        console.error("Firebase initialization error:", error);
-        status.textContent =
-          "Authentication could not start. Check Firebase configuration and internet.";
-      }
-    }
-
-    startDashboard();
   </script>
 </body>
 </html>
