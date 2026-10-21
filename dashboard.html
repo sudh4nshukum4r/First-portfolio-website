@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard | LearnSpace</title>
+
   <style>
-    html.auth-checking body { visibility: hidden; }
     body {
       margin: 0;
       padding: 32px 20px;
@@ -14,7 +14,12 @@
       background: #0b0b12;
       color: #fff;
     }
-    main { max-width: 850px; margin: 45px auto; }
+
+    main {
+      max-width: 850px;
+      margin: 45px auto;
+    }
+
     .card {
       background: #191923;
       border: 1px solid #303040;
@@ -22,6 +27,7 @@
       padding: 24px;
       margin: 20px 0;
     }
+
     a, button {
       display: inline-block;
       padding: 12px 18px;
@@ -34,12 +40,14 @@
       text-decoration: none;
       cursor: pointer;
     }
-    p { color: #d0d0dd; line-height: 1.6; }
+
+    p {
+      color: #d0d0dd;
+      line-height: 1.6;
+    }
   </style>
-  <script>
-    document.documentElement.classList.add("auth-checking");
-  </script>
 </head>
+
 <body>
   <main>
     <h1>My Dashboard</h1>
@@ -48,6 +56,7 @@
     <section class="card">
       <h2>Welcome, <span id="userName">Learner</span>!</h2>
       <p>This is your personal LearnSpace dashboard.</p>
+
       <a href="./courses.html">Explore Courses</a>
       <a href="./index.html">Home</a>
       <button id="logoutButton" type="button">Log out</button>
@@ -57,46 +66,77 @@
   <script type="module">
     import { initializeApp } from
       "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
+
     import {
       getAuth,
+      setPersistence,
+      browserLocalPersistence,
       onAuthStateChanged,
       signOut
     } from
       "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
 
     const firebaseConfig = {
- apiKey: "LOGIN_HTML_SE_JO_KEY_COPY_KI",
+      apiKey: "PASTE_THE_SAME_API_KEY_FROM_LOGIN_HTML",
       authDomain: "le4rnsp4ce.firebaseapp.com",
-projectId: "le4rnsp4ce",
-messagingSenderId: "679714213034",
-appId: "1:679714213034:web:2768833e0c6ce25398d4d3"
+      projectId: "le4rnsp4ce",
+      storageBucket: "le4rnsp4ce.firebasestorage.app",
+      messagingSenderId: "679714213034",
+      appId: "1:679714213034:web:2768833e0c6ce25398d4d3",
+      measurementId: "G-9GE67VBYFM"
     };
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
-    onAuthStateChanged(auth, (user) => {
-      if (!user) {
-        window.location.replace("./login.html");
-        return;
+    const status = document.getElementById("status");
+    const userName = document.getElementById("userName");
+    const logoutButton = document.getElementById("logoutButton");
+
+    let redirecting = false;
+
+    async function startDashboard() {
+      try {
+        await setPersistence(auth, browserLocalPersistence);
+
+        onAuthStateChanged(auth, (user) => {
+          if (!user) {
+            status.textContent =
+              "You are not logged in. Opening login page...";
+
+            if (!redirecting) {
+              redirecting = true;
+              window.location.replace("./login.html");
+            }
+            return;
+          }
+
+          userName.textContent =
+            user.displayName || user.email || "Learner";
+
+          status.textContent = "You are logged in.";
+        });
+      } catch (error) {
+        console.error("Dashboard authentication error:", error);
+        status.textContent =
+          "Authentication could not start. Please check your Firebase configuration.";
       }
+    }
 
-      document.getElementById("userName").textContent =
-        user.displayName || user.email || "Learner";
-      document.getElementById("status").textContent =
-        "You are logged in.";
-      document.documentElement.classList.remove("auth-checking");
-    });
+    logoutButton.addEventListener("click", async () => {
+      logoutButton.disabled = true;
 
-    document.getElementById("logoutButton").addEventListener("click", async () => {
       try {
         await signOut(auth);
         window.location.replace("./login.html");
       } catch (error) {
-        document.getElementById("status").textContent =
-          "Logout failed. Please try again.";
+        console.error("Logout error:", error);
+        status.textContent = "Logout failed. Please try again.";
+        logoutButton.disabled = false;
       }
     });
+
+    startDashboard();
   </script>
 </body>
 </html>
