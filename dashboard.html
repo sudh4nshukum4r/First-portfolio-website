@@ -3,64 +3,46 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard | LearnSpace</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090d19">
+  <title>Dashboard | LS4 LE4RNSP4CE</title>
   <style>
+    * { box-sizing: border-box; }
     body {
-      margin: 0;
-      padding: 32px 20px;
-      font-family: Arial, sans-serif;
-      background: #0b0b12;
-      color: #fff;
+      margin: 0; min-height: 100vh; padding: 24px;
+      font-family: Arial, sans-serif; color: #f4f6ff;
+      background: radial-gradient(ellipse at top left, #242354, transparent 45%), #090d19;
     }
-
-    main {
-      max-width: 850px;
-      margin: 45px auto;
+    header, main {
+      width: min(100%, 900px); margin: 24px auto;
+      padding: 24px; background: #11182a;
+      border: 1px solid #29344d; border-radius: 18px;
     }
-
-    .card {
-      background: #191923;
-      border: 1px solid #303040;
-      border-radius: 14px;
-      padding: 24px;
-      margin: 20px 0;
+    header { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+    h1, h2 { margin-top: 0; }
+    p { color: #a7b1c8; line-height: 1.7; overflow-wrap: anywhere; }
+    button {
+      padding: 12px 18px; border: 0; border-radius: 10px;
+      background: linear-gradient(100deg, #b4a9ff, #65e6d3);
+      color: #090d19; font-weight: bold; cursor: pointer;
     }
-
-    a, button {
-      display: inline-block;
-      padding: 12px 18px;
-      margin: 8px 8px 8px 0;
-      border: 0;
-      border-radius: 8px;
-      background: #ffd84d;
-      color: #171717;
-      font-weight: bold;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    p {
-      color: #d0d0dd;
-      line-height: 1.6;
-    }
+    button:disabled { opacity: .6; cursor: wait; }
+    #status { color: #65e6d3; }
   </style>
 </head>
-
 <body>
+  <header>
+    <div>
+      <h1>LS4 Dashboard</h1>
+      <p id="status" role="status" aria-live="polite">Checking your sign-in...</p>
+    </div>
+    <button id="logoutButton" type="button" disabled>Sign out</button>
+  </header>
+
   <main>
-    <h1>My Dashboard</h1>
-    <p id="status">Checking your account...</p>
-
-    <section class="card">
-      <h2>Welcome, <span id="userName">Learner</span>!</h2>
-      <p>This is your personal LearnSpace dashboard.</p>
-
-      <a href="./courses.html">Explore Courses</a>
-      <a href="./index.html">Home</a>
-      <button id="logoutButton" type="button">Log out</button>
-    </section>
+    <h2>Welcome to your learning space!</h2>
+    <p>Signed in account: <strong id="userEmail">Checking...</strong></p>
+    <p id="welcomeText">Your LS4 dashboard is loading.</p>
   </main>
 
   <script type="module">
@@ -68,16 +50,13 @@
       "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
 
     import {
-      getAuth,
-      setPersistence,
-      browserLocalPersistence,
-      onAuthStateChanged,
-      signOut
-    } from
-      "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
+      getAuth, setPersistence, browserLocalPersistence,
+      onAuthStateChanged, signOut, reload
+    } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
 
+    // Must match the configuration in login.html.
     const firebaseConfig = {
-      apiKey: "PASTE_THE_SAME_API_KEY_FROM_LOGIN_HTML",
+      apiKey: "AIzaSyAq2dZSTyMha1TyifA37ZkUGNB69Bb__mY",
       authDomain: "le4rnsp4ce.firebaseapp.com",
       projectId: "le4rnsp4ce",
       storageBucket: "le4rnsp4ce.firebasestorage.app",
@@ -90,51 +69,75 @@
     const auth = getAuth(app);
 
     const status = document.getElementById("status");
-    const userName = document.getElementById("userName");
+    const userEmail = document.getElementById("userEmail");
+    const welcomeText = document.getElementById("welcomeText");
     const logoutButton = document.getElementById("logoutButton");
 
+    let checking = false;
     let redirecting = false;
+
+    function goToLogin(message) {
+      if (redirecting) return;
+      redirecting = true;
+      status.textContent = message;
+      window.location.replace("./login.html");
+    }
+
+    logoutButton.addEventListener("click", async () => {
+      logoutButton.disabled = true;
+      status.textContent = "Signing out...";
+      try {
+        await signOut(auth);
+        window.location.replace("./login.html");
+      } catch (error) {
+        status.textContent = "Sign-out failed. Please try again.";
+        console.error("Sign-out error:", error);
+        logoutButton.disabled = false;
+      }
+    });
 
     async function startDashboard() {
       try {
         await setPersistence(auth, browserLocalPersistence);
 
-        onAuthStateChanged(auth, (user) => {
-          if (!user) {
-            status.textContent =
-              "You are not logged in. Opening login page...";
+        onAuthStateChanged(auth, async user => {
+          if (checking || redirecting) return;
 
-            if (!redirecting) {
-              redirecting = true;
-              window.location.replace("./login.html");
-            }
+          if (!user) {
+            goToLogin("Please sign in to continue.");
             return;
           }
 
-          userName.textContent =
-            user.displayName || user.email || "Learner";
+          checking = true;
+          logoutButton.disabled = true;
 
-          status.textContent = "You are logged in.";
+          try {
+            await reload(user);
+
+            if (!user.emailVerified) {
+              goToLogin("Please verify your email before continuing.");
+              return;
+            }
+
+            userEmail.textContent = user.email || "Google account";
+            welcomeText.textContent =
+              "You are signed in successfully. Your learning journey starts here.";
+            status.textContent = "You are logged in.";
+            logoutButton.disabled = false;
+          } catch (error) {
+            console.error("Session check failed:", error);
+            status.textContent = "Could not verify your session. Please sign in again.";
+            logoutButton.disabled = false;
+          } finally {
+            checking = false;
+          }
         });
       } catch (error) {
-        console.error("Dashboard authentication error:", error);
+        console.error("Firebase initialization error:", error);
         status.textContent =
-          "Authentication could not start. Please check your Firebase configuration.";
+          "Authentication could not start. Check Firebase configuration and internet.";
       }
     }
-
-    logoutButton.addEventListener("click", async () => {
-      logoutButton.disabled = true;
-
-      try {
-        await signOut(auth);
-        window.location.replace("./login.html");
-      } catch (error) {
-        console.error("Logout error:", error);
-        status.textContent = "Logout failed. Please try again.";
-        logoutButton.disabled = false;
-      }
-    });
 
     startDashboard();
   </script>
