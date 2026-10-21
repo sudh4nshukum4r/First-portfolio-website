@@ -1,0 +1,1149 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="LE4RNSP4CE Coding Practice Hub: programming, DSA, web development, AI, databases and job interview preparation.">
+  <title>Coding Practice Hub | LE4RNSP4CE</title>
+
+  <style>
+    :root {
+      --bg: #080b14;
+      --panel: #111827;
+      --panel2: #172033;
+      --text: #f2f5ff;
+      --muted: #a2aec5;
+      --purple: #9b87ff;
+      --cyan: #61e5dc;
+      --border: #29344a;
+      --green: #69e6a6;
+      --orange: #ffca7a;
+      --red: #ff8c9a;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, Arial, sans-serif;
+      background:
+        radial-gradient(ellipse at top right, #24194b 0, transparent 35%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    button, input, select, textarea { font: inherit; }
+
+    button, select { cursor: pointer; }
+
+    .container {
+      width: min(1180px, 92%);
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(8, 11, 20, .93);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      padding: 12px 0;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 900;
+      letter-spacing: -.6px;
+    }
+
+    .logo span { color: var(--purple); }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .nav-links a:hover { color: var(--cyan); }
+
+    .hero { padding: 62px 0 32px; }
+
+    .eyebrow {
+      color: var(--cyan);
+      font-weight: 800;
+      letter-spacing: 1.7px;
+      font-size: .75rem;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(2.1rem, 6vw, 4.2rem);
+      line-height: 1.07;
+      letter-spacing: -2px;
+      margin: 12px 0;
+    }
+
+    .gradient {
+      background: linear-gradient(90deg, var(--purple), var(--cyan));
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    .intro {
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 11px 17px;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      background: var(--panel2);
+      color: var(--text);
+      font-weight: 750;
+    }
+
+    .btn.primary {
+      background: var(--purple);
+      color: #100d22;
+      border-color: var(--purple);
+    }
+
+    .btn:hover { filter: brightness(1.12); }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 13px;
+      margin: 25px 0 38px;
+    }
+
+    .stat, .panel, .skill-card, .question-card, .external-card {
+      background: rgba(17, 24, 39, .92);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+    }
+
+    .stat { padding: 17px; }
+
+    .stat strong {
+      display: block;
+      font-size: 1.6rem;
+      color: var(--cyan);
+    }
+
+    .stat span { color: var(--muted); font-size: .85rem; }
+
+    section { padding: 30px 0; }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); margin: 0 0 6px; }
+
+    h3 { margin: 0 0 10px; }
+
+    .muted { color: var(--muted); }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 13px;
+    }
+
+    .skill-card { padding: 19px; }
+
+    .skill-card .icon { font-size: 1.6rem; }
+
+    .skill-card h3 { margin-top: 8px; }
+
+    .skill-card p { color: var(--muted); font-size: .91rem; margin-bottom: 0; }
+
+    .tag-row { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 13px; }
+
+    .tag {
+      border: 1px solid #39445e;
+      color: #d9dcff;
+      background: #1a2135;
+      border-radius: 999px;
+      padding: 4px 9px;
+      font-size: .76rem;
+    }
+
+    .panel { padding: 22px; margin: 14px 0; }
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 11px;
+      margin-bottom: 16px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 11px 12px;
+      background: #0a1020;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      outline: none;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--purple);
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 17px;
+    }
+
+    .tab {
+      padding: 9px 13px;
+      background: #0a1020;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      border-radius: 9px;
+    }
+
+    .tab.active {
+      color: var(--text);
+      border-color: var(--purple);
+      background: #292044;
+    }
+
+    .question-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 13px;
+    }
+
+    .question-card { padding: 18px; min-width: 0; }
+
+    .question-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .difficulty {
+      font-size: .75rem;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: #263047;
+    }
+
+    .difficulty.Beginner { color: var(--green); }
+    .difficulty.Intermediate { color: var(--orange); }
+    .difficulty.Advanced { color: var(--red); }
+
+    .question-card p { color: var(--muted); }
+
+    .question-card pre, .solution pre {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      padding: 12px;
+      border-radius: 9px;
+      background: #080d18;
+      border: 1px solid var(--border);
+      color: #b8f5e8;
+      font-size: .86rem;
+    }
+
+    .question-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 13px;
+    }
+
+    .small-btn {
+      padding: 8px 10px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      color: var(--text);
+      background: #202940;
+      font-size: .84rem;
+    }
+
+    .small-btn:hover { border-color: var(--cyan); }
+
+    .solution {
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+      margin-top: 13px;
+    }
+
+    .hidden { display: none !important; }
+
+    .practice-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .practice-layout > div { min-width: 0; }
+
+    textarea.code-editor {
+      min-height: 260px;
+      resize: vertical;
+      font-family: Consolas, Monaco, monospace;
+      line-height: 1.6;
+      tab-size: 4;
+    }
+
+    textarea.notes-editor { min-height: 110px; resize: vertical; }
+
+    .progress-track {
+      height: 10px;
+      background: #252e42;
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 12px 0;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--purple), var(--cyan));
+      transition: width .2s;
+    }
+
+    .external-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .external-card { padding: 17px; }
+
+    .external-card p { color: var(--muted); font-size: .88rem; }
+
+    .external-card a {
+      color: var(--cyan);
+      font-weight: 750;
+    }
+
+    .roadmap-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    details {
+      padding: 13px 15px;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      background: #111827;
+    }
+
+    summary { cursor: pointer; font-weight: 750; }
+
+    details p { color: var(--muted); margin-bottom: 0; }
+
+    .notice {
+      padding: 14px 16px;
+      border: 1px solid #5c4b28;
+      background: #211b12;
+      border-radius: 11px;
+      color: #ffdfa0;
+      font-size: .9rem;
+    }
+
+    .empty {
+      grid-column: 1 / -1;
+      padding: 30px;
+      border: 1px dashed var(--border);
+      border-radius: 12px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      margin-top: 45px;
+      padding: 25px 0;
+      color: var(--muted);
+      font-size: .85rem;
+    }
+
+    @media (max-width: 850px) {
+      .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .external-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .question-list, .practice-layout, .roadmap-list,
+      .skills-grid { grid-template-columns: 1fr; }
+      .toolbar { grid-template-columns: 1fr; }
+      .hero { padding-top: 40px; }
+      .nav { align-items: flex-start; }
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="container nav">
+    <a class="logo" href="index.html">LE4RNSP4<span>CE</span></a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="courses.html">Courses</a>
+      <a href="learning-space.html">Learning Space</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div class="eyebrow">Learn · Practise · Build · Get Job Ready</div>
+    <h1>Your Skills.<br><span class="gradient">Your Practice Lab.</span></h1>
+    <p class="intro">
+      One place to practise programming, DSA, web development, databases,
+      AI/ML, cloud, cybersecurity and software engineering. Learn the
+      fundamentals, solve problems, understand solutions and prepare for
+      real technical interviews.
+    </p>
+    <div class="hero-actions">
+      <a class="btn primary" href="#question-bank">Start Practising</a>
+      <a class="btn" href="#skills">Explore Skills</a>
+      <a class="btn" href="#job-roadmap">Job Roadmap</a>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><strong id="totalCount">0</strong><span>Practice questions</span></div>
+      <div class="stat"><strong id="attemptCount">0</strong><span>Attempted</span></div>
+      <div class="stat"><strong id="solvedCount">0</strong><span>Marked solved</span></div>
+      <div class="stat"><strong id="progressPercent">0%</strong><span>Question progress</span></div>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <p class="muted" id="progressText">Start with one question. Keep learning consistently.</p>
+  </section>
+
+  <section id="skills">
+    <div class="section-heading">
+      <div>
+        <h2>Explore the skill universe</h2>
+        <p class="muted">A broad roadmap of skills used across software and technology roles.</p>
+      </div>
+    </div>
+    <div class="skills-grid" id="skillGrid"></div>
+  </section>
+
+  <section id="question-bank">
+    <div class="section-heading">
+      <div>
+        <h2>Original question bank</h2>
+        <p class="muted">Questions hosted on your website, with hints and explained solutions.</p>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="toolbar">
+        <input id="searchInput" type="search" placeholder="Search questions, skills or keywords..." aria-label="Search questions">
+        <select id="topicFilter" aria-label="Filter by topic">
+          <option value="All">All topics</option>
+        </select>
+        <select id="levelFilter" aria-label="Filter by difficulty">
+          <option value="All">All levels</option>
+          <option>Beginner</option>
+          <option>Intermediate</option>
+          <option>Advanced</option>
+        </select>
+      </div>
+
+      <div class="tabs" role="group" aria-label="Question status filter">
+        <button class="tab active" data-status="All">All questions</button>
+        <button class="tab" data-status="Attempted">Attempted</button>
+        <button class="tab" data-status="Solved">Solved</button>
+        <button class="tab" data-status="Unsolved">Not solved yet</button>
+      </div>
+
+      <div class="question-list" id="questionList"></div>
+    </div>
+  </section>
+
+  <section id="practice-area">
+    <div class="section-heading">
+      <div>
+        <h2>Your practice area</h2>
+        <p class="muted">Write your code, save your draft and keep notes for each question.</p>
+      </div>
+    </div>
+
+    <div class="panel">
+      <label for="practiceQuestion"><strong>Select a question</strong></label>
+      <select id="practiceQuestion"></select>
+
+      <div class="practice-layout" style="margin-top:16px">
+        <div>
+          <label for="codeEditor"><strong>Your code / solution attempt</strong></label>
+          <textarea id="codeEditor" class="code-editor" spellcheck="false" placeholder="# Write your solution here..."></textarea>
+          <div class="question-actions">
+            <button class="btn primary" id="saveDraft">Save draft</button>
+            <button class="btn" id="markAttempt">Mark attempted</button>
+            <button class="btn" id="markSolved">Mark solved</button>
+          </div>
+        </div>
+        <div>
+          <label for="practiceNotes"><strong>Notes and mistakes</strong></label>
+          <textarea id="practiceNotes" class="notes-editor" placeholder="What did you learn? What should you revise?"></textarea>
+          <div class="question-actions">
+            <button class="btn" id="saveNotes">Save notes</button>
+            <button class="btn" id="showSelectedSolution">View solution</button>
+          </div>
+          <div id="practiceFeedback" class="muted" style="margin-top:14px" aria-live="polite">
+            Your saved drafts and notes are stored in this browser.
+          </div>
+          <div id="selectedSolution" class="solution hidden"></div>
+        </div>
+      </div>
+    </div>
+    <p class="notice">
+      Important: this first version does not execute or automatically test code.
+      Use the editor to practise and save your work. Progress is saved in this
+      browser only, not in a user account or across devices.
+    </p>
+  </section>
+
+  <section id="external-practice">
+    <div class="section-heading">
+      <div>
+        <h2>External practice platforms</h2>
+        <p class="muted">Four separate destinations for additional coding practice.</p>
+      </div>
+    </div>
+    <div class="external-grid">
+      <article class="external-card">
+        <h3>LeetCode</h3>
+        <p>DSA patterns, timed challenges and technical interview problems.</p>
+        <a href="https://leetcode.com/problemset/" target="_blank" rel="noopener noreferrer">Practise on LeetCode ↗</a>
+      </article>
+      <article class="external-card">
+        <h3>GeeksforGeeks</h3>
+        <p>Programming tutorials, computer science topics and coding problems.</p>
+        <a href="https://www.geeksforgeeks.org/" target="_blank" rel="noopener noreferrer">Learn on GFG ↗</a>
+      </article>
+      <article class="external-card">
+        <h3>HackerRank</h3>
+        <p>Language practice, problem solving and skill-based challenges.</p>
+        <a href="https://www.hackerrank.com/domains" target="_blank" rel="noopener noreferrer">Practise on HackerRank ↗</a>
+      </article>
+      <article class="external-card">
+        <h3>Codeforces</h3>
+        <p>Competitive programming, algorithms and contest practice.</p>
+        <a href="https://codeforces.com/problemset" target="_blank" rel="noopener noreferrer">Solve on Codeforces ↗</a>
+      </article>
+    </div>
+  </section>
+
+  <section id="job-roadmap">
+    <div class="section-heading">
+      <div>
+        <h2>Skills roadmap for job readiness</h2>
+        <p class="muted">You do not need to master every skill at once. Choose a target role and build depth.</p>
+      </div>
+    </div>
+    <div class="roadmap-list" id="roadmapList"></div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <strong>LE4RNSP4CE · Coding Practice Hub</strong>
+    <p>Keep practising, build projects, learn to explain your decisions and review your mistakes.</p>
+    <p>Progress in this version is stored locally in your browser. Job outcomes depend on your skills, projects, communication and the opportunities you pursue.</p>
+  </div>
+</footer>
+
+<script>
+  "use strict";
+
+  const skills = [
+    { icon: "🐍", name: "Python", desc: "Syntax, conditions, loops, functions, files, modules, OOP and error handling.", tags: ["Basics", "OOP", "Automation"] },
+    { icon: "⚙️", name: "C and C++", desc: "Memory concepts, pointers, arrays, STL, references and performance.", tags: ["C", "C++", "STL"] },
+    { icon: "☕", name: "Java", desc: "Classes, collections, exceptions, generics and object-oriented design.", tags: ["OOP", "Collections", "JVM"] },
+    { icon: "🌐", name: "HTML and CSS", desc: "Semantic HTML, forms, responsive layouts, accessibility and styling.", tags: ["HTML", "CSS", "Responsive"] },
+    { icon: "✨", name: "JavaScript", desc: "DOM, events, arrays, async code, promises, modules and debugging.", tags: ["JS", "DOM", "Async"] },
+    { icon: "⚛️", name: "Frontend frameworks", desc: "React components, state, props, routing, reusable UI and performance.", tags: ["React", "UI", "State"] },
+    { icon: "🛠️", name: "Backend development", desc: "HTTP, REST APIs, authentication, validation, server logic and security.", tags: ["Node.js", "APIs", "Auth"] },
+    { icon: "🗄️", name: "SQL and databases", desc: "Queries, joins, grouping, schema design, indexes and transactions.", tags: ["SQL", "Database", "Design"] },
+    { icon: "🧩", name: "DSA and algorithms", desc: "Arrays, strings, hash maps, linked lists, stacks, trees, graphs and DP.", tags: ["DSA", "Algorithms", "Big O"] },
+    { icon: "📐", name: "Math and aptitude", desc: "Logic, probability, algebra, counting, patterns and quantitative reasoning.", tags: ["Logic", "Maths", "Aptitude"] },
+    { icon: "📊", name: "Data analysis", desc: "Spreadsheets, data cleaning, SQL, statistics, NumPy, Pandas and visualisation.", tags: ["Python", "SQL", "Statistics"] },
+    { icon: "🤖", name: "AI and machine learning", desc: "Data preparation, model evaluation, supervised learning and ML workflows.", tags: ["ML", "Models", "Evaluation"] },
+    { icon: "🧠", name: "Deep learning and NLP", desc: "Neural network fundamentals, text processing, embeddings and model evaluation.", tags: ["Neural Nets", "NLP", "AI"] },
+    { icon: "🔌", name: "APIs and integration", desc: "JSON, REST, status codes, authentication, pagination and error handling.", tags: ["REST", "JSON", "HTTP"] },
+    { icon: "🔧", name: "Git and GitHub", desc: "Commits, branches, merges, pull requests, reviews and collaboration.", tags: ["Git", "GitHub", "Teamwork"] },
+    { icon: "🐧", name: "Linux and command line", desc: "Files, permissions, processes, shell commands, scripting and logs.", tags: ["Linux", "Shell", "CLI"] },
+    { icon: "☁️", name: "Cloud computing", desc: "Cloud concepts, deployment, storage, permissions and basic architecture.", tags: ["Cloud", "Deploy", "IAM"] },
+    { icon: "🚀", name: "DevOps and CI/CD", desc: "Build pipelines, tests, containers, deployment and monitoring basics.", tags: ["Docker", "CI/CD", "Ops"] },
+    { icon: "🔐", name: "Cybersecurity", desc: "Secure coding, common web risks, permissions, privacy and threat awareness.", tags: ["Security", "OWASP", "Privacy"] },
+    { icon: "🧪", name: "Testing and debugging", desc: "Test cases, unit tests, debugging, edge cases and code quality.", tags: ["Testing", "Debugging", "QA"] },
+    { icon: "🏗️", name: "System design", desc: "Requirements, caching, databases, scalability and service communication.", tags: ["Architecture", "Scale", "Design"] },
+    { icon: "📱", name: "Mobile development", desc: "App structure, UI state, navigation, APIs and testing.", tags: ["Android", "Mobile", "UI"] },
+    { icon: "🎨", name: "UI/UX and accessibility", desc: "User flows, usability, visual hierarchy, inclusive design and prototyping.", tags: ["UX", "Design", "A11y"] },
+    { icon: "🗣️", name: "Communication", desc: "Explaining code, documentation, presentations, listening and collaboration.", tags: ["Writing", "Speaking", "Teamwork"] },
+    { icon: "💼", name: "Career and interviews", desc: "Projects, resume, portfolio, behavioural questions and mock interviews.", tags: ["Resume", "Projects", "Interview"] }
+  ];
+
+  const questions = [
+    {
+      id: "py01", topic: "Python", level: "Beginner", title: "Sum of two numbers",
+      prompt: "Read two numbers and print their sum.",
+      sample: "Input: 4 7\nOutput: 11",
+      hint: "Read two values, convert them to numbers, then add them.",
+      solution: "a = int(input())\nb = int(input())\nprint(a + b)",
+      explanation: "input() reads text. int() converts it to an integer. The + operator adds the values."
+    },
+    {
+      id: "py02", topic: "Python", level: "Beginner", title: "Even or odd",
+      prompt: "Given an integer n, print Even if divisible by 2; otherwise print Odd.",
+      sample: "Input: 9\nOutput: Odd",
+      hint: "Use the remainder operator %.",
+      solution: "n = int(input())\nif n % 2 == 0:\n    print('Even')\nelse:\n    print('Odd')",
+      explanation: "A remainder of zero after division by 2 means the number is even."
+    },
+    {
+      id: "py03", topic: "Python", level: "Beginner", title: "Largest of three numbers",
+      prompt: "Read three numbers and print the largest.",
+      sample: "Input: 5 12 8\nOutput: 12",
+      hint: "Try max(), or compare the numbers with if/elif/else.",
+      solution: "a = int(input())\nb = int(input())\nc = int(input())\nprint(max(a, b, c))",
+      explanation: "max() returns the largest item from the supplied values."
+    },
+    {
+      id: "py04", topic: "Python", level: "Beginner", title: "Sum from 1 to N",
+      prompt: "Given a positive integer n, calculate 1 + 2 + ... + n.",
+      sample: "Input: 5\nOutput: 15",
+      hint: "Use a loop or the formula n * (n + 1) // 2.",
+      solution: "n = int(input())\ntotal = 0\nfor i in range(1, n + 1):\n    total += i\nprint(total)",
+      explanation: "range(1, n + 1) includes numbers from 1 through n. The accumulator stores the running sum."
+    },
+    {
+      id: "py05", topic: "Python", level: "Beginner", title: "Count vowels",
+      prompt: "Count the vowels a, e, i, o and u in a string, ignoring case.",
+      sample: "Input: Learning\nOutput: 3",
+      hint: "Convert the string to lowercase and check each character.",
+      solution: "text = input().lower()\nvowels = 'aeiou'\ncount = 0\nfor ch in text:\n    if ch in vowels:\n        count += 1\nprint(count)",
+      explanation: "The loop visits each character once. Membership testing checks whether the character is a vowel."
+    },
+    {
+      id: "py06", topic: "Python", level: "Beginner", title: "Reverse a string",
+      prompt: "Read a string and print its characters in reverse order.",
+      sample: "Input: hello\nOutput: olleh",
+      hint: "Python supports slicing with a negative step.",
+      solution: "text = input()\nprint(text[::-1])",
+      explanation: "The slice [::-1] walks through the string from end to start."
+    },
+    {
+      id: "py07", topic: "Python", level: "Intermediate", title: "Find the maximum in a list",
+      prompt: "Read a list of integers and find the largest value without using max().",
+      sample: "Input: 3 8 2 6\nOutput: 8",
+      hint: "Start with the first value and update it when a larger value appears.",
+      solution: "nums = list(map(int, input().split()))\nlargest = nums[0]\nfor n in nums:\n    if n > largest:\n        largest = n\nprint(largest)",
+      explanation: "This scans the list once, giving O(n) time complexity."
+    },
+    {
+      id: "py08", topic: "Python", level: "Intermediate", title: "FizzBuzz",
+      prompt: "Print numbers 1 through n. For multiples of 3 print Fizz, multiples of 5 print Buzz, and multiples of both print FizzBuzz.",
+      sample: "For n = 5: 1, 2, Fizz, 4, Buzz",
+      hint: "Check divisibility by 15 before checking 3 or 5.",
+      solution: "n = int(input())\nfor i in range(1, n + 1):\n    if i % 15 == 0:\n        print('FizzBuzz')\n    elif i % 3 == 0:\n        print('Fizz')\n    elif i % 5 == 0:\n        print('Buzz')\n    else:\n        print(i)",
+      explanation: "Check the combined condition first, otherwise multiples of both would match the 3 condition first."
+    },
+    {
+      id: "py09", topic: "Python", level: "Intermediate", title: "Frequency of characters",
+      prompt: "Count how many times each character occurs in a string.",
+      sample: "Input: banana\nOutput concept: b:1, a:3, n:2",
+      hint: "Use a dictionary to store counts.",
+      solution: "text = input()\ncounts = {}\nfor ch in text:\n    counts[ch] = counts.get(ch, 0) + 1\nprint(counts)",
+      explanation: "dict.get(ch, 0) returns the existing count, or zero for a new character."
+    },
+    {
+      id: "py10", topic: "Python", level: "Advanced", title: "Binary search",
+      prompt: "Implement binary search for a target in a sorted list. Return its index or -1.",
+      sample: "List: [2, 4, 6, 8, 10], target: 8\nOutput: 3",
+      hint: "Maintain low and high bounds and compare with the middle element.",
+      solution: "def binary_search(nums, target):\n    low, high = 0, len(nums) - 1\n    while low <= high:\n        mid = (low + high) // 2\n        if nums[mid] == target:\n            return mid\n        if nums[mid] < target:\n            low = mid + 1\n        else:\n            high = mid - 1\n    return -1",
+      explanation: "Binary search halves the search space each step. It requires sorted input and runs in O(log n) time."
+    },
+    {
+      id: "dsa01", topic: "DSA", level: "Beginner", title: "Two Sum",
+      prompt: "Given a list of integers and a target, return indices of two distinct values whose sum equals the target.",
+      sample: "nums = [2, 7, 11, 15], target = 9\nAnswer: indices 0 and 1",
+      hint: "As you scan the list, store previously seen values in a hash map.",
+      solution: "def two_sum(nums, target):\n    seen = {}\n    for i, value in enumerate(nums):\n        need = target - value\n        if need in seen:\n            return [seen[need], i]\n        seen[value] = i\n    return []",
+      explanation: "The hash map makes lookups average O(1), giving O(n) average time."
+    },
+    {
+      id: "dsa02", topic: "DSA", level: "Beginner", title: "Palindrome check",
+      prompt: "Determine whether a string reads the same forwards and backwards. First solve the basic case without removing spaces.",
+      sample: "Input: level\nOutput: True",
+      hint: "Compare the string to its reverse.",
+      solution: "text = input()\nprint(text == text[::-1])",
+      explanation: "This basic solution is O(n) in time and uses a reversed string."
+    },
+    {
+      id: "dsa03", topic: "DSA", level: "Intermediate", title: "Valid parentheses",
+      prompt: "Check whether parentheses (), [] and {} are correctly balanced and nested.",
+      sample: "Input: ({[]})\nOutput: True",
+      hint: "Use a stack and match each closing bracket with the most recent opening bracket.",
+      solution: "def is_valid(s):\n    pairs = {')': '(', ']': '[', '}': '{'}\n    stack = []\n    for ch in s:\n        if ch in '([{':\n            stack.append(ch)\n        elif ch in pairs:\n            if not stack or stack.pop() != pairs[ch]:\n                return False\n    return not stack",
+      explanation: "The stack follows last-in, first-out order. Time complexity is O(n)."
+    },
+    {
+      id: "dsa04", topic: "DSA", level: "Intermediate", title: "Merge two sorted lists",
+      prompt: "Combine two sorted lists into one sorted list without sorting the combined result afterwards.",
+      sample: "[1, 4, 7] and [2, 3, 8] -> [1, 2, 3, 4, 7, 8]",
+      hint: "Use two pointers to compare the next unused value in each list.",
+      solution: "def merge(a, b):\n    i = j = 0\n    out = []\n    while i < len(a) and j < len(b):\n        if a[i] <= b[j]:\n            out.append(a[i]); i += 1\n        else:\n            out.append(b[j]); j += 1\n    return out + a[i:] + b[j:]",
+      explanation: "Each item is visited once, so the time complexity is O(n + m)."
+    },
+    {
+      id: "web01", topic: "HTML/CSS", level: "Beginner", title: "Build a semantic profile card",
+      prompt: "Create a profile card with a heading, short bio, image with alt text and a link using semantic HTML.",
+      sample: "Expected: accessible profile card that works on mobile.",
+      hint: "Use article, h2, p, img and a. Add alt text to the image.",
+      solution: "<article class=\"profile-card\">\n  <img src=\"profile.jpg\" alt=\"Portrait of Alex\">\n  <h2>Alex</h2>\n  <p>A beginner web developer.</p>\n  <a href=\"projects.html\">View projects</a>\n</article>",
+      explanation: "Semantic elements communicate meaning. Add responsive CSS and check keyboard focus and colour contrast."
+    },
+    {
+      id: "web02", topic: "JavaScript", level: "Beginner", title: "Filter an array",
+      prompt: "Given an array of numbers, create a new array containing only even numbers.",
+      sample: "[1, 2, 3, 4, 6] -> [2, 4, 6]",
+      hint: "Use Array.filter() and the remainder operator.",
+      solution: "const numbers = [1, 2, 3, 4, 6];\nconst evens = numbers.filter(n => n % 2 === 0);\nconsole.log(evens);",
+      explanation: "filter() returns a new array containing values that satisfy the callback condition."
+    },
+    {
+      id: "web03", topic: "JavaScript", level: "Intermediate", title: "Fetch API data",
+      prompt: "Fetch JSON from an API, handle errors and display the result.",
+      sample: "Expected: successful response is parsed as JSON; failures are handled.",
+      hint: "Use async/await and check response.ok.",
+      solution: "async function loadData() {\n  try {\n    const response = await fetch('/api/items');\n    if (!response.ok) throw new Error('Request failed');\n    const data = await response.json();\n    console.log(data);\n  } catch (error) {\n    console.error(error.message);\n  }\n}",
+      explanation: "Real projects should handle loading, empty and error states, and validate untrusted data."
+    },
+    {
+      id: "db01", topic: "SQL", level: "Beginner", title: "Filter employees by salary",
+      prompt: "Select employee names and salaries for employees earning more than 50000.",
+      sample: "Expected columns: name, salary",
+      hint: "Use SELECT with a WHERE condition.",
+      solution: "SELECT name, salary\nFROM employees\nWHERE salary > 50000;",
+      explanation: "WHERE filters rows before the selected results are returned."
+    },
+    {
+      id: "db02", topic: "SQL", level: "Intermediate", title: "Department employee count",
+      prompt: "Count employees in each department, showing departments with at least five employees.",
+      sample: "Expected: department_id and employee_count",
+      hint: "Use GROUP BY and HAVING.",
+      solution: "SELECT department_id, COUNT(*) AS employee_count\nFROM employees\nGROUP BY department_id\nHAVING COUNT(*) >= 5;",
+      explanation: "GROUP BY forms groups; HAVING filters grouped results."
+    },
+    {
+      id: "git01", topic: "Git/GitHub", level: "Beginner", title: "Explain a safe Git workflow",
+      prompt: "Describe how to create a branch, commit a change and open a pull request.",
+      sample: "Expected: branch -> edit -> test -> commit -> push -> pull request.",
+      hint: "Use a separate branch rather than directly changing the shared main branch.",
+      solution: "git switch -c feature/my-change\ngit status\ngit add .\ngit commit -m \"Describe the change\"\ngit push -u origin feature/my-change",
+      explanation: "After pushing, open a pull request on your Git hosting service and request review. Inspect changes before committing."
+    },
+    {
+      id: "linux01", topic: "Linux", level: "Beginner", title: "Find a file",
+      prompt: "Write a command to find files named app.py beneath the current directory.",
+      sample: "Expected: matching paths",
+      hint: "The find command can search recursively.",
+      solution: "find . -type f -name 'app.py'",
+      explanation: "The dot means the current directory. -type f restricts matches to regular files."
+    },
+    {
+      id: "api01", topic: "APIs", level: "Beginner", title: "Choose HTTP status codes",
+      prompt: "Which status codes usually indicate success, a missing resource and a server error?",
+      sample: "Expected: 200, 404, 500",
+      hint: "Remember 2xx success, 4xx client-side request issues and 5xx server issues.",
+      solution: "200 OK\n404 Not Found\n500 Internal Server Error",
+      explanation: "Status codes help clients understand the result of an HTTP request. Actual code choice depends on the operation."
+    },
+    {
+      id: "test01", topic: "Testing", level: "Beginner", title: "Test a password validator",
+      prompt: "List useful test cases for a function that accepts passwords of at least 8 characters.",
+      sample: "Include valid input, short input, empty input and boundary cases.",
+      hint: "Test at the boundary and just below it.",
+      solution: "'' -> invalid\n'abc123' -> invalid (6 characters)\n'12345678' -> valid under the length-only rule\n'1234567' -> invalid",
+      explanation: "Also test non-string input and any additional policy rules. Never log real user passwords."
+    },
+    {
+      id: "math01", topic: "Math/Aptitude", level: "Beginner", title: "Percentage increase",
+      prompt: "A value increases from 80 to 100. Find the percentage increase.",
+      sample: "Output: 25%",
+      hint: "Increase divided by original value, multiplied by 100.",
+      solution: "increase = 100 - 80\npercentage = increase / 80 * 100\nprint(percentage)  # 25.0",
+      explanation: "The original value is the denominator, not the final value."
+    },
+    {
+      id: "ai01", topic: "AI/ML", level: "Beginner", title: "Training vs testing data",
+      prompt: "Explain why a dataset is split into training and testing data.",
+      sample: "Expected: fit on training data, evaluate on held-out data.",
+      hint: "Consider whether the model generalises to examples it has not seen.",
+      solution: "Training data is used to fit model parameters. Test data estimates performance on held-out examples.",
+      explanation: "Do not tune repeatedly on the test set. Use validation data for model selection and keep the test set for final evaluation."
+    },
+    {
+      id: "data01", topic: "Data Analysis", level: "Beginner", title: "Calculate the mean",
+      prompt: "Write Python code to calculate the arithmetic mean of a non-empty list.",
+      sample: "[2, 4, 6] -> 4.0",
+      hint: "Sum the values and divide by the number of values.",
+      solution: "values = [2, 4, 6]\nmean = sum(values) / len(values)\nprint(mean)",
+      explanation: "Check for an empty list before dividing in a real application."
+    },
+    {
+      id: "sec01", topic: "Cybersecurity", level: "Beginner", title: "Safer password storage",
+      prompt: "Explain how a server should store user passwords.",
+      sample: "Expected: use a dedicated password-hashing algorithm with unique salts.",
+      hint: "Encryption that can be reversed is not the same as password hashing.",
+      solution: "Use a reputable password-hashing function such as Argon2id, scrypt or bcrypt with appropriate settings and unique salts. Never store plaintext passwords.",
+      explanation: "Use established authentication libraries, rate limits and secure account recovery rather than designing password storage yourself."
+    },
+    {
+      id: "cloud01", topic: "Cloud/DevOps", level: "Beginner", title: "Environment variables",
+      prompt: "Why should API keys and secrets not be committed to a public Git repository?",
+      sample: "Expected: exposure can allow unauthorised use.",
+      hint: "Think about repository visibility and leaked credentials.",
+      solution: "Store secrets in an appropriate secret manager or protected environment variables. If a key is exposed, revoke or rotate it promptly.",
+      explanation: "Never place private server secrets in browser-side JavaScript. Public frontend configuration must not be mistaken for a secret."
+    },
+    {
+      id: "system01", topic: "System Design", level: "Intermediate", title: "Design a URL shortener",
+      prompt: "Outline the major components of a URL shortener that supports creating and redirecting short links.",
+      sample: "Expected: API, key generation, database, redirect and abuse controls.",
+      hint: "Separate link creation from link resolution.",
+      solution: "Discuss a creation API, unique short-code generation, persistent code-to-URL mapping, a redirect endpoint, validation, rate limits, analytics and caching where useful.",
+      explanation: "State assumptions and trade-offs. Interviewers assess reasoning, reliability, security and scale—not one magic architecture."
+    },
+    {
+      id: "interview01", topic: "Interview Skills", level: "Beginner", title: "Explain a project",
+      prompt: "Prepare a two-minute explanation of a project you actually built: problem, your contribution, tech stack, challenge, result and next improvement.",
+      sample: "Expected: clear explanation supported by a real example.",
+      hint: "Use Problem -> Approach -> Challenge -> Result -> Learning.",
+      solution: "Write five bullet points: problem; your specific contribution; architecture/tools; one challenge and how you debugged it; result and next step.",
+      explanation: "Be honest about your own contribution and limitations. Practise follow-up questions about design choices and trade-offs."
+    },
+    {
+      id: "oop01", topic: "OOP", level: "Beginner", title: "Model a bank account",
+      prompt: "Create a class with a balance, deposit and withdraw methods. Prevent withdrawals larger than the balance.",
+      sample: "Expected: balance changes only after valid transactions.",
+      hint: "Keep balance inside the object and validate the withdrawal.",
+      solution: "class BankAccount:\n    def __init__(self, balance=0):\n        self.balance = balance\n\n    def deposit(self, amount):\n        if amount > 0:\n            self.balance += amount\n\n    def withdraw(self, amount):\n        if 0 < amount <= self.balance:\n            self.balance -= amount\n            return True\n        return False",
+      explanation: "This illustrates state, methods and validation. A real financial system needs much stronger transaction and security controls."
+    }
+  ];
+
+  const roadmap = [
+    ["Programming foundations", "Choose one main language first. Master variables, types, conditions, loops, functions, collections, exceptions, OOP and basic file handling."],
+    ["Problem solving and DSA", "Practise complexity, arrays, strings, hashing, two pointers, stacks, queues, recursion, sorting, binary search, trees, graphs, greedy methods and dynamic programming."],
+    ["Web development", "Learn HTML, CSS, responsive design, JavaScript, browser APIs, React, HTTP, REST APIs, backend fundamentals and deployment."],
+    ["Databases", "Learn SQL, joins, grouping, constraints, schema design, indexes, transactions and one suitable database system."],
+    ["Software engineering", "Use Git/GitHub, readable code, debugging, unit tests, code review, documentation and basic design patterns."],
+    ["CS interview fundamentals", "Study operating systems, networking, DBMS, OOP, concurrency basics and security fundamentals relevant to your target roles."],
+    ["AI and data roles", "Learn Python, statistics, linear algebra, SQL, data cleaning, model evaluation and responsible ML. Build projects with clear baselines."],
+    ["Cloud and DevOps", "Understand Linux, command-line tools, environment variables, containers, CI/CD, deployment, logging and monitoring."],
+    ["Portfolio projects", "Build and deploy projects with a README, screenshots, setup instructions, tests, clear problem statements and honest descriptions of your contribution."],
+    ["Job preparation", "Practise coding interviews, explain your thinking aloud, prepare a truthful resume, research role requirements and do mock interviews."],
+    ["Communication and teamwork", "Practise clear writing, asking questions, giving updates, presenting projects, receiving feedback and working through code reviews."],
+    ["Specialisation", "After the fundamentals, choose a target such as frontend, backend, full-stack, data, AI/ML, cloud, mobile, security or QA. Learn the tools used by actual job descriptions."]
+  ];
+
+  const STORAGE_KEY = "le4rnsp4ce_coding_hub_v1";
+  const defaultState = { attempted: [], solved: [], drafts: {}, notes: {} };
+  let state = loadState();
+  let activeStatus = "All";
+
+  function loadState() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+      return { ...defaultState, ...saved };
+    } catch (error) {
+      return { ...defaultState };
+    }
+  }
+
+  function saveState() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      renderStats();
+    } catch (error) {
+      feedback("Browser storage is unavailable. Your changes may not persist.");
+    }
+  }
+
+  function escapeHTML(value) {
+    return String(value).replace(/[&<>"']/g, char => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+    }[char]));
+  }
+
+  function renderSkills() {
+    document.getElementById("skillGrid").innerHTML = skills.map(skill => `
+      <article class="skill-card">
+        <div class="icon" aria-hidden="true">${skill.icon}</div>
+        <h3>${escapeHTML(skill.name)}</h3>
+        <p>${escapeHTML(skill.desc)}</p>
+        <div class="tag-row">${skill.tags.map(tag => `<span class="tag">${escapeHTML(tag)}</span>`).join("")}</div>
+      </article>
+    `).join("");
+  }
+
+  function renderRoadmap() {
+    document.getElementById("roadmapList").innerHTML = roadmap.map((item, index) => `
+      <details ${index === 0 ? "open" : ""}>
+        <summary>${index + 1}. ${escapeHTML(item[0])}</summary>
+        <p>${escapeHTML(item[1])}</p>
+      </details>
+    `).join("");
+  }
+
+  function populateFilters() {
+    const topics = [...new Set(questions.map(question => question.topic))].sort();
+    const topicFilter = document.getElementById("topicFilter");
+    topicFilter.innerHTML = '<option value="All">All topics</option>' +
+      topics.map(topic => `<option value="${escapeHTML(topic)}">${escapeHTML(topic)}</option>`).join("");
+
+    document.getElementById("practiceQuestion").innerHTML = questions.map(question =>
+      `<option value="${question.id}">${escapeHTML(question.topic)} — ${escapeHTML(question.title)}</option>`
+    ).join("");
+  }
+
+  function getQuestion(id) {
+    return questions.find(question => question.id === id);
+  }
+
+  function isAttempted(id) {
+    return state.attempted.includes(id) || state.solved.includes(id);
+  }
+
+  function renderStats() {
+    const total = questions.length;
+    const solved = state.solved.length;
+    const attempted = state.attempted.filter(id => !state.solved.includes(id)).length;
+    const percent = total ? Math.round(solved / total * 100) : 0;
+
+    document.getElementById("totalCount").textContent = total;
+    document.getElementById("attemptCount").textContent = attempted;
+    document.getElementById("solvedCount").textContent = solved;
+    document.getElementById("progressPercent").textContent = percent + "%";
+    document.getElementById("progressFill").style.width = percent + "%";
+    document.getElementById("progressText").textContent =
+      `${solved} of ${total} questions marked solved. Keep practising and revisit difficult topics.`;
+  }
+
+  function renderQuestions() {
+    const search = document.getElementById("searchInput").value.trim().toLowerCase();
+    const topic = document.getElementById("topicFilter").value;
+    const level = document.getElementById("levelFilter").value;
+
+    const filtered = questions.filter(question => {
+      const searchable = `${question.title} ${question.topic} ${question.prompt} ${question.hint}`.toLowerCase();
+      const statusMatch =
+        activeStatus === "All" ||
+        (activeStatus === "Attempted" && isAttempted(question.id)) ||
+        (activeStatus === "Solved" && state.solved.includes(question.id)) ||
+        (activeStatus === "Unsolved" && !state.solved.includes(question.id));
+
+      return searchable.includes(search) &&
+        (topic === "All" || question.topic === topic) &&
+        (level === "All" || question.level === level) &&
+        statusMatch;
+    });
+
+    const list = document.getElementById("questionList");
+    if (!filtered.length) {
+      list.innerHTML = '<div class="empty">No matching questions. Try a different search or filter.</div>';
+      return;
+    }
+
+    list.innerHTML = filtered.map(question => {
+      const solved = state.solved.includes(question.id);
+      const attempted = isAttempted(question.id);
+      return `
+        <article class="question-card" id="card-${question.id}">
+          <div class="question-meta">
+            <span class="tag">${escapeHTML(question.topic)}</span>
+            <span class="difficulty ${question.level}">${question.level}</span>
+            ${solved ? '<span class="tag">✓ Solved</span>' : attempted ? '<span class="tag">Attempted</span>' : ""}
+          </div>
+          <h3>${escapeHTML(question.title)}</h3>
+          <p>${escapeHTML(question.prompt)}</p>
+          <pre>${escapeHTML(question.sample)}</pre>
+          <div class="question-actions">
+            <button class="small-btn" data-action="practice" data-id="${question.id}">Practise this</button>
+            <button class="small-btn" data-action="hint" data-id="${question.id}">Show hint</button>
+            <button class="small-btn" data-action="solution" data-id="${question.id}">Show solution</button>
+            <button class="small-btn" data-action="attempt" data-id="${question.id}">${attempted ? "Attempted ✓" : "Mark attempted"}</button>
+            <button class="small-btn" data-action="solve" data-id="${question.id}">${solved ? "Solved ✓" : "Mark solved"}</button>
+          </div>
+          <div class="solution hidden" id="hint-${question.id}">
+            <strong>Hint</strong><p>${escapeHTML(question.hint)}</p>
+          </div>
+          <div class="solution hidden" id="solution-${question.id}">
+            <strong>Example solution</strong>
+            <pre>${escapeHTML(question.solution)}</pre>
+            <p>${escapeHTML(question.explanation)}</p>
+          </div>
+        </article>
+      `;
+    }).join("");
+  }
+
+  function markAttempted(id) {
+    if (!state.attempted.includes(id)) state.attempted.push(id);
+    saveState();
+    renderQuestions();
+  }
+
+  function markSolved(id) {
+    if (!state.solved.includes(id)) state.solved.push(id);
+    if (!state.attempted.includes(id)) state.attempted.push(id);
+    saveState();
+    renderQuestions();
+  }
+
+  function feedback(message) {
+    document.getElementById("practiceFeedback").textContent = message;
+  }
+
+  function loadPractice(id) {
+    const question = getQuestion(id);
+    if (!question) return;
+    document.getElementById("practiceQuestion").value = id;
+    document.getElementById("codeEditor").value = state.drafts[id] || "";
+    document.getElementById("practiceNotes").value = state.notes[id] || "";
+    const solutionBox = document.getElementById("selectedSolution");
+    solutionBox.classList.add("hidden");
+    solutionBox.innerHTML = "";
+    feedback(`Selected: ${question.title}. Write your own attempt before checking the solution.`);
+  }
+
+  document.getElementById("questionList").addEventListener("click", event => {
+    const button = event.target.closest("button[data-action]");
+    if (!button) return;
+
+    const id = button.dataset.id;
+    const action = button.dataset.action;
+    const question = getQuestion(id);
+    if (!question) return;
+
+    if (action === "practice") {
+      loadPractice(id);
+      document.getElementById("practice-area").scrollIntoView({ behavior: "smooth" });
+    } else if (action === "hint") {
+      document.getElementById("hint-" + id).classList.toggle("hidden");
+    } else if (action === "solution") {
+      document.getElementById("solution-" + id).classList.toggle("hidden");
+    } else if (action === "attempt") {
+      markAttempted(id);
+    } else if (action === "solve") {
+      markSolved(id);
+    }
+  });
+
+  document.querySelectorAll(".tab").forEach(button => {
+    button.addEventListener("click", () => {
+      activeStatus = button.dataset.status;
+      document.querySelectorAll(".tab").forEach(tab => tab.classList.toggle("active", tab === button));
+      renderQuestions();
+    });
+  });
+
+  ["searchInput", "topicFilter", "levelFilter"].forEach(id => {
+    document.getElementById(id).addEventListener(id === "searchInput" ? "input" : "change", renderQuestions);
+  });
+
+  document.getElementById("practiceQuestion").addEventListener("change", event => {
+    loadPractice(event.target.value);
+  });
+
+  document.getElementById("saveDraft").addEventListener("click", () => {
+    const id = document.getElementById("practiceQuestion").value;
+    state.drafts[id] = document.getElementById("codeEditor").value;
+    saveState();
+    feedback("Draft saved in this browser.");
+  });
+
+  document.getElementById("saveNotes").addEventListener("click", () => {
+    const id = document.getElementById("practiceQuestion").value;
+    state.notes[id] = document.getElementById("practiceNotes").value;
+    saveState();
+    feedback("Notes saved in this browser.");
+  });
+
+  document.getElementById("markAttempt").addEventListener("click", () => {
+    markAttempted(document.getElementById("practiceQuestion").value);
+    feedback("Marked as attempted. Keep working through the edge cases.");
+  });
+
+  document.getElementById("markSolved").addEventListener("click", () => {
+    markSolved(document.getElementById("practiceQuestion").value);
+    feedback("Marked as solved. Be sure you can explain the solution and test edge cases.");
+  });
+
+  document.getElementById("showSelectedSolution").addEventListener("click", () => {
+    const question = getQuestion(document.getElementById("practiceQuestion").value);
+    if (!question) return;
+    const box = document.getElementById("selectedSolution");
+    box.innerHTML = `<h3>Example solution: ${escapeHTML(question.title)}</h3>
+      <pre>${escapeHTML(question.solution)}</pre>
+      <p>${escapeHTML(question.explanation)}</p>`;
+    box.classList.remove("hidden");
+  });
+
+  renderSkills();
+  renderRoadmap();
+  populateFilters();
+  renderQuestions();
+  renderStats();
+  loadPractice(questions[0].id);
+</script>
+</body>
+</html>
