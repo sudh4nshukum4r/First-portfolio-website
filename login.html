@@ -4,27 +4,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#090914">
-  <meta name="description" content="Sign in to LE4RNSP4CE — learn, create, and grow together.">
-  <title>Sign in | LE4RNSP4CE</title>
+  <meta name="theme-color" content="#090d19">
+  <meta name="description" content="Sign in to LS4 — LE4RNSP4CE, your global learning community.">
+  <title>Sign In | LS4 — LE4RNSP4CE</title>
 
   <style>
     :root {
       color-scheme: dark;
-      --bg: #090914;
-      --panel: rgba(20, 22, 43, .82);
-      --panel-border: rgba(255,255,255,.12);
-      --text: #f7f7ff;
-      --muted: #a5a8c4;
-      --purple: #9b8cff;
-      --cyan: #71e4f2;
-      --danger: #ff9aab;
-      --success: #8cf0c0;
+      --bg: #090d19;
+      --panel: #11182a;
+      --line: #29344d;
+      --text: #f4f6ff;
+      --muted: #a7b1c8;
+      --accent: #8b7cff;
+      --accent2: #52d6c7;
+      --danger: #ff9292;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -32,510 +29,281 @@
       padding: 24px;
       display: grid;
       place-items: center;
-      overflow-x: hidden;
+      font-family: Inter, system-ui, -apple-system, sans-serif;
       color: var(--text);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system,
-        BlinkMacSystemFont, "Segoe UI", sans-serif;
       background:
-        radial-gradient(ellipse at 10% 8%, #5538a640, transparent 38%),
-        radial-gradient(ellipse at 95% 90%, #087c9760, transparent 35%),
+        radial-gradient(ellipse at top left, #242354 0, transparent 42%),
+        radial-gradient(ellipse at bottom right, #103e46 0, transparent 35%),
         var(--bg);
     }
 
-    button, input {
-      font: inherit;
-    }
+    a { color: #b7afff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
-    button, a, input {
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .shell {
-      width: 100%;
-      max-width: 1000px;
+    .layout {
+      width: min(100%, 980px);
       display: grid;
-      grid-template-columns: 1fr 420px;
-      gap: 48px;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
       align-items: center;
     }
 
-    .intro {
-      padding: 20px 0;
-    }
+    .intro { padding: 20px; }
 
     .brand {
-      display: inline-flex;
+      display: flex;
       align-items: center;
       gap: 12px;
-      color: var(--text);
-      text-decoration: none;
-      font-weight: 850;
-      font-size: 21px;
-      letter-spacing: -.7px;
+      margin-bottom: 34px;
     }
 
-    .brand-mark {
-      width: 43px;
-      height: 43px;
+    .logo {
+      width: 48px;
+      height: 48px;
       display: grid;
       place-items: center;
       border-radius: 15px;
-      color: #0a0a17;
-      background: linear-gradient(135deg, var(--cyan), var(--purple));
-      box-shadow: 0 8px 28px #8172ff40;
+      color: #090d19;
       font-size: 21px;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
     }
 
-    .eyebrow {
-      margin: 42px 0 15px;
-      color: var(--cyan);
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 2.4px;
-      text-transform: uppercase;
-    }
+    .brand-name { font-weight: 800; font-size: 20px; }
+    .brand-full { color: var(--muted); font-size: 12px; letter-spacing: 2px; }
 
-    .intro h1 {
-      max-width: 540px;
-      margin: 0;
-      font-size: clamp(36px, 5vw, 58px);
-      line-height: 1.08;
-      letter-spacing: -2.5px;
-    }
-
-    .gradient-text {
-      color: transparent;
-      background: linear-gradient(100deg, var(--cyan), #b4a5ff 75%);
-      background-clip: text;
+    h1 { font-size: clamp(34px, 5vw, 54px); line-height: 1.08; margin: 0 0 18px; }
+    .gradient {
+      color: #b5aaff;
+      background: linear-gradient(90deg, #b4a9ff, #65e6d3);
       -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    .intro-copy {
-      max-width: 440px;
-      margin: 22px 0;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.8;
-    }
-
-    .benefits {
-      display: grid;
-      gap: 13px;
-      margin-top: 28px;
-    }
-
-    .benefit {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: #d9daf0;
-      font-size: 14px;
-    }
-
-    .benefit-icon {
-      width: 30px;
-      height: 30px;
-      flex: 0 0 30px;
-      display: grid;
-      place-items: center;
-      border: 1px solid #ffffff16;
-      border-radius: 10px;
-      background: #ffffff08;
-    }
+    .intro p { color: var(--muted); line-height: 1.8; }
+    .feature { margin-top: 26px; display: grid; gap: 14px; color: #dce4f7; }
+    .feature span { color: var(--accent2); margin-right: 8px; }
 
     .card {
+      background: rgba(17, 24, 42, .94);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: clamp(22px, 4vw, 34px);
+      box-shadow: 0 24px 80px #0005;
+    }
+
+    .card h2 { margin: 0 0 8px; font-size: 28px; }
+    .sub { color: var(--muted); font-size: 14px; margin: 0 0 26px; line-height: 1.6; }
+
+    label { display: block; font-size: 13px; font-weight: 700; margin: 16px 0 8px; }
+
+    input {
       width: 100%;
-      padding: 32px;
-      border: 1px solid var(--panel-border);
-      border-radius: 26px;
-      background: var(--panel);
-      box-shadow: 0 30px 100px #0006;
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-    }
-
-    .card h2 {
-      margin: 0 0 9px;
-      font-size: 27px;
-      letter-spacing: -.8px;
-    }
-
-    .muted {
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.7;
-    }
-
-    .form-intro {
-      margin: 0 0 24px;
-    }
-
-    .field {
-      margin-bottom: 17px;
-    }
-
-    .field label {
-      display: block;
-      margin-bottom: 8px;
-      color: #e6e6f5;
-      font-size: 13px;
-      font-weight: 650;
-    }
-
-    .input-wrap {
-      position: relative;
-    }
-
-    .field input {
-      width: 100%;
-      min-height: 49px;
-      padding: 13px 14px;
-      border: 1px solid #ffffff1b;
+      padding: 14px;
+      color: var(--text);
+      background: #0b1120;
+      border: 1px solid var(--line);
       border-radius: 12px;
       outline: none;
-      background: #090914a8;
+      font: inherit;
+    }
+
+    input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px #8b7cff22; }
+
+    .password-wrap { display: flex; gap: 8px; }
+    .password-wrap input { min-width: 0; }
+    .toggle {
+      padding: 0 12px;
       color: var(--text);
-      font-size: 14px;
-      transition: border-color .2s, box-shadow .2s;
-    }
-
-    .field input::placeholder {
-      color: #777b9c;
-    }
-
-    .field input:focus {
-      border-color: var(--purple);
-      box-shadow: 0 0 0 3px #9b8cff20;
-    }
-
-    .field input.has-toggle {
-      padding-right: 76px;
-    }
-
-    .toggle-password {
-      position: absolute;
-      top: 50%;
-      right: 10px;
-      transform: translateY(-50%);
-      padding: 6px;
-      border: 0;
-      background: transparent;
-      color: var(--cyan);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #202a40;
       cursor: pointer;
-      font-size: 12px;
-      font-weight: 700;
     }
 
-    .forgot-row {
+    .row {
+      margin: 13px 0 20px;
       display: flex;
       justify-content: flex-end;
-      margin-top: -6px;
-      margin-bottom: 18px;
-    }
-
-    .text-button {
-      padding: 4px 0;
-      border: 0;
-      background: transparent;
-      color: var(--cyan);
-      cursor: pointer;
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .primary-button {
-      width: 100%;
-      min-height: 49px;
-      padding: 13px 16px;
-      border: 0;
-      border-radius: 12px;
-      background: linear-gradient(100deg, var(--cyan), #b5a2ff);
-      color: #0b0b18;
-      font-weight: 850;
-      cursor: pointer;
-      transition: transform .2s, filter .2s;
-    }
-
-    .primary-button:hover:not(:disabled) {
-      transform: translateY(-1px);
-      filter: brightness(1.06);
-    }
-
-    button:disabled {
-      opacity: .6;
-      cursor: wait;
-    }
-
-    .switch-row {
-      margin-top: 21px;
-      text-align: center;
-      color: var(--muted);
       font-size: 13px;
     }
 
-    .switch-row button {
-      margin-left: 5px;
+    button {
+      font: inherit;
+      cursor: pointer;
+      border-radius: 12px;
+      padding: 13px 16px;
+      font-weight: 750;
+      transition: transform .15s, opacity .15s;
     }
 
-    .notice {
+    button:hover { transform: translateY(-1px); }
+    button:disabled { opacity: .6; cursor: wait; transform: none; }
+
+    .primary {
+      width: 100%;
+      color: #090d19;
+      border: 0;
+      background: linear-gradient(100deg, #b4a9ff, #65e6d3);
+    }
+
+    .secondary {
+      width: 100%;
+      color: var(--text);
+      background: #171f32;
+      border: 1px solid var(--line);
+    }
+
+    .socials { display: grid; gap: 10px; margin-top: 12px; }
+    .divider { display: flex; gap: 12px; align-items: center; color: #7e8aa5; font-size: 12px; margin: 20px 0; }
+    .divider::before, .divider::after { content: ""; height: 1px; background: var(--line); flex: 1; }
+
+    .message {
       display: none;
-      margin-top: 18px;
-      padding: 12px 13px;
-      border: 1px solid #ffffff14;
-      border-radius: 11px;
-      background: #ffffff08;
-      color: #e5e5f8;
+      padding: 12px;
+      margin: 0 0 16px;
+      border-radius: 10px;
       font-size: 13px;
       line-height: 1.6;
       overflow-wrap: anywhere;
     }
 
-    .notice.show {
-      display: block;
-    }
+    .message.show { display: block; }
+    .message.info { color: #c8f7ed; background: #153b39; border: 1px solid #28645b; }
+    .message.error { color: var(--danger); background: #3a202a; border: 1px solid #713b4b; }
 
-    .notice.error {
-      border-color: #ff9aab45;
-      color: var(--danger);
-    }
+    .verify-actions { display: none; margin-top: 10px; }
+    .verify-actions.show { display: grid; gap: 10px; }
+    .bottom { margin-top: 22px; text-align: center; font-size: 13px; color: var(--muted); line-height: 1.8; }
+    .small { color: #8491ad; font-size: 11px; margin-top: 18px; line-height: 1.6; }
 
-    .notice.success {
-      border-color: #8cf0c045;
-      color: var(--success);
-    }
-
-    .footer {
-      margin-top: 23px;
-      text-align: center;
-      color: #8588a6;
-      font-size: 11px;
-      line-height: 1.7;
-    }
-
-    .footer a {
-      color: #c7c0ff;
-      text-decoration: none;
-    }
-
-    [hidden] {
-      display: none !important;
-    }
-
-    @media (max-width: 800px) {
-      .shell {
-        max-width: 460px;
-        grid-template-columns: 1fr;
-        gap: 25px;
-      }
-
-      .intro {
-        padding: 0;
-      }
-
-      .eyebrow {
-        margin-top: 28px;
-      }
-
-      .intro h1 {
-        font-size: 39px;
-        letter-spacing: -1.5px;
-      }
-
-      .intro-copy {
-        margin: 13px 0;
-        font-size: 14px;
-      }
-
-      .benefits {
-        display: none;
-      }
-
-      .card {
-        padding: 25px;
-      }
-    }
-
-    @media (max-width: 380px) {
-      body {
-        padding: 14px;
-      }
-
-      .card {
-        padding: 21px;
-      }
-
-      .intro h1 {
-        font-size: 33px;
-      }
+    @media (max-width: 760px) {
+      body { padding: 16px; }
+      .layout { grid-template-columns: 1fr; max-width: 460px; gap: 10px; }
+      .intro { padding: 8px 4px; }
+      .brand { margin-bottom: 20px; }
+      .intro h1 { font-size: 34px; }
+      .feature { display: none; }
+      .card { padding: 24px 20px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        scroll-behavior: auto !important;
-        transition: none !important;
-      }
+      *, *::before, *::after { transition: none !important; }
     }
   </style>
 </head>
 
 <body>
-  <main class="shell">
-    <section class="intro" aria-label="Welcome">
-      <a class="brand" href="./index.html">
-        <span class="brand-mark" aria-hidden="true">4</span>
-        <span>LE4RNSP4CE</span>
-      </a>
+  <main class="layout">
+    <section class="intro">
+      <div class="brand">
+        <div class="logo">LS4</div>
+        <div>
+          <div class="brand-name">LS4</div>
+          <div class="brand-full">LE4RNSP4CE</div>
+        </div>
+      </div>
 
-      <p class="eyebrow">Your learning community</p>
-
-      <h1>
-        Learn something.
-        <span class="gradient-text">Build something.</span>
-      </h1>
-
-      <p class="intro-copy">
-        A space to share ideas, discover learning resources,
-        ask questions, and grow alongside other learners.
+      <h1>Learn together.<br><span class="gradient">Grow globally.</span></h1>
+      <p>
+        Welcome back to your learning space. Connect with learners,
+        explore ideas, and keep building your skills.
       </p>
 
-      <div class="benefits">
-        <div class="benefit">
-          <span class="benefit-icon" aria-hidden="true">✦</span>
-          Discover useful learning resources
-        </div>
-        <div class="benefit">
-          <span class="benefit-icon" aria-hidden="true">↗</span>
-          Share your progress and projects
-        </div>
-        <div class="benefit">
-          <span class="benefit-icon" aria-hidden="true">◎</span>
-          Build your learning profile
-        </div>
+      <div class="feature">
+        <div><span>✦</span> Learn with a global community</div>
+        <div><span>✦</span> Share projects and ideas</div>
+        <div><span>✦</span> Keep growing, one step at a time</div>
       </div>
     </section>
 
-    <section class="card" aria-labelledby="heading">
-      <h2 id="heading">Create your account</h2>
-      <p class="muted form-intro" id="subtitle">
-        Join the community and start your learning journey.
-      </p>
+    <section class="card" aria-labelledby="loginTitle">
+      <h2 id="loginTitle">Welcome back</h2>
+      <p class="sub">Sign in to continue to your LS4 account.</p>
 
-      <form id="accountForm">
-        <div class="field" id="nameField">
-          <label for="name">Full name</label>
+      <div id="formMessage" class="message" role="status" aria-live="polite"></div>
+
+      <form id="loginForm">
+        <label for="email">Email address</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          autocomplete="email"
+          placeholder="you@example.com"
+          maxlength="254"
+          required
+        >
+
+        <label for="password">Password</label>
+        <div class="password-wrap">
           <input
-            id="name"
-            name="name"
-            type="text"
-            autocomplete="name"
-            placeholder="Enter your full name"
-            maxlength="80"
+            id="password"
+            name="password"
+            type="password"
+            autocomplete="current-password"
+            placeholder="Enter your password"
             required
           >
-        </div>
-
-        <div class="field">
-          <label for="email">Email address</label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            autocomplete="email"
-            placeholder="you@example.com"
-            maxlength="254"
-            required
-          >
-        </div>
-
-        <div class="field">
-          <label for="password">Password</label>
-          <div class="input-wrap">
-            <input
-              id="password"
-              class="has-toggle"
-              name="password"
-              type="password"
-              autocomplete="new-password"
-              minlength="8"
-              placeholder="At least 8 characters"
-              required
-            >
-            <button
-              class="toggle-password"
-              type="button"
-              data-target="password"
-              aria-label="Show password"
-              aria-pressed="false"
-            >Show</button>
-          </div>
-        </div>
-
-        <div class="field" id="confirmPasswordField">
-          <label for="confirmPassword">Confirm password</label>
-          <div class="input-wrap">
-            <input
-              id="confirmPassword"
-              class="has-toggle"
-              name="confirmPassword"
-              type="password"
-              autocomplete="new-password"
-              minlength="8"
-              placeholder="Enter the same password"
-              required
-            >
-            <button
-              class="toggle-password"
-              type="button"
-              data-target="confirmPassword"
-              aria-label="Show confirm password"
-              aria-pressed="false"
-            >Show</button>
-          </div>
-        </div>
-
-        <div class="forgot-row" id="forgotRow" hidden>
-          <button class="text-button" id="forgotButton" type="button">
-            Forgot password?
+          <button class="toggle" id="togglePassword" type="button" aria-label="Show password">
+            Show
           </button>
         </div>
 
-        <button class="primary-button" type="submit" id="submitButton">
-          Create account
-        </button>
+        <div class="row">
+          <a href="#" id="forgotPassword">Forgot password?</a>
+        </div>
+
+        <button class="primary" id="emailLoginBtn" type="submit">Sign in with email</button>
       </form>
 
-      <div class="switch-row">
-        <span id="switchText">Already have an account?</span>
-        <button class="text-button" id="switchButton" type="button">
-          Log in
+      <div id="verifyActions" class="verify-actions">
+        <button class="secondary" id="resendVerification" type="button">
+          Resend verification email
+        </button>
+        <button class="secondary" id="checkVerification" type="button">
+          I've verified my email — check again
         </button>
       </div>
 
-      <p class="notice" id="message" role="status" aria-live="polite"></p>
+      <div class="divider">OR CONTINUE WITH</div>
 
-      <div class="footer">
-        By continuing, you agree to use the community respectfully.
-        <br>
-        <a href="./index.html">← Back to home</a>
+      <div class="socials">
+        <button class="secondary" id="googleLogin" type="button">Continue with Google</button>
+        <button class="secondary" id="microsoftLogin" type="button">Continue with Microsoft</button>
       </div>
+
+      <div class="bottom">
+        New to LS4? <a href="signup.html">Create an account</a>
+        <p><a href="index.html">← Back to home</a></p>
+      </div>
+
+      <p class="small">
+        Keep your password private. Only use the official LS4 site when signing in.
+      </p>
     </section>
   </main>
 
   <script type="module">
-    import { initializeApp } from
-      "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
 
     import {
       getAuth,
-      createUserWithEmailAndPassword,
+      setPersistence,
+      browserLocalPersistence,
       signInWithEmailAndPassword,
-      updateProfile,
-      sendEmailVerification,
+      GoogleAuthProvider,
+      OAuthProvider,
+      signInWithPopup,
       sendPasswordResetEmail,
+      sendEmailVerification,
+      reload,
       signOut
-    } from
-      "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
+    } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
 
+    // Existing LS4 Firebase project: le4rnsp4ce.
+    // Do not create a new Firebase project or replace this config.
     const firebaseConfig = {
       apiKey: "AIzaSyAq2dZSTyMha1TyifA37ZkUGNB69Bb__mY",
       authDomain: "le4rnsp4ce.firebaseapp.com",
@@ -549,268 +317,230 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
-    const form = document.getElementById("accountForm");
-    const nameField = document.getElementById("nameField");
-    const nameInput = document.getElementById("name");
+    const form = document.getElementById("loginForm");
     const emailInput = document.getElementById("email");
     const passwordInput = document.getElementById("password");
-    const confirmPasswordField =
-      document.getElementById("confirmPasswordField");
-    const confirmPasswordInput =
-      document.getElementById("confirmPassword");
+    const messageBox = document.getElementById("formMessage");
+    const emailLoginBtn = document.getElementById("emailLoginBtn");
+    const verifyActions = document.getElementById("verifyActions");
+    const resendBtn = document.getElementById("resendVerification");
+    const checkBtn = document.getElementById("checkVerification");
+    const googleBtn = document.getElementById("googleLogin");
+    const microsoftBtn = document.getElementById("microsoftLogin");
+    const forgotLink = document.getElementById("forgotPassword");
 
-    const heading = document.getElementById("heading");
-    const subtitle = document.getElementById("subtitle");
-    const submitButton = document.getElementById("submitButton");
-    const switchText = document.getElementById("switchText");
-    const switchButton = document.getElementById("switchButton");
-    const forgotRow = document.getElementById("forgotRow");
-    const forgotButton = document.getElementById("forgotButton");
-    const message = document.getElementById("message");
+    let verificationUser = null;
+    let busy = false;
 
-    let isLogin = false;
-    let isSubmitting = false;
-
-    function showMessage(text, type = "") {
-      message.textContent = text;
-      message.className = "notice show";
-      if (type) message.classList.add(type);
+    function showMessage(text, type = "info") {
+      messageBox.textContent = text;
+      messageBox.className = `message show ${type}`;
     }
 
     function clearMessage() {
-      message.textContent = "";
-      message.className = "notice";
+      messageBox.textContent = "";
+      messageBox.className = "message";
     }
 
-    function setMode(loginMode) {
-      isLogin = loginMode;
-
-      nameField.hidden = isLogin;
-      nameInput.required = !isLogin;
-
-      confirmPasswordField.hidden = isLogin;
-      confirmPasswordInput.required = !isLogin;
-      confirmPasswordInput.value = "";
-
-      forgotRow.hidden = !isLogin;
-
-      passwordInput.autocomplete = isLogin
-        ? "current-password"
-        : "new-password";
-
-      heading.textContent = isLogin
-        ? "Welcome back"
-        : "Create your account";
-
-      subtitle.textContent = isLogin
-        ? "Log in to continue your learning journey."
-        : "Join the community and start learning.";
-
-      submitButton.textContent = isLogin
-        ? "Log in"
-        : "Create account";
-
-      switchText.textContent = isLogin
-        ? "New to LE4RNSP4CE?"
-        : "Already have an account?";
-
-      switchButton.textContent = isLogin
-        ? "Create account"
-        : "Log in";
-
-      clearMessage();
-    }
-
-    switchButton.addEventListener("click", () => {
-      setMode(!isLogin);
-    });
-
-    document.querySelectorAll(".toggle-password").forEach((button) => {
-      button.addEventListener("click", () => {
-        const input = document.getElementById(button.dataset.target);
-        const shouldShow = input.type === "password";
-
-        input.type = shouldShow ? "text" : "password";
-        button.textContent = shouldShow ? "Hide" : "Show";
-        button.setAttribute("aria-pressed", String(shouldShow));
-        button.setAttribute(
-          "aria-label",
-          `${shouldShow ? "Hide" : "Show"} ${button.dataset.target === "password"
-            ? "password"
-            : "confirm password"}`
-        );
+    function setBusy(value) {
+      busy = value;
+      [
+        emailLoginBtn, googleBtn, microsoftBtn,
+        resendBtn, checkBtn
+      ].forEach(button => {
+        button.disabled = value;
       });
-    });
+      emailLoginBtn.textContent = value ? "Please wait…" : "Sign in with email";
+    }
 
     function friendlyError(error) {
-      switch (error.code) {
-        case "auth/email-already-in-use":
-          return "This email is already registered. Please log in.";
-        case "auth/invalid-email":
-          return "Please enter a valid email address.";
-        case "auth/weak-password":
-          return "Choose a stronger password with at least 8 characters.";
-        case "auth/invalid-credential":
-          return "Email or password is incorrect.";
-        case "auth/user-not-found":
-          return "No account was found for those details.";
-        case "auth/wrong-password":
-          return "Email or password is incorrect.";
-        case "auth/too-many-requests":
-          return "Too many attempts. Please wait before trying again.";
-        case "auth/network-request-failed":
-          return "Network problem. Check your internet connection.";
-        case "auth/operation-not-allowed":
-          return "Email/Password sign-in is not enabled in Firebase.";
-        case "auth/unauthorized-domain":
-          return "This website domain is not authorized in Firebase.";
-        case "auth/invalid-action-code":
-          return "This email link is invalid or has expired.";
-        case "auth/missing-email":
-          return "Enter your email address first.";
-        case "auth/weak-password":
-          return "Please choose a stronger password.";
-        default:
-          console.error("Firebase error:", error.code, error.message);
-          return "Something went wrong. Please try again.";
-      }
+      const code = error?.code || "";
+
+      const errors = {
+        "auth/invalid-email": "Please enter a valid email address.",
+        "auth/invalid-credential": "Email or password is incorrect. Please try again.",
+        "auth/user-disabled": "This account is disabled. Please contact support.",
+        "auth/too-many-requests": "Too many attempts. Please wait a while and try again.",
+        "auth/network-request-failed": "Network problem. Check your internet connection.",
+        "auth/popup-closed-by-user": "The sign-in window was closed before completion.",
+        "auth/popup-blocked": "Your browser blocked the sign-in popup. Allow popups and try again.",
+        "auth/cancelled-popup-request": "Another sign-in popup is already open.",
+        "auth/account-exists-with-different-credential": "An account already exists with this email using another sign-in method.",
+        "auth/operation-not-allowed": "This sign-in method is not enabled in Firebase yet.",
+        "auth/unauthorized-domain": "This website domain is not authorized in Firebase Authentication.",
+        "auth/weak-password": "Please check your password and try again."
+      };
+
+      if (errors[code]) return errors[code];
+      return "Something went wrong. Please try again. If it continues, check Firebase Authentication settings.";
     }
 
-    forgotButton.addEventListener("click", async () => {
-      const email = emailInput.value.trim();
+    async function enterDashboard(user) {
+      await reload(user);
 
-      if (!email) {
+      if (!user.emailVerified) {
+        verificationUser = user;
+        verifyActions.classList.add("show");
         showMessage(
-          "Enter your email address above, then select Forgot password again.",
-          "error"
+          "Your email is not verified yet. Open the verification email from LS4, click its link, then return here and choose “I've verified my email”.",
+          "info"
         );
+        return false;
+      }
+
+      window.location.replace("dashboard.html");
+      return true;
+    }
+
+    document.getElementById("togglePassword").addEventListener("click", () => {
+      const showing = passwordInput.type === "text";
+      passwordInput.type = showing ? "password" : "text";
+      document.getElementById("togglePassword").textContent = showing ? "Show" : "Hide";
+      document.getElementById("togglePassword").setAttribute(
+        "aria-label",
+        showing ? "Show password" : "Hide password"
+      );
+    });
+
+    form.addEventListener("submit", async event => {
+      event.preventDefault();
+      if (busy) return;
+
+      clearMessage();
+      verifyActions.classList.remove("show");
+
+      const email = emailInput.value.trim();
+      const password = passwordInput.value;
+
+      if (!email || !password) {
+        showMessage("Enter both your email address and password.", "error");
+        return;
+      }
+
+      setBusy(true);
+      try {
+        await setPersistence(auth, browserLocalPersistence);
+        const credential = await signInWithEmailAndPassword(auth, email, password);
+        verificationUser = credential.user;
+        await enterDashboard(credential.user);
+      } catch (error) {
+        showMessage(friendlyError(error), "error");
+      } finally {
+        setBusy(false);
+      }
+    });
+
+    forgotLink.addEventListener("click", async event => {
+      event.preventDefault();
+      if (busy) return;
+
+      const email = emailInput.value.trim();
+      if (!email) {
+        showMessage("Enter your email address above first, then click Forgot password.", "error");
         emailInput.focus();
         return;
       }
 
-      forgotButton.disabled = true;
-      forgotButton.textContent = "Sending...";
-
+      setBusy(true);
       try {
         await sendPasswordResetEmail(auth, email);
         showMessage(
-          "If an account uses this email, a password reset email has been requested. Check your inbox and spam folder.",
-          "success"
+          "If an account can receive a reset email at this address, follow the instructions in your inbox. Also check your spam folder.",
+          "info"
         );
       } catch (error) {
         showMessage(friendlyError(error), "error");
       } finally {
-        forgotButton.disabled = false;
-        forgotButton.textContent = "Forgot password?";
+        setBusy(false);
       }
     });
 
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
-
-      if (isSubmitting) return;
-
-      const email = emailInput.value.trim();
-      const password = passwordInput.value;
-      const fullName = nameInput.value.trim();
-
-      if (!isLogin && !fullName) {
-        showMessage("Please enter your full name.", "error");
-        nameInput.focus();
-        return;
-      }
-
-      if (password.length < 8) {
-        showMessage(
-          "Your password must contain at least 8 characters.",
-          "error"
-        );
-        passwordInput.focus();
-        return;
-      }
-
-      if (!isLogin && password !== confirmPasswordInput.value) {
-        showMessage("Your passwords do not match.", "error");
-        confirmPasswordInput.focus();
-        return;
-      }
-
-      isSubmitting = true;
-      submitButton.disabled = true;
-      switchButton.disabled = true;
-      forgotButton.disabled = true;
-      submitButton.textContent = isLogin
-        ? "Logging in..."
-        : "Creating account...";
+    async function socialSignIn(provider) {
+      if (busy) return;
       clearMessage();
+      verifyActions.classList.remove("show");
+      setBusy(true);
 
       try {
-        if (isLogin) {
-          const result = await signInWithEmailAndPassword(
-            auth,
-            email,
-            password
-          );
-
-          if (!result.user.emailVerified) {
-            try {
-              await sendEmailVerification(result.user);
-            } catch (verificationError) {
-              console.error(
-                "Verification email error:",
-                verificationError.code
-              );
-            }
-
-            await signOut(auth);
-
-            showMessage(
-              "Your email is not verified yet. Check your inbox and spam folder for the verification link. If needed, try logging in again to request another email.",
-              "error"
-            );
-            return;
-          }
-
-          showMessage("Login successful. Opening your learning space...", "success");
-          window.location.assign("./index.html");
-          return;
-        }
-
-        const result = await createUserWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
-
-        await updateProfile(result.user, {
-          displayName: fullName
-        });
-
-        await sendEmailVerification(result.user);
-        await signOut(auth);
-
-        setMode(true);
-        emailInput.value = email;
-
-        showMessage(
-          "Account created! We sent a verification link to your email. Open that email, click the link, then log in here.",
-          "success"
-        );
+        await setPersistence(auth, browserLocalPersistence);
+        const credential = await signInWithPopup(auth, provider);
+        verificationUser = credential.user;
+        await enterDashboard(credential.user);
       } catch (error) {
         showMessage(friendlyError(error), "error");
       } finally {
-        isSubmitting = false;
-        submitButton.disabled = false;
-        switchButton.disabled = false;
-        forgotButton.disabled = false;
+        setBusy(false);
+      }
+    }
 
-        if (isLogin) {
-          submitButton.textContent = "Log in";
-        } else {
-          submitButton.textContent = "Create account";
-        }
+    googleBtn.addEventListener("click", () => {
+      const provider = new GoogleAuthProvider();
+      provider.setCustomParameters({ prompt: "select_account" });
+      socialSignIn(provider);
+    });
+
+    microsoftBtn.addEventListener("click", () => {
+      const provider = new OAuthProvider("microsoft.com");
+      provider.setCustomParameters({ prompt: "select_account" });
+      socialSignIn(provider);
+    });
+
+    resendBtn.addEventListener("click", async () => {
+      if (busy) return;
+
+      if (!verificationUser) {
+        showMessage("Sign in with your email and password first.", "error");
+        return;
+      }
+
+      setBusy(true);
+      try {
+        await sendEmailVerification(verificationUser);
+        showMessage("Verification email sent. Check your inbox and spam folder.", "info");
+      } catch (error) {
+        showMessage(friendlyError(error), "error");
+      } finally {
+        setBusy(false);
       }
     });
+
+    checkBtn.addEventListener("click", async () => {
+      if (busy || !verificationUser) return;
+
+      setBusy(true);
+      try {
+        await reload(verificationUser);
+
+        if (verificationUser.emailVerified) {
+          showMessage("Email verified! Opening your dashboard…", "info");
+          window.location.replace("dashboard.html");
+        } else {
+          showMessage("Your email is still unverified. Open the latest verification email first.", "error");
+        }
+      } catch (error) {
+        showMessage(friendlyError(error), "error");
+      } finally {
+        setBusy(false);
+      }
+    });
+
+    // If a previous session exists, do not silently bypass verification.
+    try {
+      await setPersistence(auth, browserLocalPersistence);
+      if (auth.currentUser) {
+        const user = auth.currentUser;
+        await reload(user);
+        if (user.emailVerified) {
+          window.location.replace("dashboard.html");
+        } else {
+          verificationUser = user;
+          verifyActions.classList.add("show");
+          showMessage("This account still needs email verification. Verify it below to continue.", "info");
+        }
+      }
+    } catch {
+      showMessage("Could not check your current session. You can try signing in again.", "error");
+    }
   </script>
 </body>
 </html>
