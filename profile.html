@@ -2,1128 +2,740 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0a0b14">
-  <title>My Profile | LE4RNSP4CE</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --bg:#0a0b14;
-      --panel:#111321;
-      --border:rgba(255,255,255,.09);
-      --text:#f4f3ff;
-      --muted:#969bb6;
-      --purple:#a78bfa;
-      --green:#6ee7b7;
-    }
-
-    * { box-sizing:border-box; }
-
-    html { scroll-behavior:smooth; }
-
-    body {
-      margin:0;
-      min-height:100vh;
-      background:
-        radial-gradient(ellipse at 10% 0%,rgba(124,58,237,.12),transparent 36%),
-        radial-gradient(ellipse at 95% 30%,rgba(37,99,235,.09),transparent 35%),
-        var(--bg);
-      color:var(--text);
-      font-family:"DM Sans",sans-serif;
-    }
-
-    button,input,textarea { font:inherit; }
-    button,a { -webkit-tap-highlight-color:transparent; }
-    button { cursor:pointer; }
-    a { color:inherit;text-decoration:none; }
-    h1,h2,h3 { font-family:"Space Grotesk",sans-serif; }
-    h1,h2,h3,p { margin-top:0; }
-    button:disabled { opacity:.6;cursor:not-allowed; }
-
-    .topbar {
-      min-height:68px;
-      position:sticky;
-      top:0;
-      z-index:20;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:15px;
-      padding:12px 5%;
-      background:rgba(10,11,20,.9);
-      border-bottom:1px solid var(--border);
-      backdrop-filter:blur(20px);
-    }
-
-    .brand {
-      display:flex;
-      align-items:center;
-      gap:10px;
-      font:700 19px "Space Grotesk",sans-serif;
-    }
-
-    .brand-icon {
-      width:36px;height:36px;
-      display:grid;place-items:center;
-      border-radius:11px;
-      background:linear-gradient(135deg,#8b5cf6,#3b82f6);
-    }
-
-    .brand-name {
-      background:linear-gradient(90deg,#c4b5fd,#93c5fd);
-      color:transparent;
-      background-clip:text;
-    }
-
-    .nav {
-      display:flex;
-      align-items:center;
-      gap:18px;
-      color:var(--muted);
-      font-size:13px;
-    }
-
-    .nav a:hover,.nav .active { color:white; }
-
-    .top-avatar {
-      width:35px;height:35px;
-      border-radius:50%;
-      object-fit:cover;
-      background:#282743;
-      border:1px solid #a78bfa88;
-    }
-
-    .page { width:min(1050px,92%);margin:32px auto 60px; }
-
-    .intro {
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:18px;
-      margin-bottom:22px;
-    }
-
-    .eyebrow {
-      color:var(--purple);
-      font-size:11px;
-      letter-spacing:2px;
-      font-weight:700;
-    }
-
-    .intro h1 {
-      margin:8px 0;
-      font-size:clamp(27px,4vw,39px);
-      letter-spacing:-1.5px;
-    }
-
-    .intro p,.muted { color:var(--muted);font-size:14px; }
-
-    .glass {
-      background:linear-gradient(145deg,rgba(23,25,44,.96),rgba(14,16,29,.98));
-      border:1px solid var(--border);
-      border-radius:20px;
-      box-shadow:0 20px 60px #0002;
-    }
-
-    .profile-card { overflow:hidden; }
-
-    .cover {
-      height:205px;
-      position:relative;
-      background:
-        radial-gradient(ellipse at 18% 35%,#c084fc55,transparent 34%),
-        radial-gradient(ellipse at 76% 15%,#60a5fa66,transparent 38%),
-        linear-gradient(120deg,#20183e,#171b3c 45%,#112b40);
-    }
-
-    .cover-label {
-      position:absolute;
-      right:22px;bottom:18px;
-      color:#e0e7ff;
-      font:600 11px "Space Grotesk",sans-serif;
-      letter-spacing:2px;
-    }
-
-    .profile-content { padding:0 28px 26px; }
-
-    .identity-row {
-      display:flex;
-      align-items:end;
-      justify-content:space-between;
-      gap:16px;
-      margin-top:-55px;
-      position:relative;
-    }
-
-    .avatar-wrap { position:relative;flex-shrink:0; }
-
-    .main-avatar {
-      width:116px;height:116px;
-      border-radius:50%;
-      object-fit:cover;
-      background:#22243d;
-      border:5px solid #141526;
-      box-shadow:0 0 0 1px #a78bfa66;
-    }
-
-    .online-dot {
-      position:absolute;
-      right:7px;bottom:12px;
-      width:16px;height:16px;
-      border-radius:50%;
-      background:var(--green);
-      border:4px solid #141526;
-    }
-
-    .actions { display:flex;flex-wrap:wrap;gap:9px;padding-bottom:6px; }
-
-    .btn {
-      min-height:41px;
-      padding:0 15px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:7px;
-      border:1px solid var(--border);
-      border-radius:11px;
-      background:#ffffff08;
-      color:var(--text);
-      font-size:13px;
-      font-weight:600;
-      transition:transform .2s,background .2s;
-    }
-
-    .btn:hover { transform:translateY(-2px);background:#ffffff12; }
-
-    .btn-primary {
-      background:linear-gradient(110deg,#8b5cf6,#6366f1);
-      border-color:transparent;
-    }
-
-    .identity-info { padding-top:17px; }
-
-    .name-line { display:flex;flex-wrap:wrap;align-items:center;gap:10px; }
-
-    .name-line h2 {
-      font-size:clamp(23px,4vw,31px);
-      letter-spacing:-1px;
-      overflow-wrap:anywhere;
-      margin:0;
-    }
-
-    .verified {
-      color:#c4b5fd;
-      background:#a78bfa17;
-      border:1px solid #a78bfa35;
-      border-radius:7px;
-      padding:4px 7px;
-      font-size:10px;
-      font-weight:700;
-    }
-
-    .username { color:var(--muted);font-size:14px;margin:8px 0 13px; }
-
-    .bio {
-      max-width:720px;
-      color:#d5d7e7;
-      font-size:14px;
-      line-height:1.8;
-      white-space:pre-wrap;
-      overflow-wrap:anywhere;
-    }
-
-    .meta {
-      display:flex;flex-wrap:wrap;gap:14px;
-      color:var(--muted);font-size:12px;
-    }
-
-    .stats {
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:12px;
-      margin-top:20px;
-    }
-
-    .stat {
-      padding:15px;
-      background:#ffffff04;
-      border:1px solid var(--border);
-      border-radius:13px;
-    }
-
-    .stat strong {
-      display:block;
-      font:700 24px "Space Grotesk",sans-serif;
-    }
-
-    .stat span { color:var(--muted);font-size:12px; }
-
-    .content-grid {
-      display:grid;
-      grid-template-columns:minmax(0,1.65fr) minmax(230px,.85fr);
-      gap:18px;
-      margin-top:19px;
-      align-items:start;
-    }
-
-    .section { padding:22px;min-width:0; }
-
-    .section-heading {
-      display:flex;justify-content:space-between;align-items:center;
-      gap:10px;margin-bottom:18px;
-    }
-
-    .section-heading h3,.side-section h3 { font-size:17px;margin-bottom:0; }
-    .section-heading small { color:var(--muted);font-size:11px; }
-
-    .post {
-      padding:16px;
-      border:1px solid var(--border);
-      border-radius:13px;
-      background:#ffffff03;
-      margin-bottom:11px;
-      overflow-wrap:anywhere;
-    }
-
-    .post:last-child { margin-bottom:0; }
-
-    .post-type {
-      display:inline-block;
-      padding:5px 8px;
-      border-radius:6px;
-      color:#c4b5fd;
-      background:#a78bfa12;
-      font-size:10px;
-      text-transform:uppercase;
-      letter-spacing:.7px;
-      margin-bottom:10px;
-    }
-
-    .post h3 { font-size:16px;margin-bottom:8px; }
-    .post p { color:#b7bdd2;font-size:13px;line-height:1.7;white-space:pre-wrap; }
-    .post-date { color:var(--muted);font-size:11px; }
-
-    .empty {
-      text-align:center;padding:30px 12px;
-      color:var(--muted);font-size:13px;line-height:1.8;
-    }
-
-    .side-section { margin-bottom:17px; }
-    .side-section:last-child { margin-bottom:0; }
-
-    .detail { display:flex;gap:11px;margin:16px 0;align-items:flex-start; }
-
-    .detail-icon {
-      width:34px;height:34px;
-      display:grid;place-items:center;
-      flex-shrink:0;border-radius:10px;
-      background:#a78bfa13;color:#c4b5fd;
-    }
-
-    .detail-label { color:var(--muted);font-size:10px;margin-bottom:4px; }
-    .detail-value { font-size:12px;overflow-wrap:anywhere; }
-
-    .tags { display:flex;flex-wrap:wrap;gap:8px;margin-top:15px; }
-
-    .tag {
-      padding:8px 10px;border-radius:9px;
-      border:1px solid #a78bfa25;
-      background:#a78bfa0d;color:#d7ccff;font-size:11px;
-    }
-
-    .note { color:var(--muted);font-size:11px;line-height:1.7;margin-top:14px; }
-
-    .status {
-      display:none;margin-bottom:15px;padding:12px 14px;
-      border:1px solid var(--border);border-radius:11px;
-      font-size:13px;line-height:1.6;overflow-wrap:anywhere;
-    }
-
-    .status.show { display:block; }
-    .status.success { color:#a7f3d0;background:#10b98112;border-color:#10b98140; }
-    .status.error { color:#fca5a5;background:#ef444412;border-color:#ef444440; }
-    .status.info { color:#bfdbfe;background:#3b82f612;border-color:#3b82f640; }
-
-    .modal-backdrop {
-      position:fixed;inset:0;z-index:100;
-      display:none;place-items:center;padding:18px;
-      background:#03040ccc;backdrop-filter:blur(10px);
-    }
-
-    .modal-backdrop.open { display:grid; }
-
-    .modal {
-      width:min(570px,100%);max-height:88vh;overflow-y:auto;
-      padding:24px;border:1px solid #ffffff17;
-      border-radius:20px;background:#121426;
-    }
-
-    .modal-header {
-      display:flex;justify-content:space-between;gap:12px;
-      align-items:start;margin-bottom:20px;
-    }
-
-    .modal-header h2 { font-size:22px;margin-bottom:5px; }
-    .modal-header p { color:var(--muted);font-size:12px; }
-
-    .close-btn {
-      width:36px;height:36px;border:1px solid var(--border);
-      border-radius:9px;background:#ffffff08;color:white;font-size:20px;
-    }
-
-    .field { margin-bottom:15px; }
-
-    .field label {
-      display:flex;justify-content:space-between;gap:10px;
-      font-size:12px;font-weight:600;margin-bottom:8px;
-    }
-
-    .field label span { color:var(--muted);font-weight:400; }
-
-    .field input,.field textarea {
-      display:block;width:100%;padding:12px;
-      border:1px solid #343750;border-radius:10px;
-      outline:none;background:#0b0d19;color:white;font-size:13px;
-    }
-
-    .field input:focus,.field textarea:focus {
-      border-color:var(--purple);box-shadow:0 0 0 3px #a78bfa19;
-    }
-
-    .field input[readonly] { color:#9297ae;cursor:not-allowed; }
-    .field textarea { min-height:105px;resize:vertical;line-height:1.6; }
-
-    .field-help { color:var(--muted);font-size:10px;line-height:1.6;margin-top:7px; }
-
-    .modal-actions {
-      display:flex;justify-content:flex-end;flex-wrap:wrap;
-      gap:9px;padding-top:8px;
-    }
-
-    .footer { text-align:center;padding:27px 0 0;color:#6f7591;font-size:11px; }
-
-    @media(max-width:760px) {
-      .topbar { padding:10px 4%; }
-      .nav { gap:12px;font-size:12px; }
-      .hide-mobile { display:none; }
-      .page { width:94%;margin-top:23px; }
-      .cover { height:165px; }
-      .profile-content { padding:0 18px 20px; }
-      .main-avatar { width:98px;height:98px; }
-      .identity-row { margin-top:-47px; }
-      .content-grid { grid-template-columns:1fr; }
-      .section { padding:18px; }
-    }
-
-    @media(max-width:440px) {
-      .intro { align-items:flex-start;flex-direction:column; }
-      .identity-row { align-items:flex-start;flex-direction:column; }
-      .actions { padding-top:5px; }
-      .stats { gap:7px; }
-      .stat { padding:10px; }
-      .stat strong { font-size:20px; }
-      .stat span { font-size:10px; }
-      .brand { font-size:14px;gap:6px; }
-      .brand-icon { width:31px;height:31px; }
-      .nav { gap:9px; }
-      .modal { padding:18px; }
-    }
-
-    @media(prefers-reduced-motion:reduce) {
-      *,*::before,*::after {
-        animation-duration:.01ms!important;
-        animation-iteration-count:1!important;
-        scroll-behavior:auto!important;
-        transition-duration:.01ms!important;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile | LE4RNSP4CE</title>
+<style>
+:root{--bg:#0b0b14;--panel:#151522;--panel2:#1d1b2e;--line:#302c45;--text:#f5f3ff;--muted:#aaa5bf;--purple:#9b7bff;--pink:#ed80cf;--good:#71e2b3}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 system-ui,Arial,sans-serif}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer;border:0;border-radius:10px;padding:10px 14px;background:var(--purple);color:#100d20;font-weight:700}
+button.secondary{background:var(--panel2);border:1px solid var(--line);color:var(--text)}
+button:disabled{opacity:.5;cursor:not-allowed}
+input,textarea,select{width:100%;padding:12px;background:#100f1b;border:1px solid var(--line);border-radius:10px;color:var(--text);outline:none}
+input:focus,textarea:focus,select:focus{border-color:var(--purple)}
+a{color:#c6b4ff}
+header{position:sticky;top:0;z-index:5;background:#0b0b14ed;backdrop-filter:blur(15px);border-bottom:1px solid var(--line);padding:12px 4%;display:flex;align-items:center;gap:16px}
+.brand{font-size:20px;font-weight:900;white-space:nowrap;background:linear-gradient(90deg,#bdaaff,#f2a6e7);background-clip:text;color:transparent}
+.search{max-width:520px;flex:1}
+.wrap{max-width:1000px;margin:24px auto;padding:0 16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-bottom:18px}
+.cover{height:220px;background:linear-gradient(125deg,#382569,#9a56a8,#24284d);position:relative;background-position:center;background-size:cover}
+.cover-label{position:absolute;right:12px;bottom:12px}
+.cover-label button{font-size:12px;padding:7px 10px}
+.profile-body{padding:0 24px 24px}
+.topline{display:flex;align-items:end;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.avatar{width:124px;height:124px;object-fit:cover;border-radius:50%;border:5px solid var(--panel);background:#29243b;margin-top:-62px;position:relative}
+.name{font-size:27px;font-weight:850;margin:7px 0 0;overflow-wrap:anywhere}
+.handle,.muted{color:var(--muted)}
+.bio{white-space:pre-wrap;overflow-wrap:anywhere;margin:14px 0}
+.stats{display:flex;gap:22px;flex-wrap:wrap;margin:18px 0}
+.stat{background:none;color:var(--text);padding:0;text-align:left;font-weight:400}
+.stat strong{font-size:18px;display:block}
+.stat span{color:var(--muted);font-size:13px}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.tag{background:var(--panel2);border:1px solid var(--line);border-radius:30px;padding:6px 11px;color:#d8cffb;font-size:13px}
+.grid{display:grid;grid-template-columns:300px minmax(0,1fr);gap:18px;align-items:start}
+.section{padding:20px}
+.section h2,.section h3{margin:0 0 14px}
+.detail{padding:10px 0;border-bottom:1px solid var(--line);overflow-wrap:anywhere}
+.detail:last-child{border:0}
+.postbox{padding:16px;display:flex;gap:12px}
+.miniavatar{width:43px;height:43px;border-radius:50%;object-fit:cover;background:#29243b;flex-shrink:0}
+.postbox textarea{min-height:76px;resize:vertical}
+.post{padding:18px}
+.posthead{display:flex;align-items:center;gap:11px}
+.postname{font-weight:750}
+.posttime{font-size:12px;color:var(--muted)}
+.posttext{white-space:pre-wrap;overflow-wrap:anywhere;margin:16px 0}
+.postimage{width:100%;max-height:520px;object-fit:contain;border-radius:12px;background:#0b0b14;margin:4px 0 12px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:12px;margin-top:12px}
+.actions button{flex:1;min-width:75px}
+.comments{margin-top:14px}
+.comment{padding:10px;background:#100f1b;border-radius:10px;margin:8px 0;overflow-wrap:anywhere}
+.row{display:flex;gap:10px;align-items:center}
+.row>*{min-width:0}
+.stack{display:grid;gap:12px}
+.hidden{display:none!important}
+.status{padding:12px;border-radius:10px;background:var(--panel2);color:#ded5ff;margin:12px 0;overflow-wrap:anywhere}
+.status.error{color:#ffb7bd}
+.modal{position:fixed;inset:0;z-index:20;background:#000a;display:flex;align-items:center;justify-content:center;padding:15px}
+.modalbox{width:min(650px,100%);max-height:90vh;overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px}
+.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+label{display:grid;gap:6px;color:#d5cfee;font-size:13px}
+.full{grid-column:1/-1}
+.userresult{padding:12px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px}
+.userresult:last-child{border:0}
+.userresult .grow{flex:1;min-width:0;overflow-wrap:anywhere}
+.empty{padding:24px;text-align:center;color:var(--muted)}
+footer{text-align:center;color:var(--muted);padding:25px}
+@media(max-width:700px){
+ header{padding:10px 12px;gap:9px;flex-wrap:wrap}
+ .brand{font-size:17px}.search{order:3;flex-basis:100%;max-width:none}
+ .grid{grid-template-columns:1fr}.cover{height:160px}
+ .profile-body{padding:0 15px 18px}.avatar{width:100px;height:100px;margin-top:-50px}
+ .name{font-size:23px}.formgrid{grid-template-columns:1fr}.full{grid-column:auto}
+ .section{padding:16px}.post{padding:14px}
+}
+</style>
 </head>
-
 <body>
-  <header class="topbar">
-    <a href="index.html" class="brand" aria-label="LE4RNSP4CE Home">
-      <span class="brand-icon">L</span>
-      <span class="brand-name">LE4RNSP4CE</span>
-    </a>
-
-    <nav class="nav" aria-label="Main navigation">
-      <a href="index.html">Home</a>
-      <a href="dashboard.html" class="hide-mobile">Dashboard</a>
-      <a href="index.html" class="active">Community</a>
-      <img id="navAvatar" class="top-avatar" alt="Profile photo">
-    </nav>
-  </header>
-
-  <main class="page">
-    <div class="intro">
-      <div>
-        <div class="eyebrow">YOUR DIGITAL IDENTITY</div>
-        <h1>My Profile<span style="color:#a78bfa">.</span></h1>
-        <p>Your learning journey, ideas and achievements — all in one place.</p>
-      </div>
-      <button class="btn" id="topEditBtn" type="button">✦ Edit profile</button>
-    </div>
-
-    <div id="status" class="status" role="status" aria-live="polite"></div>
-
-    <section class="glass profile-card">
-      <div class="cover">
-        <div class="cover-label">LEARN · BUILD · GROW</div>
-      </div>
-
-      <div class="profile-content">
-        <div class="identity-row">
-          <div class="avatar-wrap">
-            <img id="mainAvatar" class="main-avatar" alt="Your profile photo">
-            <span class="online-dot" title="Signed in"></span>
-          </div>
-
-          <div class="actions">
-            <button class="btn btn-primary" id="editBtn" type="button">✎ Edit profile</button>
-            <button class="btn" id="shareBtn" type="button">↗ Share profile</button>
-          </div>
-        </div>
-
-        <div class="identity-info">
-          <div class="name-line">
-            <h2 id="displayName">Loading profile…</h2>
-            <span class="verified">LEARNER</span>
-          </div>
-          <div id="username" class="username">@loading</div>
-          <div id="bio" class="bio">Loading your introduction…</div>
-
-          <div class="meta">
-            <span>✉ <span id="email">Loading…</span></span>
-            <span>◷ <span id="joined">LE4RNSP4CE member</span></span>
-          </div>
-        </div>
-
-        <div class="stats">
-          <div class="stat"><strong id="postCount">—</strong><span>Community posts</span></div>
-          <div class="stat"><strong id="memberSince">—</strong><span>Member since</span></div>
-          <div class="stat"><strong>∞</strong><span>Room to grow</span></div>
-        </div>
-      </div>
-    </section>
-
-    <div class="content-grid">
-      <section class="glass section">
-        <div class="section-heading">
-          <h3>My activity</h3>
-          <small>Your community posts</small>
-        </div>
-        <div id="postsList">
-          <div class="empty">Loading your activity…</div>
-        </div>
-      </section>
-
-      <aside>
-        <section class="glass section side-section">
-          <h3>About me</h3>
-
-          <div class="detail">
-            <div class="detail-icon">✦</div>
-            <div><div class="detail-label">DISPLAY NAME</div><div class="detail-value" id="aboutName">—</div></div>
-          </div>
-
-          <div class="detail">
-            <div class="detail-icon">⌘</div>
-            <div><div class="detail-label">USERNAME</div><div class="detail-value" id="aboutUsername">—</div></div>
-          </div>
-
-          <div class="detail">
-            <div class="detail-icon">◈</div>
-            <div><div class="detail-label">EMAIL</div><div class="detail-value" id="aboutEmail">—</div></div>
-          </div>
-
-          <p class="note">Your profile is your space to introduce yourself and share what you are learning.</p>
-        </section>
-
-        <section class="glass section side-section">
-          <h3>Profile checklist</h3>
-          <div id="checklist" class="tags"><span class="tag">Loading…</span></div>
-          <p class="note">Add a photo and a short introduction to personalise your profile.</p>
-        </section>
-      </aside>
-    </div>
-
-    <div class="footer">Made for learners, builders & future creators. · LE4RNSP4CE</div>
-  </main>
-
-  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal">
-      <div class="modal-header">
-        <div>
-          <h2 id="modalTitle">Edit your profile</h2>
-          <p>Make your corner of LE4RNSP4CE feel like you.</p>
-        </div>
-        <button class="close-btn" id="closeModal" type="button" aria-label="Close">×</button>
-      </div>
-
-      <form id="profileForm">
-        <div class="field">
-          <label for="firstName">First name</label>
-          <input id="firstName" maxlength="60" required autocomplete="given-name">
-        </div>
-
-        <div class="field">
-          <label for="lastName">Last name</label>
-          <input id="lastName" maxlength="60" required autocomplete="family-name">
-        </div>
-
-        <div class="field">
-          <label for="editUsername">Username <span>Cannot be changed here</span></label>
-          <input id="editUsername" readonly>
-        </div>
-
-        <div class="field">
-          <label for="editEmail">Email <span>Account email</span></label>
-          <input id="editEmail" type="email" readonly>
-        </div>
-
-        <div class="field">
-          <label for="photoURL">Profile photo URL <span>Optional</span></label>
-          <input id="photoURL" type="url" maxlength="500" placeholder="https://example.com/my-photo.jpg">
-          <div class="field-help">Use a public HTTPS image link. Direct uploads are not enabled.</div>
-        </div>
-
-        <div class="field">
-          <label for="editBio">About you <span id="bioCounter">0/160</span></label>
-          <textarea id="editBio" maxlength="160" placeholder="What are you learning or building?"></textarea>
-        </div>
-
-        <div id="formStatus" class="status" role="status" aria-live="polite"></div>
-
-        <div class="modal-actions">
-          <button class="btn" type="button" id="cancelBtn">Cancel</button>
-          <button class="btn btn-primary" id="saveBtn" type="submit">Save changes →</button>
-        </div>
-      </form>
-    </div>
+<header>
+  <div class="brand">LE4RNSP4CE</div>
+  <div class="search">
+    <input id="searchInput" placeholder="Search username or user ID..." autocomplete="off">
   </div>
+  <button class="secondary" id="myProfileBtn">My Profile</button>
+  <button class="secondary" id="logoutBtn">Logout</button>
+</header>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
+<main class="wrap">
+  <div id="status" class="status">Connecting to LE4RNSP4CE...</div>
+  <div id="searchResults" class="card hidden"></div>
 
-    import {
-      getAuth,
-      onAuthStateChanged,
-      updateProfile
-    } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
+  <section class="card">
+    <div class="cover" id="cover">
+      <div class="cover-label"><button class="secondary" id="coverUploadBtn">Change cover</button></div>
+    </div>
+    <div class="profile-body">
+      <div class="topline">
+        <div><img id="avatar" class="avatar" alt="Profile picture"></div>
+        <div class="row">
+          <button class="secondary" id="photoUploadBtn">Change photo</button>
+          <button id="editBtn">Edit profile</button>
+          <button class="hidden" id="followBtn">Follow</button>
+        </div>
+      </div>
+      <div class="name" id="displayName">Your profile</div>
+      <div class="handle" id="username">@username</div>
+      <div class="bio" id="bio">Add a little about yourself.</div>
+      <div class="muted" id="locationLine"></div>
+      <div class="stats">
+        <button class="stat" id="postsStat"><strong id="postsCount">0</strong><span>Posts</span></button>
+        <button class="stat" id="followersStat"><strong id="followersCount">0</strong><span>Followers</span></button>
+        <button class="stat" id="followingStat"><strong id="followingCount">0</strong><span>Following</span></button>
+      </div>
+      <div class="tags" id="tags"></div>
+    </div>
+  </section>
 
-    import {
-      getFirestore,
-      doc,
-      getDoc,
-      updateDoc,
-      serverTimestamp,
-      collection,
-      query,
-      where,
-      getDocs,
-      runTransaction
-    } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
+  <div class="grid">
+    <aside>
+      <section class="card section">
+        <h3>About learner</h3>
+        <div id="aboutDetails"><div class="empty">Profile details will appear here.</div></div>
+      </section>
+      <section class="card section">
+        <h3>Interests</h3>
+        <div id="interests" class="muted">Add interests in Edit Profile.</div>
+      </section>
+    </aside>
+    <section>
+      <div class="card postbox" id="composer">
+        <img class="miniavatar" id="composerAvatar" alt="">
+        <div class="stack" style="flex:1">
+          <textarea id="postText" maxlength="3000" placeholder="What are you learning or building?"></textarea>
+          <div class="row">
+            <label style="flex:1">Add a photo
+              <input type="file" id="postImageInput" accept="image/*">
+            </label>
+            <button id="publishBtn">Post</button>
+          </div>
+          <div id="postPreview"></div>
+        </div>
+      </div>
+      <div id="feed"><div class="card empty">Your posts will appear here.</div></div>
+    </section>
+  </div>
+</main>
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyAq2dZSTyMha1TyifA37ZkUGNB69Bb__mY",
-      authDomain: "le4rnsp4ce.firebaseapp.com",
-      projectId: "le4rnsp4ce",
-      storageBucket: "le4rnsp4ce.firebasestorage.app",
-      messagingSenderId: "679714213034",
-      appId: "1:2768833e0c6ce25398d4d3"
-    };
+<div id="editModal" class="modal hidden">
+  <div class="modalbox">
+    <div class="row" style="justify-content:space-between">
+      <h2>Edit profile</h2><button class="secondary" id="closeEditBtn">Close</button>
+    </div>
+    <p class="muted">Share only the details you want other people to see.</p>
+    <form id="profileForm" class="formgrid">
+      <label>Display name<input id="fName" maxlength="60" required></label>
+      <label>Username (cannot be changed here)<input id="fUsername" disabled></label>
+      <label>Role
+        <select id="fRole">
+          <option>Student</option><option>Learner</option><option>Developer</option>
+          <option>Creator</option><option>Teacher</option><option>Professional</option>
+          <option>Founder</option><option>Other</option>
+        </select>
+      </label>
+      <label>Class / year<input id="fClass" maxlength="60" placeholder="e.g. First year"></label>
+      <label>College / university<input id="fCollege" maxlength="100"></label>
+      <label>Course / field<input id="fCourse" maxlength="100"></label>
+      <label>Country<input id="fCountry" maxlength="60"></label>
+      <label>City (optional)<input id="fCity" maxlength="80"></label>
+      <label class="full">Bio<textarea id="fBio" maxlength="160" rows="3" placeholder="Tell people about yourself"></textarea></label>
+      <label class="full">What are you working on?<input id="fWork" maxlength="150" placeholder="e.g. Learning Python and building projects"></label>
+      <label class="full">Interests (comma separated)<input id="fInterests" maxlength="250" placeholder="AI, coding, design"></label>
+      <label class="full">Personal website (optional)<input id="fWebsite" maxlength="300" placeholder="https://..."></label>
+      <div class="full row">
+        <button type="submit" id="saveProfileBtn">Save changes</button>
+        <button type="button" class="secondary" id="cancelEditBtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
 
-    // Use the exact Firebase app ID from your existing configuration.
-    firebaseConfig.appId = "1:679714213034:web:2768833e0c6ce25398d4d3";
+<div id="listModal" class="modal hidden">
+  <div class="modalbox">
+    <div class="row" style="justify-content:space-between">
+      <h2 id="listTitle">People</h2><button class="secondary" id="closeListBtn">Close</button>
+    </div>
+    <div id="peopleList"></div>
+  </div>
+</div>
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
-    const $ = id => document.getElementById(id);
+<input type="file" id="avatarFile" accept="image/*" class="hidden">
+<input type="file" id="coverFile" accept="image/*" class="hidden">
+<footer>LE4RNSP4CE · Learn, build and grow together.</footer>
 
-    const REPAIR_UID = "aZd8lB9SbecTUGrSh9HMPLfpc4A3";
-    const REPAIR_EMAIL = "sudhanshhhukumar098@gmail.com";
-    const REPAIR_USERNAME = "sudhanshu_ai";
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
+import {
+  getAuth, onAuthStateChanged, signOut, updateProfile
+} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
+import {
+  getFirestore, doc, getDoc, setDoc, updateDoc, collection, query,
+  where, getDocs, addDoc, deleteDoc, serverTimestamp, runTransaction,
+  orderBy, limit
+} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
+import {
+  getStorage, ref, uploadBytes, getDownloadURL
+} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-storage.js";
 
-    let currentUser = null;
-    let currentProfile = null;
-    let ownPosts = [];
+/* Keep the existing project's Firebase configuration. */
+const firebaseConfig = {
+  apiKey: "AIzaSyAq2dZSTyMha1TyifA37ZkUGNB69Bb__mY",
+  authDomain: "le4rnsp4ce.firebaseapp.com",
+  projectId: "le4rnsp4ce",
+  storageBucket: "le4rnsp4ce.firebasestorage.app",
+  messagingSenderId: "679714213034",
+  appId: "1:679714213034:web:2768833e0c6ce25398d4d3"
+};
 
-    const fallbackAvatar =
-      "data:image/svg+xml;charset=UTF-8," +
-      encodeURIComponent(
-        '<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160">' +
-        '<rect width="100%" height="100%" rx="80" fill="#282343"/>' +
-        '<text x="50%" y="57%" text-anchor="middle" font-size="65" fill="#c4b5fd" font-family="Arial">L</text>' +
-        '</svg>'
-      );
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const storage = getStorage(app);
 
-    function showStatus(message, type = "info", target = "status") {
-      const element = $(target);
-      element.textContent = message;
-      element.className = `status show ${type}`;
-    }
+const $ = id => document.getElementById(id);
+const FALLBACK = "data:image/svg+xml," + encodeURIComponent(
+  '<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160"><rect width="100%" height="100%" fill="#29243b"/><text x="50%" y="55%" text-anchor="middle" fill="#c6b4ff" font-size="60">L</text></svg>'
+);
 
-    function hideStatus(target = "status") {
-      $(target).textContent = "";
-      $(target).className = "status";
-    }
+let currentUser = null;
+let currentProfile = null;
+let viewedUid = null;
+let selectedPostImage = null;
+let searchTimer = null;
 
-    function safeText(value) {
-      return typeof value === "string" ? value : "";
-    }
+function status(message, error = false) {
+  $("status").textContent = message;
+  $("status").classList.toggle("error", error);
+  $("status").classList.remove("hidden");
+}
+function hideStatus() { $("status").classList.add("hidden"); }
+function safeText(value) { return typeof value === "string" ? value : ""; }
+function escapeHTML(value) {
+  return safeText(value).replace(/[&<>"']/g, ch => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  })[ch]);
+}
+function shortDate(ts) {
+  try {
+    const d = ts?.toDate ? ts.toDate() : null;
+    return d ? d.toLocaleString() : "Just now";
+  } catch { return "Just now"; }
+}
+function profileRef(uid) { return doc(db, "users", uid); }
+function displayHandle(p) { return p?.username ? "@" + p.username : "LE4RNSP4CE learner"; }
 
-    function formatDate(value) {
-      if (!value) return "";
+function renderProfile(p, uid) {
+  currentProfile = p;
+  viewedUid = uid;
+  const own = currentUser?.uid === uid;
+  $("displayName").textContent = p.displayName || "LE4RNSP4CE Learner";
+  $("username").textContent = displayHandle(p);
+  $("bio").textContent = p.bio || (own ? "Add a short introduction about yourself." : "No bio added yet.");
+  $("avatar").src = p.photoURL || FALLBACK;
+  $("composerAvatar").src = currentUser?.photoURL || currentProfile?.photoURL || FALLBACK;
+  $("cover").style.backgroundImage = p.coverURL
+    ? `url("${p.coverURL.replace(/["\\]/g, "")}")`
+    : "linear-gradient(125deg,#382569,#9a56a8,#24284d)";
+  $("locationLine").textContent = [p.city, p.country].filter(Boolean).join(", ");
+  $("editBtn").classList.toggle("hidden", !own);
+  $("photoUploadBtn").classList.toggle("hidden", !own);
+  $("coverUploadBtn").classList.toggle("hidden", !own);
+  $("composer").classList.toggle("hidden", !own);
+  $("followBtn").classList.toggle("hidden", own);
+  $("followBtn").textContent = "Follow";
+  $("tags").replaceChildren();
+  [p.role, p.classYear, p.course].filter(Boolean).forEach(value => {
+    const el = document.createElement("span");
+    el.className = "tag";
+    el.textContent = value;
+    $("tags").append(el);
+  });
 
-      try {
-        const date = typeof value.toDate === "function"
-          ? value.toDate()
-          : new Date(value);
-
-        if (Number.isNaN(date.getTime())) return "";
-
-        return date.toLocaleDateString(undefined, {
-          day: "numeric",
-          month: "short",
-          year: "numeric"
-        });
-      } catch {
-        return "";
-      }
-    }
-
-    function safeImageURL(value) {
-      if (typeof value !== "string" || !value.trim()) return "";
-
+  const details = [
+    ["Role", p.role], ["Class / year", p.classYear],
+    ["College", p.college], ["Course", p.course],
+    ["Currently working on", p.work], ["Website", p.website]
+  ];
+  $("aboutDetails").replaceChildren();
+  details.filter(([k,v]) => v).forEach(([key,value]) => {
+    const div = document.createElement("div");
+    div.className = "detail";
+    if (key === "Website") {
+      const a = document.createElement("a");
       try {
         const url = new URL(value);
-        return url.protocol === "https:" ? url.href : "";
-      } catch {
-        return "";
-      }
+        if (url.protocol === "https:" || url.protocol === "http:") {
+          a.href = url.href; a.target = "_blank"; a.rel = "noopener noreferrer";
+          a.textContent = value; div.append(key + ": ", a);
+        } else div.textContent = key + ": " + value;
+      } catch { div.textContent = key + ": " + value; }
+    } else {
+      const strong = document.createElement("strong");
+      strong.textContent = key + ": ";
+      div.append(strong, document.createTextNode(value));
     }
-
-    function setAvatar(url, name) {
-      const validURL = safeImageURL(url);
-
-      ["mainAvatar", "navAvatar"].forEach(id => {
-        const image = $(id);
-        image.onerror = () => {
-          image.onerror = null;
-          image.src = fallbackAvatar;
-        };
-        image.src = validURL || fallbackAvatar;
-        image.alt = `${name || "Learner"} profile photo`;
-      });
-    }
-
-    function renderProfile(profile, user) {
-      const firstName = safeText(profile.firstName);
-      const lastName = safeText(profile.lastName);
-      const displayName =
-        safeText(profile.displayName) ||
-        `${firstName} ${lastName}`.trim() ||
-        user.displayName ||
-        "Learner";
-
-      const username = safeText(profile.username);
-      const email = safeText(profile.email) || user.email || "";
-      const bio = safeText(profile.bio);
-      const photoURL = safeText(profile.photoURL) || user.photoURL || "";
-      const joinedDate = formatDate(profile.createdAt);
-
-      $("displayName").textContent = displayName;
-      $("username").textContent = username ? `@${username}` : "@learner";
-      $("bio").textContent = bio || "Your story starts here. Add a short introduction about yourself.";
-      $("email").textContent = email || "Email not available";
-      $("joined").textContent = joinedDate ? `Member since ${joinedDate}` : "LE4RNSP4CE member";
-      $("memberSince").textContent = joinedDate ? joinedDate.slice(-4) : "New";
-      $("aboutName").textContent = displayName;
-      $("aboutUsername").textContent = username ? `@${username}` : "Not set";
-      $("aboutEmail").textContent = email || "Not available";
-
-      setAvatar(photoURL, displayName);
-
-      const checks = [
-        ["Name added", Boolean(displayName && displayName !== "Learner")],
-        ["Bio added", Boolean(bio.trim())],
-        ["Photo added", Boolean(safeImageURL(photoURL))]
-      ];
-
-      $("checklist").replaceChildren();
-
-      checks.forEach(([label, complete]) => {
-        const tag = document.createElement("span");
-        tag.className = "tag";
-        tag.textContent = `${complete ? "✓" : "＋"} ${label}`;
-        $("checklist").appendChild(tag);
-      });
-    }
-
-    // Only repairs the specifically intended account.
-    // A username collision aborts the transaction without overwriting data.
-    async function createMissingProfile(user) {
-      if (
-        user.uid !== REPAIR_UID ||
-        user.email !== REPAIR_EMAIL
-      ) {
-        throw new Error(
-          "Your profile document is missing. Automatic repair is not enabled for this account."
-        );
-      }
-
-      const username = REPAIR_USERNAME;
-      const userRef = doc(db, "users", user.uid);
-      const usernameRef = doc(db, "usernames", username);
-
-      const firstName = "Sudhanshu";
-      const lastName = "Kumar";
-      const displayName = `${firstName} ${lastName}`;
-
-      await runTransaction(db, async transaction => {
-        const userSnap = await transaction.get(userRef);
-        const usernameSnap = await transaction.get(usernameRef);
-
-        // If another process has already created the profile, do nothing.
-        if (userSnap.exists()) return;
-
-        if (
-          usernameSnap.exists() &&
-          usernameSnap.data().uid !== user.uid
-        ) {
-          throw new Error(
-            "USERNAME_TAKEN: sudhanshu_ai is already linked to another account. No existing profile was changed."
-          );
-        }
-
-        const profileData = {
-          uid: user.uid,
-          username,
-          displayName,
-          firstName,
-          lastName,
-          email: user.email || "",
-          country: "IN",
-          language: "en",
-          photoURL: user.photoURL || "",
-          createdAt: serverTimestamp()
-        };
-
-        if (!usernameSnap.exists()) {
-          transaction.set(usernameRef, {
-            uid: user.uid,
-            username,
-            createdAt: serverTimestamp()
-          });
-        }
-
-        transaction.set(userRef, profileData);
-      });
-    }
-
-    async function loadProfile(user) {
-      currentUser = user;
-      hideStatus();
-
-      try {
-        const userRef = doc(db, "users", user.uid);
-        let userSnap = await getDoc(userRef);
-
-        if (!userSnap.exists()) {
-          await createMissingProfile(user);
-          userSnap = await getDoc(userRef);
-        }
-
-        if (!userSnap.exists()) {
-          throw new Error("Profile document is still missing after setup.");
-        }
-
-        currentProfile = userSnap.data();
-
-        console.log("Profile loaded:", {
-          project: app.options.projectId,
-          uid: user.uid,
-          email: user.email,
-          profilePath: userRef.path
-        });
-
-        renderProfile(currentProfile, user);
-        await loadOwnPosts(user.uid);
-
-        if (
-          user.uid === REPAIR_UID &&
-          currentProfile.username === REPAIR_USERNAME
-        ) {
-          showStatus("Your profile is ready. You can edit your profile now.", "success");
-        }
-      } catch (error) {
-        console.error("Profile load/setup error:", error);
-
-        const message = error.message?.includes("USERNAME_TAKEN")
-          ? "The username sudhanshu_ai belongs to another account. No existing profile was changed. Choose another username before retrying."
-          : `Profile could not load: ${error.code || ""} ${error.message || "Unknown error"}`;
-
-        showStatus(message, "error");
-      }
-    }
-
-    async function loadOwnPosts(uid) {
-      $("postsList").replaceChildren();
-
-      const loading = document.createElement("div");
-      loading.className = "empty";
-      loading.textContent = "Loading your posts…";
-      $("postsList").appendChild(loading);
-
-      try {
-        const postsQuery = query(
-          collection(db, "posts"),
-          where("uid", "==", uid)
-        );
-
-        const snapshot = await getDocs(postsQuery);
-
-        ownPosts = snapshot.docs.map(item => ({
-          id: item.id,
-          ...item.data()
-        }));
-
-        ownPosts.sort((a, b) => {
-          const aTime = a.createdAt?.toMillis?.() || 0;
-          const bTime = b.createdAt?.toMillis?.() || 0;
-          return bTime - aTime;
-        });
-
-        renderPosts(ownPosts);
-      } catch (error) {
-        console.error("Posts load error:", error);
-
-        $("postsList").replaceChildren();
-        const message = document.createElement("div");
-        message.className = "empty";
-        message.textContent =
-          "We couldn't load your posts. Check Firestore permissions and try refreshing.";
-        $("postsList").appendChild(message);
-      }
-    }
-
-    function renderPosts(posts) {
-      $("postCount").textContent = String(posts.length);
-      $("postsList").replaceChildren();
-
-      if (!posts.length) {
-        const empty = document.createElement("div");
-        empty.className = "empty";
-
-        const title = document.createElement("strong");
-        title.textContent = "Your story is waiting.";
-
-        const message = document.createElement("p");
-        message.textContent = "Publish your first community post and it will appear here.";
-
-        empty.append(title, message);
-        $("postsList").appendChild(empty);
-        return;
-      }
-
-      posts.forEach(post => {
-        const article = document.createElement("article");
-        article.className = "post";
-
-        const type = document.createElement("div");
-        type.className = "post-type";
-        type.textContent = safeText(post.type) || "Community post";
-
-        const title = document.createElement("h3");
-        title.textContent = safeText(post.title) || "Untitled post";
-
-        const description = document.createElement("p");
-        description.textContent = safeText(post.description);
-
-        const date = document.createElement("div");
-        date.className = "post-date";
-        date.textContent = formatDate(post.createdAt) || "Recently published";
-
-        article.append(type, title);
-
-        if (description.textContent) {
-          article.appendChild(description);
-        }
-
-        article.appendChild(date);
-        $("postsList").appendChild(article);
-      });
-    }
-
-    function updateBioCounter() {
-      $("bioCounter").textContent = `${$("editBio").value.length}/160`;
-    }
-
-    function openModal() {
-      if (!currentUser || !currentProfile) {
-        showStatus("Your profile has not loaded yet. Please wait and try again.", "info");
-        return;
-      }
-
-      $("firstName").value = safeText(currentProfile.firstName);
-      $("lastName").value = safeText(currentProfile.lastName);
-      $("editUsername").value = safeText(currentProfile.username);
-      $("editEmail").value = safeText(currentProfile.email) || currentUser.email || "";
-      $("photoURL").value = safeText(currentProfile.photoURL) || currentUser.photoURL || "";
-      $("editBio").value = safeText(currentProfile.bio);
-
-      updateBioCounter();
-      hideStatus("formStatus");
-      $("modalBackdrop").classList.add("open");
-      document.body.style.overflow = "hidden";
-      $("firstName").focus();
-    }
-
-    function closeModal() {
-      $("modalBackdrop").classList.remove("open");
-      document.body.style.overflow = "";
-    }
-
-    async function saveProfile(event) {
-      event.preventDefault();
-
-      if (!currentUser || !currentProfile) {
-        showStatus("Profile is not loaded. Refresh the page and try again.", "error", "formStatus");
-        return;
-      }
-
-      const firstName = $("firstName").value.trim();
-      const lastName = $("lastName").value.trim();
-      const displayName = `${firstName} ${lastName}`.trim();
-      const rawPhotoURL = $("photoURL").value.trim();
-      const bio = $("editBio").value.trim();
-
-      if (!firstName || !lastName) {
-        showStatus("Please enter both your first and last name.", "error", "formStatus");
-        return;
-      }
-
-      if (displayName.length > 60) {
-        showStatus("Your display name must be 60 characters or fewer.", "error", "formStatus");
-        return;
-      }
-
-      if (bio.length > 160) {
-        showStatus("Your bio must be 160 characters or fewer.", "error", "formStatus");
-        return;
-      }
-
-      if (rawPhotoURL && !safeImageURL(rawPhotoURL)) {
-        showStatus("Please use a valid public HTTPS image URL.", "error", "formStatus");
-        return;
-      }
-
-      const saveButton = $("saveBtn");
-      saveButton.disabled = true;
-      saveButton.textContent = "Saving…";
-      hideStatus("formStatus");
-
-      try {
-        const profileRef = doc(db, "users", currentUser.uid);
-
-        await updateDoc(profileRef, {
-          firstName,
-          lastName,
-          displayName,
-          photoURL: rawPhotoURL,
-          bio,
-          updatedAt: serverTimestamp()
-        });
-
-        currentProfile = {
-          ...currentProfile,
-          firstName,
-          lastName,
-          displayName,
-          photoURL: rawPhotoURL,
-          bio
-        };
-
-        // Sync Firebase Auth's display name/photo where possible.
-        try {
-          await updateProfile(currentUser, {
-            displayName,
-            ...(rawPhotoURL ? { photoURL: rawPhotoURL } : {})
-          });
-        } catch (authError) {
-          console.warn("Auth profile sync warning:", authError);
-        }
-
-        renderProfile(currentProfile, currentUser);
-        closeModal();
-        showStatus("Profile updated successfully. Your changes are saved.", "success");
-      } catch (error) {
-        console.error("Profile save error:", error);
-
-        const message = error.code === "permission-denied"
-          ? "Firestore denied this update. Verify the users/{uid} update rule allows bio, displayName, firstName, lastName, photoURL and updatedAt."
-          : `${error.code || ""} ${error.message || "Could not save profile."}`;
-
-        showStatus(message, "error", "formStatus");
-      } finally {
-        saveButton.disabled = false;
-        saveButton.textContent = "Save changes →";
-      }
-    }
-
-    $("editBtn").addEventListener("click", openModal);
-    $("topEditBtn").addEventListener("click", openModal);
-    $("closeModal").addEventListener("click", closeModal);
-    $("cancelBtn").addEventListener("click", closeModal);
-    $("profileForm").addEventListener("submit", saveProfile);
-    $("editBio").addEventListener("input", updateBioCounter);
-
-    $("modalBackdrop").addEventListener("click", event => {
-      if (event.target === $("modalBackdrop")) closeModal();
+    $("aboutDetails").append(div);
+  });
+  if (!$("aboutDetails").children.length) $("aboutDetails").textContent = "No extra details shared.";
+  $("interests").textContent = p.interests || "No interests added yet.";
+  loadCounts(uid).catch(e => console.warn(e));
+  loadPosts(uid).catch(e => {
+    $("feed").textContent = "Could not load posts: " + (e.code || e.message);
+  });
+  if (!own) checkFollowing(uid).catch(console.warn);
+}
+
+async function loadProfile(uid) {
+  status("Loading profile...");
+  const snap = await getDoc(profileRef(uid));
+  if (!snap.exists()) {
+    $("feed").replaceChildren();
+    $("aboutDetails").textContent = "This user has not completed their profile yet.";
+    $("displayName").textContent = "Profile not found";
+    $("username").textContent = uid;
+    $("bio").textContent = "This account does not have a profile document yet.";
+    $("avatar").src = FALLBACK;
+    $("editBtn").classList.toggle("hidden", currentUser.uid !== uid);
+    $("photoUploadBtn").classList.toggle("hidden", currentUser.uid !== uid);
+    $("coverUploadBtn").classList.toggle("hidden", currentUser.uid !== uid);
+    $("composer").classList.toggle("hidden", currentUser.uid !== uid);
+    $("followBtn").classList.add("hidden");
+    if (currentUser.uid === uid) {
+      status("Profile document is missing. Click Edit Profile after the account profile has been initialized.", true);
+    } else status("This profile has not been created.", true);
+    return;
+  }
+  renderProfile(snap.data(), uid);
+  hideStatus();
+}
+
+async function initializeOwnProfile(user) {
+  const userRef = profileRef(user.uid);
+  const snap = await getDoc(userRef);
+  if (snap.exists()) return snap.data();
+
+  /*
+   * Safe minimal profile creation for the signed-in user.
+   * Username is deliberately not auto-reserved; choose a unique username
+   * through your signup flow before adding a usernames/{username} document.
+   */
+  const data = {
+    uid: user.uid,
+    username: "",
+    displayName: user.displayName || (user.email ? user.email.split("@")[0] : "Learner"),
+    firstName: "",
+    lastName: "",
+    email: user.email || "",
+    country: "",
+    language: "en",
+    photoURL: user.photoURL || "",
+    coverURL: "",
+    role: "Student",
+    classYear: "",
+    college: "",
+    course: "",
+    city: "",
+    work: "",
+    interests: "",
+    website: "",
+    bio: "",
+    createdAt: serverTimestamp()
+  };
+  await setDoc(userRef, data);
+  const refreshed = await getDoc(userRef);
+  return refreshed.data();
+}
+
+async function loadCounts(uid) {
+  const [posts, followers, following] = await Promise.all([
+    getDocs(query(collection(db, "posts"), where("uid", "==", uid))),
+    getDocs(query(collection(db, "follows"), where("followingUid", "==", uid))),
+    getDocs(query(collection(db, "follows"), where("followerUid", "==", uid)))
+  ]);
+  $("postsCount").textContent = posts.size;
+  $("followersCount").textContent = followers.size;
+  $("followingCount").textContent = following.size;
+}
+
+async function loadPosts(uid) {
+  $("feed").replaceChildren();
+  const snap = await getDocs(query(collection(db, "posts"), where("uid", "==", uid)));
+  const posts = snap.docs.map(d => ({ id:d.id, ...d.data() }));
+  posts.sort((a,b) => {
+    const ta = a.createdAt?.toMillis?.() || 0;
+    const tb = b.createdAt?.toMillis?.() || 0;
+    return tb - ta;
+  });
+  if (!posts.length) {
+    $("feed").innerHTML = '<div class="card empty">No posts yet.</div>';
+    return;
+  }
+  for (const post of posts) $("feed").append(await makePost(post));
+}
+
+async function makePost(post) {
+  const card = document.createElement("article");
+  card.className = "card post";
+  const head = document.createElement("div");
+  head.className = "posthead";
+  const img = document.createElement("img");
+  img.className = "miniavatar"; img.src = post.photoURL || FALLBACK; img.alt = "";
+  const who = document.createElement("div");
+  const name = document.createElement("div"); name.className = "postname";
+  name.textContent = post.displayName || "Learner";
+  const date = document.createElement("div"); date.className = "posttime";
+  date.textContent = shortDate(post.createdAt);
+  who.append(name,date); head.append(img,who); card.append(head);
+
+  if (post.text) {
+    const p = document.createElement("div"); p.className = "posttext"; p.textContent = post.text; card.append(p);
+  }
+  if (post.imageURL) {
+    const photo = document.createElement("img"); photo.className = "postimage";
+    photo.src = post.imageURL; photo.alt = "Post image"; photo.loading = "lazy"; card.append(photo);
+  }
+  const actions = document.createElement("div"); actions.className = "actions";
+  const like = document.createElement("button"); like.className = "secondary"; like.textContent = "Like";
+  const commentsBtn = document.createElement("button"); commentsBtn.className = "secondary"; commentsBtn.textContent = "Comments";
+  const share = document.createElement("button"); share.className = "secondary"; share.textContent = "Copy link";
+  actions.append(like,commentsBtn,share); card.append(actions);
+  const commentsArea = document.createElement("div"); commentsArea.className = "comments hidden"; card.append(commentsArea);
+
+  try {
+    const likes = await getDocs(query(collection(db,"likes"),where("postId","==",post.id)));
+    like.textContent = `Like (${likes.size})`;
+    const mine = likes.docs.some(d => d.data().uid === currentUser.uid);
+    if (mine) like.textContent = `Unlike (${likes.size})`;
+  } catch(e) { console.warn("Like count unavailable",e); }
+
+  like.addEventListener("click", async () => {
+    like.disabled = true;
+    try {
+      const key = post.id + "_" + currentUser.uid;
+      const likeRef = doc(db,"likes",key);
+      const existing = await getDoc(likeRef);
+      if (existing.exists()) await deleteDoc(likeRef);
+      else await setDoc(likeRef,{postId:post.id,uid:currentUser.uid,createdAt:serverTimestamp()});
+      const likes = await getDocs(query(collection(db,"likes"),where("postId","==",post.id)));
+      const liked = likes.docs.some(d=>d.data().uid===currentUser.uid);
+      like.textContent = `${liked?"Unlike":"Like"} (${likes.size})`;
+    } catch(e) { status("Like failed: " + (e.code || e.message),true); }
+    finally { like.disabled = false; }
+  });
+
+  commentsBtn.addEventListener("click", async () => {
+    commentsArea.classList.toggle("hidden");
+    if (!commentsArea.classList.contains("hidden")) await renderComments(post.id,commentsArea);
+  });
+  share.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(location.origin + location.pathname + "?post=" + encodeURIComponent(post.id));
+      status("Post link copied.");
+    } catch { status("Copy failed. Browser clipboard permission may be blocked.",true); }
+  });
+  return card;
+}
+
+async function renderComments(postId, area) {
+  area.replaceChildren();
+  const list = document.createElement("div");
+  try {
+    const snap = await getDocs(query(collection(db,"comments"),where("postId","==",postId)));
+    const comments = snap.docs.map(d=>d.data());
+    comments.sort((a,b)=>(a.createdAt?.toMillis?.()||0)-(b.createdAt?.toMillis?.()||0));
+    comments.forEach(c => {
+      const div = document.createElement("div"); div.className = "comment";
+      const strong = document.createElement("strong"); strong.textContent = c.displayName || "Learner";
+      const text = document.createElement("div"); text.textContent = c.text || "";
+      div.append(strong,text); list.append(div);
     });
+  } catch(e) {
+    const msg = document.createElement("div"); msg.className = "muted";
+    msg.textContent = "Comments could not be loaded: " + (e.code || e.message); list.append(msg);
+  }
+  const form = document.createElement("form"); form.className = "row";
+  const input = document.createElement("input"); input.placeholder = "Write a comment..."; input.maxLength = 1000; input.required = true;
+  const btn = document.createElement("button"); btn.textContent = "Send";
+  form.append(input,btn);
+  form.addEventListener("submit", async e => {
+    e.preventDefault(); btn.disabled = true;
+    try {
+      await addDoc(collection(db,"comments"),{
+        postId,uid:currentUser.uid,
+        displayName:currentProfile?.displayName || currentUser.displayName || "Learner",
+        text:input.value.trim(),createdAt:serverTimestamp()
+      });
+      await renderComments(postId,area);
+    } catch(err) { status("Comment failed: "+(err.code || err.message),true); }
+    finally { btn.disabled = false; }
+  });
+  area.append(list,form);
+}
 
-    document.addEventListener("keydown", event => {
-      if (event.key === "Escape") closeModal();
+async function uploadImage(file, folder) {
+  if (!file) return "";
+  if (!file.type.startsWith("image/")) throw new Error("Please choose an image file.");
+  if (file.size > 5 * 1024 * 1024) throw new Error("Image must be 5 MB or smaller.");
+  const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g,"_");
+  const path = `${folder}/${currentUser.uid}/${Date.now()}_${safeName}`;
+  const storageRef = ref(storage,path);
+  await uploadBytes(storageRef,file,{contentType:file.type});
+  return await getDownloadURL(storageRef);
+}
+
+function openEdit() {
+  if (viewedUid !== currentUser.uid) return;
+  const p = currentProfile || {};
+  $("fName").value = p.displayName || "";
+  $("fUsername").value = p.username || "";
+  $("fRole").value = p.role || "Student";
+  $("fClass").value = p.classYear || "";
+  $("fCollege").value = p.college || "";
+  $("fCourse").value = p.course || "";
+  $("fCountry").value = p.country || "";
+  $("fCity").value = p.city || "";
+  $("fBio").value = p.bio || "";
+  $("fWork").value = p.work || "";
+  $("fInterests").value = p.interests || "";
+  $("fWebsite").value = p.website || "";
+  $("editModal").classList.remove("hidden");
+}
+
+$("editBtn").addEventListener("click",openEdit);
+$("closeEditBtn").addEventListener("click",()=>$("editModal").classList.add("hidden"));
+$("cancelEditBtn").addEventListener("click",()=>$("editModal").classList.add("hidden"));
+
+$("profileForm").addEventListener("submit",async e=>{
+  e.preventDefault();
+  const btn=$("saveProfileBtn"); btn.disabled=true;
+  try {
+    const displayName=$("fName").value.trim();
+    if (!displayName) throw new Error("Display name is required.");
+    const data={
+      displayName,
+      role:$("fRole").value,
+      classYear:$("fClass").value.trim(),
+      college:$("fCollege").value.trim(),
+      course:$("fCourse").value.trim(),
+      country:$("fCountry").value.trim(),
+      city:$("fCity").value.trim(),
+      bio:$("fBio").value.trim(),
+      work:$("fWork").value.trim(),
+      interests:$("fInterests").value.trim(),
+      website:$("fWebsite").value.trim(),
+      updatedAt:serverTimestamp()
+    };
+    await updateDoc(profileRef(currentUser.uid),data);
+    await updateProfile(currentUser,{displayName});
+    $("editModal").classList.add("hidden");
+    await loadProfile(currentUser.uid);
+    status("Profile updated successfully.");
+  } catch(err) {
+    status("Profile save failed: "+(err.code || err.message),true);
+  } finally { btn.disabled=false; }
+});
+
+$("photoUploadBtn").addEventListener("click",()=>$("avatarFile").click());
+$("coverUploadBtn").addEventListener("click",()=>$("coverFile").click());
+
+$("avatarFile").addEventListener("change",async e=>{
+  const file=e.target.files[0]; if(!file)return;
+  try {
+    status("Uploading profile photo...");
+    const photoURL=await uploadImage(file,"profilePhotos");
+    await updateDoc(profileRef(currentUser.uid),{photoURL,updatedAt:serverTimestamp()});
+    await updateProfile(currentUser,{photoURL});
+    await loadProfile(currentUser.uid); status("Profile photo updated.");
+  } catch(err) { status("Photo upload failed: "+(err.code || err.message),true); }
+  finally { e.target.value=""; }
+});
+$("coverFile").addEventListener("change",async e=>{
+  const file=e.target.files[0]; if(!file)return;
+  try {
+    status("Uploading cover image...");
+    const coverURL=await uploadImage(file,"profileCovers");
+    await updateDoc(profileRef(currentUser.uid),{coverURL,updatedAt:serverTimestamp()});
+    await loadProfile(currentUser.uid); status("Cover image updated.");
+  } catch(err) { status("Cover upload failed: "+(err.code || err.message),true); }
+  finally { e.target.value=""; }
+});
+
+$("postImageInput").addEventListener("change",e=>{
+  selectedPostImage=e.target.files[0]||null;
+  $("postPreview").textContent=selectedPostImage ? selectedPostImage.name : "";
+});
+
+$("publishBtn").addEventListener("click",async()=>{
+  const text=$("postText").value.trim();
+  const file=selectedPostImage;
+  if (!text && !file) { status("Write something or choose a photo first.",true); return; }
+  const btn=$("publishBtn"); btn.disabled=true;
+  try {
+    let imageURL="";
+    if(file) { status("Uploading post image..."); imageURL=await uploadImage(file,"postImages"); }
+    await addDoc(collection(db,"posts"),{
+      uid:currentUser.uid,
+      displayName:currentProfile?.displayName || currentUser.displayName || "Learner",
+      photoURL:currentProfile?.photoURL || currentUser.photoURL || "",
+      text,imageURL,createdAt:serverTimestamp()
     });
+    $("postText").value=""; $("postImageInput").value="";
+    $("postPreview").textContent=""; selectedPostImage=null;
+    await loadPosts(currentUser.uid); await loadCounts(currentUser.uid);
+    status("Post published.");
+  } catch(err) { status("Post failed: "+(err.code || err.message),true); }
+  finally { btn.disabled=false; }
+});
 
-    $("shareBtn").addEventListener("click", async () => {
-      const url = window.location.href;
-
-      try {
-        if (navigator.share) {
-          await navigator.share({
-            title: `${$("displayName").textContent} | LE4RNSP4CE`,
-            text: "Check out my LE4RNSP4CE learner profile.",
-            url
-          });
-        } else if (navigator.clipboard && window.isSecureContext) {
-          await navigator.clipboard.writeText(url);
-          showStatus("Profile link copied. You can share it with others.", "success");
-        } else {
-          showStatus("Copy the page URL from your browser address bar to share it.", "info");
-        }
-      } catch (error) {
-        if (error.name !== "AbortError") {
-          showStatus("You can copy your profile URL from the browser address bar.", "info");
-        }
-      }
+async function searchUsers(term) {
+  const box=$("searchResults"); box.replaceChildren();
+  if(!term) { box.classList.add("hidden"); return; }
+  box.classList.remove("hidden");
+  const title=document.createElement("div"); title.className="section";
+  title.textContent="Search results"; box.append(title);
+  try {
+    let results=[];
+    if(term.length>=3) {
+      const byUsername=await getDocs(query(
+        collection(db,"users"),where("username",">=",term.toLowerCase()),
+        where("username","<=",term.toLowerCase()+"\uf8ff"),limit(10)
+      ));
+      results=byUsername.docs.map(d=>({uid:d.id,...d.data()}));
+    }
+    if(!results.length) {
+      const exact=await getDoc(profileRef(term));
+      if(exact.exists()) results=[{uid:exact.id,...exact.data()}];
+    }
+    results=results.filter(p=>p.uid!==currentUser.uid);
+    if(!results.length) {
+      const empty=document.createElement("div"); empty.className="empty";
+      empty.textContent="No users found. Search a full user ID or username."; box.append(empty); return;
+    }
+    results.forEach(p=>{
+      const row=document.createElement("div"); row.className="userresult";
+      const img=document.createElement("img"); img.className="miniavatar"; img.src=p.photoURL||FALLBACK;
+      const grow=document.createElement("div"); grow.className="grow";
+      const nm=document.createElement("div"); nm.textContent=p.displayName||"Learner";
+      const handle=document.createElement("div"); handle.className="muted"; handle.textContent=displayHandle(p);
+      const role=document.createElement("div"); role.className="muted"; role.textContent=p.role||"Learner";
+      grow.append(nm,handle,role);
+      const open=document.createElement("button"); open.textContent="View";
+      open.addEventListener("click",()=>{box.classList.add("hidden");loadProfile(p.uid);window.scrollTo({top:0,behavior:"smooth"});});
+      row.append(img,grow,open); box.append(row);
     });
+  } catch(err) {
+    const msg=document.createElement("div"); msg.className="empty";
+    msg.textContent="Search failed: "+(err.code||err.message); box.append(msg);
+  }
+}
+$("searchInput").addEventListener("input",e=>{
+  clearTimeout(searchTimer);
+  searchTimer=setTimeout(()=>searchUsers(e.target.value.trim().replace(/^@/,"")),350);
+});
 
-    onAuthStateChanged(auth, async user => {
-      if (!user) {
-        window.location.replace("login.html");
-        return;
-      }
-
-      await loadProfile(user);
+async function checkFollowing(uid) {
+  const key=currentUser.uid+"_"+uid;
+  const snap=await getDoc(doc(db,"follows",key));
+  $("followBtn").textContent=snap.exists()?"Following · Unfollow":"Follow";
+}
+$("followBtn").addEventListener("click",async()=>{
+  if(!viewedUid || viewedUid===currentUser.uid)return;
+  const btn=$("followBtn"); btn.disabled=true;
+  const key=currentUser.uid+"_"+viewedUid;
+  try {
+    const followRef=doc(db,"follows",key);
+    const snap=await getDoc(followRef);
+    if(snap.exists()) await deleteDoc(followRef);
+    else await setDoc(followRef,{
+      followerUid:currentUser.uid,followingUid:viewedUid,createdAt:serverTimestamp()
     });
-  </script>
+    await checkFollowing(viewedUid);
+    await loadCounts(viewedUid);
+    status("Follow status updated.");
+  } catch(err) { status("Follow failed: "+(err.code||err.message),true); }
+  finally { btn.disabled=false; }
+});
+
+async function showPeople(kind) {
+  const uid=viewedUid;
+  $("listTitle").textContent=kind==="followers"?"Followers":"Following";
+  $("peopleList").textContent="Loading...";
+  $("listModal").classList.remove("hidden");
+  try {
+    const field=kind==="followers"?"followingUid":"followerUid";
+    const snap=await getDocs(query(collection(db,"follows"),where(field,"==",uid),limit(100)));
+    $("peopleList").replaceChildren();
+    for(const f of snap.docs) {
+      const personUid=kind==="followers"?f.data().followerUid:f.data().followingUid;
+      const ps=await getDoc(profileRef(personUid));
+      if(!ps.exists()) continue;
+      const p=ps.data();
+      const row=document.createElement("div"); row.className="userresult";
+      const img=document.createElement("img"); img.className="miniavatar"; img.src=p.photoURL||FALLBACK;
+      const grow=document.createElement("div"); grow.className="grow";
+      const name=document.createElement("div"); name.textContent=p.displayName||"Learner";
+      const handle=document.createElement("div"); handle.className="muted"; handle.textContent=displayHandle(p);
+      grow.append(name,handle);
+      const btn=document.createElement("button"); btn.textContent="View";
+      btn.addEventListener("click",()=>{$("listModal").classList.add("hidden");loadProfile(personUid);window.scrollTo({top:0,behavior:"smooth"});});
+      row.append(img,grow,btn); $("peopleList").append(row);
+    }
+    if(!$("peopleList").children.length) $("peopleList").textContent="No users to show yet.";
+  } catch(err) { $("peopleList").textContent="Could not load list: "+(err.code||err.message); }
+}
+$("followersStat").addEventListener("click",()=>showPeople("followers"));
+$("followingStat").addEventListener("click",()=>showPeople("following"));
+$("postsStat").addEventListener("click",()=>$("feed").scrollIntoView({behavior:"smooth"}));
+$("closeListBtn").addEventListener("click",()=>$("listModal").classList.add("hidden"));
+$("myProfileBtn").addEventListener("click",async()=>{if(currentUser)await loadProfile(currentUser.uid);});
+$("logoutBtn").addEventListener("click",async()=>{
+  try { await signOut(auth); location.href="login.html"; }
+  catch(err) { status("Logout failed: "+(err.code||err.message),true); }
+});
+
+onAuthStateChanged(auth,async user=>{
+  if(!user) { location.href="login.html"; return; }
+  currentUser=user;
+  try {
+    await initializeOwnProfile(user);
+    await loadProfile(user.uid);
+  } catch(err) {
+    status("Could not load profile: "+(err.code||err.message)+". Check Firestore rules and Firebase configuration.",true);
+  }
+});
+</script>
 </body>
 </html>
