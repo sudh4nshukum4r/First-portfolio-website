@@ -1,0 +1,1243 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0a0b14" />
+  <title>My Profile | LE4RNSP4CE</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0a0b14;
+      --panel: #111321;
+      --panel2: #15182a;
+      --border: rgba(255,255,255,.09);
+      --text: #f4f3ff;
+      --muted: #969bb6;
+      --purple: #a78bfa;
+      --blue: #60a5fa;
+      --pink: #f0abfc;
+      --green: #6ee7b7;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(ellipse at 10% 0%, rgba(124,58,237,.12), transparent 36%),
+        radial-gradient(ellipse at 95% 30%, rgba(37,99,235,.09), transparent 35%),
+        var(--bg);
+      color: var(--text);
+      font-family: "DM Sans", sans-serif;
+      min-height: 100vh;
+    }
+
+    button, input, textarea { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; }
+
+    .topbar {
+      height: 72px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 0 6%;
+      background: rgba(10,11,20,.82);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(22px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font: 700 20px "Space Grotesk", sans-serif;
+      letter-spacing: -.8px;
+    }
+
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      color: white;
+      background: linear-gradient(135deg,#8b5cf6,#3b82f6);
+      box-shadow: 0 5px 24px #7c3aed40;
+    }
+
+    .brand span:last-child {
+      background: linear-gradient(90deg,#c4b5fd,#93c5fd);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .nav a:hover { color: white; }
+
+    .nav .active { color: white; }
+
+    .top-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #282743;
+      border: 1px solid #a78bfa88;
+    }
+
+    .page {
+      width: min(1050px, 92%);
+      margin: 34px auto 70px;
+    }
+
+    .intro {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 18px;
+      margin-bottom: 23px;
+      animation: rise .65s ease both;
+    }
+
+    .eyebrow {
+      color: var(--purple);
+      font-size: 11px;
+      letter-spacing: 2px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1, h2, h3 {
+      font-family: "Space Grotesk", sans-serif;
+    }
+
+    .intro h1 {
+      margin: 8px 0 7px;
+      font-size: clamp(27px,4vw,39px);
+      letter-spacing: -1.6px;
+    }
+
+    .intro p { color: var(--muted); margin-bottom: 0; font-size: 14px; }
+
+    .glass {
+      background: linear-gradient(145deg,rgba(23,25,44,.94),rgba(14,16,29,.96));
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.16);
+    }
+
+    .profile-card {
+      overflow: hidden;
+      animation: rise .7s .08s ease both;
+    }
+
+    .cover {
+      height: 225px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 18% 35%,#c084fc55,transparent 34%),
+        radial-gradient(ellipse at 76% 15%,#60a5fa66,transparent 38%),
+        linear-gradient(120deg,#20183e,#171b3c 45%,#112b40);
+    }
+
+    .cover::before, .cover::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(255,255,255,.14);
+      transform: rotate(-22deg);
+      border-radius: 45%;
+      width: 65%;
+      height: 180%;
+      top: -40%;
+      left: 20%;
+      animation: drift 16s ease-in-out infinite alternate;
+    }
+
+    .cover::after {
+      width: 35%;
+      left: 60%;
+      top: -55%;
+      border-color: rgba(196,181,253,.24);
+      animation-delay: -5s;
+    }
+
+    .cover-label {
+      position: absolute;
+      right: 24px;
+      bottom: 20px;
+      z-index: 1;
+      color: #e0e7ff;
+      font: 600 11px "Space Grotesk",sans-serif;
+      letter-spacing: 2px;
+    }
+
+    .profile-content { padding: 0 32px 28px; }
+
+    .identity-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 18px;
+      margin-top: -59px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .avatar-wrap { position: relative; flex-shrink: 0; }
+
+    .main-avatar {
+      width: 122px;
+      height: 122px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #22243d;
+      border: 5px solid #141526;
+      box-shadow: 0 0 0 1px #a78bfa66;
+    }
+
+    .online-dot {
+      position: absolute;
+      bottom: 13px;
+      right: 8px;
+      width: 17px;
+      height: 17px;
+      background: var(--green);
+      border: 4px solid #141526;
+      border-radius: 50%;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding-bottom: 7px;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 0 16px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      background: #ffffff07;
+      font-weight: 600;
+      font-size: 13px;
+      transition: transform .2s,background .2s,border-color .2s;
+    }
+
+    .btn:hover { transform: translateY(-2px); background: #ffffff10; }
+
+    .btn-primary {
+      background: linear-gradient(110deg,#8b5cf6,#6366f1);
+      border-color: transparent;
+      box-shadow: 0 6px 22px #7c3aed30;
+    }
+
+    .btn-primary:hover { background: linear-gradient(110deg,#9b6cff,#7375ff); }
+
+    .identity-info { padding-top: 16px; }
+
+    .name-line {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .name-line h2 {
+      margin: 0;
+      font-size: clamp(24px,4vw,31px);
+      letter-spacing: -1px;
+      overflow-wrap: anywhere;
+    }
+
+    .verified {
+      color: #c4b5fd;
+      background: #a78bfa17;
+      border: 1px solid #a78bfa35;
+      border-radius: 7px;
+      padding: 4px 7px;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .username { margin: 7px 0 13px; color: var(--muted); font-size: 14px; }
+
+    .bio {
+      max-width: 720px;
+      color: #d5d7e7;
+      font-size: 14px;
+      line-height: 1.8;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 14px;
+    }
+
+    .meta span { display: inline-flex; gap: 6px; align-items: center; }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3,minmax(0,1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .stat {
+      background: #ffffff04;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      transition: border-color .2s,transform .2s;
+    }
+
+    .stat:hover { border-color: #a78bfa55; transform: translateY(-3px); }
+
+    .stat strong {
+      display: block;
+      font: 700 25px "Space Grotesk",sans-serif;
+      letter-spacing: -1px;
+    }
+
+    .stat span { color: var(--muted); font-size: 12px; }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: minmax(0,1.65fr) minmax(230px,.85fr);
+      gap: 18px;
+      margin-top: 20px;
+      align-items: start;
+    }
+
+    .section { padding: 23px; min-width: 0; }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .section-heading h3 { font-size: 18px; margin: 0; }
+
+    .section-heading small { color: var(--muted); font-size: 11px; }
+
+    .post {
+      padding: 17px;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      background: #ffffff03;
+      margin-bottom: 12px;
+      transition: border-color .2s,transform .2s;
+      overflow-wrap: anywhere;
+    }
+
+    .post:hover { border-color: #a78bfa55; transform: translateY(-2px); }
+
+    .post:last-child { margin-bottom: 0; }
+
+    .post-type {
+      display: inline-block;
+      padding: 5px 8px;
+      border-radius: 6px;
+      color: #c4b5fd;
+      background: #a78bfa12;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      margin-bottom: 11px;
+    }
+
+    .post h3 { font-size: 17px; margin-bottom: 8px; }
+    .post p { color: #b7bdd2; font-size: 13px; line-height: 1.75; white-space: pre-wrap; }
+    .post-date { color: var(--muted); font-size: 11px; margin-bottom: 0; }
+
+    .empty {
+      text-align: center;
+      padding: 34px 12px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .empty-icon { font-size: 30px; margin-bottom: 10px; }
+
+    .side-section { margin-bottom: 18px; }
+    .side-section:last-child { margin-bottom: 0; }
+
+    .side-section h3 { font-size: 15px; margin-bottom: 15px; }
+
+    .detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      margin: 15px 0;
+    }
+
+    .detail-icon {
+      width: 35px;
+      height: 35px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      border-radius: 11px;
+      background: #a78bfa13;
+      color: #c4b5fd;
+    }
+
+    .detail-label { font-size: 10px; color: var(--muted); margin-bottom: 4px; }
+    .detail-value { font-size: 12px; overflow-wrap: anywhere; }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .tag {
+      padding: 8px 10px;
+      border-radius: 9px;
+      border: 1px solid #a78bfa25;
+      background: #a78bfa0d;
+      color: #d7ccff;
+      font-size: 11px;
+    }
+
+    .note { color: var(--muted); font-size: 11px; line-height: 1.7; }
+
+    .status {
+      display: none;
+      margin-bottom: 15px;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .status.show { display: block; }
+    .status.success { color: #a7f3d0; background: #10b98112; border-color: #10b98140; }
+    .status.error { color: #fca5a5; background: #ef444412; border-color: #ef444440; }
+    .status.info { color: #bfdbfe; background: #3b82f612; border-color: #3b82f640; }
+
+    /* Edit profile modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      place-items: center;
+      padding: 18px;
+      background: rgba(3,4,12,.78);
+      backdrop-filter: blur(12px);
+    }
+
+    .modal-backdrop.open { display: grid; animation: fade .2s ease; }
+
+    .modal {
+      width: min(590px,100%);
+      max-height: min(88vh,850px);
+      overflow-y: auto;
+      padding: 25px;
+      border: 1px solid #ffffff17;
+      border-radius: 22px;
+      background: #121426;
+      box-shadow: 0 30px 100px #0008;
+      animation: rise .25s ease;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 15px;
+      margin-bottom: 22px;
+    }
+
+    .modal-header h2 { font-size: 23px; margin-bottom: 5px; }
+    .modal-header p { color: var(--muted); font-size: 12px; margin-bottom: 0; }
+
+    .close-btn {
+      border: 1px solid var(--border);
+      background: #ffffff08;
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      font-size: 20px;
+    }
+
+    .field { margin-bottom: 16px; }
+
+    .field label {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .field label span { color: var(--muted); font-weight: 400; }
+
+    .field input, .field textarea {
+      display: block;
+      width: 100%;
+      padding: 12px 13px;
+      border: 1px solid #343750;
+      border-radius: 11px;
+      outline: none;
+      background: #0b0d19;
+      color: white;
+      font-size: 13px;
+      transition: border-color .2s,box-shadow .2s;
+    }
+
+    .field input:focus, .field textarea:focus {
+      border-color: #a78bfa;
+      box-shadow: 0 0 0 3px #a78bfa19;
+    }
+
+    .field textarea { min-height: 115px; resize: vertical; line-height: 1.6; }
+
+    .field input[readonly] { color: #9297ae; cursor: not-allowed; }
+
+    .field-help { color: var(--muted); font-size: 10px; margin-top: 7px; line-height: 1.6; }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding-top: 9px;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 28px 0 0;
+      color: #6f7591;
+      font-size: 11px;
+    }
+
+    .skeleton {
+      height: 14px;
+      width: 65%;
+      border-radius: 6px;
+      background: linear-gradient(90deg,#ffffff08,#ffffff13,#ffffff08);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(13px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+    @keyframes drift {
+      from { transform: translateX(-4%) rotate(-22deg); }
+      to { transform: translateX(5%) rotate(-10deg); }
+    }
+
+    @keyframes shimmer {
+      from { background-position: 100% 0; }
+      to { background-position: -100% 0; }
+    }
+
+    @media (max-width: 760px) {
+      .topbar { height: 64px; padding: 0 4%; }
+      .nav { gap: 13px; font-size: 12px; }
+      .nav .hide-mobile { display: none; }
+      .brand { font-size: 17px; }
+      .brand-icon { width: 34px; height: 34px; }
+      .page { width: 94%; margin-top: 25px; }
+      .cover { height: 175px; }
+      .profile-content { padding: 0 19px 22px; }
+      .main-avatar { width: 100px; height: 100px; }
+      .identity-row { margin-top: -49px; }
+      .content-grid { grid-template-columns: 1fr; }
+      .section { padding: 19px; }
+      .stats { gap: 8px; }
+      .stat { padding: 12px; }
+      .stat strong { font-size: 22px; }
+    }
+
+    @media (max-width: 440px) {
+      .intro { align-items: start; flex-direction: column; }
+      .identity-row { align-items: start; flex-direction: column; }
+      .actions { padding-top: 4px; }
+      .stats { grid-template-columns: repeat(3,minmax(0,1fr)); }
+      .stat span { font-size: 10px; }
+      .stat strong { font-size: 20px; }
+      .cover { height: 145px; }
+      .profile-content { padding: 0 15px 19px; }
+      .nav { gap: 10px; }
+      .brand { gap: 7px; font-size: 15px; }
+      .modal { padding: 19px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <a href="index.html" class="brand" aria-label="LE4RNSP4CE Home">
+      <span class="brand-icon">L</span>
+      <span>LE4RNSP4CE</span>
+    </a>
+
+    <nav class="nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="dashboard.html" class="hide-mobile">Dashboard</a>
+      <a href="index.html" class="active">Community</a>
+      <img id="navAvatar" class="top-avatar" alt="Profile photo" />
+    </nav>
+  </header>
+
+  <main class="page">
+    <div class="intro">
+      <div>
+        <div class="eyebrow">YOUR DIGITAL IDENTITY</div>
+        <h1>My Profile<span style="color:#a78bfa">.</span></h1>
+        <p>Your learning journey, ideas and achievements — all in one place.</p>
+      </div>
+      <button class="btn" id="topEditBtn">✦ Edit profile</button>
+    </div>
+
+    <div id="status" class="status" role="status" aria-live="polite"></div>
+
+    <section class="glass profile-card">
+      <div class="cover">
+        <div class="cover-label">LEARN · BUILD · GROW</div>
+      </div>
+
+      <div class="profile-content">
+        <div class="identity-row">
+          <div class="avatar-wrap">
+            <img id="mainAvatar" class="main-avatar" alt="Your profile photo" />
+            <span class="online-dot" title="Signed in"></span>
+          </div>
+
+          <div class="actions">
+            <button class="btn btn-primary" id="editBtn">✎ Edit profile</button>
+            <button class="btn" id="shareBtn">↗ Share profile</button>
+          </div>
+        </div>
+
+        <div class="identity-info">
+          <div class="name-line">
+            <h2 id="displayName">Loading profile…</h2>
+            <span class="verified">LEARNER</span>
+          </div>
+
+          <div id="username" class="username">@loading</div>
+          <div id="bio" class="bio">Loading your introduction…</div>
+
+          <div class="meta">
+            <span>✉ <span id="email">Loading…</span></span>
+            <span>◷ <span id="joined">LE4RNSP4CE member</span></span>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <strong id="postCount">—</strong>
+            <span>Community posts</span>
+          </div>
+          <div class="stat">
+            <strong id="memberSince">—</strong>
+            <span>Member since</span>
+          </div>
+          <div class="stat">
+            <strong>∞</strong>
+            <span>Room to grow</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="content-grid">
+      <section class="glass section">
+        <div class="section-heading">
+          <h3>My activity</h3>
+          <small>Your community posts</small>
+        </div>
+        <div id="postsList">
+          <div class="empty">
+            <div class="empty-icon">✧</div>
+            Loading your activity…
+          </div>
+        </div>
+      </section>
+
+      <aside>
+        <section class="glass section side-section">
+          <h3>About me</h3>
+
+          <div class="detail">
+            <div class="detail-icon">✦</div>
+            <div>
+              <div class="detail-label">DISPLAY NAME</div>
+              <div class="detail-value" id="aboutName">—</div>
+            </div>
+          </div>
+
+          <div class="detail">
+            <div class="detail-icon">⌘</div>
+            <div>
+              <div class="detail-label">USERNAME</div>
+              <div class="detail-value" id="aboutUsername">—</div>
+            </div>
+          </div>
+
+          <div class="detail">
+            <div class="detail-icon">◈</div>
+            <div>
+              <div class="detail-label">EMAIL</div>
+              <div class="detail-value" id="aboutEmail">—</div>
+            </div>
+          </div>
+
+          <p class="note">Your profile is your space to introduce yourself and share what you are learning.</p>
+        </section>
+
+        <section class="glass section side-section">
+          <h3>Profile checklist</h3>
+          <div id="checklist" class="tags">
+            <span class="tag">Loading…</span>
+          </div>
+          <p class="note" style="margin-bottom:0;margin-top:13px">
+            Add a clear photo and a short introduction to make your profile more personal.
+          </p>
+        </section>
+      </aside>
+    </div>
+
+    <div class="footer">Made for learners, builders & future creators. · LE4RNSP4CE</div>
+  </main>
+
+  <!-- EDIT PROFILE MODAL -->
+  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <h2 id="modalTitle">Edit your profile</h2>
+          <p>Make your corner of LE4RNSP4CE feel like you.</p>
+        </div>
+        <button class="close-btn" id="closeModal" aria-label="Close edit profile">×</button>
+      </div>
+
+      <form id="profileForm">
+        <div class="field">
+          <label for="firstName">First name</label>
+          <input id="firstName" maxlength="60" required autocomplete="given-name" />
+        </div>
+
+        <div class="field">
+          <label for="lastName">Last name</label>
+          <input id="lastName" maxlength="60" required autocomplete="family-name" />
+        </div>
+
+        <div class="field">
+          <label for="editUsername">Username <span>Cannot be changed here</span></label>
+          <input id="editUsername" readonly />
+        </div>
+
+        <div class="field">
+          <label for="editEmail">Email <span>Account email</span></label>
+          <input id="editEmail" type="email" readonly />
+        </div>
+
+        <div class="field">
+          <label for="photoURL">Profile photo URL <span>Optional</span></label>
+          <input id="photoURL" type="url" maxlength="500" placeholder="https://example.com/my-photo.jpg" />
+          <div class="field-help">Use a public HTTPS image link. Direct file uploads are not enabled in this version.</div>
+        </div>
+
+        <div class="field">
+          <label for="editBio">About you <span id="bioCounter">0/160</span></label>
+          <textarea id="editBio" maxlength="160" placeholder="What are you learning? What are you building? What excites you?"></textarea>
+        </div>
+
+        <div id="formStatus" class="status" role="status" aria-live="polite"></div>
+
+        <div class="modal-actions">
+          <button class="btn" type="button" id="cancelBtn">Cancel</button>
+          <button class="btn btn-primary" id="saveBtn" type="submit">Save changes →</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
+    import {
+      getAuth,
+      onAuthStateChanged,
+      updateProfile
+    } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
+    import {
+      getFirestore,
+      doc,
+      getDoc,
+      updateDoc,
+      serverTimestamp,
+      collection,
+      query,
+      where,
+      getDocs
+    } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAq2dZSTyMha1TyifA37ZkUGNB69Bb__mY",
+      authDomain: "le4rnsp4ce.firebaseapp.com",
+      projectId: "le4rnsp4ce",
+      storageBucket: "le4rnsp4ce.firebasestorage.app",
+      messagingSenderId: "679714213034",
+      appId: "1:679714213034:web:2768833e0c6ce25398d4d3"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const $ = (id) => document.getElementById(id);
+
+    let currentUser = null;
+    let currentProfile = null;
+    let ownPosts = [];
+
+    const fallbackAvatar =
+      "data:image/svg+xml;charset=UTF-8," +
+      encodeURIComponent(
+        '<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160">' +
+        '<rect width="100%" height="100%" rx="80" fill="#282343"/>' +
+        '<text x="50%" y="57%" text-anchor="middle" font-size="65" fill="#c4b5fd" font-family="Arial">L</text>' +
+        '</svg>'
+      );
+
+    function showStatus(message, type = "info", target = "status") {
+      const el = $(target);
+      el.textContent = message;
+      el.className = `status show ${type}`;
+    }
+
+    function hideStatus(target = "status") {
+      $(target).className = "status";
+      $(target).textContent = "";
+    }
+
+    function safeText(value) {
+      return typeof value === "string" ? value : "";
+    }
+
+    function formatDate(value) {
+      if (!value) return "";
+      try {
+        const date = typeof value.toDate === "function"
+          ? value.toDate()
+          : new Date(value);
+
+        if (Number.isNaN(date.getTime())) return "";
+        return date.toLocaleDateString(undefined, {
+          day: "numeric",
+          month: "short",
+          year: "numeric"
+        });
+      } catch {
+        return "";
+      }
+    }
+
+    function initials(name) {
+      const parts = safeText(name).trim().split(/\s+/).filter(Boolean);
+      return parts.slice(0, 2).map(part => part[0]).join("").toUpperCase() || "L";
+    }
+
+    function safeImageURL(value) {
+      if (typeof value !== "string" || !value.trim()) return "";
+      try {
+        const url = new URL(value);
+        return url.protocol === "https:" ? url.href : "";
+      } catch {
+        return "";
+      }
+    }
+
+    function setAvatar(url, name) {
+      const validURL = safeImageURL(url);
+      const fallback = fallbackAvatar;
+
+      ["mainAvatar", "navAvatar"].forEach(id => {
+        const image = $(id);
+        image.src = validURL || fallback;
+        image.alt = `${name || "Learner"} profile photo`;
+        image.onerror = () => {
+          image.onerror = null;
+          image.src = fallback;
+        };
+      });
+    }
+
+    function setMemberDate(value) {
+      const date = formatDate(value);
+      $("joined").textContent = date ? `Member since ${date}` : "LE4RNSP4CE member";
+      $("memberSince").textContent = date ? date.slice(-4) : "New";
+    }
+
+    function renderProfile(profile, user) {
+      const firstName = safeText(profile.firstName);
+      const lastName = safeText(profile.lastName);
+      const displayName = safeText(profile.displayName) ||
+        `${firstName} ${lastName}`.trim() ||
+        user.displayName ||
+        "Learner";
+
+      const username = safeText(profile.username);
+      const email = safeText(profile.email) || user.email || "";
+      const bio = safeText(profile.bio);
+      const photoURL = safeText(profile.photoURL) || user.photoURL || "";
+
+      $("displayName").textContent = displayName;
+      $("username").textContent = username ? `@${username}` : "@learner";
+      $("bio").textContent = bio || "Your story starts here. Add a short introduction about yourself.";
+      $("email").textContent = email || "Email not available";
+      $("aboutName").textContent = displayName;
+      $("aboutUsername").textContent = username ? `@${username}` : "Not set";
+      $("aboutEmail").textContent = email || "Not available";
+
+      setAvatar(photoURL, displayName);
+      setMemberDate(profile.createdAt);
+
+      const checks = [
+        ["Name added", Boolean(displayName && displayName !== "Learner")],
+        ["Bio added", Boolean(bio.trim())],
+        ["Photo added", Boolean(safeImageURL(photoURL))]
+      ];
+
+      $("checklist").replaceChildren();
+      checks.forEach(([label, complete]) => {
+        const tag = document.createElement("span");
+        tag.className = "tag";
+        tag.textContent = `${complete ? "✓" : "＋"} ${label}`;
+        $("checklist").appendChild(tag);
+      });
+    }
+
+    function openModal() {
+      if (!currentProfile || !currentUser) return;
+
+      $("firstName").value = safeText(currentProfile.firstName);
+      $("lastName").value = safeText(currentProfile.lastName);
+      $("editUsername").value = safeText(currentProfile.username);
+      $("editEmail").value = safeText(currentProfile.email) || currentUser.email || "";
+      $("photoURL").value = safeText(currentProfile.photoURL) || currentUser.photoURL || "";
+      $("editBio").value = safeText(currentProfile.bio);
+      updateBioCounter();
+      hideStatus("formStatus");
+      $("modalBackdrop").classList.add("open");
+      document.body.style.overflow = "hidden";
+      $("firstName").focus();
+    }
+
+    function closeModal() {
+      $("modalBackdrop").classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    function updateBioCounter() {
+      $("bioCounter").textContent = `${$("editBio").value.length}/160`;
+    }
+
+    function escapeHTML(value) {
+      return safeText(value).replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      })[char]);
+    }
+
+    function renderPosts(posts) {
+      $("postCount").textContent = String(posts.length);
+      const container = $("postsList");
+      container.replaceChildren();
+
+      if (!posts.length) {
+        const empty = document.createElement("div");
+        empty.className = "empty";
+        empty.innerHTML =
+          '<div class="empty-icon">✧</div>' +
+          '<strong style="color:#e4e3f5">Your story is waiting.</strong><br>' +
+          'Publish your first community post and it will appear here.';
+        container.appendChild(empty);
+        return;
+      }
+
+      posts.forEach(post => {
+        const article = document.createElement("article");
+        article.className = "post";
+
+        const type = document.createElement("div");
+        type.className = "post-type";
+        type.textContent = safeText(post.type) || "Community post";
+
+        const title = document.createElement("h3");
+        title.textContent = safeText(post.title) || "Untitled post";
+
+        const description = document.createElement("p");
+        description.textContent = safeText(post.description);
+
+        const date = document.createElement("div");
+        date.className = "post-date";
+        date.textContent = formatDate(post.createdAt) || "Recently published";
+
+        article.append(type, title);
+        if (description.textContent) article.appendChild(description);
+        article.appendChild(date);
+        container.appendChild(article);
+      });
+    }
+
+    async function loadOwnPosts(uid) {
+      $("postsList").innerHTML =
+        '<div class="empty"><div class="skeleton" style="margin:0 auto 12px"></div>Loading your posts…</div>';
+
+      try {
+        const postsQuery = query(
+          collection(db, "posts"),
+          where("uid", "==", uid)
+        );
+
+        const snapshot = await getDocs(postsQuery);
+        ownPosts = snapshot.docs.map(item => ({
+          id: item.id,
+          ...item.data()
+        }));
+
+        ownPosts.sort((a, b) => {
+          const aTime = a.createdAt?.toMillis?.() || 0;
+          const bTime = b.createdAt?.toMillis?.() || 0;
+          return bTime - aTime;
+        });
+
+        renderPosts(ownPosts);
+      } catch (error) {
+        console.error("Profile posts error:", error);
+        $("postsList").innerHTML = "";
+
+        const errorBox = document.createElement("div");
+        errorBox.className = "empty";
+        errorBox.textContent =
+          "We couldn't load your posts. Check your Firestore permissions and try refreshing.";
+        $("postsList").appendChild(errorBox);
+      }
+    }
+
+    async function loadProfile(user) {
+      currentUser = user;
+      hideStatus();
+
+      try {
+        const userRef = doc(db, "users", user.uid);
+        const userSnap = await getDoc(userRef);
+
+        if (!userSnap.exists()) {
+          showStatus(
+            "Your account profile document was not found in Firestore. Check signup's users collection.",
+            "error"
+          );
+          return;
+        }
+
+        currentProfile = userSnap.data();
+        renderProfile(currentProfile, user);
+        await loadOwnPosts(user.uid);
+      } catch (error) {
+        console.error("Profile load error:", error);
+        showStatus(
+          `Profile could not load: ${error.message || "Unknown error"}`,
+          "error"
+        );
+      }
+    }
+
+    async function saveProfile(event) {
+      event.preventDefault();
+      if (!currentUser || !currentProfile) return;
+
+      const firstName = $("firstName").value.trim();
+      const lastName = $("lastName").value.trim();
+      const displayName = `${firstName} ${lastName}`.trim();
+      const rawPhotoURL = $("photoURL").value.trim();
+      const bio = $("editBio").value.trim();
+
+      if (!firstName || !lastName) {
+        showStatus("Please enter both your first and last name.", "error", "formStatus");
+        return;
+      }
+
+      if (displayName.length > 60) {
+        showStatus("Your display name must be 60 characters or fewer.", "error", "formStatus");
+        return;
+      }
+
+      if (bio.length > 160) {
+        showStatus("Your bio must be 160 characters or fewer.", "error", "formStatus");
+        return;
+      }
+
+      if (rawPhotoURL && !safeImageURL(rawPhotoURL)) {
+        showStatus("Please use a valid public HTTPS image URL.", "error", "formStatus");
+        return;
+      }
+
+      const saveButton = $("saveBtn");
+      saveButton.disabled = true;
+      saveButton.textContent = "Saving…";
+      hideStatus("formStatus");
+
+      try {
+        const profileRef = doc(db, "users", currentUser.uid);
+
+        await updateDoc(profileRef, {
+          firstName,
+          lastName,
+          displayName,
+          photoURL: rawPhotoURL,
+          bio,
+          updatedAt: serverTimestamp()
+        });
+
+        try {
+          await updateProfile(currentUser, {
+            displayName,
+            photoURL: rawPhotoURL || null
+          });
+        } catch (authError) {
+          // The Firestore profile has already saved.
+          // Keep profile data usable even if Auth's profile update fails.
+          console.warn("Firebase Auth profile sync warning:", authError);
+        }
+
+        currentProfile = {
+          ...currentProfile,
+          firstName,
+          lastName,
+          displayName,
+          photoURL: rawPhotoURL,
+          bio
+        };
+
+        renderProfile(currentProfile, currentUser);
+        closeModal();
+        showStatus("Profile updated successfully. Your changes are saved.", "success");
+      } catch (error) {
+        console.error("Profile save error:", error);
+
+        let message = error.message || "Unknown error";
+
+        if (error.code === "permission-denied") {
+          message =
+            "Firestore denied this update. Check the users/{uid} update rule and confirm it allows bio, displayName, firstName, lastName, photoURL and updatedAt.";
+        }
+
+        showStatus(message, "error", "formStatus");
+      } finally {
+        saveButton.disabled = false;
+        saveButton.textContent = "Save changes →";
+      }
+    }
+
+    $("editBtn").addEventListener("click", openModal);
+    $("topEditBtn").addEventListener("click", openModal);
+    $("closeModal").addEventListener("click", closeModal);
+    $("cancelBtn").addEventListener("click", closeModal);
+    $("profileForm").addEventListener("submit", saveProfile);
+    $("editBio").addEventListener("input", updateBioCounter);
+
+    $("modalBackdrop").addEventListener("click", event => {
+      if (event.target === $("modalBackdrop")) closeModal();
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") closeModal();
+    });
+
+    $("shareBtn").addEventListener("click", async () => {
+      const url = window.location.href;
+
+      try {
+        if (navigator.share) {
+          await navigator.share({
+            title: `${$("displayName").textContent} | LE4RNSP4CE`,
+            text: "Check out my LE4RNSP4CE learner profile.",
+            url
+          });
+        } else if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(url);
+          showStatus("Profile link copied. You can share it with others.", "success");
+        } else {
+          showStatus("Copy this page's URL from your browser address bar to share it.", "info");
+        }
+      } catch (error) {
+        if (error.name !== "AbortError") {
+          showStatus("You can copy your profile URL from the browser address bar.", "info");
+        }
+      }
+    });
+
+    onAuthStateChanged(auth, async user => {
+      if (!user) {
+        window.location.replace("login.html");
+        return;
+      }
+
+      await loadProfile(user);
+    });
+  </script>
+</body>
+</html>
