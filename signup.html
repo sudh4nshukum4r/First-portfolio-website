@@ -827,39 +827,70 @@
       }
     }
 
-    async function reserveProfile(user, profile) {
-      const usernameRef = doc(db, "usernames", profile.username);
-      const userRef = doc(db, "users", user.uid);
+ async function reserveProfile(user, profile) {
+  const username = profile.username.trim().toLowerCase();
 
-      await runTransaction(db, async transaction => {
-        const existingUsername = await transaction.get(usernameRef);
+  if (!/^[a-z0-9_]{3,24}$/.test(username)) {
+    throw new Error(
+      "Username must be 3–24 characters using letters, numbers or underscores."
+    );
+  }
 
-        if (existingUsername.exists()) {
-          throw new Error("That username is already taken. Please choose another.");
-        }
+  const usernameRef = doc(db, "usernames", username);
+  const userRef = doc(db, "users", user.uid);
 
-        transaction.set(usernameRef, {
-          uid: user.uid,
-          username: profile.username,
-          createdAt: serverTimestamp()
-        });
+  await runTransaction(db, async (transaction) => {
+    const [existingUsername, existingUser] = await Promise.all([
+      transaction.get(usernameRef),
+      transaction.get(userRef)
+    ]);
 
-        transaction.set(userRef, {
-          uid: user.uid,
-          username: profile.username,
-          displayName: [profile.firstName, profile.lastName]
-            .filter(Boolean).join(" "),
-          firstName: profile.firstName,
-          lastName: profile.lastName,
-          email: user.email || profile.email || "",
-          country: profile.country || "Not specified",
-          language: profile.language || "English",
-          photoURL: user.photoURL || "",
-          createdAt: serverTimestamp()
-        });
-      });
+    // If this user's profile already exists, don't overwrite it.
+    if (existingUser.exists()) {
+      const savedProfile = existingUser.data();
+
+      if (savedProfile.username) {
+        return;
+      }
     }
 
+    // Don't let one user claim another user's username.
+    if (
+      existingUsername.exists() &&
+      existingUsername.data().uid !== user.uid
+    ) {
+      throw new Error(
+        "That username is already taken. Please choose another."
+      );
+    }
+
+    const userData = {
+      uid: user.uid,
+      username,
+      displayName: [
+        profile.firstName,
+        profile.lastName
+      ].filter(Boolean).join(" ") || user.displayName || "Learner",
+      firstName: profile.firstName || "",
+      lastName: profile.lastName || "",
+      email: user.email || profile.email || "",
+      country: profile.country || "Not specified",
+      language: profile.language || "English",
+      photoURL: user.photoURL || "",
+      createdAt: existingUser.exists()
+        ? (existingUser.data().createdAt || serverTimestamp())
+        : serverTimestamp()
+    };
+
+    transaction.set(usernameRef, {
+      uid: user.uid,
+      username,
+      createdAt: serverTimestamp()
+    });
+
+    transaction.set(userRef, userData, { merge: true });
+  });
+}
     form.addEventListener("submit", async event => {
       event.preventDefault();
 
