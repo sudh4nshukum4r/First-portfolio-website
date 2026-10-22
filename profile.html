@@ -1077,33 +1077,45 @@
       }
     }
 
-    async function loadProfile(user) {
-      currentUser = user;
-      hideStatus();
+   async function loadProfile(user) {
+  currentUser = user;
+  hideStatus();
 
-      try {
-        const userRef = doc(db, "users", user.uid);
-        const userSnap = await getDoc(userRef);
+  try {
+    console.log("PROFILE DEBUG — project:", app.options.projectId);
+    console.log("PROFILE DEBUG — auth UID:", user.uid);
+    console.log("PROFILE DEBUG — auth email:", user.email);
 
-        if (!userSnap.exists()) {
-          showStatus(
-            "Your account profile document was not found in Firestore. Check signup's users collection.",
-            "error"
-          );
-          return;
-        }
+    const userRef = doc(db, "users", user.uid);
+    console.log("PROFILE DEBUG — document path:", userRef.path);
 
-        currentProfile = userSnap.data();
-        renderProfile(currentProfile, user);
-        await loadOwnPosts(user.uid);
-      } catch (error) {
-        console.error("Profile load error:", error);
-        showStatus(
-          `Profile could not load: ${error.message || "Unknown error"}`,
-          "error"
-        );
-      }
+    const userSnap = await getDoc(userRef);
+
+    console.log("PROFILE DEBUG — document exists:", userSnap.exists());
+
+    if (!userSnap.exists()) {
+      showStatus(
+        `Profile not found. Project: ${app.options.projectId}. UID: ${user.uid}. Path: ${userRef.path}`,
+        "error"
+      );
+      return;
     }
+
+    currentProfile = userSnap.data();
+    console.log("PROFILE DEBUG — profile loaded:", currentProfile);
+
+    renderProfile(currentProfile, user);
+    await loadOwnPosts(user.uid);
+
+  } catch (error) {
+    console.error("Profile load error:", error);
+
+    showStatus(
+      `Profile could not load: ${error.code || ""} ${error.message || "Unknown error"}`,
+      "error"
+    );
+  }
+}
 
     async function saveProfile(event) {
       event.preventDefault();
